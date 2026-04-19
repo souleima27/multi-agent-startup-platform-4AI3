@@ -1,0 +1,642 @@
+{
+  "doc_id": "KB2",
+  "input_title": "Create a work breakdown structure | Microsoft Learn",
+  "category": "task_decomposition",
+  "url": "https://learn.microsoft.com/en-us/dynamics365/project-operations/project-management/create-wbs",
+  "site": "learn.microsoft.com",
+  "page_title": "Create a work breakdown structure | Microsoft Learn",
+  "meta_description": "This article explains how to create a work breakdown structure (WBS) inclusive of the basic controls in the new scheduling interface.",
+  "main_selector": "microsoft_specific:role=main",
+  "intro": [],
+  "sections": [
+    {
+      "heading": "Share via",
+      "level": "h4",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Access to this page requires authorization. You can try signing in or changing directories ."
+            },
+            {
+              "type": "paragraph",
+              "text": "Access to this page requires authorization. You can try changing directories ."
+            }
+          ]
+        }
+      ],
+      "summary": "You are being denied access to the page due to authorization issues. To resolve this, try signing in to the system or platform. If signing in doesn't work, attempt to change directories to see if access is granted."
+    },
+    {
+      "heading": "In this article",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A project schedule communicates what work must be completed, which resources do the work, and the timeframe in which the work must be completed. The schedule reflects all the work associated with delivering the project on time. In Dynamics 365 Project Operations, you create a project schedule by:"
+            }
+          ]
+        },
+        {
+          "title": "Checklist",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Breaking down the work into manageable tasks.",
+                "Estimating the time that is required to do each task.",
+                "Setting task dependencies.",
+                "Setting task durations.",
+                "Estimating the generic resources that complete the tasks."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You create the project schedule on the Schedule tab on the Project page."
+            }
+          ]
+        }
+      ],
+      "summary": "To create a project schedule in Dynamics 365 Project Operations, break down the work into manageable tasks. Estimate the time required for each task and set task dependencies and durations. Identify the generic resources needed to complete each task. The project schedule is created on the Schedule tab of the Project page, reflecting all work required to deliver the project on time."
+    },
+    {
+      "heading": "Tasks",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The first step in creating a project schedule is to break down the work into manageable portions. The schedule in Project Operations supports the following features:"
+            }
+          ]
+        },
+        {
+          "title": "Key points",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Summary or container tasks",
+                "Leaf node tasks"
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "To create a project schedule, start by breaking down the work into smaller, manageable tasks. The project schedule supports two main types of tasks: summary tasks, which group smaller tasks together, and leaf node tasks, which are individual tasks. Breaking down work into these tasks helps create a clear and organized project schedule."
+    },
+    {
+      "heading": "Summary tasks",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Summary tasks can store other summary tasks or leaf node tasks. They have no work effort or cost of their own. Instead, their work effort and cost roll up from their container tasks. The start date of the summary task is the start date of the container tasks, and the end date is the end date of the container tasks. You can edit the name of a summary task, but you can't edit scheduling properties, including effort, dates, and duration. If you delete a summary task, you also delete all its container tasks."
+            }
+          ]
+        }
+      ],
+      "summary": "Here's a summary of summary tasks in 4 clear sentences:\n\nSummary tasks are containers that hold other summary tasks or individual tasks, but don't have their own work effort or cost. Their work effort and cost are calculated from the tasks they contain. You can edit a summary task's name, but not its scheduling properties like dates or duration. Deleting a summary task will also delete all the tasks it contains."
+    },
+    {
+      "heading": "Leaf node tasks",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Leaf node tasks represent the most granular work on the project. They have an estimated effort, resources, planned start and end dates, and a duration."
+            }
+          ]
+        }
+      ],
+      "summary": "Leaf node tasks are the smallest units of work in a project. They have specific details, including estimated effort, required resources, and planned start and end dates. Each task also has a defined duration, outlining how long it's expected to take. These details help project managers plan and track progress effectively."
+    },
+    {
+      "heading": "Add a task",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Complete the following steps to add one or more tasks."
+            },
+            {
+              "type": "list",
+              "items": [
+                "Go to Projects and select the project record you want to open.",
+                "Select the Tasks tab.",
+                "Select Add new task , enter a name for the task, and then press Enter.",
+                "Enter another task name and press Enter again until you have a full list of tasks."
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "To add a task, go to the Projects section and open the desired project record. Click on the Tasks tab and select \"Add new task.\" Enter the task name and press Enter to save it. Continue adding tasks by entering their names and pressing Enter until your list is complete."
+    },
+    {
+      "heading": "Manage hierarchy of a task",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "When you indent a task, it becomes a child of the task that is directly above it. The schedule ID of the task is then recalculated so that it's based on the schedule ID of its new parent and follows the outline numbering scheme. The parent task becomes a summary task and a rollup of its child tasks. When you promote a task, it isn't a child of the task that was its parent. The schedule ID is recalculated so that it reflects the task's updated depth and position in the hierarchy. The effort, cost, and dates of the previous parent task are recalculated so that they don't include this task."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Complete the following steps to indent or promote a task."
+            },
+            {
+              "type": "list",
+              "items": [
+                "On the Project page, on the Tasks tab, under Summary tasks , select the three vertical dots by the task name, and then select Make subtask .",
+                "Select the task to indent or promote. To select more than one task, select a task, select and hold the Ctrl key, and then select more tasks.",
+                "Select Indent or Promote subtask to move tasks under or out from under summary tasks."
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "To manage a task hierarchy, indenting a task makes it a child of the task above it, recalculating its schedule ID and making the parent a summary task. Promoting a task removes it from its parent, updating its schedule ID and recalculating the parent's effort, cost, and dates. To indent or promote a task, go to the Project page, Tasks tab, and select the three vertical dots next to the task name. From there, choose \"Make subtask\" and then select \"Indent\" or \"Promote subtask\" to move the task under or out from under a summary task. This can be done for multiple tasks by holding the Ctrl key while selecting."
+    },
+    {
+      "heading": "Move tasks up and down",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can move tasks to any level in the work breakdown structure in one of two ways:"
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Select one or more tasks, and drag them to the desired location.",
+                "Select one or more tasks, right-click and select Cut , select the destination cell in the schedule, and then right-click and select Paste ."
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "To move tasks in the work breakdown structure, you have two options. You can drag and drop one or more selected tasks to the desired location. Alternatively, you can right-click on the tasks, select \"Cut\", then right-click on the destination cell and select \"Paste\". This allows you to easily reorganize tasks to any level in the structure."
+    },
+    {
+      "heading": "Task attributes",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A task's name describes the work that must be completed. In Project Operations, the attributes associated with a task describe the schedule of the task and its staffing requirements."
+            }
+          ]
+        }
+      ],
+      "summary": "In Project Operations, a task's attributes provide essential details about the task. The task name describes the work to be done. Task attributes also outline the task's schedule and staffing requirements, helping to organize and plan the project effectively."
+    },
+    {
+      "heading": "Schedule attributes",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Effort , Start date , End date , and Duration attributes define the schedule for the task."
+            },
+            {
+              "type": "paragraph",
+              "text": "The following table shows more schedule attributes."
+            }
+          ]
+        },
+        {
+          "title": "Table",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Final display name",
+                  "Final description"
+                ],
+                [
+                  "Effort Completed (Hours)",
+                  "Completed work for the task in hours."
+                ],
+                [
+                  "Duration",
+                  "Displays the duration in days for the task."
+                ],
+                [
+                  "Total Effort",
+                  "Total work for the task in hours."
+                ],
+                [
+                  "Finish",
+                  "Finish date and time."
+                ],
+                [
+                  "% Complete",
+                  "The percentage of the task that's complete."
+                ],
+                [
+                  "Project Bucket",
+                  "The task board can be grouped by bucket. Therefore, each bucket has its own column."
+                ],
+                [
+                  "Effort Remaining (Hours)",
+                  "The remaining work for the task in hours."
+                ],
+                [
+                  "Start",
+                  "Start date and time."
+                ],
+                [
+                  "Name",
+                  "The name of the task."
+                ],
+                [
+                  "ID",
+                  "The ID of the task in the work breakdown structure."
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "As an administrator, you can define custom fields on the task entity. However, you can't display these fields on the schedule grid. To see your custom fields, add them to the Project Task details page."
+            }
+          ]
+        }
+      ],
+      "summary": "Here's a summary of the section on schedule attributes:\n\nKey schedule attributes for tasks include Effort, Start date, End date, and Duration. Additional attributes provide more details, such as Effort Completed, Total Effort, Finish date and time, and % Complete. Administrators can create custom fields for tasks, but these fields can only be viewed on the Project Task details page, not on the schedule grid."
+    },
+    {
+      "heading": "Staffing attributes",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Access staffing attributes through the Resources field in the schedule. You can search for an existing resource, or select Create and, in the Quick Create pane, add a project team member as a new resource. When you search for a resource by using the resource picker in the task grid, board view, or Gantt, the search returns either existing project team members or active bookable resources."
+            },
+            {
+              "type": "paragraph",
+              "text": "Use the Role , Resourcing Unit , and Position Name fields to describe the staffing requirements for the task. These staffing attributes, together with the task schedule, help you find available resources to do this task."
+            }
+          ]
+        },
+        {
+          "title": "Checklist",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Role â Specify the type of resource that is required to do the task.",
+                "Resourcing unit â Specify the unit that resources for the task should be assigned from. This attribute affects the cost and sales estimate for the task if the cost and bill rate for the resource are set based on resourcing units.",
+                "Position name â Enter a name for the generic resource that serves as a placeholder for the resource that ultimately completes the work."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Resources field holds the position name of the generic resource or named resource when you find one."
+            },
+            {
+              "type": "paragraph",
+              "text": "The Category field holds the values that indicate a broader type of work that the task can be grouped into. This field doesn't affect scheduling or staffing. Instead, use the field only for reporting."
+            }
+          ]
+        }
+      ],
+      "summary": "To access staffing attributes, go to the Resources field in the schedule and search for existing resources or create a new one. Use the Role, Resourcing Unit, and Position Name fields to describe task staffing requirements, which help find available resources. The Role field specifies the resource type needed, Resourcing Unit affects cost and sales estimates, and Position Name is a placeholder for the resource that completes the work. These attributes, along with the task schedule, aid in resource allocation."
+    },
+    {
+      "heading": "Task dependencies",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can use the schedule in Project Operations to create predecessor relationships between tasks. The Predecessor field uses one or more values to indicate the tasks that a task depends on. When you assign predecessor values to a task, the task can start only after you complete all of the predecessor tasks. Because of the dependency, the planned start date of the task is reset to the date when the predecessor tasks are completed."
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Project Operations supports four dependency types."
+            }
+          ]
+        },
+        {
+          "title": "Table",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Dependency Type",
+                  "Description"
+                ],
+                [
+                  "Finish-to-start (FS)",
+                  "As the default dependency, Task B (successor) can start only after the finish of task A (predecessor)"
+                ],
+                [
+                  "Start-to-start (SS)",
+                  "Task B (successor) can start only with or after the start of task A (predecessor)"
+                ],
+                [
+                  "Finish-to-Finish (FF)",
+                  "Task B (successor) can finish only after the finish of task A (predecessor)"
+                ],
+                [
+                  "Start-to-Finish (SF)",
+                  "Task B (successor) can finish only after the start task A (predecessor)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "For precise planning, Project Operations provides the concept of lead and lag to the project manager."
+            }
+          ]
+        },
+        {
+          "title": "Table",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Type",
+                  "Description"
+                ],
+                [
+                  "Immediate",
+                  "Task B (successor) can start immediately after the Task A (predecessor) finishes"
+                ],
+                [
+                  "Lag",
+                  "Task B (successor) can start only after the specified lag duration has elapsed after Task A (predecessor) finishes (positive offset)"
+                ],
+                [
+                  "Lead",
+                  "Task B (successor) can start earlier by the defined lead time prior to the completion of Task A (predecessor) (negative offset)"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The task mode has no effect on updates that you make to the start and end dates of predecessor or dependent tasks."
+            }
+          ]
+        }
+      ],
+      "summary": "In Project Operations, you can create predecessor relationships between tasks to establish dependencies. There are four dependency types: Finish-to-start, Start-to-start, Finish-to-Finish, and Start-to-Finish, which determine when a task can start or finish based on its predecessor. Additionally, you can use lead and lag to fine-tune task timing, allowing for immediate starts, delayed starts (lag), or early starts (lead) after a predecessor task is completed. This helps you plan tasks more precisely and ensures that dependent tasks are updated accordingly."
+    },
+    {
+      "heading": "Task labels",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can apply labels on tasks and use this capability to quickly see what they have in common, to sort or filter. For more information, see Use labels to sort tasks in Microsoft Project for the web ."
+            }
+          ]
+        }
+      ],
+      "summary": "Task labels allow you to categorize and organize tasks in a way that makes sense for your project. By applying labels, you can quickly identify commonalities between tasks and group them accordingly. Labels can also be used to sort and filter tasks, making it easier to manage and prioritize your work. This feature helps streamline your workflow and improve project visibility."
+    },
+    {
+      "heading": "Task history",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Examples",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Task history records all the changes you make to a task. For each edit, the history shows details such as who made the change, when they made it, what property they changed, the previous value, and the new value."
+            },
+            {
+              "type": "paragraph",
+              "text": "The history records changes that include edits such as:"
+            }
+          ]
+        },
+        {
+          "title": "Key points",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Adding or removing labels",
+                "Changing the duration or effort",
+                "Editing checklists",
+                "Adding or removing attachments",
+                "Edits to any custom columns"
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": "Task history keeps a record of all changes made to a task, including who made the change, when, and what was changed. This record includes edits such as adding/removing labels, changing duration or effort, and modifying custom columns. The history also tracks changes to checklists and attachments. This allows for easy tracking of task updates and changes over time."
+    },
+    {
+      "heading": "Understanding the impacts of duration, resource calendars, and project calendars on tasks",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A task's duration is the number of working hours between the start time of the start date and the end time of the finish date of the task. By default, Project for the Web defines duration units of measure as follows."
+            }
+          ]
+        },
+        {
+          "title": "Table",
+          "blocks": [
+            {
+              "type": "table",
+              "rows": [
+                [
+                  "Measure of duration",
+                  "Quantity"
+                ],
+                [
+                  "Hours per day",
+                  "8"
+                ],
+                [
+                  "Hours per week",
+                  "40"
+                ],
+                [
+                  "Days per month",
+                  "20"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can edit these duration conversions at the project level to support users in regions where work hours are defined differently than these default durations. Zero isn't a valid quantity for hours or days."
+            },
+            {
+              "type": "paragraph",
+              "text": "Project for the Web uses these durations (whether default or customized) to convert to hours only when you define effort on a task."
+            },
+            {
+              "type": "paragraph",
+              "text": "Unassigned tasks use the project's calendar for scheduling. However, when you initially assign a resource, the scheduling engine updates the task to respect the resource's calendar. Subsequent changes to a task with an assignment follow the scheduling mode of the project. To learn more about the influence of calendars on tasks, see Resource Calendars in Project for the web and Task Start Times & Your Projects! ."
+            },
+            {
+              "type": "paragraph",
+              "text": "Project for the Web doesn't respect business closures that you define in the resource or project calendars."
+            },
+            {
+              "type": "paragraph",
+              "text": "You can create a resource assignment only when the end of the resource's calendar rule overlaps the task's end date. Therefore, if your calendar rule ends before the end of the task, the assignment isn't scheduled, because the schedule doesn't have enough time for the resource to perform the task."
+            }
+          ]
+        },
+        {
+          "title": "Examples",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "For example, a resource calendar begins on Wednesday, March 1, 2023, but ends on Friday, April 14, 2023. In the project where you add this resource, tasks that you assign to this resource can't end later than April 14, 2023. Otherwise, they aren't scheduled, because they exceed the last day of the resource's calendar."
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The screenshot shows in green which tasks can be scheduled because they end before the last day of the resource availability, and in red, which ones aren't allowed."
+            }
+          ]
+        }
+      ],
+      "summary": "Here's a summary of the content in 3-5 clear, actionable sentences:\n\nA task's duration in Project for the Web is calculated based on working hours between the start and finish dates, using default or customized duration units. When assigning a resource to a task, the task's schedule is updated to respect the resource's calendar, but subsequent changes follow the project's scheduling mode. Resource assignments can only be created when the resource's calendar overlaps with the task's end date, and tasks cannot be scheduled if they exceed the resource's available time. To ensure successful scheduling, ensure that the task's end date aligns with the resource's calendar availability."
+    },
+    {
+      "heading": "Accessibility and keyboard shortcuts",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Schedule grid is fully accessible and works with screen readers such as Narrator, JAWS, or NVDA. You can move through the grid area by using arrow keys (as in Microsoft Excel). Use the Tab key to advance through the interactive user interface elements. Use the Down arrow key, the Enter key, or the Spacebar to select and open the drop-down menus."
+            }
+          ]
+        }
+      ],
+      "summary": "The Schedule grid is fully accessible and compatible with popular screen readers. To navigate the grid, use arrow keys to move around, similar to Microsoft Excel. Press the Tab key to advance through interactive elements, and use the Down arrow, Enter, or Spacebar to select and open drop-down menus. This allows users to easily access and interact with the grid using their keyboard."
+    },
+    {
+      "heading": "Planning a project in s s",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "You can also use s s and plan your project based on agile project management. For more information, see Plan a project in s s in Project for the web ."
+            }
+          ]
+        }
+      ],
+      "summary": "You can plan a project in s s using agile project management principles. This approach allows for flexibility and adaptability in your project planning. For more information on how to do this, refer to the guide on planning a project in s s in Project for the web."
+    }
+  ],
+  "stats": {
+    "num_sections": 17,
+    "num_mini_sections": 36,
+    "num_intro_blocks": 0,
+    "num_paragraph_blocks": 36,
+    "num_list_blocks": 7,
+    "num_table_blocks": 4,
+    "num_preformatted_blocks": 0,
+    "num_quote_blocks": 0
+  },
+  "error": null
+}

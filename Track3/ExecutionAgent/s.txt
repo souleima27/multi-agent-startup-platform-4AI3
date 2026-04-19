@@ -1,0 +1,32 @@
+MCP and A2A work together in your single-agent system to cleanly separate what your agent thinks (reasoning/planning) from what it does (tool calls and external actions). Here's the simple step-by-step flow using your exact design.
+
+Agent Execution Cycle (1 Round)
+Agent Reasons & Plans: Your LLM gets the user query + prior context, outputs a DAG plan with ordered actions (some type: "internal", some type: "external").
+
+MCP Handles Internal Tools (Fast, Local):
+
+Agent emits MCPAction { type: "internal", tool: "create_task", payload: {...} }
+
+MCP layer (localhost server or in-process) executes immediately: runs the tool, returns clean result
+
+Result feeds back to agent memory for next reasoning step. No network, no retries needed.
+
+A2A Router Handles External Actions (Queued, Guaranteed):
+
+Agent emits ExternalActionEnvelope { type: "external", destination: {system: "jira"}, depends_on: ["action-1"], ... }
+
+MCP layer sees type: "external" → forwards to async channel (queue/pipe), doesn't execute
+
+A2A Router consumes channel → validates → SequenceGate waits for depends_on → rate limits → calls adapter → writes result to settled_external_actions
+
+Agent Sees Results: Next critic loop, agent reads pending_external_actions + settled_external_actions from its runtime JSON. No direct router coupling.
+
+Your Key Innovation
+text
+Agent → MCP Layer → [internal → execute] OR [external → A2A channel]
+                    ↓
+               A2A Router (separate process)
+MCP = Agent ↔ Local Tools (synchronous, simple, keeps reasoning clean)
+A2A = Agent ↔ External Systems (async, sequenced, robust via your envelope + adapters)
+
+This split means your agent never blocks on Jira API timeouts, never leaks API keys into prompts, and can plan reliably while execution happens deterministically in the background. Single-agent perfection.

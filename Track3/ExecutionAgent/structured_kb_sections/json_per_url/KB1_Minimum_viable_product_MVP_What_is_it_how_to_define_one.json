@@ -1,0 +1,607 @@
+{
+  "doc_id": "KB1",
+  "input_title": "Minimum viable product (MVP): What is it & how to define one",
+  "category": "product_execution",
+  "url": "https://www.atlassian.com/agile/product-management/minimum-viable-product",
+  "site": "atlassian.com",
+  "page_title": "Minimum viable product (MVP): What is it & how to start | Atlassian",
+  "meta_description": "A minimum viable product (MVP) is a product with a small set of features that delivers customer value. Read this article to learn more.",
+  "main_selector": "main",
+  "intro": [],
+  "sections": [
+    {
+      "heading": "Minimum viable product (MVP): What is it & how to start",
+      "level": "h1",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Get the free product discovery template"
+            },
+            {
+              "type": "paragraph",
+              "text": "Align your team from idea to delivery. Prioritize ideas, create custom roadmaps, and ensure full visibility across all stages."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "A minimum viable product (MVP) is the simplest version of a product that allows teams to validate ideas and gather with minimal effort.",
+                "MVPs reduce risk, accelerate learning, and inform future development through real-world testing and iteration.",
+                "Building an MVP involves identifying core features, testing with users, and refining based on insights.",
+                "Launch an MVP to quickly validate assumptions and guide your teamâs next product roadmap with data-driven decisions."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "A minimum viable product (MVP) is the simplest version of a product that allows teams to validate ideas and gather with minimal effort."
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "MVPs reduce risk, accelerate learning, and inform future development through real-world testing and iteration."
+            },
+            {
+              "type": "paragraph",
+              "text": "Building an MVP involves identifying core features, testing with users, and refining based on insights."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Launch an MVP to quickly validate assumptions and guide your teamâs next product roadmap with data-driven decisions."
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Did you know that Amazon started as a seller of used college textbooks? Although the company is now selling millions more products (and making billions more dollars), it started with a simple idea of getting books delivered to college kids. This mind-blowing transformation is quite possibly one of the best examples of the Minimum Viable Product principle at work."
+            }
+          ]
+        }
+      ],
+      "summary": "A Minimum Viable Product (MVP) is a simplified version of a product that allows teams to test and validate ideas with minimal effort. Building an MVP involves identifying core features, testing with users, and refining based on insights to reduce risk and inform future development. Launching an MVP enables teams to quickly validate assumptions and make data-driven decisions for their next product roadmap. By starting small and iterating, teams can accelerate learning and drive growth, as seen in successful examples like Amazon's humble beginnings as a used college textbook seller."
+    },
+    {
+      "heading": "What is a minimum viable product (MVP)?",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Put in basic terms: the minimum viable product, or MVP, is the simplest version of a product that you need to build to sell it to a market. The concept of the minimum viable product, or MVP, was first introduced by Lean Startup genius Eric Ries. He defines the MVP as:"
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "âThe version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort.â"
+            }
+          ]
+        }
+      ],
+      "summary": "A minimum viable product (MVP) is the simplest version of a product that can be sold in a market. It's designed to collect the most customer feedback with the least effort. Introduced by Eric Ries, the MVP concept helps teams validate their product ideas and learn from customers before investing in a full-scale product. By launching an MVP, businesses can test their product's viability and make informed decisions about future development."
+    },
+    {
+      "heading": "The importance and benefits of implementing MVPs",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The concept of an MVP comes from lean startup methodology , which encourages learning and building with scalability in mind. So with an MVP, youâre building the first small step at a low risk to your wallet and business that you can test, refine, and grow step-by-step."
+            },
+            {
+              "type": "paragraph",
+              "text": "Youâll start with that small step to uncover the marketâs interest in your product â this will teach you where you need to make improvements, scale back, or perhaps even add extra features to make the product marketable."
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The benefits of focusing on an MVP and scaling it up may vary, but ultimately the purpose is to provide a low-risk testing ground before you invest thousands (or millions!) of dollars into a product before itâs ready to sell. MVP testing can provide cost savings, insights into user-centered design , fast business launches, and even getting early investor buy-in."
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The insights and investment youâll reap early on will help you build the best product life cycle management strategy, to create the dream product you and your customers have been looking for."
+            }
+          ]
+        }
+      ],
+      "summary": "Implementing a Minimum Viable Product (MVP) allows you to test and refine your product at a low risk and cost. By starting with a small, scalable step, you can gauge market interest, identify areas for improvement, and make data-driven decisions. This approach provides numerous benefits, including cost savings, user-centered design insights, and faster business launches. By testing and refining your MVP, you can create a solid foundation for your product's life cycle management and increase its chances of success."
+    },
+    {
+      "heading": "Setting up an effective MVP",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Getting to your MVP can be one of the trickiest parts of your business and product strategy , but itâs one of the most important. Your MVP needs to address customer pain points , offer a means of gathering customer insight, and be limited to only a few features. Think of this as the testing ground for your business concept, focused solely on measuring the cost and impact of the key product features , while simultaneously proving its value to customers and investors"
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Defining the MVP comes down to specific ideation and validation that requires agile team collaboration. Here are the common steps to achieving MVP:"
+            }
+          ]
+        }
+      ],
+      "summary": "To set up an effective Minimum Viable Product (MVP), focus on addressing customer pain points and gathering insights. Limit your MVP to a few key features that measure the cost and impact of your product while proving its value to customers and investors. Defining your MVP requires agile team collaboration and specific ideation and validation. By following these steps, you can create a testing ground for your business concept and refine it based on customer feedback."
+    },
+    {
+      "heading": "1. Identify the customer pain points",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "What problem are you trying to solve? Letâs get into the minds of Uber founders Garret Camp and Travis Kalanick way back in 2008. Letâs say you are attending a conference in a big city and you notice it can be difficult to hail a cab late at night or in bad weather. So you want to build a solution where you can just use your phone to get a ride home. You talk to potential users and ask them what their preferences are: do they expect to hail a cab at the touch of a button? Would they be comfortable texting a taxi driver to get home? How do they prefer to pay for their ride? This way, you do your market research to get an idea of who would use your solution and what they would expect from it."
+            },
+            {
+              "type": "paragraph",
+              "text": "Market research to develop an MVP can include:"
+            }
+          ]
+        },
+        {
+          "title": "Key points",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Competitive analysis",
+                "Opportunity and SWOT analysis",
+                "Surveys, 1:1 interviews , and focus groups"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Opportunity and SWOT analysis"
+            },
+            {
+              "type": "paragraph",
+              "text": "Surveys, 1:1 interviews , and focus groups"
+            },
+            {
+              "type": "paragraph",
+              "text": "Take your research and interview results and validate them with data. This will give you a better understanding of your customersâ needs and pain points, identify which features your product needs at a minimum to provide value, and give you some good testimony you can use as proof of concept during the investment stage."
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "From their preliminary research, Camp and Kalanick developed âUberCab,â the first edition of the popular Uber app we know today. The MVP was a version based entirely within SMS, giving users the ability to call a cab through a simple text. The rest, as they say, is history."
+            }
+          ]
+        }
+      ],
+      "summary": "To identify customer pain points, start by understanding the problem you're trying to solve. Conduct market research through methods like competitive analysis, surveys, and one-on-one interviews to gather insights on potential users' preferences and needs. Validate your findings with data to gain a deeper understanding of your customers' pain points and identify the minimum features required to provide value. This research will help you develop a minimum viable product (MVP) that meets your customers' needs and provides a solid foundation for further development."
+    },
+    {
+      "heading": "2. Describe the competitive landscape",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "If the year is 2006, your cab-hailing service probably has few competitors. But in 2023, ride-sharing services are abundant, with plenty of overlap from app to app. What will make your service stand out? What are customers still missing out on? And whatâs the monetary value of those pain points to the customer? Come up with a pros and cons list that showcases how your service does it better than the competition."
+            }
+          ]
+        }
+      ],
+      "summary": "To succeed in a crowded market, identify what sets your service apart from competitors. Analyze the pros and cons of your service compared to others, highlighting areas where you excel. Determine the unmet needs of customers and the monetary value of addressing those pain points. This will help you differentiate your service and create a unique selling proposition."
+    },
+    {
+      "heading": "3. Test the MVP for validity",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Identify a beta group or internal testers from your team who can give the basic technology a try, whether itâs a landing page, an SMS line (like early Uber), or a basic one-page app. Stick to deadlines and have your testing team focus on the functionality and the ability to solve pain points. This will help you ideate and understand where you need to improve and refine the product before you launch it to early adopters."
+            }
+          ]
+        }
+      ],
+      "summary": "To test your MVP's validity, gather a beta group or internal testers to try out the basic technology. Focus on meeting deadlines and have testers evaluate functionality and pain point resolution. This testing phase helps identify areas for improvement and refinement before launching to early adopters. By doing so, you can iterate and enhance your product to better meet user needs."
+    },
+    {
+      "heading": "4. Get ready to launch",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "If your MVP gets past the testing stage, congrats! Youâve got something special. Now itâs time to research, build, test, fix, launch, and continue ideation. Once youâve solidified the few features you identified from the start, you can launch the MVP to your first customer base and kick off the build-measure-learn (BML) loop ."
+            }
+          ]
+        }
+      ],
+      "summary": "If your MVP passes testing, it's time to move forward. Refine your product by researching, building, testing, and fixing any issues. Once you've finalized the core features, launch your MVP to your initial customer base. This marks the start of the build-measure-learn loop, where you'll continue to iterate and improve your product."
+    },
+    {
+      "heading": "What are some examples of MVPs?",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The MVP isnât just a testing ground or prototype that gets dismissed in the long run, though. There are plenty of products and services on the market that started off as MVPs and expanded into institutions in their own right."
+            }
+          ]
+        }
+      ],
+      "summary": "A Minimum Viable Product (MVP) is not just a temporary prototype, but can evolve into a successful product or service. Many well-known products and services started as MVPs and grew into established institutions. Examples of MVPs are not explicitly listed, but the concept emphasizes the potential for MVPs to expand and become long-term successes."
+    },
+    {
+      "heading": "Amazon",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In the early 90s, Jeff Bezos read that the e-commerce industry would be the next big venture in sales and took the opportunity to discover which markets would be most successful. He eventually landed on a bookstore as the minimum viable product, which he ran from his garage. The success of his bookstore led to the demand for other products, like electronics, clothing, and shoes. It was his first step â using books as the MVP âÂ that gave him the customer insight to take Amazon to the next level. Who would have thought that a small bookstore on a basic webpage would expand to the third-largest enterprise in the world in just 20 short years?"
+            }
+          ]
+        }
+      ],
+      "summary": "Jeff Bezos identified the e-commerce industry as a promising venture in the early 1990s. He started a small online bookstore from his garage as a minimum viable product, which eventually led to customer demand for other products. This initial success provided valuable customer insights that helped Bezos expand Amazon into various product categories. By starting small and adapting to customer needs, Bezos was able to grow Amazon into one of the world's largest enterprises within 20 years."
+    },
+    {
+      "heading": "Uber",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Yes, the ride-sharing app we all know and love didnât start as a mobile app. In fact, founders Garret Camp and Travis Kalanick took advantage of the idea of an MVP to develop an iPhone-only SMS service called UberCab in San Francisco. They tested the user experience and refined it within the city before they were able to gather venture capital and build the app that services 19 million trips around the world each day."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Uber has gone through various iterations, increasing its scope year by year using the collected from its customer base. While UberCab launched with just taxis, Uber in its second wave incorporated black cars and independent contractors as drivers to build the ridesharing experience we all know and use today. Through various iterations, weâve seen Uber expand way beyond the MVP to include pooled rideshare, accessible ride options, and in some small markets, even helicopters ."
+            }
+          ]
+        }
+      ],
+      "summary": "Uber started as an iPhone-only SMS service called UberCab in San Francisco, testing and refining the user experience before expanding. Founders Garret Camp and Travis Kalanick used the feedback to secure venture capital and build the app, which now services 19 million trips daily. Over time, Uber has evolved through various iterations, incorporating new features such as black cars, independent contractors, and pooled rideshare options. Today, Uber offers a range of services, including accessible ride options and even helicopters in some markets."
+    },
+    {
+      "heading": "Spotify",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "In 2006, streaming services were starting and failing over and over again due to limited and low-quality libraries, high subscription prices, and unstable streaming. So Daniel Ek and Martin Lorentzon built Spotify as a landing page where they could test their streaming technology to beta users and fund it with on-page ad revenue. Their ultimate goal was to make playback fast and stable so they could convince music labels and investors of the productâs quality. Once they got through market testing, Spotify and its subsequent app was released to the public to become the streaming behemoth we now know."
+            }
+          ]
+        }
+      ],
+      "summary": "Spotify was founded in 2006 by Daniel Ek and Martin Lorentzon, who aimed to overcome the limitations of existing streaming services. They initially launched a landing page to test their technology with beta users, generating revenue through ads. The goal was to demonstrate fast and stable playback, which would help secure support from music labels and investors. After successful market testing, Spotify was released to the public, eventually becoming a leading music streaming platform."
+    },
+    {
+      "heading": "Evolving beyond MVPs",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The MVP isnât the end-all-be-all for your business. In fact, the concept of the MVP has evolved to more refined solutions, like theÂ Minimum Lovable Product (MLP) or Minimum Marketable Product (MMP)."
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The Minimum Lovable Product (MLP) is a customer-centered product that users love from the start, defined by its features offering the minimum a product needs to be loved. Lovability here hinges on the customer experience, where the product or service directly addresses the problems customers have that they want to be solved. The MLP might have an existing market and competitors, but this is the preferred alternative due to its cost-savings, better solutions, or ease of use. With an MVP, the priority is getting to market as fast and affordably as possible. With an MLP, the priority is delivering the highest value to the customer.Â"
+            },
+            {
+              "type": "paragraph",
+              "text": "A Minimum Marketable Product (MMP) is the next stage, where your MVP or MLP is ready to be sold to the end user. The MMP is the simplest product that the market will accept before new features are built. With an MMP, youâve developed your product and proven its value to the customer through testing. Rather than a prototype like the MVP could be , the MMP is ready to hit the market for early adopters. Think of how Spotify developed itself as a landing page as its MVP. Once they were able to develop an app and a subscription service, they launched into the market as the MMP."
+            }
+          ]
+        }
+      ],
+      "summary": "The concept of the Minimum Viable Product (MVP) has evolved into more refined solutions, such as the Minimum Lovable Product (MLP) and Minimum Marketable Product (MMP). The MLP prioritizes delivering high value to customers by solving their problems and providing a great user experience. The MMP is the next stage, where a product is ready to be sold to end-users, having proven its value through testing and development. This approach shifts the focus from quickly getting to market with an MVP to delivering a product that customers love and are willing to pay for."
+    },
+    {
+      "heading": "Jira Product Discovery can kickstart your MVP journey",
+      "level": "h2",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Building an MVP is easier said than done. So where do you start? You want to build out a framework that keeps your team aligned and gets them prepared for the s to MVP. Enter Jira Product Discovery ."
+            },
+            {
+              "type": "paragraph",
+              "text": "Jira is built with product development in mind. Together, your team can prioritize, collaborate on, and deliver new product ideas all in one place. Create custom product Roadmaps in Jira to visualize your building blocks â scope, people, and time â to help teams plan in real time. You can capture data and insights from your MVP testers like product opportunities, user , and requests. Integrate with Confluence and Trello to incorporate mission briefs, validations, user story mapping, and other visual techniques for product discovery on your journey to MVP."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Utilizing an agile framework will help you visualize all the features your product needs and every step that your team needs to take along the way. Your epics will break these steps down into individual tasks and outline dependencies so your team works in a flow over a set of s s . You can link your epics to a Confluence page to add insights via design files or user research data so the entire team can remain aligned with a single document."
+            }
+          ]
+        },
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Once you have moved past the first stage with your MVP, you can return to Jira to collect and analyze . As your team builds features and completes epics, youâll be able to integrate features into the product and gather further insights. Then you can return to the epic, provide and context, and adjust the scope. This encourages continuous development that everyone on the team is informed on and invested in."
+            }
+          ]
+        },
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Keep on scaling toward success as you build, measure, and learn. Together, your team can use Jira to take your MVP to the next level and launch a product that will go far (and maybe even transform) the market."
+            }
+          ]
+        }
+      ],
+      "summary": "To kickstart your Minimum Viable Product (MVP) journey, Jira Product Discovery provides a framework to align your team and prepare for development. It allows you to create custom product roadmaps, prioritize and collaborate on new ideas, and capture data from MVP testers. By utilizing an agile framework, you can break down features into individual tasks, outline dependencies, and link epics to Confluence pages for a single source of truth. This enables continuous development, informed decision-making, and scaling towards success."
+    },
+    {
+      "heading": "Related resources",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Key points",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Project Management Resources Project Initiation Resources Product Launch Resources Software Project Management"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Project Management Resources"
+            }
+          ]
+        },
+        {
+          "title": "Key points",
+          "blocks": [
+            {
+              "type": "list",
+              "items": [
+                "Project Initiation Resources",
+                "Product Launch Resources",
+                "Software Project Management"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Project Initiation Resources"
+            },
+            {
+              "type": "paragraph",
+              "text": "Software Project Management"
+            }
+          ]
+        }
+      ],
+      "summary": "This section provides access to various project management resources. The resources are categorized into three main areas: Project Management, Project Initiation, and Product Launch. Additionally, resources specific to Software Project Management are also available. These resources can be utilized to support different stages of project planning and execution."
+    },
+    {
+      "heading": "What is the difference between MVP and PoC?",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "An MVP (Minimum Viable Product) is a simple, functional version of a product released to gather customer and validate market demand, while a PoC (Proof of Concept) is a prototype or experiment to test if an idea or technology is feasible. MVPs are tested with real users, whereas PoCs are usually internal and not customer-facing."
+            }
+          ]
+        }
+      ],
+      "summary": "Here's a summary of the key differences between MVP and PoC:\n\nA Minimum Viable Product (MVP) is a basic, functional product released to test market demand and gather customer feedback. In contrast, a Proof of Concept (PoC) is an internal experiment to test the feasibility of an idea or technology. The key difference lies in their purpose and audience: MVPs are tested with real users, while PoCs are typically internal and not customer-facing. This distinction helps determine whether to pursue a product or idea further."
+    },
+    {
+      "heading": "What is the purpose of the MVP?",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The purpose of an MVP is to validate a product idea with minimal resources, gather early user , and reduce risk before investing heavily in full development. It helps teams learn what customers want and refine the product accordingly."
+            }
+          ]
+        }
+      ],
+      "summary": "The purpose of a Minimum Viable Product (MVP) is to test a product idea with minimal resources and risk. It helps teams validate their idea, gather early user feedback, and understand customer needs. By launching an MVP, teams can refine their product and make informed decisions before investing in full development. This approach reduces the risk of launching a product that may not meet customer expectations."
+    },
+    {
+      "heading": "What is an example of MVP?",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Examples",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Examples of MVPs include Amazon starting as an online bookstore, Uber launching as an SMS-based cab service, and Spotify beginning as a simple landing page to test streaming technology. Each started with a basic version to test the market before expanding."
+            }
+          ]
+        }
+      ],
+      "summary": "Here's a summary of what an MVP (Minimum Viable Product) looks like in real-world examples:\n\nAn MVP is a basic version of a product or service that tests the market before expanding. Examples include Amazon starting as an online bookstore, Uber launching as an SMS-based cab service, and Spotify beginning as a simple landing page. These companies started small to gauge interest and refine their offerings before growing into what they are today. By launching an MVP, businesses can validate their ideas and make informed decisions about future development."
+    },
+    {
+      "heading": "What is the primary goal of an MVP?",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Definition",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The primary goal of an MVP is to maximize learning about customers with the least effort, allowing teams to test assumptions, gather , and iterate quickly. This approach minimizes risk and helps ensure the product meets real user needs."
+            }
+          ]
+        }
+      ],
+      "summary": "The primary goal of a Minimum Viable Product (MVP) is to learn as much as possible about customers while minimizing effort. This approach allows teams to test assumptions, gather feedback, and make quick iterations. By doing so, teams can reduce the risk of launching a product that doesn't meet user needs. Ultimately, the MVP helps ensure the product is developed with real user needs in mind."
+    },
+    {
+      "heading": "Ready-made Jira templates",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Browse our library of custom Jira templates for various teams, departments, and workflows."
+            }
+          ]
+        }
+      ],
+      "summary": "Access a library of custom Jira templates designed for different teams, departments, and workflows. These ready-made templates can help streamline your Jira setup. Browse the library to find a template that suits your specific needs and workflow."
+    },
+    {
+      "heading": "A comprehensive introduction to Jira",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Steps",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Use this step-by-step guide to discover essential features and the best practices to maximize your productivity."
+            }
+          ]
+        }
+      ],
+      "summary": "This guide offers a step-by-step introduction to Jira, covering its essential features. By following the guide, you'll learn how to use Jira effectively and discover best practices to boost your productivity. The guide is designed to help you maximize your use of Jira and streamline your workflow."
+    },
+    {
+      "heading": "Understanding the Basics of Git",
+      "level": "h3",
+      "mini_sections": [
+        {
+          "title": "Explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "From beginners to advanced experts, use this guide to Git to learn the basics with helpful tutorials and tips."
+            }
+          ]
+        }
+      ],
+      "summary": "This guide to Git is designed for users of all skill levels, from beginners to experts. It covers the basics of Git through tutorials and helpful tips. The guide aims to provide a comprehensive understanding of Git, making it accessible to those new to the system. By following the guide, users can gain a solid foundation in Git and improve their skills."
+    }
+  ],
+  "stats": {
+    "num_sections": 22,
+    "num_mini_sections": 42,
+    "num_intro_blocks": 0,
+    "num_paragraph_blocks": 47,
+    "num_list_blocks": 4,
+    "num_table_blocks": 0,
+    "num_preformatted_blocks": 0,
+    "num_quote_blocks": 0
+  },
+  "error": null
+}

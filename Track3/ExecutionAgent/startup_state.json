@@ -1,0 +1,119 @@
+{
+  "startup_profile": {
+    "name": "SkillBridge",
+    "objective": "Build a practical MVP training platform for students and job seekers, focused on course delivery, learner progress tracking, certificates, and pilot partnerships with training centers.",
+    "problem_statement": "Learners struggle to find affordable, structured, and trackable online training, while training centers need a lightweight platform to organize content, monitor engagement, and validate course completion efficiently.",
+    "target_users": "Students, job seekers, instructors, and training center administrators.",
+    "execution_context": "Small team, limited resources, short timeline, demo-ready MVP required.",
+    "mvp_scope_paragraph": "The MVP must include secure signup/login, a learner dashboard, and payment integration for premium courses. In parallel, legal registration and pilot partnership preparation must progress."
+  },
+  "mvp_plan": {
+    "features": [
+      {
+        "name": "User signup and authentication",
+        "priority": "high",
+        "business_value": 5,
+        "description": "Users must create accounts, log in securely, and access their learning space."
+      },
+      {
+        "name": "Learner dashboard",
+        "priority": "high",
+        "business_value": 5,
+        "description": "Learners must view courses, track progress, and resume learning."
+      },
+      {
+        "name": "Payment integration for premium courses",
+        "priority": "medium",
+        "business_value": 4,
+        "description": "The platform needs a simple payment flow for premium courses."
+      }
+    ],
+    "admin_workflow": [
+      {
+        "name": "Legal registration",
+        "priority": "high",
+        "business_value": 5,
+        "description": "The startup must complete company registration before formal partnerships and invoicing."
+      },
+      {
+        "name": "Prepare pilot partnership agreements",
+        "priority": "medium",
+        "business_value": 4,
+        "description": "Prepare agreements to onboard pilot training centers and instructors."
+      }
+    ],
+    "deadlines": {
+      "mvp_launch": "2026-06-15",
+      "legal_deadline": "2026-05-10"
+    },
+    "delivery_goal_paragraph": "The MVP should be demo-ready by June 15, 2026, while legal readiness should support pilot discussions by May 10, 2026."
+  },
+  "team": [
+    {
+      "id": "T1",
+      "name": "Amine",
+      "role": "Backend Engineer",
+      "skills": ["python", "fastapi", "backend", "api", "database", "testing"],
+      "availability": 0.9,
+      "velocity_factor": 1.0,
+      "profile": "Handles backend services, authentication, API logic, and integrations."
+    },
+    {
+      "id": "T2",
+      "name": "Meriem",
+      "role": "Frontend Developer / UX",
+      "skills": ["react", "frontend", "ui", "ux", "design"],
+      "availability": 1.0,
+      "velocity_factor": 1.0,
+      "profile": "Handles learner dashboard design, course interface, and user experience."
+    },
+    {
+      "id": "T3",
+      "name": "Omar",
+      "role": "Operations / Project Manager",
+      "skills": ["project management", "documentation", "planning", "operations", "legal"],
+      "availability": 0.8,
+      "velocity_factor": 1.0,
+      "profile": "Handles planning, legal follow-up, partnership documents, and execution monitoring."
+    }
+  ],
+  "constraints": {
+    "max_parallel_tasks_per_member": 2,
+    "working_days_per_week": 5,
+    "current_date": "2026-04-12",
+    "budget_context": "The startup is operating with early-stage constraints, so the MVP must stay simple and practical.",
+    "execution_rule": "The plan must prioritize a pilot-ready learning platform, not a full enterprise LMS."
+  },
+  "knowledge_base": {
+    "sources": ["KB1_MVP", "KB2_WBS_CREATE", "KB2B_WBS_OVERVIEW"],
+    "last_retrieval": {}
+  },
+  "retrospective": {
+    "velocity_default": 1.0,
+    "notes": [
+      "Frontend and backend can move in parallel after scope is clarified.",
+      "Administrative tasks slow down when external approvals are missing."
+    ]
+  },
+  "live_status": {
+    "project_notes": [
+      "Dashboard exploration started informally.",
+      "Legal registration is delayed by a missing official tax form."
+    ],
+    "progress_signals": [
+      {
+        "work_item_hint": "dashboard design research",
+        "status": "in_progress",
+        "progress": 0.3,
+        "actual_days": 2
+      },
+      {
+        "work_item_hint": "legal registration paperwork",
+        "status": "blocked",
+        "progress": 0.2,
+        "actual_days": 2,
+        "blocked_reason": "Waiting for official tax form"
+      }
+    ]
+  }
+}
