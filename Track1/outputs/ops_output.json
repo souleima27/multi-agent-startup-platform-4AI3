@@ -1,0 +1,59 @@
+{
+  "minimum_roles_responsibilities": [
+    {
+      "role": "operator / founder",
+      "description": "Owns product strategy, pricing, deployment model, and operational rules. Manages B2B partnerships and revenue model execution."
+    },
+    {
+      "role": "technical owner",
+      "description": "Develops and maintains IoT hardware, firmware, backend systems, and connectivity protocols. Ensures device reliability and security."
+    },
+    {
+      "role": "device operations",
+      "description": "Manages device installation, inventory tracking, provisioning, and field support. Coordinates with logistics partners for locker placement."
+    }
+  ],
+  "operational_needs": [
+    "Onboarding e-commerce, courier, and retail partners for locker integration",
+    "Device health monitoring and connectivity tracking",
+    "Incident resolution for hardware failures and connectivity issues",
+    "Inventory management for units, spare parts, and replacements",
+    "Coordination with logistics providers for last-mile delivery optimization",
+    "Customer support for locker access issues and usage guidance"
+  ],
+  "materials_equipment": [
+    "Connected parcel locker units",
+    "Hardware components and spare parts",
+    "Network infrastructure (modems, routers)",
+    "Testing equipment for device diagnostics",
+    "Packaging materials for shipping and installation"
+  ],
+  "physical_presence_needs": {
+    "site_requirements": "Urban installation locations in Tunis, Sfax, Sousse, and university/apartment zones",
+    "storage": "Minimal, focused on spare parts and field-ready units",
+    "field_presence": "Required for locker installation, maintenance, and partner coordination",
+    "remote_operations": "Supported via IoT systems for device monitoring and support"
+  },
+  "tools_stack": [
+    {
+      "tool": "IoT device management platform",
+      "description": "Tracks device status, firmware updates, and connectivity health"
+    },
+    {
+      "tool": "Cloud backend hosting",
+      "description": "Manages locker access control, delivery notifications, and data synchronization"
+    },
+    {
+      "tool": "Inventory tracking system",
+      "description": "Monitors unit deployment, spare parts stock, and replacement scheduling"
+    },
+    {
+      "tool": "Partner coordination portal",
+      "description": "Facilitates onboarding, locker integration, and performance reporting for B2B clients"
+    },
+    {
+      "tool": "Customer support ticketing system",
+      "description": "Handles user inquiries, access issues, and service requests"
+    }
+  ]
+}

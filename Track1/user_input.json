@@ -1,0 +1,37 @@
+{
+  "startup_idea": "A smart parcel locker network for apartment buildings, university campuses, and small retail pickup points in Tunisia that lets e-commerce sellers and local delivery companies drop off packages into secure connected lockers for 24/7 pickup instead of failed home delivery attempts.",
+  "idea_description": "A hardware-enabled logistics service in Tunisia that installs connected parcel lockers in dense urban locations so customers can collect online orders anytime, while merchants and delivery operators reduce missed deliveries and last-mile inefficiency.",
+  "problem": "Home delivery is often inefficient because customers are not available at delivery time, which creates repeated delivery attempts, delays, extra costs, and poor customer experience for e-commerce sellers and delivery operators.",
+  "target_customer": {
+    "type": "B2B2C",
+    "location": "Tunisia, especially Tunis, Sfax, Sousse, and university or apartment zones",
+    "notes": "Primary paying customers are e-commerce businesses, local courier partners, and retail pickup partners. End users are urban online shoppers who want flexible parcel pickup."
+  },
+  "industry": "logistics / transport / mobility",
+  "product_type": "hardware-enabled product / IoT",
+  "how_it_works_one_sentence": "Couriers place parcels into connected lockers, customers receive a code or notification, and they pick up their package securely at any time.",
+  "business_model": {
+    "revenue_model": "subscription + usage-based",
+    "who_pays": "business",
+    "when_paid": "recurring"
+  },
+  "team": {
+    "members": [
+      {
+        "role": "founder",
+        "skills": "operations, partnerships, B2B sales"
+      },
+      {
+        "role": "technical cofounder",
+        "skills": "IoT systems, backend development, hardware integration"
+      }
+    ]
+  },
+  "finance_assumptions": {
+    "price_per_sale": "400 TND per locker partner per month",
+    "sales_target_per_month": 15,
+    "gain_on_sale_pct": 40,
+    "months": "6",
+    "initial_budget_tnd": 45000
+  }
+}

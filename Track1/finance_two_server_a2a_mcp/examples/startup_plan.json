@@ -1,0 +1,30 @@
+{
+  "idea_description": "Smart refrigerated IoT box for same-day transport of perishable goods in Tunisia with a basic dashboard.",
+  "problem": "Small food transport operations need better temperature safety during same-day delivery.",
+  "target_customer": {
+    "type": "B2B",
+    "location": "Tunisia (city/region)",
+    "notes": "Coastal cities first"
+  },
+  "industry": "logistics",
+  "product_type": "service+software",
+  "how_it_works_one_sentence": "A refrigerated connected box sends temperature alerts and is managed from a basic web dashboard.",
+  "business_model": {
+    "revenue_model": "subscription",
+    "who_pays": "business",
+    "when_paid": "recurring"
+  },
+  "price_per_sale": "350 TND per customer per month",
+  "sales_target_per_month": 20,
+  "gain_on_sale_pct": 40,
+  "months": "6",
+  "team": {
+    "members": [
+      {
+        "role": "founder",
+        "skills": "operations and sales"
+      }
+    ]
+  },
+  "initial_budget_tnd": 30000
+}

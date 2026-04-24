@@ -1,0 +1,35 @@
+{
+  "mvp_summary": "A network of compact, solar-powered parcel lockers with RFID access in high-density Tunisian urban areas, enabling customers to retrieve online orders anytime while reducing delivery failures for merchants.",
+  "mvp_must_haves": [
+    "Compact locker units with touchscreen interface and RFID reader for customer access",
+    "Backend dashboard for merchants to track parcel inventory and locker status",
+    "Mobile app for customers to view order status and access codes",
+    "Pre-installed solar panel and rechargeable battery for standalone operation",
+    "Wi-Fi and cellular connectivity with local data storage for offline access",
+    "Modular design allowing partner technicians to perform basic maintenance",
+    "12-month warranty covering manufacturing defects excluding misuse"
+  ],
+  "out_of_scope": [
+    "Advanced analytics or delivery route optimization",
+    "Integration with multiple e-commerce platforms",
+    "Battery replacement services",
+    "Customized locker sizes for specific use cases",
+    "Real-time GPS tracking of individual parcels"
+  ],
+  "user_journey": [
+    "Customer receives order confirmation with locker location and access code",
+    "Customer scans QR code to unlock parcel compartment",
+    "Merchant uploads parcel inventory to backend system",
+    "Delivery operator places package in locker with tracking ID",
+    "Customer retrieves package using RFID tag or access code",
+    "System logs pickup completion and updates inventory"
+  ],
+  "acceptance_criteria": [
+    "Lockers successfully store and retrieve parcels using RFID or code access",
+    "Backend dashboard accurately reflects real-time inventory and locker status",
+    "Customers can access lockers without internet connectivity using stored data",
+    "Partners can perform basic maintenance without specialized tools",
+    "Warranty claims are processed for manufacturing defects within 12 months",
+    "Lockers operate for 72 hours on a single solar charge"
+  ]
+}

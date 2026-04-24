@@ -1,0 +1,50 @@
+{
+  "employees_and_wages": {
+    "founder_operations_partnerships_sales": {
+      "role": "Operations, Partnerships, B2B Sales",
+      "salary_range_tnd_monthly": "1400-2300",
+      "employer_burden_percentage": "22%",
+      "total_monthly_cost_tnd": "2196-3426"
+    },
+    "technical_cofounder_iot_backend": {
+      "role": "IoT Systems, Backend Development, Hardware Integration",
+      "salary_range_tnd_monthly": "1800-3000",
+      "employer_burden_percentage": "22%",
+      "total_monthly_cost_tnd": "2200-4400"
+    }
+  },
+  "tools_materials_ops_costs": {
+    "device_units": "Missing data on device unit costs in Tunisia",
+    "components": "Missing data on component costs",
+    "testing": "Missing data on testing costs",
+    "packaging": "Missing data on packaging costs",
+    "device_management": "Missing data on device management system costs",
+    "backend_hosting": "Missing data on backend hosting costs",
+    "inventory_tracking": "Missing data on inventory tracking system costs",
+    "support_incident_tracking": "Missing data on support incident tracking system costs"
+  },
+  "monthly_costs": {
+    "range_tnd": "4400-7850",
+    "calculation_note": "Based on mid-level salary ranges (1800-2400 TND) + 22% employer burden (social contributions, work accident, etc.)"
+  },
+  "one_time_costs": {
+    "status": "missing_info",
+    "note": "Device unit, component, and system costs unavailable due to lack of local market data"
+  },
+  "suggested_price": {
+    "range_tnd": "350-450",
+    "note": "Based on revenue agent's price realism assessment and initial budget constraints"
+  },
+  "price_realism": {
+    "assessment": "unclear",
+    "note": "Market pricing data for connected parcel lockers in Tunisia is unavailable"
+  },
+  "expected_monthly_revenue": {
+    "amount_tnd": 6000,
+    "calculation": "15 lockers x 400 TND/month x 40% margin"
+  },
+  "payback_months": {
+    "duration": 18.75,
+    "calculation": "45000 TND initial budget / 6000 TND monthly revenue"
+  }
+}

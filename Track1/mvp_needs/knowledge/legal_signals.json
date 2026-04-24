@@ -1,0 +1,1134 @@
+[
+  {
+    "industry": "technology",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "personal data compliance",
+        "description": "Declare personal-data processing to INPDP and get prior authorization when the treatment falls into authorization cases."
+      },
+      {
+        "item": "privacy notice and user rights process",
+        "description": "Tell users what data you collect, why you collect it, and how they can access, correct, or delete it."
+      },
+      {
+        "item": "cross-border data transfer approval",
+        "description": "Check foreign hosting or foreign SaaS tools because personal-data transfer abroad needs INPDP authorization."
+      },
+      {
+        "item": "cybersecurity controls",
+        "description": "Maintain basic security controls, logging, backup, and an internal response process for cyber incidents."
+      },
+      {
+        "item": "electronic contracting and signature framework",
+        "description": "If the product uses online contracts, electronic signatures, or certified digital documents, align with the Tunisian e-commerce and certification framework."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear privacy communication",
+        "description": "Show users what data is collected and how it is used."
+      },
+      {
+        "item": "visible security posture",
+        "description": "Protect accounts, user data, and core systems with basic security measures."
+      },
+      {
+        "item": "reliable service and support",
+        "description": "Keep the service stable and give users a clear support contact."
+      },
+      {
+        "item": "clear terms and billing",
+        "description": "Make pricing, renewal, cancellation, and platform rules easy to understand."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "foreign cloud dependency check",
+        "description": "Using hosting or tools outside Tunisia can create data-transfer approval work."
+      },
+      {
+        "item": "mandatory cyber audit for some operators",
+        "description": "Hosting providers, cloud providers, telecom or internet operators, and some services processing user data over telecom networks can fall into mandatory cyber audit and classification rules."
+      },
+      {
+        "item": "certification and signature services are regulated",
+        "description": "If the product offers certified signature, trust services, or similar functions, extra approvals and technical rules apply."
+      },
+      {
+        "item": "security obligations rise fast with sensitivity",
+        "description": "Risk increases if the product handles sensitive personal data, critical services, or high-impact infrastructure."
+      }
+    ]
+  },
+  {
+    "industry": "education",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "sector authorization check",
+        "description": "Confirm the right authority before launch because private school, private higher education, and private vocational training do not use the same approval path."
+      },
+      {
+        "item": "recognized status and certification claims",
+        "description": "Do not market the offer as officially recognized, accredited, or diploma-granting unless the status is actually approved."
+      },
+      {
+        "item": "student data compliance",
+        "description": "Set up privacy notice, consent handling, access or correction process, and INPDP data-processing compliance for student and parent data."
+      },
+      {
+        "item": "written learner terms",
+        "description": "Make fees, schedule, cancellation, delivery format, and certificate conditions clear in writing."
+      },
+      {
+        "item": "safeguarding and site safety process",
+        "description": "Maintain basic learner protection, incident handling, and site or session safety procedures."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear recognition status",
+        "description": "Learners must understand whether the program is informal, private training, or officially authorized education."
+      },
+      {
+        "item": "qualified teaching staff",
+        "description": "Use credible instructors and make their role and expertise clear."
+      },
+      {
+        "item": "safe learner environment",
+        "description": "Protect learners from abuse, disorder, and unsafe learning conditions."
+      },
+      {
+        "item": "reliable records and delivery",
+        "description": "Keep attendance, progress, certificates, and schedule commitments consistent."
+      },
+      {
+        "item": "parent communication for minors",
+        "description": "Use clear communication and consent handling when minors are involved."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sector split matters",
+        "description": "A tutoring app, private school, private university, and private training center do not face the same regulator or approval process."
+      },
+      {
+        "item": "minor learners raise the burden",
+        "description": "Working with children increases safeguarding, consent, and parent communication needs."
+      },
+      {
+        "item": "formal education is more regulated",
+        "description": "School-like or degree-like models face more operational and approval constraints than simple adult short-course offers."
+      },
+      {
+        "item": "student data can create transfer issues",
+        "description": "If student or parent data is hosted or processed abroad, cross-border data-transfer approval can become necessary."
+      }
+    ]
+  },
+  {
+    "industry": "health",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "professional and facility authorization check",
+        "description": "Confirm that the activity, facility, and health professionals are legally authorized before launch."
+      },
+      {
+        "item": "patient data and medical secrecy compliance",
+        "description": "Set up INPDP data-processing compliance, confidentiality controls, and restricted access to patient data."
+      },
+      {
+        "item": "patient consent and record process",
+        "description": "Use clear consent, maintain patient records, and document care or service actions."
+      },
+      {
+        "item": "medical waste and hygiene compliance",
+        "description": "Handle care-related waste, hygiene, and hazardous materials with the required process."
+      },
+      {
+        "item": "medical communication and claims control",
+        "description": "Do not make misleading medical claims and keep public communication consistent with health-profession rules."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "visible professional legitimacy",
+        "description": "Patients must trust that care is provided by qualified and authorized people."
+      },
+      {
+        "item": "strong confidentiality",
+        "description": "Protect patient information and keep medical discussions private."
+      },
+      {
+        "item": "safe and clean service delivery",
+        "description": "Show reliable hygiene, safety, and handling standards."
+      },
+      {
+        "item": "clear scope and escalation rules",
+        "description": "Explain what the service can do, what it cannot do, and when referral or urgent escalation is needed."
+      },
+      {
+        "item": "reliable follow-up",
+        "description": "Keep appointments, results, records, and patient communication consistent."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sector rules differ a lot",
+        "description": "Clinics, labs, imaging centers, hemodialysis centers, medical transport, and medicine manufacturing do not follow the same approval path."
+      },
+      {
+        "item": "health data is specially protected",
+        "description": "Health data has stricter handling rules and can only be processed by doctors or people bound by professional secrecy."
+      },
+      {
+        "item": "waste handling is an operational burden",
+        "description": "Sharps, biological waste, chemical waste, pharmaceutical waste, and other hazardous health waste need controlled handling."
+      },
+      {
+        "item": "digital health still carries health-sector duties",
+        "description": "Web, media, and digital channels in health still require deontological care, privacy protection, and controlled communication."
+      }
+    ]
+  },
+  {
+    "industry": "finance",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "sector authorization check",
+        "description": "Confirm the activity is legally allowed before launch because banking, payment services, insurance, lending, exchange, and investment activity do not use the same regulator."
+      },
+      {
+        "item": "AML and suspicious transaction process",
+        "description": "Set up customer due diligence, beneficial owner checks, risk scoring, recordkeeping, and suspicious transaction reporting."
+      },
+      {
+        "item": "customer terms and fee disclosure",
+        "description": "Make pricing, fees, repayment or settlement terms, and complaint path clear in writing."
+      },
+      {
+        "item": "financial and personal data compliance",
+        "description": "Protect customer financial data, define access controls, and check INPDP obligations for data processing and foreign data transfer."
+      },
+      {
+        "item": "transaction control and audit trail",
+        "description": "Keep records for transactions, account actions, approvals, and exception handling."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "visible licensed status",
+        "description": "Customers must trust that the business is allowed to handle the financial activity it offers."
+      },
+      {
+        "item": "strong transaction security",
+        "description": "Protect accounts, payments, credentials, and sensitive financial data."
+      },
+      {
+        "item": "accurate balances and records",
+        "description": "Keep financial records, statements, and transaction history consistent."
+      },
+      {
+        "item": "clear fees and complaint handling",
+        "description": "Show charges clearly and provide a reliable path for disputes or errors."
+      },
+      {
+        "item": "reliable service continuity",
+        "description": "Keep payment, account, and support functions available and controlled."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sector rules differ sharply",
+        "description": "Banking, payment services, insurance, securities, lending, and exchange are not governed in the same way."
+      },
+      {
+        "item": "money movement creates heavier controls",
+        "description": "If the business holds funds, moves money, pays out users, or handles exchange activity, the compliance burden rises fast."
+      },
+      {
+        "item": "investment solicitation can trigger CMF rules",
+        "description": "Public investment offers, securities activity, or fundraising from the public can create capital-markets obligations."
+      },
+      {
+        "item": "insurance activity is separately supervised",
+        "description": "Insurance and related distribution activity face their own supervision and sector controls."
+      },
+      {
+        "item": "cross-border and foreign-currency activity adds complexity",
+        "description": "Foreign transfers, foreign hosting, and exchange-related operations can create extra approvals and monitoring needs."
+      }
+    ]
+  },
+  {
+    "industry": "commerce",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "consumer information and price display",
+        "description": "Clearly show product characteristics, price, and sale conditions to customers."
+      },
+      {
+        "item": "invoice and warranty process",
+        "description": "Provide invoices and handle guarantee or warranty obligations correctly."
+      },
+      {
+        "item": "e-commerce compliance",
+        "description": "If sales happen online, comply with Tunisia's electronic commerce framework and online consumer information duties."
+      },
+      {
+        "item": "promotion and discount declaration",
+        "description": "Declare periodic or seasonal discount operations when the sale format requires it."
+      },
+      {
+        "item": "competition and pricing compliance",
+        "description": "Respect competition, pricing, and commercial practice rules in normal sales activity."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "transparent pricing",
+        "description": "Customers must easily understand the real price and sales conditions."
+      },
+      {
+        "item": "clear product information",
+        "description": "Give accurate information about what is being sold and under what terms."
+      },
+      {
+        "item": "reliable after-sales handling",
+        "description": "Handle delivery problems, returns, warranty issues, and complaints in a clear way."
+      },
+      {
+        "item": "visible proof of sale",
+        "description": "Customers should receive invoices or purchase proof and know how to claim support."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "discount campaigns are controlled",
+        "description": "Seasonal or periodic sales are not fully informal and may require declaration before launch."
+      },
+      {
+        "item": "online selling adds extra duties",
+        "description": "Selling through websites or electronic channels adds electronic transaction and online information obligations."
+      },
+      {
+        "item": "some trade activities need extra approvals",
+        "description": "Certain products, activities, or sale formats can require cahiers des charges, authorizations, or specific sector rules."
+      },
+      {
+        "item": "economic control is active",
+        "description": "Commercial activity is subject to regular economic control and consumer protection oversight."
+      }
+    ]
+  },
+  {
+    "industry": "logistics / transport / mobility",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "transport activity authorization",
+        "description": "Check whether the activity needs a transport authorization, permit, or cahier des charges before launch."
+      },
+      {
+        "item": "vehicle and operator conformity",
+        "description": "Use compliant vehicles and keep required registration, technical, and professional qualification documents in order."
+      },
+      {
+        "item": "customs and cross-border compliance",
+        "description": "If goods cross borders, verify customs classification, required documents, and applicable import or export rules."
+      },
+      {
+        "item": "personal data and geolocation compliance",
+        "description": "If the business tracks drivers, riders, or shipments, comply with Tunisia's personal data rules."
+      },
+      {
+        "item": "electronic transaction compliance",
+        "description": "If booking, dispatch, payment, or delivery proof happens online, comply with Tunisia's electronic commerce framework."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear pricing and terms",
+        "description": "Users must understand fares, fees, delivery terms, and who is responsible if something goes wrong."
+      },
+      {
+        "item": "trip and shipment traceability",
+        "description": "Keep clear records of trips, orders, dispatches, and delivery or service completion."
+      },
+      {
+        "item": "reliable incident handling",
+        "description": "Handle delays, lost goods, damage, and safety incidents with a clear process."
+      },
+      {
+        "item": "safe handling and service discipline",
+        "description": "Customers and partners expect controlled operations, trained staff, and dependable handoff procedures."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Passenger transport, goods transport, rental, platform-enabled mobility, and international transport do not all follow the same rules."
+      },
+      {
+        "item": "some transport activities use permits and controlled categories",
+        "description": "Road transport activities can depend on approvals, route or category limits, and sector-specific operating conditions."
+      },
+      {
+        "item": "cross-border logistics adds customs friction",
+        "description": "International movement of goods or vehicles adds customs checks, trade documents, and border procedures."
+      },
+      {
+        "item": "dangerous goods need stricter control",
+        "description": "Hazardous materials transport has a separate safety regime and should be treated as a higher-complexity case."
+      }
+    ]
+  },
+  {
+    "industry": "real estate / housing",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "property title and registration check",
+        "description": "Verify the legal status of the property, title registration, and any required land-record updates before sale, development, or formal transfer."
+      },
+      {
+        "item": "lease and transaction document compliance",
+        "description": "Use contracts and supporting documents that match the activity model, especially for rental, sale, and managed occupancy relationships."
+      },
+      {
+        "item": "urbanism and municipal approval check",
+        "description": "Confirm zoning, local urbanism rules, and whether the project needs municipal authorization such as a building permit before works or launch."
+      },
+      {
+        "item": "building safety conformity",
+        "description": "Check building safety and fire-prevention obligations when operating, fitting out, or opening premises used by tenants, buyers, staff, or the public."
+      },
+      {
+        "item": "personal data and business record compliance",
+        "description": "If you collect tenant, buyer, owner, or platform-user data, follow Tunisia's personal-data rules and keep business records and accounting documents properly."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear property status",
+        "description": "Customers and partners need confidence that the property, title, and occupancy situation are real and correctly documented."
+      },
+      {
+        "item": "clear contract terms",
+        "description": "Rent, deposits, fees, duration, handover conditions, and responsibilities should be easy to understand before commitment."
+      },
+      {
+        "item": "document traceability",
+        "description": "Keep a reliable trail for contracts, payments, notices, approvals, and title-related documents."
+      },
+      {
+        "item": "responsible handling of personal information",
+        "description": "Tenant and buyer data should be collected, stored, and shared carefully."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "property status is a core legal dependency",
+        "description": "A real estate or housing business can fail on a single bad title, registration issue, or unresolved land-status problem."
+      },
+      {
+        "item": "local rules can change the project",
+        "description": "Municipal and urbanism constraints can differ by zone, land type, and project type, so the same model may not be launchable everywhere."
+      },
+      {
+        "item": "rental sub-types are not all the same",
+        "description": "Residential, commercial, and other occupancy arrangements should not be treated as one generic lease model."
+      },
+      {
+        "item": "physical premises create extra compliance load",
+        "description": "Once the business controls or operates buildings, premises safety, fit-out, and building-use conformity become operational issues, not just paperwork."
+      }
+    ]
+  },
+  {
+    "industry": "food / beverage",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "hygiene and sanitary compliance",
+        "description": "Follow hygiene and sanitation rules for food premises, staff practices, storage, cleaning, and waste handling."
+      },
+      {
+        "item": "food safety and product control",
+        "description": "Make sure food sold or served is safe, properly handled, and kept under suitable storage and transport conditions."
+      },
+      {
+        "item": "consumer information and proof of sale",
+        "description": "Clearly show price, product information, and sale conditions, and provide invoices or sale proof when required."
+      },
+      {
+        "item": "animal-origin product approval check",
+        "description": "If the business produces, transforms, stores, or packs animal-origin food, check veterinary sanitary approval or registration requirements."
+      },
+      {
+        "item": "local operating authorization check",
+        "description": "Check whether the activity, premises, or sale format needs a local authorization, declaration, or cahier des charges before opening."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "safe food handling",
+        "description": "Customers must trust that food is prepared, stored, and served in safe conditions."
+      },
+      {
+        "item": "clear product and price information",
+        "description": "Customers should easily understand what they are buying, its key characteristics, and the real price."
+      },
+      {
+        "item": "freshness and storage reliability",
+        "description": "Perishable products need visible discipline on freshness, storage, and delivery conditions."
+      },
+      {
+        "item": "clear complaint and incident handling",
+        "description": "Problems involving quality, safety, spoiled goods, or service failure should be handled fast and clearly."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are not all regulated the same way",
+        "description": "Restaurants, cafes, packaged food, catering, food delivery, and food processing should not be treated as one identical case."
+      },
+      {
+        "item": "animal-origin food has tighter control",
+        "description": "Meat, dairy, fish, and similar products face stricter sanitary and veterinary control than lower-risk food categories."
+      },
+      {
+        "item": "premises hygiene is a real enforcement issue",
+        "description": "Food businesses can face direct control around hygiene, cleanliness, and public-health conditions at the operating site."
+      },
+      {
+        "item": "cold chain failures create major risk",
+        "description": "Businesses handling perishable products need tighter discipline on storage, transport, and timing."
+      }
+    ]
+  },
+  {
+    "industry": "beauty / wellness / fitness",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "activity-specific authorization or cahier des charges check",
+        "description": "Check whether the sub-activity must follow a cahier des charges, approval, or sector-specific opening condition before launch."
+      },
+      {
+        "item": "premises hygiene and safety compliance",
+        "description": "Keep the site compliant for hygiene, cleanliness, client safety, and suitable operating conditions."
+      },
+      {
+        "item": "fitness liability and safety coverage",
+        "description": "If the business runs a gym or sports space, verify required insurance, accident prevention, and operating conditions."
+      },
+      {
+        "item": "product compliance for cosmetics or supplements",
+        "description": "If you import, sell, or use cosmetic products or supplements, check product conformity and applicable import or control procedures."
+      },
+      {
+        "item": "medical-act boundary check",
+        "description": "Do not treat invasive aesthetic care, medical procedures, or clinical treatment as ordinary beauty services without checking health-sector rules."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "visible hygiene standards",
+        "description": "Clients need confidence that tools, spaces, and handling practices are clean and controlled."
+      },
+      {
+        "item": "clear service scope",
+        "description": "Clients should understand what the service does, what it does not do, and any relevant limits or risks."
+      },
+      {
+        "item": "qualified and disciplined staff",
+        "description": "Service quality depends on staff using safe methods and following consistent procedures."
+      },
+      {
+        "item": "clear pricing and complaint handling",
+        "description": "Clients should understand pricing, session terms, refund conditions, and how incidents are handled."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Hairdressing, spas, thermal establishments, gyms, wellness studios, and aesthetic services should not be treated as one identical case."
+      },
+      {
+        "item": "medical aesthetics can move into health regulation",
+        "description": "Injectables, clinical treatments, invasive procedures, and similar services can fall under stricter medical or private-health rules."
+      },
+      {
+        "item": "imported products add control risk",
+        "description": "Cosmetics, supplements, and related products can trigger conformity, import-control, or health-related checks."
+      },
+      {
+        "item": "fitness operations carry accident exposure",
+        "description": "Gyms and supervised physical activities create a higher need for insurance, safety discipline, and incident prevention."
+      }
+    ]
+  },
+  {
+    "industry": "media / communications",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "content and publication law check",
+        "description": "Make sure published or distributed content follows Tunisia's press and publication rules."
+      },
+      {
+        "item": "audiovisual authorization check",
+        "description": "If the activity includes radio, TV, or similar broadcast media, check HAICA licensing and applicable cahiers des charges before launch."
+      },
+      {
+        "item": "advertising and consumer-information compliance",
+        "description": "Ads, promotions, and public communications should be clear, non-misleading, and compliant with consumer protection rules."
+      },
+      {
+        "item": "copyright and content-rights clearance",
+        "description": "Secure the rights to use music, video, images, articles, brand assets, and other protected content."
+      },
+      {
+        "item": "personal data compliance",
+        "description": "If you collect audience, subscriber, campaign, or contact data, follow Tunisia's personal-data rules."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear source and content reliability",
+        "description": "Audiences and clients need confidence that published information is controlled and not misleading."
+      },
+      {
+        "item": "clear sponsored-content boundaries",
+        "description": "People should be able to distinguish editorial, promotional, and paid communication."
+      },
+      {
+        "item": "rights-safe content use",
+        "description": "Clients and partners need confidence that content is used with proper permission."
+      },
+      {
+        "item": "clear correction and complaint handling",
+        "description": "The business should be able to respond clearly to complaints, takedown requests, and correction issues."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Print, digital media, audiovisual media, advertising, PR, and creator-style content should not be treated as one identical case."
+      },
+      {
+        "item": "audiovisual activity is more controlled",
+        "description": "Broadcast-style media can require licensing, regulator interaction, and stricter operating conditions."
+      },
+      {
+        "item": "content risk can escalate quickly",
+        "description": "Defamation, unlawful content, political sensitivity, and rights misuse can turn a normal media activity into a higher-risk case."
+      },
+      {
+        "item": "audience data and tracking add compliance load",
+        "description": "Mailing lists, campaign databases, analytics, and audience profiling create extra data-handling obligations."
+      }
+    ]
+  },
+  {
+    "industry": "professional services",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "profession-specific licensing check",
+        "description": "Check whether the activity is a regulated profession that requires registration, authorization, or membership in a professional order before launch."
+      },
+      {
+        "item": "business, tax, and social registration",
+        "description": "Set up the activity with the correct legal, tax, invoicing, and social-security treatment for an independent or service business."
+      },
+      {
+        "item": "service contract and liability framework",
+        "description": "Use clear engagement terms covering scope, deliverables, fees, responsibility limits, and payment conditions."
+      },
+      {
+        "item": "confidentiality and personal data compliance",
+        "description": "Protect client information and follow Tunisia's personal-data rules when handling client files, contacts, or operational records."
+      },
+      {
+        "item": "aml-cft exposure check",
+        "description": "If the activity falls into a designated profession or handles sensitive financial transactions, verify anti-money-laundering obligations."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear qualifications",
+        "description": "Clients need confidence that the provider is actually qualified to give the promised service."
+      },
+      {
+        "item": "clear scope and deliverables",
+        "description": "Clients should understand exactly what is included, excluded, and expected from the service."
+      },
+      {
+        "item": "confidential handling of client information",
+        "description": "Professional services depend on disciplined handling of sensitive documents, advice, and communications."
+      },
+      {
+        "item": "traceable work and billing",
+        "description": "Keep a clear record of missions, outputs, approvals, invoices, and client communications."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Consulting, legal, accounting, architecture, engineering, and other advisory services should not be treated as one identical case."
+      },
+      {
+        "item": "some professions are reserved activities",
+        "description": "Certain services can only be provided by licensed professionals or members of an official professional order."
+      },
+      {
+        "item": "advice creates liability risk",
+        "description": "A service business can face serious exposure if clients rely on incorrect advice, filings, or technical outputs."
+      },
+      {
+        "item": "financial or legal handling can raise compliance level",
+        "description": "Once the service touches regulated filings, financial flows, or high-sensitivity client matters, compliance expectations increase."
+      }
+    ]
+  },
+  {
+    "industry": "manufacturing / industrial",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "site and environmental approval check",
+        "description": "Check whether the unit needs an environmental impact study, an environmental cahier des charges, or other pre-launch administrative approvals."
+      },
+      {
+        "item": "industrial wastewater and emissions control",
+        "description": "Control industrial discharges, wastewater pre-treatment, and pollution sources according to applicable limits."
+      },
+      {
+        "item": "waste and hazardous waste handling",
+        "description": "Sort, store, move, and dispose of industrial or hazardous waste through compliant channels and required documents."
+      },
+      {
+        "item": "worker health and safety compliance",
+        "description": "Apply workplace health, safety, accident-prevention, and occupational-risk controls for staff, machines, and facilities."
+      },
+      {
+        "item": "product conformity and technical control",
+        "description": "Check whether products, inputs, or imported equipment are subject to standards, certification, or technical control before sale or use."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "consistent product quality",
+        "description": "Customers and partners need confidence that output is stable and matches the promised specification."
+      },
+      {
+        "item": "process and batch traceability",
+        "description": "Keep clear records for raw materials, production lots, controls, and non-conformities."
+      },
+      {
+        "item": "safe factory operation",
+        "description": "Workers, visitors, and nearby parties expect disciplined handling of machines, chemicals, heat, and other industrial risks."
+      },
+      {
+        "item": "reliable compliance records",
+        "description": "Maintain inspection, maintenance, safety, and waste records in a usable form."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Light assembly, chemicals, food processing, packaging, construction materials, and heavy industry should not be treated as one identical case."
+      },
+      {
+        "item": "polluting activities face tighter oversight",
+        "description": "Projects with stronger environmental impact can trigger EIA, discharge controls, and stricter operating conditions."
+      },
+      {
+        "item": "dangerous materials increase compliance load",
+        "description": "Chemicals, flammables, high heat, pressure systems, or explosion risk raise the required safety level."
+      },
+      {
+        "item": "some products need extra conformity checks",
+        "description": "Certain manufactured goods face specific conformity, certification, or import/export control before market placement."
+      }
+    ]
+  },
+  {
+    "industry": "agriculture",
+    "risk_level": "medium",
+    "legal_compliance_checklist": [
+      {
+        "item": "agricultural land and land-use status check",
+        "description": "Verify the legal status of the land and do not assume agricultural land can be repurposed or built on freely."
+      },
+      {
+        "item": "water and irrigation compliance",
+        "description": "Check irrigation rights, water-use limits, and any local constraints before relying on irrigated production."
+      },
+      {
+        "item": "phytosanitary and approved-input compliance",
+        "description": "Use compliant plant-protection practices and approved pesticides or treatment methods where required."
+      },
+      {
+        "item": "seed and plant material conformity",
+        "description": "Use seeds, plants, or varieties that meet Tunisia's certification, control, or import rules when applicable."
+      },
+      {
+        "item": "veterinary and animal-health compliance",
+        "description": "If the activity includes livestock or animal products, check animal-health, sanitary, and establishment-approval requirements."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "traceable production practices",
+        "description": "Buyers and partners need confidence in how products were grown, treated, stored, and moved."
+      },
+      {
+        "item": "safe use of agricultural inputs",
+        "description": "Customers and downstream partners expect disciplined use of pesticides, treatments, feed, and similar inputs."
+      },
+      {
+        "item": "clear product origin and condition",
+        "description": "The business should be able to show product origin, lot identity, and basic quality condition."
+      },
+      {
+        "item": "plant and animal health discipline",
+        "description": "Operations should detect, report, and handle disease or infestation issues in a controlled way."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Field crops, irrigated farming, livestock, nurseries, export crops, and animal-product activities should not be treated as one identical case."
+      },
+      {
+        "item": "water dependency can become a legal and operating constraint",
+        "description": "A model that depends on irrigation may face real limits from water allocation, local infrastructure, or water-stress conditions."
+      },
+      {
+        "item": "protected agricultural land is not fully flexible",
+        "description": "Land conversion, non-agricultural construction, and some side activities can require special authorization."
+      },
+      {
+        "item": "export or animal-linked activities raise the compliance level",
+        "description": "Once the business exports plants or handles animals or animal products, phytosanitary or veterinary control becomes more demanding."
+      }
+    ]
+  },
+  {
+    "industry": "construction / home services",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "building permit and urbanism conformity",
+        "description": "Check whether the project needs a building permit or other municipal approval and confirm zoning and urbanism compliance before works."
+      },
+      {
+        "item": "contractor activity and qualification check",
+        "description": "Verify whether the activity, specialty, or contractor status requires a cahier des charges, approval, or recognized qualification."
+      },
+      {
+        "item": "site safety and worker protection",
+        "description": "Apply workplace safety rules for worksites, tools, machinery, heights, and accident prevention."
+      },
+      {
+        "item": "building fire and safety compliance",
+        "description": "Respect fire-prevention and building-safety rules when works affect occupied premises or building systems."
+      },
+      {
+        "item": "waste and debris handling compliance",
+        "description": "Handle construction waste, debris, and hazardous materials through compliant collection, storage, and disposal practices."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear scope and quote",
+        "description": "Clients should understand exactly what work is included, what materials are used, and what the final price covers."
+      },
+      {
+        "item": "safe and competent execution",
+        "description": "Customers need confidence that works are done safely, correctly, and by people who know the job."
+      },
+      {
+        "item": "traceable work and materials",
+        "description": "Keep a clear record of approvals, interventions, materials, changes, and handover."
+      },
+      {
+        "item": "clear defect and after-service handling",
+        "description": "Problems, delays, defects, and return visits should be handled with a clear process."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "General construction, renovation, plumbing, electrical work, HVAC, maintenance, and property-related home services should not be treated as one identical case."
+      },
+      {
+        "item": "structural or technical works raise the compliance level",
+        "description": "Structural works and safety-sensitive trades such as electrical, gas, or major equipment installation need tighter control than light home services."
+      },
+      {
+        "item": "municipal rules can block or reshape the project",
+        "description": "The same project may be allowed in one location and blocked or conditioned in another because of local permit and urbanism rules."
+      },
+      {
+        "item": "public or larger works are more controlled",
+        "description": "Public works, larger sites, and contractor participation in formal tenders face stricter qualification and operating requirements than small household jobs."
+      }
+    ]
+  },
+  {
+    "industry": "energy / environment",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "sector authorization and operating regime check",
+        "description": "Check whether the activity needs an authorization, concession, or other sector-specific regime before launch."
+      },
+      {
+        "item": "environmental approval check",
+        "description": "Verify whether the project needs an environmental impact study, environmental cahier des charges, or other pre-launch environmental approval."
+      },
+      {
+        "item": "technical conformity and safety compliance",
+        "description": "Use compliant equipment, installations, and safety measures for energy, industrial, or environmental operations."
+      },
+      {
+        "item": "waste and hazardous-material handling compliance",
+        "description": "If the activity collects, transports, treats, recycles, or stores waste or hazardous materials, check the required authorization and movement documents."
+      },
+      {
+        "item": "pollution and discharge control",
+        "description": "Control emissions, discharges, and pollution sources and verify any monitoring or reporting duties that apply to the site or process."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "technical reliability",
+        "description": "Customers, partners, and authorities need confidence that systems operate safely and as promised."
+      },
+      {
+        "item": "clear environmental claims",
+        "description": "Environmental benefit, efficiency, recycling, or decarbonization claims should be real and supportable."
+      },
+      {
+        "item": "traceable operations",
+        "description": "Keep clear records for installations, maintenance, waste flows, incidents, and compliance actions."
+      },
+      {
+        "item": "strong incident handling",
+        "description": "The business should handle outages, pollution events, safety incidents, and service failures with a clear process."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Renewable energy, energy services, waste management, recycling, pollution control, and environmental monitoring should not be treated as one identical case."
+      },
+      {
+        "item": "energy infrastructure is more controlled",
+        "description": "Projects tied to electricity production, grid injection, or large installations face tighter approval and technical constraints."
+      },
+      {
+        "item": "waste activities can require formal authorization",
+        "description": "Collection, transport, treatment, and recycling are not fully informal activities and can depend on authorization or cahier des charges."
+      },
+      {
+        "item": "high-risk materials raise the compliance level",
+        "description": "Dangerous waste, batteries, chemicals, gas, fuel, or other hazardous inputs increase the required safety and control level."
+      }
+    ]
+  },
+  {
+    "industry": "travel / hospitality",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "tourism activity authorization or classification check",
+        "description": "Check whether the business needs a tourism-sector authorization, cahier des charges, or official classification before launch."
+      },
+      {
+        "item": "premises safety and public-reception compliance",
+        "description": "Keep hotels, guest spaces, restaurants, and public-facing premises compliant for fire prevention, safety, and public use."
+      },
+      {
+        "item": "booking, pricing, and consumer-information compliance",
+        "description": "Clearly show prices, booking terms, cancellation conditions, and what the customer is actually buying."
+      },
+      {
+        "item": "food-service hygiene compliance",
+        "description": "If the business serves food or drinks, follow hygiene, sanitation, storage, and food-safety rules."
+      },
+      {
+        "item": "personal data compliance",
+        "description": "If you collect guest, traveler, or booking data, follow Tunisia's personal-data rules."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "clear booking terms",
+        "description": "Customers should understand price, cancellation, refund rules, and what is included before paying."
+      },
+      {
+        "item": "honest service representation",
+        "description": "The business should describe rooms, trips, amenities, timing, and service level accurately."
+      },
+      {
+        "item": "safe guest experience",
+        "description": "Guests need confidence that premises, activities, and service handling are safe and controlled."
+      },
+      {
+        "item": "reliable complaint handling",
+        "description": "Delays, overbooking, service failure, and customer complaints should be handled with a clear process."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Travel agencies, hotels, guesthouses, camps, tourist restaurants, and experience operators should not be treated as one identical case."
+      },
+      {
+        "item": "tourism classifications matter operationally",
+        "description": "Some hospitality activities depend on formal classification, inspection, or sector-specific operating conditions."
+      },
+      {
+        "item": "alternative accommodation can have a separate regime",
+        "description": "Guesthouses, rural stays, motels, and camps can follow different rules from classic hotels."
+      },
+      {
+        "item": "extra services can raise the compliance level",
+        "description": "Once the business adds transport, food service, or organized excursions, the compliance load becomes heavier."
+      }
+    ]
+  },
+  {
+    "industry": "telecom / connectivity",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "telecom authorization or licensing check",
+        "description": "Check whether the activity needs a telecom authorization, license, concession, or other sector-specific approval before launch."
+      },
+      {
+        "item": "radio and terminal equipment conformity",
+        "description": "If the business uses or sells telecom or radio equipment, verify homologation, conformity, and any import-control requirements."
+      },
+      {
+        "item": "personal data and communications-data compliance",
+        "description": "If the activity handles subscriber, traffic, location, or user data, follow Tunisia's personal-data rules and sector-specific handling duties."
+      },
+      {
+        "item": "cybersecurity and network protection",
+        "description": "Apply the required cybersecurity and system-protection measures for networks, platforms, and communications infrastructure."
+      },
+      {
+        "item": "consumer information and service conditions",
+        "description": "Clearly present service terms, pricing, coverage or availability limits, and complaint or support conditions."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "service reliability",
+        "description": "Users and business clients need confidence that connectivity and communications services work consistently."
+      },
+      {
+        "item": "clear pricing and usage terms",
+        "description": "Customers should understand charges, bundles, limits, and service conditions before subscribing."
+      },
+      {
+        "item": "data and network security",
+        "description": "Clients expect disciplined handling of personal data, account access, and network-security risks."
+      },
+      {
+        "item": "clear incident and outage handling",
+        "description": "Outages, degraded service, billing problems, and abuse issues should be handled with a clear process."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Public networks, internet access, value-added services, infrastructure providers, and connectivity-enabled platforms should not be treated as one identical case."
+      },
+      {
+        "item": "spectrum and radio use are controlled",
+        "description": "Wireless activity can depend on spectrum rules, equipment approval, and tighter technical oversight."
+      },
+      {
+        "item": "network infrastructure is more regulated",
+        "description": "Businesses that install or operate telecom infrastructure face heavier approval, interconnection, and technical obligations than simple software businesses."
+      },
+      {
+        "item": "security expectations are higher",
+        "description": "Telecom and connectivity services face stronger cybersecurity and resilience expectations because they affect communications systems and critical operations."
+      }
+    ]
+  },
+  {
+    "industry": "public sector / nonprofit",
+    "risk_level": "high",
+    "legal_compliance_checklist": [
+      {
+        "item": "legal structure and authorization check",
+        "description": "Check the correct legal form and operating regime before launch, especially if the activity is an association, grant-funded entity, or public-mission operator."
+      },
+      {
+        "item": "governance and financial transparency compliance",
+        "description": "Keep the required governance records, financial controls, declarations, and reporting for the chosen structure and funding model."
+      },
+      {
+        "item": "public funding and procurement compliance",
+        "description": "If the activity receives public funds or sells to public bodies, follow Tunisia's public-funding and public-procurement rules."
+      },
+      {
+        "item": "personal data and beneficiary-record compliance",
+        "description": "If you collect beneficiary, donor, citizen, staff, or program data, follow Tunisia's personal-data rules."
+      },
+      {
+        "item": "access-to-information and publication duties check",
+        "description": "If the activity is public-sector or closely tied to public service, check applicable transparency, publication, and access-to-information obligations."
+      }
+    ],
+    "trust_requirements": [
+      {
+        "item": "transparent use of funds",
+        "description": "Donors, authorities, and partners need confidence that money is used for the stated purpose and properly tracked."
+      },
+      {
+        "item": "clear governance",
+        "description": "The organization should have visible decision-making, responsibility lines, and documented controls."
+      },
+      {
+        "item": "traceable program and service delivery",
+        "description": "Keep clear records of beneficiaries, activities, approvals, contracts, and reported results."
+      },
+      {
+        "item": "responsible handling of sensitive information",
+        "description": "Public-interest and nonprofit activities often involve sensitive personal data and need disciplined handling."
+      }
+    ],
+    "special_operational_constraints": [
+      {
+        "item": "sub-sectors are regulated differently",
+        "description": "Associations, publicly funded projects, NGOs, public-service operators, and government suppliers should not be treated as one identical case."
+      },
+      {
+        "item": "public money adds stronger oversight",
+        "description": "Once the activity uses public funding or contracts with public bodies, reporting, control, and procurement expectations become heavier."
+      },
+      {
+        "item": "foreign or grant funding can add declarations and scrutiny",
+        "description": "Nonprofit funding sources can trigger extra transparency, declaration, and governance requirements."
+      },
+      {
+        "item": "administrative timelines can slow execution",
+        "description": "Approvals, public procedures, and formal reporting cycles can make this sector slower to launch and operate than normal private business."
+      }
+    ]
+  }
+]

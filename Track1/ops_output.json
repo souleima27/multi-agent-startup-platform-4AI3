@@ -1,0 +1,62 @@
+{
+  "minimum_roles_responsibilities": [
+    {
+      "role": "operator / founder",
+      "description": "Owns the product, pricing, deployment model, and operating rules. Manages customer relationships and business strategy."
+    },
+    {
+      "role": "technical owner",
+      "description": "Builds and maintains the device, firmware, connectivity, and backend. Ensures smooth operation of IoT systems."
+    },
+    {
+      "role": "device operations",
+      "description": "Handles assembly, inventory, provisioning, and hardware issue follow-up. Coordinates with technical team for repairs and replacements."
+    }
+  ],
+  "operational_needs": [
+    {
+      "need": "customer onboarding",
+      "description": "Set up new customers with devices and provide initial training."
+    },
+    {
+      "need": "support and incident management",
+      "description": "Respond to customer inquiries, device failures, and other issues. Provide timely resolution or escalation as needed."
+    },
+    {
+      "need": "device fulfillment",
+      "description": "Ensure devices are available for pickup at lockers and ready for deployment."
+    },
+    {
+      "need": "coordination with logistics partners",
+      "description": "Work with local transport companies to ensure timely delivery of devices and pick-up of perishable goods."
+    }
+  ],
+  "materials_equipment": [
+    "device units",
+    "components or spare parts",
+    "basic testing equipment",
+    "packaging materials"
+  ],
+  "physical_presence_needs": {
+    "need": "local presence",
+    "description": "Operate in coastal Tunisian cities with physical lockers for device pick-up and drop-off. May require local staff to manage lockers and customer interactions."
+  },
+  "tools_stack": [
+    {
+      "tool": "device management system",
+      "description": "Registers devices and tracks status, health, and connectivity."
+    },
+    {
+      "tool": "backend and connectivity hosting",
+      "description": "Receives device data and supports device communication."
+    },
+    {
+      "tool": "inventory and serial tracking system",
+      "description": "Tracks units, parts, and device assignment."
+    },
+    {
+      "tool": "support and incident system",
+      "description": "Receives and tracks device failures and customer issues."
+    }
+  ]
+}

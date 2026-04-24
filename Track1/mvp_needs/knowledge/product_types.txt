@@ -1,0 +1,31 @@
+marketplace
+booking / appointments
+software tool / SaaS
+API / developer platform
+data / analytics product
+workflow automation / internal tool
+B2C app
+community / social platform
+subscription / membership
+media / audience business
+content / digital product
+training / academy / coaching
+ecommerce / retail
+directory / lead generation
+local service business
+on-demand service
+agency / done-for-you service
+productized service
+consulting / expert service
+managed operations provider
+broker / intermediary
+reseller / distributor
+wholesale business
+import / export business
+manufacturer / producer
+hardware-enabled product / IoT
+logistics / delivery operator
+rental / asset access business
+repair / maintenance business
+franchise / branch model
+events / experiences business

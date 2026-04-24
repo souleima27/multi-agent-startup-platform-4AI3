@@ -1,0 +1,73 @@
+Startup plan input:
+{
+  "idea_description": "Smart refrigerated IoT box for same-day transport of perishable goods in Tunisia with a basic dashboard.",
+  "problem": "Small food transport operations need better temperature safety during same-day delivery.",
+  "target_customer": {
+    "type": "B2B",
+    "location": "Tunisia (city/region)",
+    "notes": "Coastal cities first"
+  },
+  "industry": "logistics",
+  "product_type": "service+software",
+  "how_it_works_one_sentence": "A refrigerated connected box sends temperature alerts and is managed from a basic web dashboard.",
+  "business_model": {
+    "revenue_model": "subscription",
+    "who_pays": "business",
+    "when_paid": "recurring"
+  },
+  "price_per_sale": "350 TND per customer per month",
+  "sales_target_per_month": 20,
+  "gain_on_sale_pct": 40,
+  "months": "6",
+  "team": {
+    "members": [
+      {
+        "role": "founder",
+        "skills": "operations and sales"
+      }
+    ]
+  },
+  "initial_budget_tnd": 30000
+}
+
+Operations info needed for finance work:
+{
+  "minimum_roles_responsibilities": [
+    {
+      "role": "operator / founder",
+      "description": "Owns the product, pricing, deployment model, and operating rules. Manages customer relationships and business strategy."
+    },
+    {
+      "role": "technical owner",
+      "description": "Builds and maintains the device, firmware, connectivity, and backend. Ensures smooth operation of IoT systems."
+    },
+    {
+      "role": "device operations",
+      "description": "Handles assembly, inventory, provisioning, and hardware issue follow-up. Coordinates with technical team for repairs and replacements."
+    }
+  ],
+  "materials_equipment": [
+    "device units",
+    "components or spare parts",
+    "basic testing equipment",
+    "packaging materials"
+  ],
+  "tools_stack": [
+    {
+      "tool": "device management system",
+      "description": "Registers devices and tracks status, health, and connectivity."
+    },
+    {
+      "tool": "backend and connectivity hosting",
+      "description": "Receives device data and supports device communication."
+    },
+    {
+      "tool": "inventory and serial tracking system",
+      "description": "Tracks units, parts, and device assignment."
+    },
+    {
+      "tool": "support and incident system",
+      "description": "Receives and tracks device failures and customer issues."
+    }
+  ]
+}

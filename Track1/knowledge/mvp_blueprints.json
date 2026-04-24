@@ -1,0 +1,1502 @@
+{
+  "version": "2.0",
+  "schema_notes": {
+    "purpose": "Actionable MVP blueprint library for product types. Each requirement is written as a concrete question the system should answer before building.",
+    "fields": [
+      "label",
+      "question",
+      "why_it_matters",
+      "minimum_answer_should_include"
+    ]
+  },
+  "blueprints": [
+    {
+      "product_type": "marketplace",
+      "minimum_requirements": [
+        {
+          "label": "who supplies",
+          "question": "Who are the providers/sellers that list on the platform?",
+          "why_it_matters": "Without a clear supply side, the marketplace has nothing to show or match.",
+          "minimum_answer_should_include": "Provider type, what they offer, what information they must submit, and how they are approved."
+        },
+        {
+          "label": "who buys",
+          "question": "Who are the users/customers searching or requesting offers?",
+          "why_it_matters": "The buyer side determines discovery, filters, messaging, and payment flow.",
+          "minimum_answer_should_include": "Customer segment, the problem they are solving, and the fields needed to match them to offers."
+        },
+        {
+          "label": "listing page",
+          "question": "What minimum information must every listing show?",
+          "why_it_matters": "Users cannot compare offers if listing data is inconsistent or incomplete.",
+          "minimum_answer_should_include": "Title, short description, price or pricing method, location, availability, and one trust signal."
+        },
+        {
+          "label": "match or request flow",
+          "question": "What is the exact action that starts a transaction?",
+          "why_it_matters": "The MVP must make one core interaction work end to end.",
+          "minimum_answer_should_include": "Search or browse flow, one clear CTA, and what happens after the click."
+        },
+        {
+          "label": "trust layer",
+          "question": "What is the minimum trust or moderation needed before launch?",
+          "why_it_matters": "Marketplaces fail quickly if users do not trust providers or if low-quality listings go live.",
+          "minimum_answer_should_include": "Manual approval, identity check, review rule, fraud check, or content moderation rule."
+        },
+        {
+          "label": "money flow",
+          "question": "Who pays whom, when, and how does the platform earn money?",
+          "why_it_matters": "The marketplace business model depends on timing and fee structure.",
+          "minimum_answer_should_include": "Buyer payment timing, provider payout timing, and platform revenue rule."
+        },
+        {
+          "label": "admin control",
+          "question": "What must the internal team track every day to keep the marketplace running?",
+          "why_it_matters": "A marketplace needs operational visibility even in an MVP.",
+          "minimum_answer_should_include": "At least one admin queue for pending providers, flagged listings, requests, and payment issues."
+        }
+      ],
+      "product_type_description": "A platform that connects sellers/providers with buyers/customers and helps the transaction happen."
+    },
+    {
+      "product_type": "booking / appointments",
+      "minimum_requirements": [
+        {
+          "label": "bookable service",
+          "question": "What exactly can a customer book?",
+          "why_it_matters": "The product is unclear if the appointment unit is not defined.",
+          "minimum_answer_should_include": "Service/session name, duration, delivery format, and what the customer gets."
+        },
+        {
+          "label": "availability source",
+          "question": "Where do available slots come from?",
+          "why_it_matters": "The booking flow breaks if there is no reliable source of truth for time slots.",
+          "minimum_answer_should_include": "Who sets availability, how often it changes, and whether booking is automatic or reviewed."
+        },
+        {
+          "label": "booking flow",
+          "question": "What are the exact steps from choosing a slot to confirmation?",
+          "why_it_matters": "The MVP must make booking easy with no ambiguous decisions.",
+          "minimum_answer_should_include": "Slot selection, customer details, booking confirmation, and status rule."
+        },
+        {
+          "label": "customer intake",
+          "question": "What information is required before the appointment?",
+          "why_it_matters": "Providers need the right information to deliver the service well.",
+          "minimum_answer_should_include": "Required fields only; do not collect extra data just because it might be useful later."
+        },
+        {
+          "label": "changes and no-shows",
+          "question": "How are cancellations, reschedules, and no-shows handled?",
+          "why_it_matters": "Even a simple booking product needs a basic policy to avoid chaos.",
+          "minimum_answer_should_include": "Cancellation window, reschedule rule, and no-show consequence."
+        },
+        {
+          "label": "payment timing",
+          "question": "When does the customer pay?",
+          "why_it_matters": "Booking products often fail if payment and confirmation are not clearly linked.",
+          "minimum_answer_should_include": "Before, after, deposit-only, or free booking with later payment."
+        },
+        {
+          "label": "delivery handoff",
+          "question": "How does the booked service actually happen?",
+          "why_it_matters": "A booking product is incomplete if there is no operational handoff to delivery.",
+          "minimum_answer_should_include": "Meeting link, address, calendar invite, reminders, and provider notification."
+        }
+      ],
+      "product_type_description": "A business where customers reserve a time slot for a service or session."
+    },
+    {
+      "product_type": "software tool / SaaS",
+      "minimum_requirements": [
+        {
+          "label": "single job to be done",
+          "question": "What is the one main problem the product solves first?",
+          "why_it_matters": "A SaaS MVP becomes bloated if it tries to solve many jobs at once.",
+          "minimum_answer_should_include": "One user problem stated as a clear action or outcome."
+        },
+        {
+          "label": "primary user role",
+          "question": "Who is the main person using the product day to day?",
+          "why_it_matters": "The main user determines screens, permissions, and wording.",
+          "minimum_answer_should_include": "One primary role and one optional secondary role."
+        },
+        {
+          "label": "must-work workflow",
+          "question": "What is the one workflow that must work end to end?",
+          "why_it_matters": "This is the real MVP boundary.",
+          "minimum_answer_should_include": "Start state, user actions, and end result."
+        },
+        {
+          "label": "core records",
+          "question": "What minimum data objects must the product store?",
+          "why_it_matters": "The data model should support the workflow, not a future roadmap.",
+          "minimum_answer_should_include": "List of essential records and the fields that matter most."
+        },
+        {
+          "label": "essential screens",
+          "question": "What screens are absolutely required for the workflow?",
+          "why_it_matters": "Without a minimum screen list, the build scope grows too fast.",
+          "minimum_answer_should_include": "Only the pages needed for the core workflow."
+        },
+        {
+          "label": "account and access",
+          "question": "How do users enter the product and what can they do?",
+          "why_it_matters": "Even simple software needs a clear access model.",
+          "minimum_answer_should_include": "Signup/login rule, password reset, and whether multiple roles exist."
+        },
+        {
+          "label": "trust baseline",
+          "question": "What minimum reliability and support setup is needed?",
+          "why_it_matters": "B2B users will not trust the product without a basic safety net.",
+          "minimum_answer_should_include": "Backup rule, error logging, and one support channel."
+        }
+      ],
+      "product_type_description": "Software people or companies use online to solve a specific problem, usually through a browser or app."
+    },
+    {
+      "product_type": "API / developer platform",
+      "minimum_requirements": [
+        {
+          "label": "developer use case",
+          "question": "What technical problem does the API solve?",
+          "why_it_matters": "A developer platform must be built around one integration job, not broad promises.",
+          "minimum_answer_should_include": "One developer problem and the systems it plugs into."
+        },
+        {
+          "label": "API contract",
+          "question": "What request comes in and what response comes out?",
+          "why_it_matters": "The product is the contract itself.",
+          "minimum_answer_should_include": "Inputs, outputs, authentication method, and major error cases."
+        },
+        {
+          "label": "minimum endpoints",
+          "question": "Which endpoints are required for the MVP?",
+          "why_it_matters": "Too many endpoints make the first version harder to ship and document.",
+          "minimum_answer_should_include": "Only the few endpoints needed to deliver the core use case."
+        },
+        {
+          "label": "access model",
+          "question": "How do developers get credentials and authenticate calls?",
+          "why_it_matters": "Access must be simple and secure enough to use.",
+          "minimum_answer_should_include": "API key, token, or account model; how credentials are issued."
+        },
+        {
+          "label": "documentation",
+          "question": "What minimum docs are required for self-serve use?",
+          "why_it_matters": "Without docs, the product is not really usable by developers.",
+          "minimum_answer_should_include": "Quickstart, authentication instructions, example request, example response, and error explanation."
+        },
+        {
+          "label": "limits and monitoring",
+          "question": "What protects the API from abuse or unexpected load?",
+          "why_it_matters": "APIs need basic operational protection from day one.",
+          "minimum_answer_should_include": "Rate limits, request logging, latency/error tracking."
+        },
+        {
+          "label": "pricing or quota",
+          "question": "How will usage be limited or monetized?",
+          "why_it_matters": "Even if the MVP is free, there must be a clear usage rule.",
+          "minimum_answer_should_include": "Free quota, pay-per-use, or account-based plan."
+        }
+      ],
+      "product_type_description": "A product that other software developers integrate into their own apps or systems."
+    },
+    {
+      "product_type": "data / analytics product",
+      "minimum_requirements": [
+        {
+          "label": "decision supported",
+          "question": "What decision or insight does the product help the user make?",
+          "why_it_matters": "Analytics products are valuable only if they help users act.",
+          "minimum_answer_should_include": "One important decision or monitoring problem."
+        },
+        {
+          "label": "data inputs",
+          "question": "What data sources are required for the MVP?",
+          "why_it_matters": "The value of the product depends on usable inputs.",
+          "minimum_answer_should_include": "Exact data sources and how they get into the system."
+        },
+        {
+          "label": "core outputs",
+          "question": "What charts, scores, reports, or alerts must the user receive?",
+          "why_it_matters": "The MVP should focus on a small set of outputs people care about.",
+          "minimum_answer_should_include": "5-10 key metrics or one recurring report type."
+        },
+        {
+          "label": "refresh method",
+          "question": "How often does the product update and by what method?",
+          "why_it_matters": "Users need to know whether they are seeing fresh numbers or static reports.",
+          "minimum_answer_should_include": "Manual upload, daily sync, weekly refresh, etc."
+        },
+        {
+          "label": "explanation layer",
+          "question": "How will the product explain where numbers come from?",
+          "why_it_matters": "Trust is crucial in analytics products.",
+          "minimum_answer_should_include": "Metric definitions, source references, or formulas."
+        },
+        {
+          "label": "user workflow",
+          "question": "What does the user do after seeing the analysis?",
+          "why_it_matters": "The product should support action, not just display data.",
+          "minimum_answer_should_include": "Filter, compare, export, share, or trigger alerts."
+        },
+        {
+          "label": "data quality checks",
+          "question": "What minimum validation protects users from bad analysis?",
+          "why_it_matters": "Analytics products are dangerous if they silently use broken inputs.",
+          "minimum_answer_should_include": "Missing fields, duplicates, date mismatches, obvious anomalies."
+        }
+      ],
+      "product_type_description": "A product that collects, processes, or presents data so users can monitor or make decisions."
+    },
+    {
+      "product_type": "workflow automation / internal tool",
+      "minimum_requirements": [
+        {
+          "label": "manual process replaced",
+          "question": "What manual workflow is being reduced or automated?",
+          "why_it_matters": "The MVP should target one painful internal process.",
+          "minimum_answer_should_include": "Current process, owner, and where time is lost."
+        },
+        {
+          "label": "trigger event",
+          "question": "What starts the workflow?",
+          "why_it_matters": "Automation needs a clear beginning.",
+          "minimum_answer_should_include": "One trigger such as form submission, email, payment, or status change."
+        },
+        {
+          "label": "automation steps",
+          "question": "What exact steps should happen automatically?",
+          "why_it_matters": "The product is the sequence, not a vague promise of automation.",
+          "minimum_answer_should_include": "Ordered steps and expected result."
+        },
+        {
+          "label": "human review points",
+          "question": "Where must a human approve or correct the process?",
+          "why_it_matters": "Most internal tools still need human checkpoints.",
+          "minimum_answer_should_include": "Approval rule, exception cases, and manual override."
+        },
+        {
+          "label": "required data",
+          "question": "What fields does the workflow need to run correctly?",
+          "why_it_matters": "The automation fails if critical fields are missing.",
+          "minimum_answer_should_include": "Only the required fields for routing and completion."
+        },
+        {
+          "label": "ops queue",
+          "question": "How do humans see pending, blocked, or failed work?",
+          "why_it_matters": "Internal tools need visibility for exceptions.",
+          "minimum_answer_should_include": "At least one dashboard or work queue."
+        },
+        {
+          "label": "failure handling",
+          "question": "What happens when the automation cannot complete a step?",
+          "why_it_matters": "No automation is complete without a fallback path.",
+          "minimum_answer_should_include": "Retry rule, manual review path, and error log."
+        }
+      ],
+      "product_type_description": "A tool that automates repeated business tasks or helps a team run internal processes."
+    },
+    {
+      "product_type": "B2C app",
+      "minimum_requirements": [
+        {
+          "label": "daily user problem",
+          "question": "What repeat consumer problem does the app solve?",
+          "why_it_matters": "A consumer MVP needs one obvious reason to exist.",
+          "minimum_answer_should_include": "One everyday problem or habit the user cares about."
+        },
+        {
+          "label": "main session action",
+          "question": "What is the single most important thing a user does in one session?",
+          "why_it_matters": "This defines the core UI and retention loop.",
+          "minimum_answer_should_include": "One action that creates immediate value."
+        },
+        {
+          "label": "first-use win",
+          "question": "What must happen in the first two minutes so the app feels useful?",
+          "why_it_matters": "If first-use value is weak, users will not come back.",
+          "minimum_answer_should_include": "A fast success moment with no unnecessary setup."
+        },
+        {
+          "label": "repeat-use trigger",
+          "question": "Why will the user come back tomorrow or next week?",
+          "why_it_matters": "Consumer apps need a reason to repeat.",
+          "minimum_answer_should_include": "Notification, saved progress, fresh content, streak, or new recommendations."
+        },
+        {
+          "label": "minimum content or data",
+          "question": "What content or user data is needed to make the app useful?",
+          "why_it_matters": "The app needs enough substance to deliver value.",
+          "minimum_answer_should_include": "Only the minimum content/data needed for the first version."
+        },
+        {
+          "label": "monetization test",
+          "question": "How will you test whether users will pay or accept monetization?",
+          "why_it_matters": "Even if monetization is early-stage, the MVP should not ignore it completely.",
+          "minimum_answer_should_include": "Premium feature, subscription gate, ads, or paid upgrade hypothesis."
+        },
+        {
+          "label": "support inside the app",
+          "question": "How does a user report a problem or ask for help?",
+          "why_it_matters": "Support is part of trust even in a lightweight consumer app.",
+          "minimum_answer_should_include": "At least one visible support or feedback path."
+        }
+      ],
+      "product_type_description": "A consumer app used directly by end users, usually on mobile or web."
+    },
+    {
+      "product_type": "community / social platform",
+      "minimum_requirements": [
+        {
+          "label": "community focus",
+          "question": "What shared identity, topic, or goal brings members together?",
+          "why_it_matters": "Communities fail when the focus is broad or generic.",
+          "minimum_answer_should_include": "One audience and one reason to gather."
+        },
+        {
+          "label": "core interaction",
+          "question": "What do members mainly do with each other?",
+          "why_it_matters": "The platform needs one interaction loop that creates activity.",
+          "minimum_answer_should_include": "Post, comment, chat, upvote, join event, share resource, etc."
+        },
+        {
+          "label": "membership rule",
+          "question": "Who can join and how open is access?",
+          "why_it_matters": "Join rules affect trust, moderation, and growth.",
+          "minimum_answer_should_include": "Open signup, approval, invite-only, or verified categories."
+        },
+        {
+          "label": "content unit",
+          "question": "What is the basic thing users create or respond to?",
+          "why_it_matters": "The platform needs a clear object around which activity happens.",
+          "minimum_answer_should_include": "Post, thread, event, question, profile, challenge, etc."
+        },
+        {
+          "label": "moderation baseline",
+          "question": "What minimum rules keep the platform safe and usable?",
+          "why_it_matters": "Communities need moderation earlier than many founders expect.",
+          "minimum_answer_should_include": "Report flow, admin actions, and key banned behaviors."
+        },
+        {
+          "label": "trust signals",
+          "question": "How do users know who is credible or safe to engage with?",
+          "why_it_matters": "Trust matters in social products.",
+          "minimum_answer_should_include": "Verification, profile completeness, badges, reputation, or role labeling."
+        },
+        {
+          "label": "health metric",
+          "question": "How will you know the community is alive, not just signed up?",
+          "why_it_matters": "Social products need activity metrics, not only registration counts.",
+          "minimum_answer_should_include": "One or two engagement metrics."
+        }
+      ],
+      "product_type_description": "A platform where users interact, post, discuss, and build a network or group."
+    },
+    {
+      "product_type": "subscription / membership",
+      "minimum_requirements": [
+        {
+          "label": "recurring value",
+          "question": "What repeated value justifies paying again next month?",
+          "why_it_matters": "Recurring products need a continuing promise, not one-time value.",
+          "minimum_answer_should_include": "One ongoing benefit delivered each cycle."
+        },
+        {
+          "label": "membership scope",
+          "question": "What exactly does a paying member get access to?",
+          "why_it_matters": "Users need a clear boundary between free and paid value.",
+          "minimum_answer_should_include": "Content, tools, discounts, community access, support, or physical delivery."
+        },
+        {
+          "label": "join flow",
+          "question": "What are the exact steps from visitor to active member?",
+          "why_it_matters": "Membership products need a clear activation path.",
+          "minimum_answer_should_include": "Plan selection, payment, account creation, and access delivery."
+        },
+        {
+          "label": "billing rule",
+          "question": "How and when are repeat payments collected?",
+          "why_it_matters": "The business model depends on predictable billing logic.",
+          "minimum_answer_should_include": "Monthly/yearly cadence, auto-renew or manual renew, failed payment handling."
+        },
+        {
+          "label": "access control",
+          "question": "How do you enforce what paid and unpaid users can access?",
+          "why_it_matters": "Membership value leaks if access is not controlled.",
+          "minimum_answer_should_include": "Account rule, content gating, or membership status check."
+        },
+        {
+          "label": "retention system",
+          "question": "What reduces churn after the first payment?",
+          "why_it_matters": "Retention is the real challenge in subscription businesses.",
+          "minimum_answer_should_include": "Fresh value, reminders, community activity, progress tracking, or support."
+        },
+        {
+          "label": "membership dashboard",
+          "question": "What numbers do you need to track every week?",
+          "why_it_matters": "Subscriptions need visibility on starts, churn, and engagement.",
+          "minimum_answer_should_include": "New members, active members, churn, failed payments, and usage."
+        }
+      ],
+      "product_type_description": "A business where users pay regularly to keep access to content, benefits, or services."
+    },
+    {
+      "product_type": "media / audience business",
+      "minimum_requirements": [
+        {
+          "label": "niche and audience",
+          "question": "Who is the audience and what topic do you consistently cover?",
+          "why_it_matters": "Media products need a narrow niche to grow and monetize.",
+          "minimum_answer_should_include": "One audience + one topic promise."
+        },
+        {
+          "label": "content format",
+          "question": "What format will you publish most consistently?",
+          "why_it_matters": "One primary format is easier to execute and brand.",
+          "minimum_answer_should_include": "Newsletter, article, podcast, short video, long video, report, etc."
+        },
+        {
+          "label": "publishing cadence",
+          "question": "How often will you publish?",
+          "why_it_matters": "Consistency matters more than ambition.",
+          "minimum_answer_should_include": "One realistic schedule."
+        },
+        {
+          "label": "distribution channels",
+          "question": "Where will people discover and consume the content?",
+          "why_it_matters": "A media business needs a repeatable audience acquisition path.",
+          "minimum_answer_should_include": "One primary channel and optional secondary channel."
+        },
+        {
+          "label": "editorial workflow",
+          "question": "How does a content piece move from idea to publication?",
+          "why_it_matters": "Without a workflow, consistency breaks down.",
+          "minimum_answer_should_include": "Idea collection, drafting, editing, publishing, and distribution."
+        },
+        {
+          "label": "audience capture point",
+          "question": "Where does an anonymous viewer become a known subscriber or lead?",
+          "why_it_matters": "Media value compounds only if you can retain the audience.",
+          "minimum_answer_should_include": "Signup form, follow button, SMS opt-in, or account creation."
+        },
+        {
+          "label": "monetization path",
+          "question": "What is the first realistic revenue stream?",
+          "why_it_matters": "Media businesses need an early revenue hypothesis.",
+          "minimum_answer_should_include": "Sponsorship, paid membership, premium report, affiliate, lead generation, etc."
+        }
+      ],
+      "product_type_description": "A business built around attracting an audience and monetizing attention."
+    },
+    {
+      "product_type": "content / digital product",
+      "minimum_requirements": [
+        {
+          "label": "digital product sold",
+          "question": "What exactly is the buyer purchasing?",
+          "why_it_matters": "The offer must be concrete, not just 'content'.",
+          "minimum_answer_should_include": "One named digital asset or bundle."
+        },
+        {
+          "label": "buyer outcome",
+          "question": "What result does the buyer get after using it?",
+          "why_it_matters": "Digital products sell outcomes, not files.",
+          "minimum_answer_should_include": "One practical result."
+        },
+        {
+          "label": "delivery method",
+          "question": "How does the buyer receive access after purchase?",
+          "why_it_matters": "The purchase-to-access flow must be instant and reliable.",
+          "minimum_answer_should_include": "Download, email, account access, or shared folder."
+        },
+        {
+          "label": "sales proof",
+          "question": "What helps a buyer trust the digital product is useful?",
+          "why_it_matters": "Digital products are easy to doubt before purchase.",
+          "minimum_answer_should_include": "Preview, screenshots, samples, testimonials, or demo."
+        },
+        {
+          "label": "checkout flow",
+          "question": "What are the exact steps from landing page to access?",
+          "why_it_matters": "A digital product MVP still needs a clean purchase flow.",
+          "minimum_answer_should_include": "Page, checkout, payment, confirmation, access."
+        },
+        {
+          "label": "usage rights",
+          "question": "What is the buyer allowed or not allowed to do with the product?",
+          "why_it_matters": "Simple rights rules reduce confusion and misuse.",
+          "minimum_answer_should_include": "Single-user use, no resale, team license, etc."
+        },
+        {
+          "label": "refund/support policy",
+          "question": "How are refund requests and access issues handled?",
+          "why_it_matters": "Buyers need a basic fairness and support policy.",
+          "minimum_answer_should_include": "Refund rule and one support path."
+        }
+      ],
+      "product_type_description": "A business that sells downloadable or digital goods."
+    },
+    {
+      "product_type": "training / academy / coaching",
+      "minimum_requirements": [
+        {
+          "label": "learner promise",
+          "question": "What concrete skill or transformation does the program deliver?",
+          "why_it_matters": "The learning outcome anchors the curriculum.",
+          "minimum_answer_should_include": "One measurable or observable learner result."
+        },
+        {
+          "label": "learner segment",
+          "question": "Who is the program designed for?",
+          "why_it_matters": "A clear learner type makes pricing, format, and examples easier to choose.",
+          "minimum_answer_should_include": "One primary learner profile and what stage they are at."
+        },
+        {
+          "label": "delivery format",
+          "question": "How is teaching delivered?",
+          "why_it_matters": "The format determines tools, schedule, and support needs.",
+          "minimum_answer_should_include": "Live, cohort, recorded, hybrid, one-to-one, or group."
+        },
+        {
+          "label": "curriculum scope",
+          "question": "What minimum modules or sessions are needed to deliver the promise?",
+          "why_it_matters": "The MVP should teach one thing well, not cover everything.",
+          "minimum_answer_should_include": "A short module/session map."
+        },
+        {
+          "label": "trainer capacity",
+          "question": "Who teaches and how many learners can they handle well?",
+          "why_it_matters": "Capacity affects quality and scheduling.",
+          "minimum_answer_should_include": "Trainer role, maximum class size, and support help if needed."
+        },
+        {
+          "label": "join and payment flow",
+          "question": "How do learners register and pay?",
+          "why_it_matters": "Enrollment must be simple and tied to access.",
+          "minimum_answer_should_include": "Form, payment rule, confirmation, and onboarding message."
+        },
+        {
+          "label": "learner support",
+          "question": "How can learners ask questions and get help?",
+          "why_it_matters": "Support strongly affects perceived value.",
+          "minimum_answer_should_include": "Office hours, group chat, email, or Q&A sessions."
+        }
+      ],
+      "product_type_description": "A business that teaches skills or helps people improve through lessons, programs, or coaching."
+    },
+    {
+      "product_type": "ecommerce / retail",
+      "minimum_requirements": [
+        {
+          "label": "starter catalog",
+          "question": "What products are sold in the first version?",
+          "why_it_matters": "A smaller catalog is easier to manage and explain.",
+          "minimum_answer_should_include": "Product range, variants, and what is intentionally excluded from launch."
+        },
+        {
+          "label": "product page schema",
+          "question": "What must every product page show?",
+          "why_it_matters": "Users need enough info to buy without asking basic questions.",
+          "minimum_answer_should_include": "Name, images, price, stock, description, delivery delay, and variant info."
+        },
+        {
+          "label": "stock source",
+          "question": "Where does the product availability truth come from?",
+          "why_it_matters": "Retail breaks when stock is not trusted.",
+          "minimum_answer_should_include": "Inventory owner, update method, and low-stock handling."
+        },
+        {
+          "label": "checkout flow",
+          "question": "What is the shortest complete order flow?",
+          "why_it_matters": "The MVP must allow a real purchase end to end.",
+          "minimum_answer_should_include": "Cart, customer details, payment choice, and confirmation."
+        },
+        {
+          "label": "payment options",
+          "question": "Which payment methods are available at launch?",
+          "why_it_matters": "Payment choices affect conversion and operations.",
+          "minimum_answer_should_include": "Online payment, COD, transfer, payment link, etc."
+        },
+        {
+          "label": "fulfillment routine",
+          "question": "How are orders packed and dispatched?",
+          "why_it_matters": "Selling online without a fulfillment routine creates delays and errors.",
+          "minimum_answer_should_include": "Packing step, dispatch timing, and handoff to courier or pickup."
+        },
+        {
+          "label": "returns and support",
+          "question": "How do customers ask about orders, returns, or wrong items?",
+          "why_it_matters": "Post-purchase trust matters in retail.",
+          "minimum_answer_should_include": "One support channel and one return/exchange rule."
+        }
+      ],
+      "product_type_description": "A business that sells physical products directly to customers."
+    },
+    {
+      "product_type": "directory / lead generation",
+      "minimum_requirements": [
+        {
+          "label": "listing type",
+          "question": "What kind of businesses or people are listed?",
+          "why_it_matters": "A directory must be narrow enough to feel useful.",
+          "minimum_answer_should_include": "One listing category and one search intent."
+        },
+        {
+          "label": "listing fields",
+          "question": "What minimum data must every listing contain?",
+          "why_it_matters": "Without a standard schema, the directory becomes hard to compare.",
+          "minimum_answer_should_include": "Name, service, city, contact method, short description, and one trust field."
+        },
+        {
+          "label": "discovery flow",
+          "question": "How do visitors find the right listing?",
+          "why_it_matters": "Search and filtering are the main product.",
+          "minimum_answer_should_include": "Browse, search, filters, sorting, and location logic."
+        },
+        {
+          "label": "lead action",
+          "question": "What exact action turns a visitor into a lead?",
+          "why_it_matters": "The directory only creates business value if it produces leads.",
+          "minimum_answer_should_include": "Call, form submission, quote request, WhatsApp click, or booking intent."
+        },
+        {
+          "label": "lead form",
+          "question": "What minimum information is captured from the visitor?",
+          "why_it_matters": "Too many fields reduce conversion; too few reduce lead quality.",
+          "minimum_answer_should_include": "Contact details and need description only."
+        },
+        {
+          "label": "lead routing",
+          "question": "Where does the lead go after submission?",
+          "why_it_matters": "Lead routing defines how value reaches the provider or internal sales team.",
+          "minimum_answer_should_include": "Direct provider handoff, internal queue, or both."
+        },
+        {
+          "label": "listing review",
+          "question": "How do you stop fake, duplicate, or low-quality listings?",
+          "why_it_matters": "Directory trust depends on curation.",
+          "minimum_answer_should_include": "Basic review rule and removal policy."
+        }
+      ],
+      "product_type_description": "A site that lists businesses or opportunities and captures customer inquiries."
+    },
+    {
+      "product_type": "local service business",
+      "minimum_requirements": [
+        {
+          "label": "service menu",
+          "question": "What exact services are sold first?",
+          "why_it_matters": "A local service MVP needs a clear offer, not a vague promise.",
+          "minimum_answer_should_include": "A short menu of services and what each includes."
+        },
+        {
+          "label": "service area",
+          "question": "What exact area can you reliably cover?",
+          "why_it_matters": "Location drives cost, quality, and response time.",
+          "minimum_answer_should_include": "City, districts, or radius covered."
+        },
+        {
+          "label": "request channel",
+          "question": "How does a customer ask for the service?",
+          "why_it_matters": "Customers need one easy path to start.",
+          "minimum_answer_should_include": "Phone, WhatsApp, website form, or booking page."
+        },
+        {
+          "label": "pricing rule",
+          "question": "How is the service priced?",
+          "why_it_matters": "A service product is incomplete if the price logic is vague.",
+          "minimum_answer_should_include": "Fixed package, hourly rate, or inspection-based price."
+        },
+        {
+          "label": "delivery capacity",
+          "question": "Who performs the service and how much work can be handled?",
+          "why_it_matters": "Capacity planning prevents overpromising.",
+          "minimum_answer_should_include": "People, hours, and number of jobs per day/week."
+        },
+        {
+          "label": "delivery workflow",
+          "question": "What are the internal steps from request to completed job?",
+          "why_it_matters": "This is the operational heart of the business.",
+          "minimum_answer_should_include": "Receive request, confirm time, deliver, collect payment, close job."
+        },
+        {
+          "label": "equipment needed",
+          "question": "What tools or materials are required to deliver well?",
+          "why_it_matters": "Service quality often depends on having the right equipment consistently.",
+          "minimum_answer_should_include": "Transport, equipment, consumables, uniforms, etc."
+        }
+      ],
+      "product_type_description": "A business that provides a service in a specific local area."
+    },
+    {
+      "product_type": "on-demand service",
+      "minimum_requirements": [
+        {
+          "label": "urgent need served",
+          "question": "What near-immediate problem is being solved?",
+          "why_it_matters": "On-demand products must serve a time-sensitive need.",
+          "minimum_answer_should_include": "One same-day or urgent service category."
+        },
+        {
+          "label": "provider availability",
+          "question": "Who can fulfill requests and how do you know they are available?",
+          "why_it_matters": "On-demand systems fail without a live availability model.",
+          "minimum_answer_should_include": "Provider pool and availability tracking method."
+        },
+        {
+          "label": "request intake",
+          "question": "How does the user request the service?",
+          "why_it_matters": "The request path must be fast and simple.",
+          "minimum_answer_should_include": "One instant request channel and what details are required."
+        },
+        {
+          "label": "dispatch rule",
+          "question": "How are requests assigned?",
+          "why_it_matters": "Assignment speed determines service quality.",
+          "minimum_answer_should_include": "Nearest provider, first available, or zone-based assignment."
+        },
+        {
+          "label": "response target",
+          "question": "How fast must the user receive acknowledgment and assignment?",
+          "why_it_matters": "The promise of on-demand depends on response time.",
+          "minimum_answer_should_include": "Response SLA and assignment target."
+        },
+        {
+          "label": "status visibility",
+          "question": "What statuses can the user and team see?",
+          "why_it_matters": "Real-time visibility reduces support issues.",
+          "minimum_answer_should_include": "Simple status set from request to completion."
+        },
+        {
+          "label": "failure policy",
+          "question": "What happens if no provider is available or service quality fails?",
+          "why_it_matters": "On-demand operations need a fallback path.",
+          "minimum_answer_should_include": "Reassignment, cancellation, refund, or delay communication rule."
+        }
+      ],
+      "product_type_description": "A service customers request when they need it, often expecting quick response."
+    },
+    {
+      "product_type": "agency / done-for-you service",
+      "minimum_requirements": [
+        {
+          "label": "client outcome",
+          "question": "What result does the agency produce for the client?",
+          "why_it_matters": "Clients pay for a result, not for broad effort.",
+          "minimum_answer_should_include": "One clear client outcome and its scope."
+        },
+        {
+          "label": "service scope",
+          "question": "What is included and excluded?",
+          "why_it_matters": "Done-for-you services become chaotic without scope boundaries.",
+          "minimum_answer_should_include": "Deliverables, exclusions, revision rule, and approval points."
+        },
+        {
+          "label": "target client",
+          "question": "Who is the ideal client for launch?",
+          "why_it_matters": "The first client segment shapes delivery and sales.",
+          "minimum_answer_should_include": "One client type and why they need the service."
+        },
+        {
+          "label": "onboarding inputs",
+          "question": "What must the client provide before work starts?",
+          "why_it_matters": "You cannot deliver without the right client inputs and access.",
+          "minimum_answer_should_include": "Assets, access, goals, approval contact, and deadlines."
+        },
+        {
+          "label": "delivery workflow",
+          "question": "What are the internal steps you repeat for every client?",
+          "why_it_matters": "A repeatable workflow is what makes the agency operable.",
+          "minimum_answer_should_include": "Intake, execution, review, delivery, and reporting."
+        },
+        {
+          "label": "team roles",
+          "question": "Who is needed to deliver the service well?",
+          "why_it_matters": "Role clarity matters even in small teams.",
+          "minimum_answer_should_include": "Minimum roles and who owns strategy, production, and client communication."
+        },
+        {
+          "label": "billing rule",
+          "question": "How and when does the client pay?",
+          "why_it_matters": "Cash flow and scope control depend on billing structure.",
+          "minimum_answer_should_include": "Retainer, project fee, milestone payment, and payment timing."
+        }
+      ],
+      "product_type_description": "A service business that does work for clients as a custom project or recurring service."
+    },
+    {
+      "product_type": "productized service",
+      "minimum_requirements": [
+        {
+          "label": "fixed offer",
+          "question": "What single service package is sold the same way to every customer?",
+          "why_it_matters": "The point of productized service is standardization.",
+          "minimum_answer_should_include": "One offer name, scope, and deliverable."
+        },
+        {
+          "label": "deliverable",
+          "question": "What does the customer actually receive?",
+          "why_it_matters": "The output must be easy to imagine and evaluate.",
+          "minimum_answer_should_include": "One concrete file, report, design, review, or implementation."
+        },
+        {
+          "label": "order intake",
+          "question": "What information must the customer provide before work starts?",
+          "why_it_matters": "The intake defines whether delivery can be standardized.",
+          "minimum_answer_should_include": "Minimum form fields and attachments."
+        },
+        {
+          "label": "delivery time",
+          "question": "What is the guaranteed turnaround?",
+          "why_it_matters": "Predictable delivery time is part of the offer itself.",
+          "minimum_answer_should_include": "One promised timeline."
+        },
+        {
+          "label": "revision policy",
+          "question": "What changes are included after delivery?",
+          "why_it_matters": "Without a revision rule, the service turns back into custom work.",
+          "minimum_answer_should_include": "Number of revisions or follow-up clarification allowed."
+        },
+        {
+          "label": "capacity limit",
+          "question": "How many orders can be active at one time?",
+          "why_it_matters": "Standardized services still need workload control.",
+          "minimum_answer_should_include": "Maximum active orders or weekly slots."
+        },
+        {
+          "label": "payment timing",
+          "question": "When is the customer charged?",
+          "why_it_matters": "Most productized services work best with simple upfront payment.",
+          "minimum_answer_should_include": "Before work, deposit, or milestone."
+        }
+      ],
+      "product_type_description": "A service packaged in a fixed, repeatable format with clear scope and pricing."
+    },
+    {
+      "product_type": "consulting / expert service",
+      "minimum_requirements": [
+        {
+          "label": "expertise area",
+          "question": "What expertise is being sold?",
+          "why_it_matters": "Expert services need a clear domain to feel credible.",
+          "minimum_answer_should_include": "One subject area and one client problem."
+        },
+        {
+          "label": "offer format",
+          "question": "What form does the consulting take?",
+          "why_it_matters": "The product should be one defined expert engagement.",
+          "minimum_answer_should_include": "Session, audit, memo, retainer, workshop, etc."
+        },
+        {
+          "label": "client type",
+          "question": "Who is the consulting for?",
+          "why_it_matters": "Client fit affects scope, language, and price.",
+          "minimum_answer_should_include": "One client segment."
+        },
+        {
+          "label": "proof of credibility",
+          "question": "What evidence justifies trusting the expert?",
+          "why_it_matters": "Expert services sell trust first.",
+          "minimum_answer_should_include": "Case study, years of experience, testimonials, previous results, credentials."
+        },
+        {
+          "label": "diagnosis step",
+          "question": "How do you understand the client problem before giving advice?",
+          "why_it_matters": "Consulting without intake leads to weak or generic advice.",
+          "minimum_answer_should_include": "Questionnaire, discovery call, or doc review."
+        },
+        {
+          "label": "deliverable",
+          "question": "What does the client receive after the consulting engagement?",
+          "why_it_matters": "The output should be useful even after the call ends.",
+          "minimum_answer_should_include": "Action plan, memo, recording, roadmap, checklist, or workshop summary."
+        },
+        {
+          "label": "follow-up and payment",
+          "question": "What support is included after delivery and when does the client pay?",
+          "why_it_matters": "This sets both scope and cash flow.",
+          "minimum_answer_should_include": "Payment timing and any limited follow-up support."
+        }
+      ],
+      "product_type_description": "A business that sells expert advice, diagnosis, or recommendations."
+    },
+    {
+      "product_type": "managed operations provider",
+      "minimum_requirements": [
+        {
+          "label": "managed function",
+          "question": "What recurring client operation do you run on their behalf?",
+          "why_it_matters": "This is the core of the service.",
+          "minimum_answer_should_include": "One business function with clear boundaries."
+        },
+        {
+          "label": "scope boundary",
+          "question": "What tasks do you own and what stays with the client?",
+          "why_it_matters": "Managed services fail when ownership is unclear.",
+          "minimum_answer_should_include": "Included tasks, excluded tasks, escalation rules."
+        },
+        {
+          "label": "client onboarding",
+          "question": "What access, SOPs, and contacts are needed before service starts?",
+          "why_it_matters": "Operations cannot be managed without setup.",
+          "minimum_answer_should_include": "Tools access, rules, templates, and escalation contacts."
+        },
+        {
+          "label": "delivery workflow",
+          "question": "What repeatable process is used daily or weekly?",
+          "why_it_matters": "A managed service is really an operating routine.",
+          "minimum_answer_should_include": "Step-by-step daily work process."
+        },
+        {
+          "label": "service level target",
+          "question": "What response time or quality standard is promised?",
+          "why_it_matters": "Clients need a reason to trust outsourced operations.",
+          "minimum_answer_should_include": "Response SLA, quality target, or volume target."
+        },
+        {
+          "label": "coverage plan",
+          "question": "Who covers the work and during what hours?",
+          "why_it_matters": "Operational coverage affects staffing and client expectations.",
+          "minimum_answer_should_include": "Roles, shifts, and backup coverage."
+        },
+        {
+          "label": "reporting and billing",
+          "question": "What does the client see regularly and how do they pay?",
+          "why_it_matters": "Operations providers need regular reporting and clear commercial terms.",
+          "minimum_answer_should_include": "Weekly or monthly report and billing structure."
+        }
+      ],
+      "product_type_description": "A business that takes over an ongoing operational function for clients."
+    },
+    {
+      "product_type": "broker / intermediary",
+      "minimum_requirements": [
+        {
+          "label": "deal enabled",
+          "question": "What exact deal do you help happen?",
+          "why_it_matters": "Intermediary businesses need one transaction type to optimize around.",
+          "minimum_answer_should_include": "One deal type and success event."
+        },
+        {
+          "label": "side A supply",
+          "question": "Who is the first side of the market you can source?",
+          "why_it_matters": "You need supply on at least one side to get started.",
+          "minimum_answer_should_include": "Type of seller/provider/owner/expert and how you reach them."
+        },
+        {
+          "label": "side B demand",
+          "question": "Who is the second side of the market you can source?",
+          "why_it_matters": "Demand determines qualification and monetization.",
+          "minimum_answer_should_include": "Type of buyer/client and what they need."
+        },
+        {
+          "label": "qualification criteria",
+          "question": "How do you decide whether a lead is worth introducing?",
+          "why_it_matters": "Lead quality is the core quality control in brokerage.",
+          "minimum_answer_should_include": "Budget, readiness, volume, geography, seriousness, etc."
+        },
+        {
+          "label": "introduction workflow",
+          "question": "What are the steps from lead intake to successful match?",
+          "why_it_matters": "The business is operationally a deal pipeline.",
+          "minimum_answer_should_include": "Intake, qualification, shortlist, introduction, follow-up, closure."
+        },
+        {
+          "label": "verification rule",
+          "question": "What minimum checks happen before an introduction?",
+          "why_it_matters": "Trust and liability depend on this.",
+          "minimum_answer_should_include": "Identity, business status, proof of inventory/ownership, or provider credibility."
+        },
+        {
+          "label": "fee trigger",
+          "question": "When do you get paid?",
+          "why_it_matters": "The business model depends on a clear fee event.",
+          "minimum_answer_should_include": "Signed deal, completed service, upfront referral fee, or retained service."
+        }
+      ],
+      "product_type_description": "A business that connects two sides of a deal and earns a fee or commission."
+    },
+    {
+      "product_type": "reseller / distributor",
+      "minimum_requirements": [
+        {
+          "label": "starter product line",
+          "question": "What goods will you buy and resell first?",
+          "why_it_matters": "A focused range is easier to source and sell.",
+          "minimum_answer_should_include": "One product family and key variants."
+        },
+        {
+          "label": "supplier setup",
+          "question": "Who supplies the goods and under what terms?",
+          "why_it_matters": "Supply reliability matters more than having many SKUs.",
+          "minimum_answer_should_include": "Supplier names or types, MOQ, lead time, payment terms."
+        },
+        {
+          "label": "buyer segment",
+          "question": "Who are the main buyers?",
+          "why_it_matters": "The buyer type changes packaging, delivery, and pricing.",
+          "minimum_answer_should_include": "Retail buyers, businesses, resellers, or direct consumers."
+        },
+        {
+          "label": "price and margin rule",
+          "question": "How do you turn cost into profitable resale price?",
+          "why_it_matters": "The business dies if margin logic is vague.",
+          "minimum_answer_should_include": "Cost components and target margin."
+        },
+        {
+          "label": "stock handling",
+          "question": "Where is stock stored and how is it tracked?",
+          "why_it_matters": "Inventory is one of the core operational needs in distribution.",
+          "minimum_answer_should_include": "Storage location, count method, and reorder rule."
+        },
+        {
+          "label": "order workflow",
+          "question": "What happens from order receipt to dispatch?",
+          "why_it_matters": "The business needs a repeatable order routine.",
+          "minimum_answer_should_include": "Confirm stock, confirm order, pack, invoice, dispatch."
+        },
+        {
+          "label": "payment rule",
+          "question": "When do buyers pay?",
+          "why_it_matters": "Working-capital pressure depends on this.",
+          "minimum_answer_should_include": "Upfront, COD, invoice later, or mixed terms."
+        }
+      ],
+      "product_type_description": "A business that buys products from producers or suppliers and resells them to others."
+    },
+    {
+      "product_type": "wholesale business",
+      "minimum_requirements": [
+        {
+          "label": "bulk offer",
+          "question": "What products are sold in volume to business buyers?",
+          "why_it_matters": "Wholesale should start with a focused bulk catalog.",
+          "minimum_answer_should_include": "Main SKUs, pack sizes, and target buyer type."
+        },
+        {
+          "label": "supplier base",
+          "question": "Who keeps your wholesale catalog stocked?",
+          "why_it_matters": "Supply stability matters more than catalog size.",
+          "minimum_answer_should_include": "Main suppliers and reorder assumptions."
+        },
+        {
+          "label": "business buyer",
+          "question": "What type of business buys from you regularly?",
+          "why_it_matters": "Wholesale operations depend on repeat demand from defined buyer types.",
+          "minimum_answer_should_include": "Restaurant, shop, reseller, institution, etc."
+        },
+        {
+          "label": "tiered pricing",
+          "question": "How do prices change by quantity or buyer type?",
+          "why_it_matters": "Wholesale is usually driven by order size and account type.",
+          "minimum_answer_should_include": "Volume thresholds and price logic."
+        },
+        {
+          "label": "warehouse process",
+          "question": "How is bulk inventory stored and picked?",
+          "why_it_matters": "Warehouse routine is a core MVP need for wholesale.",
+          "minimum_answer_should_include": "Shelf system, order prep method, and stock count rule."
+        },
+        {
+          "label": "order intake",
+          "question": "How do business buyers place orders?",
+          "why_it_matters": "Wholesale often uses low-tech but repeatable ordering channels.",
+          "minimum_answer_should_include": "Sales rep, phone, WhatsApp, order form, or portal."
+        },
+        {
+          "label": "delivery and payment terms",
+          "question": "How are orders delivered and when do buyers pay?",
+          "why_it_matters": "These two rules shape cash flow and route planning.",
+          "minimum_answer_should_include": "Delivery method and payment term."
+        }
+      ],
+      "product_type_description": "A business that sells goods in bulk, usually to other businesses rather than end customers."
+    },
+    {
+      "product_type": "import / export business",
+      "minimum_requirements": [
+        {
+          "label": "goods traded",
+          "question": "What product category is moved across borders?",
+          "why_it_matters": "Cross-border businesses work best when the product scope is narrow at first.",
+          "minimum_answer_should_include": "One traded goods category."
+        },
+        {
+          "label": "foreign counterparty",
+          "question": "Who is on the foreign side of the transaction?",
+          "why_it_matters": "Trade flow requires a known supplier or buyer abroad.",
+          "minimum_answer_should_include": "Supplier or buyer type, location, and role."
+        },
+        {
+          "label": "local counterparty",
+          "question": "Who is on the Tunisian side of the transaction?",
+          "why_it_matters": "You need clarity on who receives, pays, or resells locally.",
+          "minimum_answer_should_include": "Importer, distributor, retailer, or industrial buyer."
+        },
+        {
+          "label": "commercial terms",
+          "question": "How are pricing, currency, quantity, and payment structured?",
+          "why_it_matters": "Trade viability depends on commercial terms being explicit.",
+          "minimum_answer_should_include": "Quantity, currency, payment timing, and delivery term assumptions."
+        },
+        {
+          "label": "document set",
+          "question": "What documents are needed for one shipment?",
+          "why_it_matters": "Import/export businesses live on paperwork as much as product.",
+          "minimum_answer_should_include": "Invoice, packing list, transport document, customs documentation, etc."
+        },
+        {
+          "label": "transport and customs workflow",
+          "question": "How do goods move from supplier to final receiver?",
+          "why_it_matters": "This is the operating backbone of the business.",
+          "minimum_answer_should_include": "Shipping mode, customs handling, and local handoff."
+        },
+        {
+          "label": "landed cost model",
+          "question": "How do you calculate the real cost after freight, duties, and local delivery?",
+          "why_it_matters": "Gross margin is impossible to trust without landed cost.",
+          "minimum_answer_should_include": "Product cost + logistics + duties + local costs."
+        }
+      ],
+      "product_type_description": "A business that buys goods from one country and sells them in another."
+    },
+    {
+      "product_type": "manufacturer / producer",
+      "minimum_requirements": [
+        {
+          "label": "product made",
+          "question": "What exact product will be produced first?",
+          "why_it_matters": "Manufacturing should start with one well-defined product line.",
+          "minimum_answer_should_include": "One product family and its main variants."
+        },
+        {
+          "label": "production method",
+          "question": "How is the product made?",
+          "why_it_matters": "The production process defines equipment, labor, and capacity.",
+          "minimum_answer_should_include": "Manual, batch production, assembly, partner factory, etc."
+        },
+        {
+          "label": "input sourcing",
+          "question": "What raw materials or parts are required and where do they come from?",
+          "why_it_matters": "Production fails if inputs are unstable or unknown.",
+          "minimum_answer_should_include": "Input list, supplier type, and critical dependencies."
+        },
+        {
+          "label": "capacity and bottleneck",
+          "question": "How much can you produce and what limits output?",
+          "why_it_matters": "Capacity planning prevents missed demand or wasted stock.",
+          "minimum_answer_should_include": "Units per day/week and the main production bottleneck."
+        },
+        {
+          "label": "quality check",
+          "question": "How do you know the finished product is good enough to sell?",
+          "why_it_matters": "Manufacturing needs a minimum quality control rule even in an MVP.",
+          "minimum_answer_should_include": "Inspection rule, batch check, or acceptance criteria."
+        },
+        {
+          "label": "packaging and storage",
+          "question": "How are finished goods packed and stored?",
+          "why_it_matters": "Packaging and storage affect quality and sellability.",
+          "minimum_answer_should_include": "Packaging format, labeling, and storage conditions."
+        },
+        {
+          "label": "sales route",
+          "question": "How will produced goods be sold first?",
+          "why_it_matters": "Production without a clear sales path is risky.",
+          "minimum_answer_should_include": "Direct-to-consumer, wholesale, retail partners, or mixed."
+        }
+      ],
+      "product_type_description": "A business that makes the product itself instead of only reselling it."
+    },
+    {
+      "product_type": "hardware-enabled product / IoT",
+      "minimum_requirements": [
+        {
+          "label": "device job",
+          "question": "What real-world job does the hardware perform?",
+          "why_it_matters": "The hardware product should solve one physical problem clearly.",
+          "minimum_answer_should_include": "One device purpose and user outcome."
+        },
+        {
+          "label": "minimum device spec",
+          "question": "What is the smallest usable hardware version?",
+          "why_it_matters": "The MVP should define what hardware is essential versus optional.",
+          "minimum_answer_should_include": "Main components, power source, and what the first version can do."
+        },
+        {
+          "label": "paired software",
+          "question": "What app, dashboard, or backend is required to make the device useful?",
+          "why_it_matters": "Most hardware MVPs are hardware plus software, not hardware alone.",
+          "minimum_answer_should_include": "Minimum admin/dashboard/app capabilities."
+        },
+        {
+          "label": "setup flow",
+          "question": "How is the device installed, activated, and made usable for the customer?",
+          "why_it_matters": "Installation is often part of the product experience.",
+          "minimum_answer_should_include": "Install steps, who performs them, and customer handoff."
+        },
+        {
+          "label": "connectivity rule",
+          "question": "How does the device connect and what happens when it goes offline?",
+          "why_it_matters": "Connectivity assumptions affect reliability and support cost.",
+          "minimum_answer_should_include": "Wi-Fi/cellular/Bluetooth and offline behavior."
+        },
+        {
+          "label": "maintenance path",
+          "question": "How are device faults, updates, or replacements handled?",
+          "why_it_matters": "Hardware businesses need a basic support model at launch.",
+          "minimum_answer_should_include": "Support process, replacement rule, and maintenance responsibility."
+        },
+        {
+          "label": "safety and warranty baseline",
+          "question": "What minimum safety, handling, and warranty rules apply?",
+          "why_it_matters": "Customers need clear responsibility and trust rules for physical products.",
+          "minimum_answer_should_include": "Safe use limits, warranty duration, and misuse exclusions."
+        }
+      ],
+      "product_type_description": "A physical product with electronics, sensors, or connectivity, usually linked to software."
+    },
+    {
+      "product_type": "logistics / delivery operator",
+      "minimum_requirements": [
+        {
+          "label": "shipment types",
+          "question": "What items or goods are you willing to transport first?",
+          "why_it_matters": "A focused shipment scope is easier to price and operate.",
+          "minimum_answer_should_include": "Parcels, food orders, documents, ecommerce packages, etc."
+        },
+        {
+          "label": "delivery resources",
+          "question": "Who delivers and with what vehicles?",
+          "why_it_matters": "Fleet and courier availability define service capability.",
+          "minimum_answer_should_include": "Courier count, vehicle types, and working hours."
+        },
+        {
+          "label": "service area",
+          "question": "What exact geographic area is covered at launch?",
+          "why_it_matters": "Geography drives route design and service promise.",
+          "minimum_answer_should_include": "Cities, districts, or route zones."
+        },
+        {
+          "label": "pickup workflow",
+          "question": "How does a shipment enter the system?",
+          "why_it_matters": "Pickup is the start of the operational chain.",
+          "minimum_answer_should_include": "Merchant request, courier notification, collection confirmation."
+        },
+        {
+          "label": "dispatch rule",
+          "question": "How are deliveries assigned?",
+          "why_it_matters": "Dispatch is a core operating decision.",
+          "minimum_answer_should_include": "Nearest vehicle, zone batching, route planning, etc."
+        },
+        {
+          "label": "tracking and proof",
+          "question": "What statuses are visible and how is delivery confirmed?",
+          "why_it_matters": "Delivery businesses need operational traceability.",
+          "minimum_answer_should_include": "Shipment statuses and proof-of-delivery method."
+        },
+        {
+          "label": "exception handling",
+          "question": "What happens when delivery fails, is delayed, or gets lost?",
+          "why_it_matters": "Delivery operations need a recovery process.",
+          "minimum_answer_should_include": "Retry rule, return-to-sender rule, and issue logging."
+        }
+      ],
+      "product_type_description": "A business that moves goods from one place to another for customers or merchants."
+    },
+    {
+      "product_type": "rental / asset access business",
+      "minimum_requirements": [
+        {
+          "label": "asset offered",
+          "question": "What item, equipment, or space is rented?",
+          "why_it_matters": "The rental offer must be concrete and trackable.",
+          "minimum_answer_should_include": "One asset type and basic inventory definition."
+        },
+        {
+          "label": "inventory tracking",
+          "question": "How do you track each asset and its condition?",
+          "why_it_matters": "Rental businesses live on asset visibility.",
+          "minimum_answer_should_include": "Asset ID, condition status, and current availability."
+        },
+        {
+          "label": "availability system",
+          "question": "How do you know when an asset is free to rent?",
+          "why_it_matters": "Customers need a reliable reservation promise.",
+          "minimum_answer_should_include": "Calendar or booking table by asset."
+        },
+        {
+          "label": "rental terms",
+          "question": "What are the core rental rules?",
+          "why_it_matters": "Terms protect the asset and set customer expectations.",
+          "minimum_answer_should_include": "Duration, price, deposit, late fee, and usage limits."
+        },
+        {
+          "label": "reservation flow",
+          "question": "How does a customer reserve the asset?",
+          "why_it_matters": "The MVP needs a complete reserve-to-handover flow.",
+          "minimum_answer_should_include": "Inquiry, confirmation, payment/deposit, pickup details."
+        },
+        {
+          "label": "handover and return check",
+          "question": "What is checked when the asset is given out and returned?",
+          "why_it_matters": "Condition control is a core rental process.",
+          "minimum_answer_should_include": "Identity check, condition check, return inspection."
+        },
+        {
+          "label": "damage and maintenance rule",
+          "question": "How are repairs, damage, and downtime handled?",
+          "why_it_matters": "Rental margins disappear without a damage policy.",
+          "minimum_answer_should_include": "Deposit usage, repair flow, and asset unavailability rule."
+        }
+      ],
+      "product_type_description": "A business that gives temporary access to an asset instead of selling it."
+    },
+    {
+      "product_type": "repair / maintenance business",
+      "minimum_requirements": [
+        {
+          "label": "repair scope",
+          "question": "What items or systems do you repair in the MVP?",
+          "why_it_matters": "A narrow scope improves speed, expertise, and marketing clarity.",
+          "minimum_answer_should_include": "One repair category and what is excluded."
+        },
+        {
+          "label": "job intake",
+          "question": "How do customers submit a repair request?",
+          "why_it_matters": "Jobs need a standard intake path to be priced and tracked.",
+          "minimum_answer_should_include": "Walk-in, call, message, or form plus required details."
+        },
+        {
+          "label": "diagnosis rule",
+          "question": "How do you inspect and confirm the issue?",
+          "why_it_matters": "A repair business needs a standard diagnosis step before promising a price.",
+          "minimum_answer_should_include": "Inspection method, timing, and whether it is paid."
+        },
+        {
+          "label": "quote and approval",
+          "question": "How do customers approve repair work?",
+          "why_it_matters": "Repairs often fail commercially when approval is not explicit.",
+          "minimum_answer_should_include": "Price quote, parts estimate, and customer approval rule."
+        },
+        {
+          "label": "parts sourcing",
+          "question": "Where do parts or consumables come from?",
+          "why_it_matters": "Repair speed and margin depend on parts availability.",
+          "minimum_answer_should_include": "Main suppliers and special-order rule."
+        },
+        {
+          "label": "repair workflow",
+          "question": "What are the internal steps from intake to completion?",
+          "why_it_matters": "This is the operating backbone of the service.",
+          "minimum_answer_should_include": "Receive item, diagnose, quote, repair, test, notify customer."
+        },
+        {
+          "label": "payment and warranty",
+          "question": "When does the customer pay and what guarantee is offered?",
+          "why_it_matters": "Customers expect both a payment rule and post-repair confidence.",
+          "minimum_answer_should_include": "Payment timing and warranty period/scope."
+        }
+      ],
+      "product_type_description": "A business that fixes, maintains, or services equipment, devices, or property."
+    },
+    {
+      "product_type": "franchise / branch model",
+      "minimum_requirements": [
+        {
+          "label": "repeatable offer",
+          "question": "What customer offer must work the same way in every branch?",
+          "why_it_matters": "Franchise models depend on repeatability more than novelty.",
+          "minimum_answer_should_include": "One standard service/product experience."
+        },
+        {
+          "label": "branch unit spec",
+          "question": "What does one branch need to open and operate?",
+          "why_it_matters": "A franchise needs a clear branch formula.",
+          "minimum_answer_should_include": "Location type, size, minimum staff, equipment, and initial stock."
+        },
+        {
+          "label": "operating manual",
+          "question": "What standard procedures must every branch follow?",
+          "why_it_matters": "Branch consistency comes from standard procedures.",
+          "minimum_answer_should_include": "Opening, customer service, hygiene, ordering, closing, and issue handling."
+        },
+        {
+          "label": "training package",
+          "question": "How do new branch operators learn the model?",
+          "why_it_matters": "The business cannot expand without teachable operations.",
+          "minimum_answer_should_include": "Initial training topics and support period."
+        },
+        {
+          "label": "brand control",
+          "question": "How do you keep experience and quality consistent?",
+          "why_it_matters": "Customers expect the same brand everywhere.",
+          "minimum_answer_should_include": "Visual standards, service standards, and audit rule."
+        },
+        {
+          "label": "supply chain rule",
+          "question": "How do branches get approved products or materials?",
+          "why_it_matters": "Supply consistency protects margin and brand quality.",
+          "minimum_answer_should_include": "Approved suppliers, central buying, or mandatory materials."
+        },
+        {
+          "label": "expansion gate",
+          "question": "What must be true before opening another branch?",
+          "why_it_matters": "Scaling too early breaks franchise models.",
+          "minimum_answer_should_include": "Financial and operational threshold for the next location."
+        }
+      ],
+      "product_type_description": "A business model where the same brand and operating system is repeated across branches or operators."
+    },
+    {
+      "product_type": "events / experiences business",
+      "minimum_requirements": [
+        {
+          "label": "experience sold",
+          "question": "What exact event or experience is being offered?",
+          "why_it_matters": "An event product must feel tangible before it is purchased.",
+          "minimum_answer_should_include": "One event concept, duration, and value promise."
+        },
+        {
+          "label": "attendee segment",
+          "question": "Who is the event for?",
+          "why_it_matters": "Audience fit affects price, promotion, and format.",
+          "minimum_answer_should_include": "One attendee type and why they would care."
+        },
+        {
+          "label": "format and venue",
+          "question": "Where and how does the event happen?",
+          "why_it_matters": "Venue/platform defines cost and operations.",
+          "minimum_answer_should_include": "Physical venue, online platform, or hybrid format."
+        },
+        {
+          "label": "run of show",
+          "question": "What is the program flow from start to finish?",
+          "why_it_matters": "Events need an agenda to be deliverable.",
+          "minimum_answer_should_include": "Start time, sections, breaks, and end result."
+        },
+        {
+          "label": "capacity and staffing",
+          "question": "How many attendees can be handled and by whom?",
+          "why_it_matters": "Capacity planning protects event quality.",
+          "minimum_answer_should_include": "Seat limit and minimum team roles."
+        },
+        {
+          "label": "booking and payment",
+          "question": "How do people reserve and pay for attendance?",
+          "why_it_matters": "A complete booking path is required for launch.",
+          "minimum_answer_should_include": "Event page, checkout, confirmation, and payment timing."
+        },
+        {
+          "label": "materials and follow-up",
+          "question": "What must be ready before the event and what happens after it?",
+          "why_it_matters": "Experience quality depends on setup and post-event follow-up.",
+          "minimum_answer_should_include": "Materials checklist, setup plan, and post-event action."
+        }
+      ],
+      "product_type_description": "A business that organizes or sells participation in events, activities, or experiences."
+    }
+  ]
+}

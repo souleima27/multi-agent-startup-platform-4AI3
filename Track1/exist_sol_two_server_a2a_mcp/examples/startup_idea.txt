@@ -1,0 +1,1 @@
+A mobile marketplace that turns private car seats into on-demand public transit, matching nearby riders with independent drivers in real time and handling routing, payments, reputation, and pickup coordination through one app.

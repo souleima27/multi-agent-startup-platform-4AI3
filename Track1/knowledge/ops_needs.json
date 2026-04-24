@@ -1,0 +1,1744 @@
+[
+  {
+    "product_type": "marketplace",
+    "product_type_description": "A platform that connects sellers/providers with buyers/customers and helps the transaction happen.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Runs the marketplace and decides the rules."
+      },
+      {
+        "role": "provider onboarding",
+        "description": "Finds providers, checks them, and publishes listings."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles user problems, refunds, and disputes."
+      },
+      {
+        "role": "technical owner",
+        "description": "Maintains the platform, payments, and admin functions."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "admin panel",
+        "description": "Manage users, listings, requests, and statuses."
+      },
+      {
+        "tool": "payment and payout system",
+        "description": "Collect customer payments and send provider payouts."
+      },
+      {
+        "tool": "support inbox",
+        "description": "Receive and track customer and provider issues."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review providers",
+        "description": "Approve or reject new providers."
+      },
+      {
+        "task": "review listings",
+        "description": "Approve, reject, or fix listings."
+      },
+      {
+        "task": "monitor transactions",
+        "description": "Check that requests, orders, or bookings move forward."
+      },
+      {
+        "task": "handle disputes",
+        "description": "Resolve refunds, complaints, and failed transactions."
+      }
+    ]
+  },
+  {
+    "product_type": "booking / appointments",
+    "product_type_description": "A business where customers reserve a time slot for a service or session.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Runs the service, sets the rules, and solves problems."
+      },
+      {
+        "role": "booking owner",
+        "description": "Manages availability, bookings, reschedules, and cancellations."
+      },
+      {
+        "role": "service delivery owner",
+        "description": "Delivers the appointment or makes sure it is delivered."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "booking calendar system",
+        "description": "Shows available time slots and records bookings."
+      },
+      {
+        "tool": "customer notification system",
+        "description": "Sends confirmations, reminders, and booking changes."
+      },
+      {
+        "tool": "payment system",
+        "description": "Collects deposits, prepayments, or final payment when needed."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "update availability",
+        "description": "Keep bookable time slots accurate."
+      },
+      {
+        "task": "check new bookings",
+        "description": "Make sure new appointments are correctly recorded."
+      },
+      {
+        "task": "handle booking changes",
+        "description": "Process reschedules, cancellations, and no-show cases."
+      },
+      {
+        "task": "confirm service delivery",
+        "description": "Make sure each booked appointment is actually completed."
+      }
+    ]
+  },
+  {
+    "product_type": "software tool / SaaS",
+    "product_type_description": "Software people or companies use online to solve a specific problem, usually through a browser or app.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, pricing, and customer decisions."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the product, hosting, and core systems."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles user issues, bugs, and basic onboarding help."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "application hosting",
+        "description": "Runs the product and keeps it available online."
+      },
+      {
+        "tool": "user authentication system",
+        "description": "Lets users sign up, log in, and access their accounts."
+      },
+      {
+        "tool": "billing system",
+        "description": "Collects subscriptions or one-time payments."
+      },
+      {
+        "tool": "support inbox",
+        "description": "Receives and tracks user questions and bug reports."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "monitor product health",
+        "description": "Check that the app is working and key flows do not fail."
+      },
+      {
+        "task": "handle support requests",
+        "description": "Reply to user issues and unblock customers."
+      },
+      {
+        "task": "fix critical bugs",
+        "description": "Resolve issues that stop users from using the product."
+      },
+      {
+        "task": "review new signups and payments",
+        "description": "Make sure accounts and billing are working correctly."
+      }
+    ]
+  },
+  {
+    "product_type": "API / developer platform",
+    "product_type_description": "A product that other software developers integrate into their own apps or systems.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, pricing, and developer offering."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the API, infrastructure, and integrations."
+      },
+      {
+        "role": "developer support",
+        "description": "Handles integration issues, API questions, and incident communication."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "API hosting environment",
+        "description": "Runs the API and keeps endpoints available."
+      },
+      {
+        "tool": "authentication and API key system",
+        "description": "Issues credentials and controls access."
+      },
+      {
+        "tool": "API documentation",
+        "description": "Shows endpoints, inputs, outputs, and usage examples."
+      },
+      {
+        "tool": "usage monitoring and logging",
+        "description": "Tracks requests, failures, and service health."
+      },
+      {
+        "tool": "billing or usage metering system",
+        "description": "Measures usage and collects payment when needed."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "monitor API uptime",
+        "description": "Check that endpoints respond and core flows do not fail."
+      },
+      {
+        "task": "review logs and errors",
+        "description": "Find failed requests, broken integrations, and abnormal usage."
+      },
+      {
+        "task": "handle developer support",
+        "description": "Reply to integration problems and unblock users."
+      },
+      {
+        "task": "manage access and usage",
+        "description": "Check API keys, limits, and billing or quota issues."
+      }
+    ]
+  },
+  {
+    "product_type": "data / analytics product",
+    "product_type_description": "A product that collects, processes, or presents data so users can monitor or make decisions.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, target users, and reporting offer."
+      },
+      {
+        "role": "technical / data owner",
+        "description": "Builds and maintains data collection, processing, and delivery."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles access issues, data questions, and basic onboarding help."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "data ingestion and storage system",
+        "description": "Collects source data and stores it for processing."
+      },
+      {
+        "tool": "reporting or dashboard system",
+        "description": "Shows analytics, reports, or metrics to users."
+      },
+      {
+        "tool": "data job monitoring",
+        "description": "Tracks refresh failures, delays, and broken pipelines."
+      },
+      {
+        "tool": "user access system",
+        "description": "Controls who can view data and reports."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "check data refreshes",
+        "description": "Make sure data updates run on time."
+      },
+      {
+        "task": "review failed data jobs",
+        "description": "Fix broken imports, transforms, or report updates."
+      },
+      {
+        "task": "validate key outputs",
+        "description": "Check that important numbers and dashboards look correct."
+      },
+      {
+        "task": "handle user issues",
+        "description": "Resolve access problems and answer report questions."
+      }
+    ]
+  },
+  {
+    "product_type": "workflow automation / internal tool",
+    "product_type_description": "A tool that automates repeated business tasks or helps a team run internal processes.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the workflow, users, and business rules."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the automation, integrations, and fixes."
+      },
+      {
+        "role": "process owner",
+        "description": "Runs the workflow and checks that automated steps match real operations."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "workflow automation system",
+        "description": "Runs the defined steps, triggers, and actions."
+      },
+      {
+        "tool": "admin panel or control interface",
+        "description": "Lets operators review runs, statuses, and manual overrides."
+      },
+      {
+        "tool": "integration connectors",
+        "description": "Connects the tool to the systems used in the workflow."
+      },
+      {
+        "tool": "error logging and alerts",
+        "description": "Shows failed runs, broken steps, and urgent issues."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "monitor workflow runs",
+        "description": "Check that automations complete and do not get stuck."
+      },
+      {
+        "task": "review failed steps",
+        "description": "Fix broken actions, missing data, and integration errors."
+      },
+      {
+        "task": "handle manual exceptions",
+        "description": "Process cases the automation cannot complete alone."
+      },
+      {
+        "task": "confirm output accuracy",
+        "description": "Make sure the workflow results match the intended process."
+      }
+    ]
+  },
+  {
+    "product_type": "B2C app",
+    "product_type_description": "A consumer app used directly by end users, usually on mobile or web.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, target users, and growth decisions."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the app, backend, and releases."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles user issues, account problems, and refund cases."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "app hosting and backend",
+        "description": "Runs the app, stores user data, and supports core actions."
+      },
+      {
+        "tool": "user authentication system",
+        "description": "Lets users sign up, log in, and recover access."
+      },
+      {
+        "tool": "app distribution and release system",
+        "description": "Publishes updates and manages app versions."
+      },
+      {
+        "tool": "support inbox",
+        "description": "Receives and tracks user problems and questions."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "monitor app health",
+        "description": "Check that the app opens and core user flows work."
+      },
+      {
+        "task": "handle user support",
+        "description": "Reply to account issues, bugs, and usage problems."
+      },
+      {
+        "task": "fix critical bugs",
+        "description": "Resolve issues that block users from using the app."
+      },
+      {
+        "task": "review new accounts and payments",
+        "description": "Make sure signups and paid flows work correctly when used."
+      }
+    ]
+  },
+  {
+    "product_type": "community / social platform",
+    "product_type_description": "A platform where users interact, post, discuss, and build a network or group.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the community rules, growth, and platform direction."
+      },
+      {
+        "role": "community moderator",
+        "description": "Reviews posts, users, reports, and rule violations."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the platform, accounts, and core features."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "platform hosting",
+        "description": "Runs the platform and keeps it available online."
+      },
+      {
+        "tool": "user authentication system",
+        "description": "Lets users create accounts, log in, and recover access."
+      },
+      {
+        "tool": "admin and moderation panel",
+        "description": "Manage users, posts, reports, and enforcement actions."
+      },
+      {
+        "tool": "reporting system",
+        "description": "Lets users report content, spam, and abuse."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review reported content",
+        "description": "Check flagged posts, comments, and accounts."
+      },
+      {
+        "task": "moderate rule violations",
+        "description": "Remove bad content and take action on abusive users."
+      },
+      {
+        "task": "monitor platform health",
+        "description": "Check that posting, messaging, and account flows work."
+      },
+      {
+        "task": "handle user issues",
+        "description": "Resolve account problems, abuse complaints, and access issues."
+      }
+    ]
+  },
+  {
+    "product_type": "subscription / membership",
+    "product_type_description": "A business where users pay regularly to keep access to content, benefits, or services.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, and membership rules."
+      },
+      {
+        "role": "member operations",
+        "description": "Manages member access, renewals, cancellations, and support."
+      },
+      {
+        "role": "technical / billing owner",
+        "description": "Maintains the platform, recurring payments, and access controls."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "recurring billing system",
+        "description": "Charges members and tracks renewals and failed payments."
+      },
+      {
+        "tool": "member access management system",
+        "description": "Controls who gets the member benefits or protected access."
+      },
+      {
+        "tool": "support inbox",
+        "description": "Receives and tracks member questions and issues."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review new memberships",
+        "description": "Make sure new paid members receive access correctly."
+      },
+      {
+        "task": "monitor renewals and failed payments",
+        "description": "Check renewals, payment failures, and expired access."
+      },
+      {
+        "task": "manage cancellations and refunds",
+        "description": "Process membership stops and payment issues."
+      },
+      {
+        "task": "handle member support",
+        "description": "Resolve access problems and membership questions."
+      }
+    ]
+  },
+  {
+    "product_type": "media / audience business",
+    "product_type_description": "A business built around attracting an audience and monetizing attention.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the audience, content direction, and revenue decisions."
+      },
+      {
+        "role": "content owner",
+        "description": "Creates or manages the publishing of core content."
+      },
+      {
+        "role": "audience operations",
+        "description": "Handles publishing, distribution, and basic audience support."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "publishing platform",
+        "description": "Publishes content and keeps the audience access point live."
+      },
+      {
+        "tool": "audience communication system",
+        "description": "Sends updates, newsletters, or distribution messages."
+      },
+      {
+        "tool": "analytics system",
+        "description": "Tracks reach, engagement, and audience growth."
+      },
+      {
+        "tool": "revenue collection system",
+        "description": "Collects sponsor, subscription, or product revenue when used."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "publish scheduled content",
+        "description": "Make sure planned content goes out on time."
+      },
+      {
+        "task": "monitor audience channels",
+        "description": "Check core distribution channels and audience responses."
+      },
+      {
+        "task": "review performance",
+        "description": "Track which content brings attention, engagement, or revenue."
+      },
+      {
+        "task": "handle audience or partner requests",
+        "description": "Reply to important messages, sponsor needs, or access problems."
+      }
+    ]
+  },
+  {
+    "product_type": "content / digital product",
+    "product_type_description": "A business that sells downloadable or digital goods.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, and product decisions."
+      },
+      {
+        "role": "content / product owner",
+        "description": "Creates, updates, and maintains the digital product."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles delivery issues, access problems, and refund requests."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "storefront and payment system",
+        "description": "Sells the product and collects payment."
+      },
+      {
+        "tool": "digital delivery system",
+        "description": "Delivers files or access after purchase."
+      },
+      {
+        "tool": "file hosting system",
+        "description": "Stores the digital product files for delivery."
+      },
+      {
+        "tool": "support inbox",
+        "description": "Receives and tracks customer issues."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "check purchases and delivery",
+        "description": "Make sure buyers receive the product correctly."
+      },
+      {
+        "task": "handle support and refunds",
+        "description": "Resolve access issues, broken files, and refund cases."
+      },
+      {
+        "task": "update product files or listings",
+        "description": "Fix outdated files, descriptions, or broken purchase links."
+      },
+      {
+        "task": "monitor payments",
+        "description": "Check that checkout and payment flows work."
+      }
+    ]
+  },
+  {
+    "product_type": "training / academy / coaching",
+    "product_type_description": "A business that teaches skills or helps people improve through lessons, programs, or coaching.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, and delivery model."
+      },
+      {
+        "role": "trainer / coach",
+        "description": "Delivers the training, sessions, or coaching."
+      },
+      {
+        "role": "learner operations",
+        "description": "Manages enrollments, scheduling, access, and support."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "learning or session delivery system",
+        "description": "Delivers lessons, sessions, or coaching to learners."
+      },
+      {
+        "tool": "enrollment and payment system",
+        "description": "Registers learners and collects payment."
+      },
+      {
+        "tool": "learner communication system",
+        "description": "Sends updates, reminders, and session links."
+      },
+      {
+        "tool": "attendance or progress tracking system",
+        "description": "Tracks learner participation and completion."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "manage enrollments",
+        "description": "Make sure new learners are registered and get access."
+      },
+      {
+        "task": "confirm session delivery",
+        "description": "Make sure scheduled lessons or coaching sessions happen."
+      },
+      {
+        "task": "handle learner support",
+        "description": "Resolve access problems, schedule issues, and learner questions."
+      },
+      {
+        "task": "update learner status",
+        "description": "Record attendance, progress, or completion."
+      }
+    ]
+  },
+  {
+    "product_type": "ecommerce / retail",
+    "product_type_description": "A business that sells physical products directly to customers.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, and sales decisions."
+      },
+      {
+        "role": "inventory and order owner",
+        "description": "Manages stock, orders, packing, and fulfillment."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles buyer questions, returns, refunds, and delivery issues."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "storefront system",
+        "description": "Shows products and accepts customer orders."
+      },
+      {
+        "tool": "payment system",
+        "description": "Collects customer payments at checkout."
+      },
+      {
+        "tool": "inventory tracking system",
+        "description": "Tracks available stock and product availability."
+      },
+      {
+        "tool": "order and shipping system",
+        "description": "Processes orders and manages delivery status."
+      }
+    ],
+    "minimum_physical_materials": [
+      "product stock",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check new orders",
+        "description": "Make sure paid orders are recorded and ready for fulfillment."
+      },
+      {
+        "task": "prepare and ship orders",
+        "description": "Pack products and move orders to delivery."
+      },
+      {
+        "task": "update inventory",
+        "description": "Keep stock counts accurate after sales or returns."
+      },
+      {
+        "task": "handle customer issues",
+        "description": "Resolve order problems, returns, refunds, and delivery complaints."
+      }
+    ]
+  },
+  {
+    "product_type": "directory / lead generation",
+    "product_type_description": "A site that lists businesses or opportunities and captures customer inquiries.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the niche, listing rules, and revenue model."
+      },
+      {
+        "role": "listing and lead operations",
+        "description": "Adds listings, checks accuracy, and handles incoming leads."
+      },
+      {
+        "role": "technical owner",
+        "description": "Maintains the site, forms, tracking, and admin functions."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "listing management system",
+        "description": "Stores, publishes, and updates directory entries."
+      },
+      {
+        "tool": "search and filtering system",
+        "description": "Helps users find relevant listings."
+      },
+      {
+        "tool": "lead capture system",
+        "description": "Collects inquiries, calls, or contact requests."
+      },
+      {
+        "tool": "admin panel",
+        "description": "Manage listings, leads, and basic site operations."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review and update listings",
+        "description": "Keep listings accurate, live, and correctly categorized."
+      },
+      {
+        "task": "check new leads",
+        "description": "Make sure inquiries are captured and routed correctly."
+      },
+      {
+        "task": "remove bad listings",
+        "description": "Delete duplicates, spam, or broken entries."
+      },
+      {
+        "task": "monitor site and forms",
+        "description": "Check that search, pages, and lead forms work."
+      }
+    ]
+  },
+  {
+    "product_type": "local service business",
+    "product_type_description": "A business that provides a service in a specific local area.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the service, pricing, and local operating rules."
+      },
+      {
+        "role": "service delivery owner",
+        "description": "Performs the service or makes sure it is delivered correctly."
+      },
+      {
+        "role": "booking and customer support",
+        "description": "Handles inquiries, scheduling, changes, and complaints."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "booking or request intake system",
+        "description": "Receives customer requests, bookings, or service inquiries."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends confirmations, updates, and follow-up messages."
+      },
+      {
+        "tool": "payment collection system",
+        "description": "Collects deposits or final payment."
+      }
+    ],
+    "minimum_physical_materials": [
+      "basic service equipment"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check new requests",
+        "description": "Review new customer inquiries and bookings."
+      },
+      {
+        "task": "confirm schedule",
+        "description": "Make sure service times and assignments are clear."
+      },
+      {
+        "task": "deliver the service",
+        "description": "Complete the booked job or appointment."
+      },
+      {
+        "task": "handle customer issues",
+        "description": "Resolve delays, complaints, and payment problems."
+      }
+    ]
+  },
+  {
+    "product_type": "on-demand service",
+    "product_type_description": "A service customers request when they need it, often expecting quick response.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the service rules, pricing, and coverage area."
+      },
+      {
+        "role": "dispatch and service coordination",
+        "description": "Assigns incoming requests and tracks delivery or completion."
+      },
+      {
+        "role": "service delivery owner",
+        "description": "Performs the service or makes sure providers complete it."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "request intake system",
+        "description": "Receives customer orders or service requests in real time."
+      },
+      {
+        "tool": "dispatch system",
+        "description": "Assigns requests and tracks service status."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends confirmations, updates, and arrival notices."
+      },
+      {
+        "tool": "payment system",
+        "description": "Collects payment for completed or accepted requests."
+      }
+    ],
+    "minimum_physical_materials": [
+      "basic service equipment"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check incoming requests",
+        "description": "Review and accept new service requests."
+      },
+      {
+        "task": "assign and dispatch work",
+        "description": "Route each request to the right delivery owner."
+      },
+      {
+        "task": "monitor active jobs",
+        "description": "Track progress, delays, and failed service cases."
+      },
+      {
+        "task": "handle customer issues",
+        "description": "Resolve cancellations, complaints, and payment problems."
+      }
+    ]
+  },
+  {
+    "product_type": "agency / done-for-you service",
+    "product_type_description": "A service business that does work for clients as a custom project or recurring service.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, client scope, and delivery rules."
+      },
+      {
+        "role": "service delivery owner",
+        "description": "Performs the client work or makes sure it is completed correctly."
+      },
+      {
+        "role": "client operations",
+        "description": "Manages inquiries, onboarding, timelines, and client communication."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "client intake system",
+        "description": "Collects leads, project details, and service requests."
+      },
+      {
+        "tool": "work management system",
+        "description": "Tracks client tasks, deliverables, and deadlines."
+      },
+      {
+        "tool": "client communication system",
+        "description": "Handles updates, approvals, and delivery discussions."
+      },
+      {
+        "tool": "billing and invoicing system",
+        "description": "Sends invoices and collects client payments."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review new client requests",
+        "description": "Check incoming leads, scope, and fit."
+      },
+      {
+        "task": "manage active client work",
+        "description": "Keep deliverables moving and deadlines on track."
+      },
+      {
+        "task": "send client updates",
+        "description": "Communicate progress, questions, and approvals."
+      },
+      {
+        "task": "check billing and delivery status",
+        "description": "Make sure invoices, payments, and final handoff are completed."
+      }
+    ]
+  },
+  {
+    "product_type": "productized service",
+    "product_type_description": "A service packaged in a fixed, repeatable format with clear scope and pricing.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, package scope, and delivery rules."
+      },
+      {
+        "role": "service delivery owner",
+        "description": "Performs the standardized service and completes the deliverables."
+      },
+      {
+        "role": "client operations",
+        "description": "Manages orders, required inputs, updates, and handoff."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "order or intake system",
+        "description": "Collects purchases, requests, and required client information."
+      },
+      {
+        "tool": "work management system",
+        "description": "Tracks each order, step, and delivery deadline."
+      },
+      {
+        "tool": "client communication system",
+        "description": "Handles questions, updates, and approval messages."
+      },
+      {
+        "tool": "billing system",
+        "description": "Collects payment for the packaged service."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review new orders",
+        "description": "Check incoming purchases and confirm needed client inputs."
+      },
+      {
+        "task": "deliver active work",
+        "description": "Complete the defined service steps and outputs."
+      },
+      {
+        "task": "handle client communication",
+        "description": "Send updates, request missing information, and answer questions."
+      },
+      {
+        "task": "confirm delivery and payment",
+        "description": "Make sure final handoff and payment status are complete."
+      }
+    ]
+  },
+  {
+    "product_type": "consulting / expert service",
+    "product_type_description": "A business that sells expert advice, diagnosis, or recommendations.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the offer, pricing, scope, and client decisions."
+      },
+      {
+        "role": "consultant / expert",
+        "description": "Delivers the advice, analysis, and client recommendations."
+      },
+      {
+        "role": "client operations",
+        "description": "Manages inquiries, scheduling, documents, and follow-up."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "client intake system",
+        "description": "Collects inquiries, project details, and client needs."
+      },
+      {
+        "tool": "meeting and scheduling system",
+        "description": "Books calls, sessions, and consulting meetings."
+      },
+      {
+        "tool": "document delivery system",
+        "description": "Prepares and shares reports, recommendations, or outputs."
+      },
+      {
+        "tool": "billing and invoicing system",
+        "description": "Sends invoices and collects client payments."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review new client inquiries",
+        "description": "Check fit, scope, and next steps for incoming requests."
+      },
+      {
+        "task": "prepare and deliver consulting work",
+        "description": "Complete the analysis, advice, or expert sessions."
+      },
+      {
+        "task": "manage client communication",
+        "description": "Send updates, request inputs, and answer client questions."
+      },
+      {
+        "task": "check scheduling and payment status",
+        "description": "Make sure meetings, invoices, and collections are handled."
+      }
+    ]
+  },
+  {
+    "product_type": "managed operations provider",
+    "product_type_description": "A business that takes over an ongoing operational function for clients.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the service scope, pricing, client commitments, and rules."
+      },
+      {
+        "role": "operations manager",
+        "description": "Runs daily delivery, assigns work, and checks service quality."
+      },
+      {
+        "role": "delivery operator",
+        "description": "Performs the recurring operational tasks for clients."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "work queue or case management system",
+        "description": "Tracks incoming client work, statuses, and handoffs."
+      },
+      {
+        "tool": "client communication system",
+        "description": "Handles updates, escalations, and client requests."
+      },
+      {
+        "tool": "internal operations dashboard",
+        "description": "Shows workload, deadlines, and service status."
+      },
+      {
+        "tool": "billing and invoicing system",
+        "description": "Bills clients for recurring service delivery."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review incoming work",
+        "description": "Check new client tasks, requests, or cases."
+      },
+      {
+        "task": "assign and process work",
+        "description": "Route tasks to the right operator and complete them."
+      },
+      {
+        "task": "monitor service levels",
+        "description": "Check deadlines, backlogs, and missed client commitments."
+      },
+      {
+        "task": "handle escalations and client issues",
+        "description": "Resolve blocked cases, quality problems, and urgent requests."
+      }
+    ]
+  },
+  {
+    "product_type": "broker / intermediary",
+    "product_type_description": "A business that connects two sides of a deal and earns a fee or commission.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the deal model, pricing, partner rules, and transaction process."
+      },
+      {
+        "role": "partner and deal coordinator",
+        "description": "Finds counterparties, matches requests, and moves deals forward."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles buyer or seller questions, issues, and transaction problems."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "lead or request intake system",
+        "description": "Collects buyer, seller, or partner requests."
+      },
+      {
+        "tool": "partner and listing database",
+        "description": "Stores available counterparties, offers, and contact details."
+      },
+      {
+        "tool": "deal tracking system",
+        "description": "Tracks matches, negotiations, and transaction status."
+      },
+      {
+        "tool": "billing or commission system",
+        "description": "Records fees and collects payment when deals close."
+      }
+    ],
+    "minimum_physical_materials": [],
+    "minimum_daily_operations": [
+      {
+        "task": "review new requests",
+        "description": "Check new buyer, seller, or partner inquiries."
+      },
+      {
+        "task": "match counterparties",
+        "description": "Connect the right parties based on the request."
+      },
+      {
+        "task": "follow active deals",
+        "description": "Track progress, missing steps, and stalled transactions."
+      },
+      {
+        "task": "handle transaction issues",
+        "description": "Resolve communication problems, disputes, and fee questions."
+      }
+    ]
+  },
+  {
+    "product_type": "reseller / distributor",
+    "product_type_description": "A business that buys products from producers or suppliers and resells them to others.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product lines, pricing, supplier terms, and sales rules."
+      },
+      {
+        "role": "inventory and order owner",
+        "description": "Manages stock, supplier orders, and customer fulfillment."
+      },
+      {
+        "role": "sales and customer support",
+        "description": "Handles buyer inquiries, order issues, and account follow-up."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "inventory tracking system",
+        "description": "Tracks available stock, incoming supply, and product movement."
+      },
+      {
+        "tool": "order management system",
+        "description": "Records customer orders and tracks fulfillment status."
+      },
+      {
+        "tool": "supplier purchasing system",
+        "description": "Places restock orders and tracks supplier deliveries."
+      },
+      {
+        "tool": "billing and payment system",
+        "description": "Sends invoices or collects payment for orders."
+      }
+    ],
+    "minimum_physical_materials": [
+      "product stock",
+      "storage space",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check new orders",
+        "description": "Review customer orders and confirm stock availability."
+      },
+      {
+        "task": "prepare and fulfill orders",
+        "description": "Pick, pack, and move orders to delivery or pickup."
+      },
+      {
+        "task": "monitor stock levels",
+        "description": "Track low inventory and restock needs."
+      },
+      {
+        "task": "handle supplier and customer issues",
+        "description": "Resolve delays, damaged goods, and order problems."
+      }
+    ]
+  },
+  {
+    "product_type": "wholesale business",
+    "product_type_description": "A business that sells goods in bulk, usually to other businesses rather than end customers.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product lines, pricing, buyer terms, and supplier terms."
+      },
+      {
+        "role": "inventory and fulfillment owner",
+        "description": "Manages stock, bulk orders, storage, and shipment handling."
+      },
+      {
+        "role": "buyer accounts and sales support",
+        "description": "Handles buyer inquiries, repeat orders, and account issues."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "inventory tracking system",
+        "description": "Tracks stock, bulk quantities, and product availability."
+      },
+      {
+        "tool": "order and account management system",
+        "description": "Records buyer orders, account details, and fulfillment status."
+      },
+      {
+        "tool": "supplier purchasing system",
+        "description": "Places restock orders and tracks inbound supply."
+      },
+      {
+        "tool": "billing and invoicing system",
+        "description": "Sends invoices and collects buyer payments."
+      }
+    ],
+    "minimum_physical_materials": [
+      "product stock",
+      "storage space",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check buyer orders",
+        "description": "Review new bulk orders and confirm stock availability."
+      },
+      {
+        "task": "prepare and fulfill shipments",
+        "description": "Pick, pack, and move wholesale orders to delivery."
+      },
+      {
+        "task": "monitor stock and restocking",
+        "description": "Track low inventory and place supplier orders."
+      },
+      {
+        "task": "handle buyer and supplier issues",
+        "description": "Resolve shortages, delivery problems, and account questions."
+      }
+    ]
+  },
+  {
+    "product_type": "import / export business",
+    "product_type_description": "A business that buys goods from one country and sells them in another.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product lines, pricing, trade partners, and shipment rules."
+      },
+      {
+        "role": "trade and logistics coordinator",
+        "description": "Manages suppliers, shipping steps, customs documents, and delivery flow."
+      },
+      {
+        "role": "inventory and customer operations",
+        "description": "Handles stock, buyer orders, and shipment-related customer issues."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "supplier and buyer order management system",
+        "description": "Tracks purchase orders, sales orders, and transaction status."
+      },
+      {
+        "tool": "shipment and logistics tracking system",
+        "description": "Tracks freight movement, delivery milestones, and delays."
+      },
+      {
+        "tool": "document management system",
+        "description": "Stores invoices, shipping documents, and customs paperwork."
+      },
+      {
+        "tool": "billing and payment system",
+        "description": "Sends invoices and tracks incoming and outgoing payments."
+      }
+    ],
+    "minimum_physical_materials": [
+      "product stock",
+      "storage space",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "review active orders and shipments",
+        "description": "Check purchase orders, sales orders, and shipment progress."
+      },
+      {
+        "task": "prepare and verify trade documents",
+        "description": "Make sure shipment and customs documents are complete and correct."
+      },
+      {
+        "task": "monitor inventory and incoming goods",
+        "description": "Track available stock and expected arrivals."
+      },
+      {
+        "task": "handle delivery and payment issues",
+        "description": "Resolve delays, document problems, and payment questions."
+      }
+    ]
+  },
+  {
+    "product_type": "manufacturer / producer",
+    "product_type_description": "A business that makes the product itself instead of only reselling it.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, pricing, production rules, and supply decisions."
+      },
+      {
+        "role": "production owner",
+        "description": "Runs manufacturing, output quality, and daily production flow."
+      },
+      {
+        "role": "inventory and order operations",
+        "description": "Manages raw materials, finished goods, and customer orders."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "production tracking system",
+        "description": "Tracks work orders, output, and production status."
+      },
+      {
+        "tool": "inventory tracking system",
+        "description": "Tracks raw materials, finished goods, and stock levels."
+      },
+      {
+        "tool": "supplier purchasing system",
+        "description": "Orders materials and tracks incoming supply."
+      },
+      {
+        "tool": "order and billing system",
+        "description": "Records customer orders and collects payment."
+      }
+    ],
+    "minimum_physical_materials": [
+      "production equipment",
+      "raw materials",
+      "storage space",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "plan and run production",
+        "description": "Start, track, and complete the required production work."
+      },
+      {
+        "task": "check output quality",
+        "description": "Make sure finished goods meet the expected standard."
+      },
+      {
+        "task": "monitor materials and stock",
+        "description": "Track raw material usage and finished goods availability."
+      },
+      {
+        "task": "prepare and fulfill orders",
+        "description": "Pack finished goods and move orders to delivery or pickup."
+      }
+    ]
+  },
+  {
+    "product_type": "hardware-enabled product / IoT",
+    "product_type_description": "A physical product with electronics, sensors, or connectivity, usually linked to software.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the product, pricing, deployment model, and operating rules."
+      },
+      {
+        "role": "technical owner",
+        "description": "Builds and maintains the device, firmware, connectivity, and backend."
+      },
+      {
+        "role": "device operations",
+        "description": "Handles assembly, inventory, provisioning, and hardware issue follow-up."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "device management system",
+        "description": "Registers devices and tracks status, health, and connectivity."
+      },
+      {
+        "tool": "backend and connectivity hosting",
+        "description": "Receives device data and supports device communication."
+      },
+      {
+        "tool": "inventory and serial tracking system",
+        "description": "Tracks units, parts, and device assignment."
+      },
+      {
+        "tool": "support and incident system",
+        "description": "Receives and tracks device failures and customer issues."
+      }
+    ],
+    "minimum_physical_materials": [
+      "device units",
+      "components or spare parts",
+      "basic testing equipment",
+      "packaging materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "monitor device health",
+        "description": "Check connectivity, uptime, and failed devices."
+      },
+      {
+        "task": "review device incidents",
+        "description": "Fix hardware, firmware, or backend problems."
+      },
+      {
+        "task": "track inventory and replacements",
+        "description": "Keep units, parts, and replacement stock accurate."
+      },
+      {
+        "task": "provision or support active devices",
+        "description": "Set up new devices and handle customer device issues."
+      }
+    ]
+  },
+  {
+    "product_type": "logistics / delivery operator",
+    "product_type_description": "A business that moves goods from one place to another for customers or merchants.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the service area, pricing, delivery rules, and operating model."
+      },
+      {
+        "role": "dispatch and route coordinator",
+        "description": "Assigns deliveries, plans routes, and tracks active jobs."
+      },
+      {
+        "role": "delivery owner",
+        "description": "Performs the deliveries or makes sure drivers complete them."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "order and dispatch system",
+        "description": "Receives delivery jobs and assigns them for execution."
+      },
+      {
+        "tool": "route and tracking system",
+        "description": "Tracks driver movement, delivery status, and delays."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends delivery updates, confirmations, and issue notices."
+      },
+      {
+        "tool": "payment and settlement system",
+        "description": "Collects delivery fees and tracks payouts when needed."
+      }
+    ],
+    "minimum_physical_materials": [
+      "delivery vehicles",
+      "basic packaging or handling materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "review incoming delivery jobs",
+        "description": "Check new orders, pickup details, and delivery requirements."
+      },
+      {
+        "task": "assign and dispatch deliveries",
+        "description": "Route each job to the right delivery owner."
+      },
+      {
+        "task": "monitor active deliveries",
+        "description": "Track progress, delays, failed drop-offs, and exceptions."
+      },
+      {
+        "task": "handle delivery issues",
+        "description": "Resolve address problems, customer complaints, and payment issues."
+      }
+    ]
+  },
+  {
+    "product_type": "rental / asset access business",
+    "product_type_description": "A business that gives temporary access to an asset instead of selling it.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the asset offer, pricing, rental rules, and access model."
+      },
+      {
+        "role": "asset operations owner",
+        "description": "Manages asset availability, handover, return, and condition checks."
+      },
+      {
+        "role": "customer support",
+        "description": "Handles booking issues, late returns, damage cases, and customer questions."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "booking and availability system",
+        "description": "Shows available assets and records rental periods."
+      },
+      {
+        "tool": "payment and deposit system",
+        "description": "Collects rental payments and security deposits when needed."
+      },
+      {
+        "tool": "asset tracking system",
+        "description": "Tracks which assets are available, rented, returned, or unavailable."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends confirmations, pickup details, return reminders, and issue updates."
+      }
+    ],
+    "minimum_physical_materials": [
+      "rental assets",
+      "storage space",
+      "basic maintenance supplies"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check new bookings",
+        "description": "Review new rentals and confirm asset availability."
+      },
+      {
+        "task": "prepare handover and returns",
+        "description": "Give out assets, receive returns, and record status."
+      },
+      {
+        "task": "inspect asset condition",
+        "description": "Check for damage, missing parts, and readiness for the next rental."
+      },
+      {
+        "task": "handle rental issues",
+        "description": "Resolve late returns, damage cases, and customer problems."
+      }
+    ]
+  },
+  {
+    "product_type": "repair / maintenance business",
+    "product_type_description": "A business that fixes, maintains, or services equipment, devices, or property.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the service scope, pricing, and operating rules."
+      },
+      {
+        "role": "technician / service owner",
+        "description": "Performs repairs, maintenance work, and quality checks."
+      },
+      {
+        "role": "job intake and customer support",
+        "description": "Handles requests, scheduling, status updates, and customer issues."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "job intake and scheduling system",
+        "description": "Receives service requests and books repair or maintenance jobs."
+      },
+      {
+        "tool": "work order tracking system",
+        "description": "Tracks active jobs, status, and completed work."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends confirmations, updates, and completion notices."
+      },
+      {
+        "tool": "payment system",
+        "description": "Collects payment for completed work."
+      }
+    ],
+    "minimum_physical_materials": [
+      "repair tools",
+      "basic spare parts or consumables"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "review new service requests",
+        "description": "Check incoming repair or maintenance jobs."
+      },
+      {
+        "task": "schedule and perform jobs",
+        "description": "Assign time, complete the work, and record status."
+      },
+      {
+        "task": "check parts and materials",
+        "description": "Make sure needed items are available for active jobs."
+      },
+      {
+        "task": "handle customer issues",
+        "description": "Resolve delays, repeat problems, and payment questions."
+      }
+    ]
+  },
+  {
+    "product_type": "franchise / branch model",
+    "product_type_description": "A business model where the same brand and operating system is repeated across branches or operators.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the brand, operating rules, pricing model, and branch standards."
+      },
+      {
+        "role": "branch operations owner",
+        "description": "Runs branch setup, daily branch performance, and compliance with the model."
+      },
+      {
+        "role": "branch support and control",
+        "description": "Handles branch onboarding, issue follow-up, and operating checks."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "branch management system",
+        "description": "Tracks branch details, status, and core operating information."
+      },
+      {
+        "tool": "standard operating documents system",
+        "description": "Stores the rules, processes, and branch instructions."
+      },
+      {
+        "tool": "sales and reporting system",
+        "description": "Collects branch performance and operating data."
+      },
+      {
+        "tool": "billing or fee collection system",
+        "description": "Tracks branch payments, fees, or revenue share."
+      }
+    ],
+    "minimum_physical_materials": [
+      "branch premises",
+      "basic branded materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "check branch activity",
+        "description": "Review branch operations, sales, and service status."
+      },
+      {
+        "task": "support branch issues",
+        "description": "Resolve operating problems, delays, and branch questions."
+      },
+      {
+        "task": "verify standard compliance",
+        "description": "Check that branches follow the required model."
+      },
+      {
+        "task": "monitor reporting and fees",
+        "description": "Make sure branch reporting and payments are up to date."
+      }
+    ]
+  },
+  {
+    "product_type": "events / experiences business",
+    "product_type_description": "A business that organizes or sells participation in events, activities, or experiences.",
+    "minimum_team_roles": [
+      {
+        "role": "operator / founder",
+        "description": "Owns the event offer, pricing, schedule, and operating rules."
+      },
+      {
+        "role": "event operations owner",
+        "description": "Plans and runs the event setup, delivery, and on-site flow."
+      },
+      {
+        "role": "booking and customer support",
+        "description": "Handles registrations, attendee questions, changes, and complaints."
+      }
+    ],
+    "minimum_tools": [
+      {
+        "tool": "booking or ticketing system",
+        "description": "Sells spots or tickets and records attendee details."
+      },
+      {
+        "tool": "customer communication system",
+        "description": "Sends confirmations, reminders, updates, and event instructions."
+      },
+      {
+        "tool": "schedule and run-of-show system",
+        "description": "Tracks timing, tasks, and event execution steps."
+      },
+      {
+        "tool": "payment system",
+        "description": "Collects ticket, booking, or participation payments."
+      }
+    ],
+    "minimum_physical_materials": [
+      "event venue or access to event space",
+      "basic event setup materials"
+    ],
+    "minimum_daily_operations": [
+      {
+        "task": "review bookings or registrations",
+        "description": "Check new attendees, payments, and attendance status."
+      },
+      {
+        "task": "confirm event readiness",
+        "description": "Make sure the venue, schedule, and setup needs are ready."
+      },
+      {
+        "task": "run active events",
+        "description": "Deliver the event and handle on-site or live issues."
+      },
+      {
+        "task": "handle attendee issues",
+        "description": "Resolve changes, complaints, refunds, and access problems."
+      }
+    ]
+  }
+]

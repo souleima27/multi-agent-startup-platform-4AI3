@@ -1,0 +1,61 @@
+{
+  "risk_level": "high",
+  "legal_compliance_checklist": [
+    {
+      "item": "logistics infrastructure permits",
+      "description": "Obtain authorization for installing IoT-enabled parcel lockers in public spaces, especially in university/apartment zones."
+    },
+    {
+      "item": "data localization compliance",
+      "description": "Ensure customer geolocation data and IoT device logs comply with Tunisia's data protection laws."
+    },
+    {
+      "item": "IoT device certification",
+      "description": "Verify hardware meets Tunisian technical standards for connected devices and cybersecurity requirements."
+    },
+    {
+      "item": "contractual liability framework",
+      "description": "Define clear terms for liability in case of locker malfunctions, lost packages, or delivery errors in B2B2C agreements."
+    },
+    {
+      "item": "electronic commerce regulations",
+      "description": "Comply with Tunisia's e-commerce laws for subscription-based services and digital transaction records."
+    }
+  ],
+  "trust_requirements": [
+    {
+      "item": "locker security guarantees",
+      "description": "Demonstrate physical and digital security measures to protect customer packages and personal data."
+    },
+    {
+      "item": "transparent pricing structure",
+      "description": "Clearly disclose subscription fees, usage-based charges, and any hidden costs for merchants and customers."
+    },
+    {
+      "item": "real-time tracking accessibility",
+      "description": "Provide customers with reliable access to parcel location data via the locker network."
+    },
+    {
+      "item": "incident resolution timelines",
+      "description": "Establish SLAs for handling delivery failures, locker malfunctions, or data breaches."
+    }
+  ],
+  "special_operational_constraints": [
+    {
+      "item": "urban infrastructure regulations",
+      "description": "Adhere to local ordinances for deploying physical infrastructure in dense urban areas."
+    },
+    {
+      "item": "data sovereignty requirements",
+      "description": "Comply with Tunisia's data storage laws, which may require local server hosting for user data."
+    },
+    {
+      "item": "IoT device interoperability standards",
+      "description": "Ensure hardware compatibility with local telecom networks and payment systems."
+    },
+    {
+      "item": "multi-party liability management",
+      "description": "Structure agreements with couriers and merchants to clarify responsibilities for lost packages or service disruptions."
+    }
+  ]
+}

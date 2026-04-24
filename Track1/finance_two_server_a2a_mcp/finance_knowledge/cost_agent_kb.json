@@ -1,0 +1,280 @@
+{
+
+  "wage_floor_rules": {
+    "non_agricultural_smig": {
+      "effective_date": "2025-01-01",
+      "monthly_tnd_48h": 528.32,
+      "monthly_tnd_40h": 448.238,
+      "hourly_tnd_48h": 2.54,
+      "hourly_tnd_40h": 2.586
+    },
+    "agricultural_smag": {
+      "effective_date": "2025-01-01",
+      "tnd_per_effective_workday": 20.32
+    },
+    "under_18_min_ratio": 0.85,
+    "piecework_rule": "Workers paid by task, piece, or output must still receive enough pay for normal output to reach at least the applicable SMIG."
+  },
+  "employer_charge_rules": {
+    "non_agricultural_default": {
+      "employee_social_pct": 9.68,
+      "employer_social_pct": 17.07,
+      "work_accident_pct_range": {
+        "min_pct": 0.4,
+        "max_pct": 4.0,
+        "paid_by": "employer_only",
+        "source_ids": [
+          "official_cnss_non_agri",
+          "tax_pwc_corporate_other"
+        ]
+      },
+      "social_lodging_tax_pct": 1.0,
+      "vocational_training_tax_pct_default": 2.0,
+      "vocational_training_tax_pct_manufacturing": 1.0
+    },
+    "default_total_employer_load_pct_excluding_work_accident": {
+      "non_manufacturing": 20.07,
+      "manufacturing": 19.07
+    },
+    "default_total_employer_load_pct_including_work_accident_range": {
+      "non_manufacturing": {
+        "min": 20.47,
+        "max": 24.07
+      },
+      "manufacturing": {
+        "min": 19.47,
+        "max": 23.07
+      }
+    }
+  },
+  "overtime_rules": {
+    "full_time_48h_week_premium_pct": 75,
+    "full_time_below_48h_week_up_to_48h_premium_pct": 25,
+    "full_time_below_48h_week_beyond_48h_premium_pct": 50,
+    "part_time_premium_pct": 50
+  },
+  "salary_matching_data": {
+    "generic_role_family_ranges_tnd_monthly": {
+      "administration": {
+        "entry_level": {
+          "min": 800,
+          "max": 1200
+        },
+        "mid_level": {
+          "min": 1200,
+          "max": 1800
+        },
+        "senior_or_management": {
+          "min": 1800,
+          "max": 3000
+        }
+      },
+      "it_technology": {
+        "entry_level": {
+          "min": 1200,
+          "max": 1800
+        },
+        "mid_level": {
+          "min": 1800,
+          "max": 3000
+        },
+        "senior_or_management": {
+          "min": 3000,
+          "max": 6000
+        }
+      },
+      "finance_accounting": {
+        "entry_level": {
+          "min": 1000,
+          "max": 1500
+        },
+        "mid_level": {
+          "min": 1500,
+          "max": 2500
+        },
+        "senior_or_management": {
+          "min": 2500,
+          "max": 5000
+        }
+      },
+      "engineering": {
+        "entry_level": {
+          "min": 1100,
+          "max": 1700
+        },
+        "mid_level": {
+          "min": 1700,
+          "max": 2800
+        },
+        "senior_or_management": {
+          "min": 2800,
+          "max": 5500
+        }
+      },
+      "sales_marketing": {
+        "entry_level": {
+          "min": 900,
+          "max": 1400
+        },
+        "mid_level": {
+          "min": 1400,
+          "max": 2300
+        },
+        "senior_or_management": {
+          "min": 2300,
+          "max": 4500
+        }
+      },
+      "source_ids": [
+        "market_rivermate_2025"
+      ]
+    },
+    "sector_ranges_tnd_monthly": {
+      "it_software_development": {
+        "entry_level": {
+          "min": 1200,
+          "max": 1800
+        },
+        "mid_level": {
+          "min": 2500,
+          "max": 4000
+        },
+        "senior": {
+          "min": 4500,
+          "max": 7000
+        }
+      },
+      "banking_finance": {
+        "entry_level": {
+          "min": 1000,
+          "max": 1500
+        },
+        "mid_level": {
+          "min": 2000,
+          "max": 3500
+        },
+        "senior": {
+          "min": 4000,
+          "max": 6500
+        }
+      },
+      "telecommunications": {
+        "entry_level": {
+          "min": 1000,
+          "max": 1400
+        },
+        "mid_level": {
+          "min": 1800,
+          "max": 3000
+        },
+        "senior": {
+          "min": 3500,
+          "max": 5500
+        }
+      },
+      "offshore_bpo_call_centres": {
+        "entry_level": {
+          "min": 600,
+          "max": 900
+        },
+        "mid_level": {
+          "min": 1000,
+          "max": 1800
+        },
+        "senior": {
+          "min": 2000,
+          "max": 3500
+        }
+      },
+      "manufacturing": {
+        "entry_level": {
+          "min": 550,
+          "max": 800
+        },
+        "mid_level": {
+          "min": 900,
+          "max": 1500
+        },
+        "senior": {
+          "min": 1800,
+          "max": 3000
+        }
+      },
+      "tourism_hospitality": {
+        "entry_level": {
+          "min": 530,
+          "max": 700
+        },
+        "mid_level": {
+          "min": 800,
+          "max": 1300
+        },
+        "senior": {
+          "min": 1500,
+          "max": 2500
+        }
+      },
+      "healthcare_private": {
+        "entry_level": {
+          "min": 800,
+          "max": 1200
+        },
+        "mid_level": {
+          "min": 1500,
+          "max": 2500
+        },
+        "senior": {
+          "min": 3000,
+          "max": 5000
+        }
+      },
+      "education_public": {
+        "entry_level": {
+          "min": 800,
+          "max": 1000
+        },
+        "mid_level": {
+          "min": 1200,
+          "max": 1800
+        },
+        "senior": {
+          "min": 2000,
+          "max": 3000
+        }
+      },
+      "agriculture": {
+        "entry_level": {
+          "min": 530,
+          "max": 600
+        },
+        "mid_level": {
+          "min": 700,
+          "max": 1000
+        },
+        "senior": {
+          "min": 1200,
+          "max": 1800
+        }
+      },
+      "public_administration": {
+        "entry_level": {
+          "min": 800,
+          "max": 1100
+        },
+        "mid_level": {
+          "min": 1300,
+          "max": 2000
+        },
+        "senior": {
+          "min": 2500,
+          "max": 4000
+        }
+      },
+      "source_ids": [
+        "market_employsome_2026"
+      ]
+    }
+
+
+
+}}

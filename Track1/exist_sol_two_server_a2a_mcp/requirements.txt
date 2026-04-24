@@ -1,0 +1,13 @@
+a2a-sdk[http-server]>=0.3.26
+mcp>=1.27.0
+fastapi>=0.135.3
+uvicorn>=0.30.0
+langchain
+langchain-ollama
+langgraph
+psycopg2-binary
+ddgs
+beautifulsoup4
+requests
+python-dotenv
+httpx
