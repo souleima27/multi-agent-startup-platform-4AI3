@@ -1,0 +1,61 @@
+{
+  "startup_profile": {
+    "startup_name": "NovaLegal Labs",
+    "sector": "AI SaaS",
+    "activity_description": "Fictitious startup for legal-admin pipeline testing.",
+    "founders_count": 3,
+    "funding_need_tnd": 200000,
+    "wants_investors": true,
+    "needs_limited_liability": true,
+    "has_foreign_investors": false,
+    "innovative": true,
+    "scalable": true,
+    "uses_technology": true,
+    "associates": [
+      {
+        "name": "Amira Ben Test",
+        "role": "CEO",
+        "equity_pct": 40.0
+      },
+      {
+        "name": "Youssef Ben Test",
+        "role": "CTO",
+        "equity_pct": 35.0
+      },
+      {
+        "name": "Nadia Ben Test",
+        "role": "COO",
+        "equity_pct": 25.0
+      }
+    ],
+    "pitch_notes": [
+      "Problem: legal setup is slow and fragmented for startups.",
+      "Solution: AI agents automate legal-admin validation and reporting.",
+      "Market: Tunisian startups and incubators.",
+      "Proof: OCR pipeline, rule checks, and client-ready reports."
+    ]
+  },
+  "documents": [
+    {
+      "path": "C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\synthetic_docs\\scans\\fake_01_statuts.png"
+    },
+    {
+      "path": "C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\synthetic_docs\\scans\\fake_02_rc.png"
+    },
+    {
+      "path": "C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\synthetic_docs\\scans\\fake_03_if.png"
+    },
+    {
+      "path": "C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\synthetic_docs\\scans\\fake_04_attestation_bancaire.png"
+    },
+    {
+      "path": "C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\synthetic_docs\\scans\\fake_05_cin.png"
+    }
+  ],
+  "options": {
+    "strict_mode": true,
+    "generate_json_report": true,
+    "generate_pdf_report": true,
+    "report_prefix": "synthetic_packet"
+  }
+}
