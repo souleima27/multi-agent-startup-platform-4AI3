@@ -16,6 +16,8 @@ import { portfolioItems, services, siteCopy, stats, values } from "./data/siteCo
 import { useAuth } from "./hooks/useAuth";
 import { useScrollEffects } from "./hooks/useScrollEffects";
 import { useTestimonials } from "./hooks/useTestimonials";
+import { Track1Analyzer } from "./pages/Track1Analyzer";
+import { Track1SavedReport } from "./pages/Track1SavedReport";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -46,6 +48,12 @@ function App() {
     () => services.find((service) => `#${service.id}` === routeHash) ?? null,
     [routeHash]
   );
+  if (window.location.hash === "#track1-analyzer") {
+  return <Track1Analyzer />;
+}
+if (window.location.hash === "#track1-report") {
+  return <Track1SavedReport />;
+}
 
   return (
     <>
