@@ -3,9 +3,9 @@
   "models": {
     "planner_requested": "hosted_vllm/Llama-3.1-70B-Instruct",
     "critic_requested": "hosted_vllm/Llama-3.1-70B-Instruct",
-    "mode": "local",
-    "planner_used": "local_fallback",
-    "critic_used": "local_fallback"
+    "mode": "hybrid",
+    "planner_used": "remote",
+    "critic_used": "remote"
   },
   "kb_retrieval": {
     "queries": [
@@ -59,658 +59,351 @@
   "draft_plan": {
     "milestones": [
       {
-        "title": "Deliver User signup and authentication",
-        "description": "Execution milestone for User signup and authentication",
+        "title": "MVP Launch Preparation",
+        "description": "Prepare for the launch of the MVP",
         "priority": "high",
         "category": "product_execution",
         "deadline": "2026-06-15",
         "tasks": [
           {
-            "title": "Define scope for User signup and authentication",
-            "description": "Clarify boundaries and outcomes for User signup and authentication",
+            "title": "Define MVP Scope and Requirements",
+            "description": "Define the scope and requirements of the MVP",
             "priority": "high",
             "complexity": "medium",
             "tags": [
-              "planning"
+              "mvp",
+              "scope",
+              "requirements"
             ],
             "acceptance_criteria": [
-              "Scope for User signup and authentication documented"
+              "MVP scope and requirements are defined"
             ],
             "depends_on_titles": []
           },
           {
-            "title": "Design User signup and authentication",
-            "description": "Create UX and technical design for User signup and authentication",
+            "title": "Design Learner Dashboard",
+            "description": "Design the learner dashboard",
             "priority": "high",
             "complexity": "medium",
             "tags": [
-              "design"
+              "design",
+              "learner dashboard"
             ],
             "acceptance_criteria": [
-              "Design for User signup and authentication approved"
+              "Learner dashboard design is complete"
             ],
             "depends_on_titles": [
-              "Define scope for User signup and authentication"
+              "Define MVP Scope and Requirements"
             ]
           },
           {
-            "title": "Implement User signup and authentication",
-            "description": "Build and integrate User signup and authentication",
+            "title": "Implement User Signup and Authentication",
+            "description": "Implement user signup and authentication",
             "priority": "high",
             "complexity": "high",
             "tags": [
-              "development"
+              "implementation",
+              "user signup",
+              "authentication"
             ],
             "acceptance_criteria": [
-              "User signup and authentication implemented end-to-end"
+              "User signup and authentication are implemented"
             ],
             "depends_on_titles": [
-              "Design User signup and authentication"
+              "Define MVP Scope and Requirements"
             ]
           },
           {
-            "title": "Test User signup and authentication",
-            "description": "Validate quality and behavior of User signup and authentication",
-            "priority": "high",
-            "complexity": "medium",
+            "title": "Implement Payment Integration for Premium Courses",
+            "description": "Implement payment integration for premium courses",
+            "priority": "medium",
+            "complexity": "high",
             "tags": [
-              "testing"
+              "implementation",
+              "payment integration",
+              "premium courses"
             ],
             "acceptance_criteria": [
-              "User signup and authentication passes acceptance tests"
+              "Payment integration for premium courses is implemented"
             ],
             "depends_on_titles": [
-              "Implement User signup and authentication"
+              "Define MVP Scope and Requirements"
+            ]
+          },
+          {
+            "title": "Test and Validate MVP Features",
+            "description": "Test and validate MVP features",
+            "priority": "high",
+            "complexity": "high",
+            "tags": [
+              "testing",
+              "validation",
+              "mvp features"
+            ],
+            "acceptance_criteria": [
+              "MVP features are tested and validated"
+            ],
+            "depends_on_titles": [
+              "Implement User Signup and Authentication",
+              "Implement Payment Integration for Premium Courses"
             ]
           }
         ]
       },
       {
-        "title": "Deliver Learner dashboard",
-        "description": "Execution milestone for Learner dashboard",
-        "priority": "high",
-        "category": "product_execution",
-        "deadline": "2026-06-15",
-        "tasks": [
-          {
-            "title": "Define scope for Learner dashboard",
-            "description": "Clarify boundaries and outcomes for Learner dashboard",
-            "priority": "high",
-            "complexity": "medium",
-            "tags": [
-              "planning"
-            ],
-            "acceptance_criteria": [
-              "Scope for Learner dashboard documented"
-            ],
-            "depends_on_titles": []
-          },
-          {
-            "title": "Design Learner dashboard",
-            "description": "Create UX and technical design for Learner dashboard",
-            "priority": "high",
-            "complexity": "medium",
-            "tags": [
-              "design"
-            ],
-            "acceptance_criteria": [
-              "Design for Learner dashboard approved"
-            ],
-            "depends_on_titles": [
-              "Define scope for Learner dashboard"
-            ]
-          },
-          {
-            "title": "Implement Learner dashboard",
-            "description": "Build and integrate Learner dashboard",
-            "priority": "high",
-            "complexity": "high",
-            "tags": [
-              "development"
-            ],
-            "acceptance_criteria": [
-              "Learner dashboard implemented end-to-end"
-            ],
-            "depends_on_titles": [
-              "Design Learner dashboard"
-            ]
-          },
-          {
-            "title": "Test Learner dashboard",
-            "description": "Validate quality and behavior of Learner dashboard",
-            "priority": "high",
-            "complexity": "medium",
-            "tags": [
-              "testing"
-            ],
-            "acceptance_criteria": [
-              "Learner dashboard passes acceptance tests"
-            ],
-            "depends_on_titles": [
-              "Implement Learner dashboard"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Deliver Payment integration for premium courses",
-        "description": "Execution milestone for Payment integration for premium courses",
-        "priority": "medium",
-        "category": "product_execution",
-        "deadline": "2026-06-15",
-        "tasks": [
-          {
-            "title": "Define scope for Payment integration for premium courses",
-            "description": "Clarify boundaries and outcomes for Payment integration for premium courses",
-            "priority": "medium",
-            "complexity": "medium",
-            "tags": [
-              "planning"
-            ],
-            "acceptance_criteria": [
-              "Scope for Payment integration for premium courses documented"
-            ],
-            "depends_on_titles": []
-          },
-          {
-            "title": "Design Payment integration for premium courses",
-            "description": "Create UX and technical design for Payment integration for premium courses",
-            "priority": "medium",
-            "complexity": "medium",
-            "tags": [
-              "design"
-            ],
-            "acceptance_criteria": [
-              "Design for Payment integration for premium courses approved"
-            ],
-            "depends_on_titles": [
-              "Define scope for Payment integration for premium courses"
-            ]
-          },
-          {
-            "title": "Implement Payment integration for premium courses",
-            "description": "Build and integrate Payment integration for premium courses",
-            "priority": "medium",
-            "complexity": "high",
-            "tags": [
-              "development"
-            ],
-            "acceptance_criteria": [
-              "Payment integration for premium courses implemented end-to-end"
-            ],
-            "depends_on_titles": [
-              "Design Payment integration for premium courses"
-            ]
-          },
-          {
-            "title": "Test Payment integration for premium courses",
-            "description": "Validate quality and behavior of Payment integration for premium courses",
-            "priority": "medium",
-            "complexity": "medium",
-            "tags": [
-              "testing"
-            ],
-            "acceptance_criteria": [
-              "Payment integration for premium courses passes acceptance tests"
-            ],
-            "depends_on_titles": [
-              "Implement Payment integration for premium courses"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Complete Legal registration",
-        "description": "Administrative milestone for Legal registration",
+        "title": "Legal Registration",
+        "description": "Complete legal registration",
         "priority": "high",
         "category": "admin_execution",
         "deadline": "2026-05-10",
         "tasks": [
           {
-            "title": "Define requirements for Legal registration",
-            "description": "Clarify legal and process requirements for Legal registration",
+            "title": "Prepare Legal Registration Documents",
+            "description": "Prepare legal registration documents",
             "priority": "high",
             "complexity": "medium",
             "tags": [
-              "planning"
+              "legal registration",
+              "documents"
             ],
             "acceptance_criteria": [
-              "Requirements for Legal registration documented"
+              "Legal registration documents are prepared"
             ],
             "depends_on_titles": []
           },
           {
-            "title": "Prepare documents for Legal registration",
-            "description": "Prepare required documents for Legal registration",
+            "title": "Submit Legal Registration Application",
+            "description": "Submit legal registration application",
             "priority": "high",
             "complexity": "medium",
             "tags": [
-              "documentation"
+              "legal registration",
+              "application"
             ],
             "acceptance_criteria": [
-              "Documents for Legal registration ready"
+              "Legal registration application is submitted"
             ],
             "depends_on_titles": [
-              "Define requirements for Legal registration"
-            ]
-          },
-          {
-            "title": "Submit Legal registration",
-            "description": "Submit and track process for Legal registration",
-            "priority": "high",
-            "complexity": "low",
-            "tags": [
-              "operations"
-            ],
-            "acceptance_criteria": [
-              "Legal registration submitted"
-            ],
-            "depends_on_titles": [
-              "Prepare documents for Legal registration"
-            ]
-          },
-          {
-            "title": "Confirm completion of Legal registration",
-            "description": "Confirm final completion of Legal registration",
-            "priority": "high",
-            "complexity": "low",
-            "tags": [
-              "review"
-            ],
-            "acceptance_criteria": [
-              "Legal registration completion confirmed"
-            ],
-            "depends_on_titles": [
-              "Submit Legal registration"
+              "Prepare Legal Registration Documents"
             ]
           }
         ]
       },
       {
-        "title": "Complete Prepare pilot partnership agreements",
-        "description": "Administrative milestone for Prepare pilot partnership agreements",
+        "title": "Pilot Partnership Agreements",
+        "description": "Complete pilot partnership agreements",
         "priority": "medium",
         "category": "admin_execution",
-        "deadline": "2026-05-10",
+        "deadline": null,
         "tasks": [
           {
-            "title": "Define requirements for Prepare pilot partnership agreements",
-            "description": "Clarify legal and process requirements for Prepare pilot partnership agreements",
+            "title": "Draft Pilot Partnership Agreement",
+            "description": "Draft pilot partnership agreement",
             "priority": "medium",
             "complexity": "medium",
             "tags": [
-              "planning"
+              "pilot partnership",
+              "agreement"
             ],
             "acceptance_criteria": [
-              "Requirements for Prepare pilot partnership agreements documented"
+              "Pilot partnership agreement is drafted"
             ],
             "depends_on_titles": []
           },
           {
-            "title": "Prepare documents for Prepare pilot partnership agreements",
-            "description": "Prepare required documents for Prepare pilot partnership agreements",
+            "title": "Review and Finalize Pilot Partnership Agreement",
+            "description": "Review and finalize pilot partnership agreement",
             "priority": "medium",
             "complexity": "medium",
             "tags": [
-              "documentation"
+              "pilot partnership",
+              "agreement"
             ],
             "acceptance_criteria": [
-              "Documents for Prepare pilot partnership agreements ready"
+              "Pilot partnership agreement is reviewed and finalized"
             ],
             "depends_on_titles": [
-              "Define requirements for Prepare pilot partnership agreements"
-            ]
-          },
-          {
-            "title": "Submit Prepare pilot partnership agreements",
-            "description": "Submit and track process for Prepare pilot partnership agreements",
-            "priority": "medium",
-            "complexity": "low",
-            "tags": [
-              "operations"
-            ],
-            "acceptance_criteria": [
-              "Prepare pilot partnership agreements submitted"
-            ],
-            "depends_on_titles": [
-              "Prepare documents for Prepare pilot partnership agreements"
-            ]
-          },
-          {
-            "title": "Confirm completion of Prepare pilot partnership agreements",
-            "description": "Confirm final completion of Prepare pilot partnership agreements",
-            "priority": "medium",
-            "complexity": "low",
-            "tags": [
-              "review"
-            ],
-            "acceptance_criteria": [
-              "Prepare pilot partnership agreements completion confirmed"
-            ],
-            "depends_on_titles": [
-              "Submit Prepare pilot partnership agreements"
+              "Draft Pilot Partnership Agreement"
             ]
           }
         ]
       }
     ],
     "risks": [
-      "Planning generated from local fallback because remote planning may be unavailable."
+      "Delays in legal registration may impact MVP launch",
+      "Payment integration issues may impact premium course sales"
     ],
     "assumptions": [
-      "Tasks are generated dynamically from factual state, not pre-seeded task lists.",
-      "Task decomposition guided by retrieved MVP/WBS knowledge patterns."
+      "The team will be able to complete tasks on time",
+      "The MVP will meet the needs of the target audience"
     ]
   },
   "task_list": [
     {
-      "id": "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard",
-      "parent_id": "MS_2_deliver_learner_dashboard",
-      "milestone_title": "Deliver Learner dashboard",
-      "title": "Implement Learner dashboard",
-      "description": "Build and integrate Learner dashboard",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "high",
-      "tags": [
-        "development"
-      ],
-      "acceptance_criteria": [
-        "Learner dashboard implemented end-to-end"
-      ],
-      "depends_on_titles": [
-        "Design Learner dashboard"
-      ],
-      "depends_on": [
-        "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard"
-      ],
-      "unblocks": [
-        "MS_2_deliver_learner_dashboard_T_4_test_learner_dashboard"
-      ],
-      "assigned_to": "Amine",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 3.45,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 3.0,
-      "priority_score": 3.1,
-      "assignment_score": 0.5665,
-      "match_confidence": 0.65,
-      "criticality_score": 3.15,
-      "blocked_reason": null,
-      "graph_depth": 2,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication",
-      "parent_id": "MS_1_deliver_user_signup_and_authentication",
-      "milestone_title": "Deliver User signup and authentication",
-      "title": "Implement User signup and authentication",
-      "description": "Build and integrate User signup and authentication",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "high",
-      "tags": [
-        "development"
-      ],
-      "acceptance_criteria": [
-        "User signup and authentication implemented end-to-end"
-      ],
-      "depends_on_titles": [
-        "Design User signup and authentication"
-      ],
-      "depends_on": [
-        "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication"
-      ],
-      "unblocks": [
-        "MS_1_deliver_user_signup_and_authentication_T_4_test_user_signup_and_authentication"
-      ],
-      "assigned_to": "Amine",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 3.45,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 3.0,
-      "priority_score": 3.1,
-      "assignment_score": 0.589,
-      "match_confidence": 0.65,
-      "criticality_score": 3.15,
-      "blocked_reason": null,
-      "graph_depth": 2,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_4_complete_legal_registration_T_3_submit_legal_registration",
-      "parent_id": "MS_4_complete_legal_registration",
-      "milestone_title": "Complete Legal registration",
-      "title": "Submit Legal registration",
-      "description": "Submit and track process for Legal registration",
-      "priority": "high",
-      "category": "admin_execution",
-      "complexity": "low",
-      "tags": [
-        "operations"
-      ],
-      "acceptance_criteria": [
-        "Legal registration submitted"
-      ],
-      "depends_on_titles": [
-        "Prepare documents for Legal registration"
-      ],
-      "depends_on": [
-        "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration"
-      ],
-      "unblocks": [
-        "MS_4_complete_legal_registration_T_4_confirm_completion_of_legal_registration"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 1.44,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.674,
-      "match_confidence": 0.95,
-      "criticality_score": 2.65,
-      "blocked_reason": null,
-      "graph_depth": 2,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard",
-      "parent_id": "MS_2_deliver_learner_dashboard",
-      "milestone_title": "Deliver Learner dashboard",
-      "title": "Design Learner dashboard",
-      "description": "Create UX and technical design for Learner dashboard",
+      "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Define MVP Scope and Requirements",
+      "description": "Define the scope and requirements of the MVP",
       "priority": "high",
       "category": "product_execution",
       "complexity": "medium",
       "tags": [
-        "design"
+        "mvp",
+        "scope",
+        "requirements"
       ],
       "acceptance_criteria": [
-        "Design for Learner dashboard approved"
-      ],
-      "depends_on_titles": [
-        "Define scope for Learner dashboard"
-      ],
-      "depends_on": [
-        "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard"
-      ],
-      "unblocks": [
-        "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard"
-      ],
-      "assigned_to": "Meriem",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.599,
-      "match_confidence": 0.8,
-      "criticality_score": 2.625,
-      "blocked_reason": null,
-      "graph_depth": 1,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication",
-      "parent_id": "MS_1_deliver_user_signup_and_authentication",
-      "milestone_title": "Deliver User signup and authentication",
-      "title": "Design User signup and authentication",
-      "description": "Create UX and technical design for User signup and authentication",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "design"
-      ],
-      "acceptance_criteria": [
-        "Design for User signup and authentication approved"
-      ],
-      "depends_on_titles": [
-        "Define scope for User signup and authentication"
-      ],
-      "depends_on": [
-        "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication"
-      ],
-      "unblocks": [
-        "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication"
-      ],
-      "assigned_to": "Meriem",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.6215,
-      "match_confidence": 0.8,
-      "criticality_score": 2.625,
-      "blocked_reason": null,
-      "graph_depth": 1,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration",
-      "parent_id": "MS_4_complete_legal_registration",
-      "milestone_title": "Complete Legal registration",
-      "title": "Prepare documents for Legal registration",
-      "description": "Prepare required documents for Legal registration",
-      "priority": "high",
-      "category": "admin_execution",
-      "complexity": "medium",
-      "tags": [
-        "documentation"
-      ],
-      "acceptance_criteria": [
-        "Documents for Legal registration ready"
-      ],
-      "depends_on_titles": [
-        "Define requirements for Legal registration"
-      ],
-      "depends_on": [
-        "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration"
-      ],
-      "unblocks": [
-        "MS_4_complete_legal_registration_T_3_submit_legal_registration"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 1.8,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.6515,
-      "match_confidence": 0.95,
-      "criticality_score": 2.625,
-      "blocked_reason": null,
-      "graph_depth": 1,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-      "parent_id": "MS_4_complete_legal_registration",
-      "milestone_title": "Complete Legal registration",
-      "title": "Define requirements for Legal registration",
-      "description": "Clarify legal and process requirements for Legal registration",
-      "priority": "high",
-      "category": "admin_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Requirements for Legal registration documented"
+        "MVP scope and requirements are defined"
       ],
       "depends_on_titles": [],
       "depends_on": [],
       "unblocks": [
-        "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration"
+        "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+        "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+        "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
       ],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 1.8,
+      "actual_days": 0.0,
+      "deadline": "2026-06-15",
+      "estimated_days": 2.3,
       "business_value": 5,
-      "blocking_count": 1,
+      "blocking_count": 3,
       "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.614,
-      "match_confidence": 0.95,
-      "criticality_score": 2.6,
+      "priority_score": 3.3,
+      "assignment_score": 0.612,
+      "match_confidence": 0.65,
+      "criticality_score": 3.3,
       "blocked_reason": null,
       "graph_depth": 0,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-34",
+      "jira_issue_id": "10097",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+      "jira_status": "En cours"
     },
     {
-      "id": "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-      "parent_id": "MS_2_deliver_learner_dashboard",
-      "milestone_title": "Deliver Learner dashboard",
-      "title": "Define scope for Learner dashboard",
-      "description": "Clarify boundaries and outcomes for Learner dashboard",
+      "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement User Signup and Authentication",
+      "description": "Implement user signup and authentication",
       "priority": "high",
       "category": "product_execution",
-      "complexity": "medium",
+      "complexity": "high",
       "tags": [
-        "planning"
+        "implementation",
+        "user signup",
+        "authentication"
       ],
       "acceptance_criteria": [
-        "Scope for Learner dashboard documented"
+        "User signup and authentication are implemented"
+      ],
+      "depends_on_titles": [
+        "Define MVP Scope and Requirements"
+      ],
+      "depends_on": [
+        "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+      ],
+      "unblocks": [
+        "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features"
+      ],
+      "assigned_to": "Amine",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0.0,
+      "deadline": "2026-06-15",
+      "estimated_days": 3.45,
+      "business_value": 5,
+      "blocking_count": 1,
+      "risk_weight": 3.0,
+      "priority_score": 3.1,
+      "assignment_score": 0.529,
+      "match_confidence": 0.65,
+      "criticality_score": 3.125,
+      "blocked_reason": null,
+      "graph_depth": 1,
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-36",
+      "jira_issue_id": "10099",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+      "jira_status": "À faire"
+    },
+    {
+      "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Test and Validate MVP Features",
+      "description": "Test and validate MVP features",
+      "priority": "high",
+      "category": "product_execution",
+      "complexity": "high",
+      "tags": [
+        "testing",
+        "validation",
+        "mvp features"
+      ],
+      "acceptance_criteria": [
+        "MVP features are tested and validated"
+      ],
+      "depends_on_titles": [
+        "Implement User Signup and Authentication",
+        "Implement Payment Integration for Premium Courses"
+      ],
+      "depends_on": [
+        "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+        "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+      ],
+      "unblocks": [],
+      "assigned_to": "Amine",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0.0,
+      "deadline": "2026-06-15",
+      "estimated_days": 3.0,
+      "business_value": 5,
+      "blocking_count": 0,
+      "risk_weight": 3.0,
+      "priority_score": 2.75,
+      "assignment_score": 0.63,
+      "match_confidence": 0.8,
+      "criticality_score": 3.0,
+      "blocked_reason": null,
+      "graph_depth": 2,
+      "continuity_score": 1.0,
+      "jira_issue_key": "KAN-38",
+      "jira_issue_id": "10101",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+      "jira_status": "À faire"
+    },
+    {
+      "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+      "parent_id": "MS_2_legal_registration",
+      "milestone_title": "Legal Registration",
+      "title": "Prepare Legal Registration Documents",
+      "description": "Prepare legal registration documents",
+      "priority": "high",
+      "category": "admin_execution",
+      "complexity": "medium",
+      "tags": [
+        "legal registration",
+        "documents"
+      ],
+      "acceptance_criteria": [
+        "Legal registration documents are prepared"
       ],
       "depends_on_titles": [],
       "depends_on": [],
       "unblocks": [
-        "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard"
+        "MS_2_legal_registration_T_2_submit_legal_registration_application"
       ],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
+      "actual_days": 0.0,
+      "deadline": "2026-05-10",
       "estimated_days": 2.0,
       "business_value": 5,
       "blocking_count": 1,
@@ -721,111 +414,40 @@
       "criticality_score": 2.6,
       "blocked_reason": null,
       "graph_depth": 0,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-39",
+      "jira_issue_id": "10102",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-      "parent_id": "MS_1_deliver_user_signup_and_authentication",
-      "milestone_title": "Deliver User signup and authentication",
-      "title": "Define scope for User signup and authentication",
-      "description": "Clarify boundaries and outcomes for User signup and authentication",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Scope for User signup and authentication documented"
-      ],
-      "depends_on_titles": [],
-      "depends_on": [],
-      "unblocks": [
-        "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.599,
-      "match_confidence": 0.8,
-      "criticality_score": 2.6,
-      "blocked_reason": null,
-      "graph_depth": 0,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_4_complete_legal_registration_T_4_confirm_completion_of_legal_registration",
-      "parent_id": "MS_4_complete_legal_registration",
-      "milestone_title": "Complete Legal registration",
-      "title": "Confirm completion of Legal registration",
-      "description": "Confirm final completion of Legal registration",
+      "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+      "parent_id": "MS_2_legal_registration",
+      "milestone_title": "Legal Registration",
+      "title": "Submit Legal Registration Application",
+      "description": "Submit legal registration application",
       "priority": "high",
       "category": "admin_execution",
-      "complexity": "low",
+      "complexity": "medium",
       "tags": [
-        "review"
+        "legal registration",
+        "application"
       ],
       "acceptance_criteria": [
-        "Legal registration completion confirmed"
+        "Legal registration application is submitted"
       ],
       "depends_on_titles": [
-        "Submit Legal registration"
+        "Prepare Legal Registration Documents"
       ],
       "depends_on": [
-        "MS_4_complete_legal_registration_T_3_submit_legal_registration"
+        "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
       ],
       "unblocks": [],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
+      "actual_days": 0.0,
       "deadline": "2026-05-10",
-      "estimated_days": 1.6,
-      "business_value": 5,
-      "blocking_count": 0,
-      "risk_weight": 1.0,
-      "priority_score": 2.25,
-      "assignment_score": 0.61,
-      "match_confidence": 0.8,
-      "criticality_score": 2.525,
-      "blocked_reason": null,
-      "graph_depth": 3,
-      "continuity_score": 1.0
-    },
-    {
-      "id": "MS_2_deliver_learner_dashboard_T_4_test_learner_dashboard",
-      "parent_id": "MS_2_deliver_learner_dashboard",
-      "milestone_title": "Deliver Learner dashboard",
-      "title": "Test Learner dashboard",
-      "description": "Validate quality and behavior of Learner dashboard",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "testing"
-      ],
-      "acceptance_criteria": [
-        "Learner dashboard passes acceptance tests"
-      ],
-      "depends_on_titles": [
-        "Implement Learner dashboard"
-      ],
-      "depends_on": [
-        "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard"
-      ],
-      "unblocks": [],
-      "assigned_to": "Amine",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
       "estimated_days": 2.0,
       "business_value": 5,
       "blocking_count": 0,
@@ -833,467 +455,265 @@
       "priority_score": 2.25,
       "assignment_score": 0.61,
       "match_confidence": 0.8,
-      "criticality_score": 2.525,
+      "criticality_score": 2.475,
       "blocked_reason": null,
-      "graph_depth": 3,
-      "continuity_score": 1.0
+      "graph_depth": 1,
+      "continuity_score": 1.0,
+      "jira_issue_key": "KAN-40",
+      "jira_issue_id": "10103",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_1_deliver_user_signup_and_authentication_T_4_test_user_signup_and_authentication",
-      "parent_id": "MS_1_deliver_user_signup_and_authentication",
-      "milestone_title": "Deliver User signup and authentication",
-      "title": "Test User signup and authentication",
-      "description": "Validate quality and behavior of User signup and authentication",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "testing"
-      ],
-      "acceptance_criteria": [
-        "User signup and authentication passes acceptance tests"
-      ],
-      "depends_on_titles": [
-        "Implement User signup and authentication"
-      ],
-      "depends_on": [
-        "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication"
-      ],
-      "unblocks": [],
-      "assigned_to": "Amine",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 5,
-      "blocking_count": 0,
-      "risk_weight": 1.0,
-      "priority_score": 2.25,
-      "assignment_score": 0.61,
-      "match_confidence": 0.8,
-      "criticality_score": 2.525,
-      "blocked_reason": null,
-      "graph_depth": 3,
-      "continuity_score": 1.0
-    },
-    {
-      "id": "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses",
-      "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-      "milestone_title": "Deliver Payment integration for premium courses",
-      "title": "Implement Payment integration for premium courses",
-      "description": "Build and integrate Payment integration for premium courses",
+      "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement Payment Integration for Premium Courses",
+      "description": "Implement payment integration for premium courses",
       "priority": "medium",
       "category": "product_execution",
       "complexity": "high",
       "tags": [
-        "development"
+        "implementation",
+        "payment integration",
+        "premium courses"
       ],
       "acceptance_criteria": [
-        "Payment integration for premium courses implemented end-to-end"
+        "Payment integration for premium courses is implemented"
       ],
       "depends_on_titles": [
-        "Design Payment integration for premium courses"
+        "Define MVP Scope and Requirements"
       ],
       "depends_on": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses"
+        "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
       ],
       "unblocks": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_4_test_payment_integration_for_premium_courses"
+        "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features"
       ],
       "assigned_to": "Amine",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
+      "actual_days": 0.0,
       "deadline": "2026-06-15",
       "estimated_days": 3.45,
       "business_value": 3,
       "blocking_count": 1,
       "risk_weight": 3.0,
       "priority_score": 2.3,
-      "assignment_score": 0.5095,
+      "assignment_score": 0.472,
       "match_confidence": 0.65,
-      "criticality_score": 2.35,
+      "criticality_score": 2.325,
       "blocked_reason": null,
-      "graph_depth": 2,
-      "continuity_score": 0.0
+      "graph_depth": 1,
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-37",
+      "jira_issue_id": "10100",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements",
-      "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-      "milestone_title": "Complete Prepare pilot partnership agreements",
-      "title": "Submit Prepare pilot partnership agreements",
-      "description": "Submit and track process for Prepare pilot partnership agreements",
-      "priority": "medium",
-      "category": "admin_execution",
-      "complexity": "low",
-      "tags": [
-        "operations"
-      ],
-      "acceptance_criteria": [
-        "Prepare pilot partnership agreements submitted"
-      ],
-      "depends_on_titles": [
-        "Prepare documents for Prepare pilot partnership agreements"
-      ],
-      "depends_on": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements"
-      ],
-      "unblocks": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_4_confirm_completion_of_prepare_pilot_partnership_agreements"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 1.6,
-      "business_value": 3,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
-      "criticality_score": 1.85,
-      "blocked_reason": null,
-      "graph_depth": 2,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses",
-      "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-      "milestone_title": "Deliver Payment integration for premium courses",
-      "title": "Design Payment integration for premium courses",
-      "description": "Create UX and technical design for Payment integration for premium courses",
-      "priority": "medium",
+      "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Design Learner Dashboard",
+      "description": "Design the learner dashboard",
+      "priority": "high",
       "category": "product_execution",
       "complexity": "medium",
       "tags": [
-        "design"
+        "design",
+        "learner dashboard"
       ],
       "acceptance_criteria": [
-        "Design for Payment integration for premium courses approved"
+        "Learner dashboard design is complete"
       ],
       "depends_on_titles": [
-        "Define scope for Payment integration for premium courses"
+        "Define MVP Scope and Requirements"
       ],
       "depends_on": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses"
+        "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
       ],
-      "unblocks": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses"
-      ],
+      "unblocks": [],
       "assigned_to": "Meriem",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
+      "actual_days": 0.0,
       "deadline": "2026-06-15",
       "estimated_days": 2.0,
-      "business_value": 3,
-      "blocking_count": 1,
+      "business_value": 5,
+      "blocking_count": 0,
       "risk_weight": 1.0,
-      "priority_score": 1.8,
-      "assignment_score": 0.542,
+      "priority_score": 2.25,
+      "assignment_score": 0.51,
       "match_confidence": 0.8,
-      "criticality_score": 1.825,
+      "criticality_score": 2.275,
       "blocked_reason": null,
       "graph_depth": 1,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-35",
+      "jira_issue_id": "10098",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements",
-      "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-      "milestone_title": "Complete Prepare pilot partnership agreements",
-      "title": "Prepare documents for Prepare pilot partnership agreements",
-      "description": "Prepare required documents for Prepare pilot partnership agreements",
+      "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+      "parent_id": "MS_3_pilot_partnership_agreements",
+      "milestone_title": "Pilot Partnership Agreements",
+      "title": "Draft Pilot Partnership Agreement",
+      "description": "Draft pilot partnership agreement",
       "priority": "medium",
       "category": "admin_execution",
       "complexity": "medium",
       "tags": [
-        "documentation"
+        "pilot partnership",
+        "agreement"
       ],
       "acceptance_criteria": [
-        "Documents for Prepare pilot partnership agreements ready"
-      ],
-      "depends_on_titles": [
-        "Define requirements for Prepare pilot partnership agreements"
-      ],
-      "depends_on": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements"
-      ],
-      "unblocks": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 2.0,
-      "business_value": 3,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
-      "criticality_score": 1.825,
-      "blocked_reason": null,
-      "graph_depth": 1,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements",
-      "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-      "milestone_title": "Complete Prepare pilot partnership agreements",
-      "title": "Define requirements for Prepare pilot partnership agreements",
-      "description": "Clarify legal and process requirements for Prepare pilot partnership agreements",
-      "priority": "medium",
-      "category": "admin_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Requirements for Prepare pilot partnership agreements documented"
+        "Pilot partnership agreement is drafted"
       ],
       "depends_on_titles": [],
       "depends_on": [],
       "unblocks": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements"
-      ],
-      "assigned_to": "Meriem",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 2.0,
-      "business_value": 3,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
-      "criticality_score": 1.8,
-      "blocked_reason": null,
-      "graph_depth": 0,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-      "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-      "milestone_title": "Deliver Payment integration for premium courses",
-      "title": "Define scope for Payment integration for premium courses",
-      "description": "Clarify boundaries and outcomes for Payment integration for premium courses",
-      "priority": "medium",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Scope for Payment integration for premium courses documented"
-      ],
-      "depends_on_titles": [],
-      "depends_on": [],
-      "unblocks": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses"
+        "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement"
       ],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
+      "actual_days": 0.0,
+      "deadline": null,
+      "estimated_days": 2.8,
       "business_value": 3,
       "blocking_count": 1,
       "risk_weight": 1.0,
       "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
+      "assignment_score": 0.347,
+      "match_confidence": 0.35,
       "criticality_score": 1.8,
       "blocked_reason": null,
       "graph_depth": 0,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-41",
+      "jira_issue_id": "10104",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_4_confirm_completion_of_prepare_pilot_partnership_agreements",
-      "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-      "milestone_title": "Complete Prepare pilot partnership agreements",
-      "title": "Confirm completion of Prepare pilot partnership agreements",
-      "description": "Confirm final completion of Prepare pilot partnership agreements",
+      "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+      "parent_id": "MS_3_pilot_partnership_agreements",
+      "milestone_title": "Pilot Partnership Agreements",
+      "title": "Review and Finalize Pilot Partnership Agreement",
+      "description": "Review and finalize pilot partnership agreement",
       "priority": "medium",
       "category": "admin_execution",
-      "complexity": "low",
+      "complexity": "medium",
       "tags": [
-        "review"
+        "pilot partnership",
+        "agreement"
       ],
       "acceptance_criteria": [
-        "Prepare pilot partnership agreements completion confirmed"
+        "Pilot partnership agreement is reviewed and finalized"
       ],
       "depends_on_titles": [
-        "Submit Prepare pilot partnership agreements"
+        "Draft Pilot Partnership Agreement"
       ],
       "depends_on": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements"
+        "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
       ],
       "unblocks": [],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 2.24,
+      "actual_days": 0.0,
+      "deadline": null,
+      "estimated_days": 2.8,
       "business_value": 3,
       "blocking_count": 0,
       "risk_weight": 1.0,
       "priority_score": 1.45,
       "assignment_score": 0.3955,
       "match_confidence": 0.35,
-      "criticality_score": 1.725,
+      "criticality_score": 1.675,
       "blocked_reason": null,
-      "graph_depth": 3,
-      "continuity_score": 1.0
-    },
-    {
-      "id": "MS_3_deliver_payment_integration_for_premium_courses_T_4_test_payment_integration_for_premium_courses",
-      "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-      "milestone_title": "Deliver Payment integration for premium courses",
-      "title": "Test Payment integration for premium courses",
-      "description": "Validate quality and behavior of Payment integration for premium courses",
-      "priority": "medium",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "testing"
-      ],
-      "acceptance_criteria": [
-        "Payment integration for premium courses passes acceptance tests"
-      ],
-      "depends_on_titles": [
-        "Implement Payment integration for premium courses"
-      ],
-      "depends_on": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses"
-      ],
-      "unblocks": [],
-      "assigned_to": "Amine",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 3,
-      "blocking_count": 0,
-      "risk_weight": 1.0,
-      "priority_score": 1.45,
-      "assignment_score": 0.553,
-      "match_confidence": 0.8,
-      "criticality_score": 1.725,
-      "blocked_reason": null,
-      "graph_depth": 3,
-      "continuity_score": 1.0
+      "graph_depth": 1,
+      "continuity_score": 1.0,
+      "jira_issue_key": "KAN-42",
+      "jira_issue_id": "10105",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+      "jira_status": "À faire"
     }
   ],
   "priority_queue": [
     {
-      "id": "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-      "parent_id": "MS_4_complete_legal_registration",
-      "milestone_title": "Complete Legal registration",
-      "title": "Define requirements for Legal registration",
-      "description": "Clarify legal and process requirements for Legal registration",
+      "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Define MVP Scope and Requirements",
+      "description": "Define the scope and requirements of the MVP",
+      "priority": "high",
+      "category": "product_execution",
+      "complexity": "medium",
+      "tags": [
+        "mvp",
+        "scope",
+        "requirements"
+      ],
+      "acceptance_criteria": [
+        "MVP scope and requirements are defined"
+      ],
+      "depends_on_titles": [],
+      "depends_on": [],
+      "unblocks": [
+        "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+        "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+        "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+      ],
+      "assigned_to": "Omar",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0.0,
+      "deadline": "2026-06-15",
+      "estimated_days": 2.3,
+      "business_value": 5,
+      "blocking_count": 3,
+      "risk_weight": 1.0,
+      "priority_score": 3.3,
+      "assignment_score": 0.612,
+      "match_confidence": 0.65,
+      "criticality_score": 3.3,
+      "blocked_reason": null,
+      "graph_depth": 0,
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-34",
+      "jira_issue_id": "10097",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+      "jira_status": "En cours"
+    },
+    {
+      "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+      "parent_id": "MS_2_legal_registration",
+      "milestone_title": "Legal Registration",
+      "title": "Prepare Legal Registration Documents",
+      "description": "Prepare legal registration documents",
       "priority": "high",
       "category": "admin_execution",
       "complexity": "medium",
       "tags": [
-        "planning"
+        "legal registration",
+        "documents"
       ],
       "acceptance_criteria": [
-        "Requirements for Legal registration documented"
+        "Legal registration documents are prepared"
       ],
       "depends_on_titles": [],
       "depends_on": [],
       "unblocks": [
-        "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration"
+        "MS_2_legal_registration_T_2_submit_legal_registration_application"
       ],
       "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
+      "actual_days": 0.0,
       "deadline": "2026-05-10",
-      "estimated_days": 1.8,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.614,
-      "match_confidence": 0.95,
-      "criticality_score": 2.6,
-      "blocked_reason": null,
-      "graph_depth": 0,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-      "parent_id": "MS_1_deliver_user_signup_and_authentication",
-      "milestone_title": "Deliver User signup and authentication",
-      "title": "Define scope for User signup and authentication",
-      "description": "Clarify boundaries and outcomes for User signup and authentication",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Scope for User signup and authentication documented"
-      ],
-      "depends_on_titles": [],
-      "depends_on": [],
-      "unblocks": [
-        "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 5,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 2.6,
-      "assignment_score": 0.599,
-      "match_confidence": 0.8,
-      "criticality_score": 2.6,
-      "blocked_reason": null,
-      "graph_depth": 0,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-      "parent_id": "MS_2_deliver_learner_dashboard",
-      "milestone_title": "Deliver Learner dashboard",
-      "title": "Define scope for Learner dashboard",
-      "description": "Clarify boundaries and outcomes for Learner dashboard",
-      "priority": "high",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Scope for Learner dashboard documented"
-      ],
-      "depends_on_titles": [],
-      "depends_on": [],
-      "unblocks": [
-        "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
       "estimated_days": 2.0,
       "business_value": 5,
       "blocking_count": 1,
@@ -1304,237 +724,194 @@
       "criticality_score": 2.6,
       "blocked_reason": null,
       "graph_depth": 0,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-39",
+      "jira_issue_id": "10102",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+      "jira_status": "À faire"
     },
     {
-      "id": "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-      "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-      "milestone_title": "Deliver Payment integration for premium courses",
-      "title": "Define scope for Payment integration for premium courses",
-      "description": "Clarify boundaries and outcomes for Payment integration for premium courses",
-      "priority": "medium",
-      "category": "product_execution",
-      "complexity": "medium",
-      "tags": [
-        "planning"
-      ],
-      "acceptance_criteria": [
-        "Scope for Payment integration for premium courses documented"
-      ],
-      "depends_on_titles": [],
-      "depends_on": [],
-      "unblocks": [
-        "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses"
-      ],
-      "assigned_to": "Omar",
-      "status": "todo",
-      "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-06-15",
-      "estimated_days": 2.0,
-      "business_value": 3,
-      "blocking_count": 1,
-      "risk_weight": 1.0,
-      "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
-      "criticality_score": 1.8,
-      "blocked_reason": null,
-      "graph_depth": 0,
-      "continuity_score": 0.0
-    },
-    {
-      "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements",
-      "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-      "milestone_title": "Complete Prepare pilot partnership agreements",
-      "title": "Define requirements for Prepare pilot partnership agreements",
-      "description": "Clarify legal and process requirements for Prepare pilot partnership agreements",
+      "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+      "parent_id": "MS_3_pilot_partnership_agreements",
+      "milestone_title": "Pilot Partnership Agreements",
+      "title": "Draft Pilot Partnership Agreement",
+      "description": "Draft pilot partnership agreement",
       "priority": "medium",
       "category": "admin_execution",
       "complexity": "medium",
       "tags": [
-        "planning"
+        "pilot partnership",
+        "agreement"
       ],
       "acceptance_criteria": [
-        "Requirements for Prepare pilot partnership agreements documented"
+        "Pilot partnership agreement is drafted"
       ],
       "depends_on_titles": [],
       "depends_on": [],
       "unblocks": [
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements"
+        "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement"
       ],
-      "assigned_to": "Meriem",
+      "assigned_to": "Omar",
       "status": "todo",
       "progress": 0.0,
-      "actual_days": 0,
-      "deadline": "2026-05-10",
-      "estimated_days": 2.0,
+      "actual_days": 0.0,
+      "deadline": null,
+      "estimated_days": 2.8,
       "business_value": 3,
       "blocking_count": 1,
       "risk_weight": 1.0,
       "priority_score": 1.8,
-      "assignment_score": 0.5045,
-      "match_confidence": 0.8,
+      "assignment_score": 0.347,
+      "match_confidence": 0.35,
       "criticality_score": 1.8,
       "blocked_reason": null,
       "graph_depth": 0,
-      "continuity_score": 0.0
+      "continuity_score": 0.0,
+      "jira_issue_key": "KAN-41",
+      "jira_issue_id": "10104",
+      "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+      "jira_status": "À faire"
     }
   ],
   "ready_queue": [
-    "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-    "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-    "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-    "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-    "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements"
+    "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+    "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+    "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
   ],
   "feasibility": {
     "status": "good",
-    "critical_path_days": 9.45,
-    "deadline_days": 64,
-    "buffer_days": 54.55
+    "critical_path_days": 8.75,
+    "deadline_days": 53,
+    "buffer_days": 44.25
   },
   "anomalies": [],
   "critic_report": {
-    "issues_found": [],
+    "issues_found": [
+      {
+        "issue": "Task 'Test and Validate MVP Features' depends on non-existent task 'MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication'.",
+        "severity": "high",
+        "suggested_fix": "Update the dependency to the correct task ID 'MS_1_mvp_launch_preparation_T_2_implement_user_signup_and_authentication'."
+      },
+      {
+        "issue": "Task 'Test and Validate MVP Features' depends on non-existent task 'MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses'.",
+        "severity": "high",
+        "suggested_fix": "Update the dependency to the correct task ID 'MS_1_mvp_launch_preparation_T_3_implement_payment_integration_for_premium_courses'."
+      },
+      {
+        "issue": "Task 'Submit Legal Registration Application' depends on task 'MS_2_legal_registration_T_1_prepare_legal_registration_documents' but the task ID does not match the actual task title 'Prepare Legal Registration Documents'.",
+        "severity": "medium",
+        "suggested_fix": "Update the dependency to the correct task ID 'MS_2_legal_registration_T_1_prepare_legal_registration_documents' to match the actual task title."
+      },
+      {
+        "issue": "Task 'Review and Finalize Pilot Partnership Agreement' depends on task 'MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement' but the task ID does not match the actual task title 'Draft Pilot Partnership Agreement'.",
+        "severity": "medium",
+        "suggested_fix": "Update the dependency to the correct task ID 'MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement' to match the actual task title."
+      }
+    ],
     "updated_next_actions": [
-      "Focus next on: Define scope for User signup and authentication (owner: Omar)",
-      "Focus next on: Define scope for Learner dashboard (owner: Omar)",
-      "Focus next on: Define requirements for Legal registration (owner: Omar)"
+      "Review and update task dependencies to ensure correct task IDs and titles.",
+      "Verify task dependencies to prevent potential project delays."
     ]
   },
   "next_actions": [
-    "Focus next on: Define scope for User signup and authentication (owner: Omar)",
-    "Focus next on: Define scope for Learner dashboard (owner: Omar)",
-    "Focus next on: Define requirements for Legal registration (owner: Omar)"
+    "Review and update task dependencies to ensure correct task IDs and titles.",
+    "Verify task dependencies to prevent potential project delays."
   ],
   "monitoring": {
     "summary": {
       "done": 0,
       "in_progress": 0,
-      "todo": 20,
+      "todo": 9,
       "blocked": 0
     },
     "anomaly_count": 0,
-    "critic_issues": 0,
-    "task_count": 20,
-    "ready_count": 5
+    "critic_issues": 4,
+    "task_count": 9,
+    "ready_count": 3
   },
   "dependency_graph_has_cycle": false,
   "updated_state": {
     "startup_profile": {
       "name": "SkillBridge",
-      "objective": "Build a practical MVP training platform for students and job seekers, focused on course delivery, learner progress tracking, certificates, and pilot partnerships with training centers.",
-      "problem_statement": "Learners struggle to find affordable, structured, and trackable online training, while training centers need a lightweight platform to organize content, monitor engagement, and validate course completion efficiently.",
-      "target_users": "Students, job seekers, instructors, and training center administrators.",
-      "execution_context": "Small team, limited resources, short timeline, demo-ready MVP required.",
-      "mvp_scope_paragraph": "The MVP must include secure signup/login, a learner dashboard, and payment integration for premium courses. In parallel, legal registration and pilot partnership preparation must progress."
+      "objective": "Launch an MVP for an online learning platform",
+      "problem_statement": "Learners need a simple platform to access courses, track progress, and pay for premium content.",
+      "target_users": "Students and early-career learners",
+      "mvp_scope_paragraph": "The MVP includes signup/authentication, learner dashboard, and payment for premium courses.",
+      "execution_context": "Small startup team building MVP under deadline."
     },
     "mvp_plan": {
       "features": [
         {
           "name": "User signup and authentication",
-          "priority": "high",
-          "business_value": 5,
-          "description": "Users must create accounts, log in securely, and access their learning space."
+          "priority": "high"
         },
         {
           "name": "Learner dashboard",
-          "priority": "high",
-          "business_value": 5,
-          "description": "Learners must view courses, track progress, and resume learning."
+          "priority": "high"
         },
         {
           "name": "Payment integration for premium courses",
-          "priority": "medium",
-          "business_value": 4,
-          "description": "The platform needs a simple payment flow for premium courses."
+          "priority": "medium"
         }
       ],
       "admin_workflow": [
         {
           "name": "Legal registration",
-          "priority": "high",
-          "business_value": 5,
-          "description": "The startup must complete company registration before formal partnerships and invoicing."
+          "priority": "high"
         },
         {
           "name": "Prepare pilot partnership agreements",
-          "priority": "medium",
-          "business_value": 4,
-          "description": "Prepare agreements to onboard pilot training centers and instructors."
+          "priority": "medium"
         }
       ],
       "deadlines": {
         "mvp_launch": "2026-06-15",
         "legal_deadline": "2026-05-10"
-      },
-      "delivery_goal_paragraph": "The MVP should be demo-ready by June 15, 2026, while legal readiness should support pilot discussions by May 10, 2026."
+      }
     },
     "team": [
       {
-        "id": "T1",
-        "name": "Amine",
-        "role": "Backend Engineer",
+        "name": "Omar",
+        "role": "Operations Manager",
         "skills": [
-          "python",
-          "fastapi",
-          "backend",
-          "api",
-          "database",
-          "testing"
-        ],
-        "availability": 0.9,
-        "velocity_factor": 1.0,
-        "profile": "Handles backend services, authentication, API logic, and integrations.",
-        "current_load": 6
-      },
-      {
-        "id": "T2",
-        "name": "Meriem",
-        "role": "Frontend Developer / UX",
-        "skills": [
-          "react",
-          "frontend",
-          "ui",
-          "ux",
-          "design"
+          "planning",
+          "documentation",
+          "legal",
+          "operations"
         ],
         "availability": 1.0,
-        "velocity_factor": 1.0,
-        "profile": "Handles learner dashboard design, course interface, and user experience.",
+        "current_load": 8
+      },
+      {
+        "name": "Meriem",
+        "role": "Product Designer",
+        "skills": [
+          "design",
+          "ux",
+          "frontend",
+          "planning"
+        ],
+        "availability": 1.0,
         "current_load": 4
       },
       {
-        "id": "T3",
-        "name": "Omar",
-        "role": "Operations / Project Manager",
+        "name": "Amine",
+        "role": "Backend Engineer",
         "skills": [
-          "project management",
-          "documentation",
-          "planning",
-          "operations",
-          "legal"
+          "development",
+          "backend",
+          "api",
+          "testing"
         ],
-        "availability": 0.8,
-        "velocity_factor": 1.0,
-        "profile": "Handles planning, legal follow-up, partnership documents, and execution monitoring.",
-        "current_load": 10
+        "availability": 1.0,
+        "current_load": 6
       }
     ],
-    "constraints": {
-      "max_parallel_tasks_per_member": 2,
-      "working_days_per_week": 5,
-      "current_date": "2026-04-12",
-      "budget_context": "The startup is operating with early-stage constraints, so the MVP must stay simple and practical.",
-      "execution_rule": "The plan must prioritize a pilot-ready learning platform, not a full enterprise LMS."
+    "live_status": {
+      "progress_signals": []
     },
     "knowledge_base": {
-      "sources": [
-        "KB1_MVP",
-        "KB2_WBS_CREATE",
-        "KB2B_WBS_OVERVIEW"
-      ],
+      "sources": [],
       "last_retrieval": {
         "queries": [
           "User signup and authentication MVP execution steps",
@@ -1587,564 +964,454 @@
     },
     "retrospective": {
       "velocity_default": 1.0,
-      "notes": [
-        "Frontend and backend can move in parallel after scope is clarified.",
-        "Administrative tasks slow down when external approvals are missing."
-      ]
+      "notes": []
     },
-    "live_status": {
-      "project_notes": [
-        "Dashboard exploration started informally.",
-        "Legal registration is delayed by a missing official tax form."
-      ],
-      "progress_signals": [
-        {
-          "work_item_hint": "dashboard design research",
-          "status": "in_progress",
-          "progress": 0.3,
-          "actual_days": 2
-        },
-        {
-          "work_item_hint": "legal registration paperwork",
-          "status": "blocked",
-          "progress": 0.2,
-          "actual_days": 2,
-          "blocked_reason": "Waiting for official tax form"
-        }
-      ]
+    "constraints": {
+      "max_parallel_tasks_per_member": 2,
+      "working_days_per_week": 5,
+      "current_date": "2026-04-23"
     },
     "execution_state": {
       "draft_plan": {
         "milestones": [
           {
-            "title": "Deliver User signup and authentication",
-            "description": "Execution milestone for User signup and authentication",
+            "title": "MVP Launch Preparation",
+            "description": "Prepare for the launch of the MVP",
             "priority": "high",
             "category": "product_execution",
             "deadline": "2026-06-15",
             "tasks": [
               {
-                "title": "Define scope for User signup and authentication",
-                "description": "Clarify boundaries and outcomes for User signup and authentication",
+                "title": "Define MVP Scope and Requirements",
+                "description": "Define the scope and requirements of the MVP",
                 "priority": "high",
                 "complexity": "medium",
                 "tags": [
-                  "planning"
+                  "mvp",
+                  "scope",
+                  "requirements"
                 ],
                 "acceptance_criteria": [
-                  "Scope for User signup and authentication documented"
+                  "MVP scope and requirements are defined"
                 ],
                 "depends_on_titles": []
               },
               {
-                "title": "Design User signup and authentication",
-                "description": "Create UX and technical design for User signup and authentication",
+                "title": "Design Learner Dashboard",
+                "description": "Design the learner dashboard",
                 "priority": "high",
                 "complexity": "medium",
                 "tags": [
-                  "design"
+                  "design",
+                  "learner dashboard"
                 ],
                 "acceptance_criteria": [
-                  "Design for User signup and authentication approved"
+                  "Learner dashboard design is complete"
                 ],
                 "depends_on_titles": [
-                  "Define scope for User signup and authentication"
+                  "Define MVP Scope and Requirements"
                 ]
               },
               {
-                "title": "Implement User signup and authentication",
-                "description": "Build and integrate User signup and authentication",
+                "title": "Implement User Signup and Authentication",
+                "description": "Implement user signup and authentication",
                 "priority": "high",
                 "complexity": "high",
                 "tags": [
-                  "development"
+                  "implementation",
+                  "user signup",
+                  "authentication"
                 ],
                 "acceptance_criteria": [
-                  "User signup and authentication implemented end-to-end"
+                  "User signup and authentication are implemented"
                 ],
                 "depends_on_titles": [
-                  "Design User signup and authentication"
+                  "Define MVP Scope and Requirements"
                 ]
               },
               {
-                "title": "Test User signup and authentication",
-                "description": "Validate quality and behavior of User signup and authentication",
-                "priority": "high",
-                "complexity": "medium",
+                "title": "Implement Payment Integration for Premium Courses",
+                "description": "Implement payment integration for premium courses",
+                "priority": "medium",
+                "complexity": "high",
                 "tags": [
-                  "testing"
+                  "implementation",
+                  "payment integration",
+                  "premium courses"
                 ],
                 "acceptance_criteria": [
-                  "User signup and authentication passes acceptance tests"
+                  "Payment integration for premium courses is implemented"
                 ],
                 "depends_on_titles": [
-                  "Implement User signup and authentication"
+                  "Define MVP Scope and Requirements"
+                ]
+              },
+              {
+                "title": "Test and Validate MVP Features",
+                "description": "Test and validate MVP features",
+                "priority": "high",
+                "complexity": "high",
+                "tags": [
+                  "testing",
+                  "validation",
+                  "mvp features"
+                ],
+                "acceptance_criteria": [
+                  "MVP features are tested and validated"
+                ],
+                "depends_on_titles": [
+                  "Implement User Signup and Authentication",
+                  "Implement Payment Integration for Premium Courses"
                 ]
               }
             ]
           },
           {
-            "title": "Deliver Learner dashboard",
-            "description": "Execution milestone for Learner dashboard",
-            "priority": "high",
-            "category": "product_execution",
-            "deadline": "2026-06-15",
-            "tasks": [
-              {
-                "title": "Define scope for Learner dashboard",
-                "description": "Clarify boundaries and outcomes for Learner dashboard",
-                "priority": "high",
-                "complexity": "medium",
-                "tags": [
-                  "planning"
-                ],
-                "acceptance_criteria": [
-                  "Scope for Learner dashboard documented"
-                ],
-                "depends_on_titles": []
-              },
-              {
-                "title": "Design Learner dashboard",
-                "description": "Create UX and technical design for Learner dashboard",
-                "priority": "high",
-                "complexity": "medium",
-                "tags": [
-                  "design"
-                ],
-                "acceptance_criteria": [
-                  "Design for Learner dashboard approved"
-                ],
-                "depends_on_titles": [
-                  "Define scope for Learner dashboard"
-                ]
-              },
-              {
-                "title": "Implement Learner dashboard",
-                "description": "Build and integrate Learner dashboard",
-                "priority": "high",
-                "complexity": "high",
-                "tags": [
-                  "development"
-                ],
-                "acceptance_criteria": [
-                  "Learner dashboard implemented end-to-end"
-                ],
-                "depends_on_titles": [
-                  "Design Learner dashboard"
-                ]
-              },
-              {
-                "title": "Test Learner dashboard",
-                "description": "Validate quality and behavior of Learner dashboard",
-                "priority": "high",
-                "complexity": "medium",
-                "tags": [
-                  "testing"
-                ],
-                "acceptance_criteria": [
-                  "Learner dashboard passes acceptance tests"
-                ],
-                "depends_on_titles": [
-                  "Implement Learner dashboard"
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Deliver Payment integration for premium courses",
-            "description": "Execution milestone for Payment integration for premium courses",
-            "priority": "medium",
-            "category": "product_execution",
-            "deadline": "2026-06-15",
-            "tasks": [
-              {
-                "title": "Define scope for Payment integration for premium courses",
-                "description": "Clarify boundaries and outcomes for Payment integration for premium courses",
-                "priority": "medium",
-                "complexity": "medium",
-                "tags": [
-                  "planning"
-                ],
-                "acceptance_criteria": [
-                  "Scope for Payment integration for premium courses documented"
-                ],
-                "depends_on_titles": []
-              },
-              {
-                "title": "Design Payment integration for premium courses",
-                "description": "Create UX and technical design for Payment integration for premium courses",
-                "priority": "medium",
-                "complexity": "medium",
-                "tags": [
-                  "design"
-                ],
-                "acceptance_criteria": [
-                  "Design for Payment integration for premium courses approved"
-                ],
-                "depends_on_titles": [
-                  "Define scope for Payment integration for premium courses"
-                ]
-              },
-              {
-                "title": "Implement Payment integration for premium courses",
-                "description": "Build and integrate Payment integration for premium courses",
-                "priority": "medium",
-                "complexity": "high",
-                "tags": [
-                  "development"
-                ],
-                "acceptance_criteria": [
-                  "Payment integration for premium courses implemented end-to-end"
-                ],
-                "depends_on_titles": [
-                  "Design Payment integration for premium courses"
-                ]
-              },
-              {
-                "title": "Test Payment integration for premium courses",
-                "description": "Validate quality and behavior of Payment integration for premium courses",
-                "priority": "medium",
-                "complexity": "medium",
-                "tags": [
-                  "testing"
-                ],
-                "acceptance_criteria": [
-                  "Payment integration for premium courses passes acceptance tests"
-                ],
-                "depends_on_titles": [
-                  "Implement Payment integration for premium courses"
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Complete Legal registration",
-            "description": "Administrative milestone for Legal registration",
+            "title": "Legal Registration",
+            "description": "Complete legal registration",
             "priority": "high",
             "category": "admin_execution",
             "deadline": "2026-05-10",
             "tasks": [
               {
-                "title": "Define requirements for Legal registration",
-                "description": "Clarify legal and process requirements for Legal registration",
+                "title": "Prepare Legal Registration Documents",
+                "description": "Prepare legal registration documents",
                 "priority": "high",
                 "complexity": "medium",
                 "tags": [
-                  "planning"
+                  "legal registration",
+                  "documents"
                 ],
                 "acceptance_criteria": [
-                  "Requirements for Legal registration documented"
+                  "Legal registration documents are prepared"
                 ],
                 "depends_on_titles": []
               },
               {
-                "title": "Prepare documents for Legal registration",
-                "description": "Prepare required documents for Legal registration",
+                "title": "Submit Legal Registration Application",
+                "description": "Submit legal registration application",
                 "priority": "high",
                 "complexity": "medium",
                 "tags": [
-                  "documentation"
+                  "legal registration",
+                  "application"
                 ],
                 "acceptance_criteria": [
-                  "Documents for Legal registration ready"
+                  "Legal registration application is submitted"
                 ],
                 "depends_on_titles": [
-                  "Define requirements for Legal registration"
-                ]
-              },
-              {
-                "title": "Submit Legal registration",
-                "description": "Submit and track process for Legal registration",
-                "priority": "high",
-                "complexity": "low",
-                "tags": [
-                  "operations"
-                ],
-                "acceptance_criteria": [
-                  "Legal registration submitted"
-                ],
-                "depends_on_titles": [
-                  "Prepare documents for Legal registration"
-                ]
-              },
-              {
-                "title": "Confirm completion of Legal registration",
-                "description": "Confirm final completion of Legal registration",
-                "priority": "high",
-                "complexity": "low",
-                "tags": [
-                  "review"
-                ],
-                "acceptance_criteria": [
-                  "Legal registration completion confirmed"
-                ],
-                "depends_on_titles": [
-                  "Submit Legal registration"
+                  "Prepare Legal Registration Documents"
                 ]
               }
             ]
           },
           {
-            "title": "Complete Prepare pilot partnership agreements",
-            "description": "Administrative milestone for Prepare pilot partnership agreements",
+            "title": "Pilot Partnership Agreements",
+            "description": "Complete pilot partnership agreements",
             "priority": "medium",
             "category": "admin_execution",
-            "deadline": "2026-05-10",
+            "deadline": null,
             "tasks": [
               {
-                "title": "Define requirements for Prepare pilot partnership agreements",
-                "description": "Clarify legal and process requirements for Prepare pilot partnership agreements",
+                "title": "Draft Pilot Partnership Agreement",
+                "description": "Draft pilot partnership agreement",
                 "priority": "medium",
                 "complexity": "medium",
                 "tags": [
-                  "planning"
+                  "pilot partnership",
+                  "agreement"
                 ],
                 "acceptance_criteria": [
-                  "Requirements for Prepare pilot partnership agreements documented"
+                  "Pilot partnership agreement is drafted"
                 ],
                 "depends_on_titles": []
               },
               {
-                "title": "Prepare documents for Prepare pilot partnership agreements",
-                "description": "Prepare required documents for Prepare pilot partnership agreements",
+                "title": "Review and Finalize Pilot Partnership Agreement",
+                "description": "Review and finalize pilot partnership agreement",
                 "priority": "medium",
                 "complexity": "medium",
                 "tags": [
-                  "documentation"
+                  "pilot partnership",
+                  "agreement"
                 ],
                 "acceptance_criteria": [
-                  "Documents for Prepare pilot partnership agreements ready"
+                  "Pilot partnership agreement is reviewed and finalized"
                 ],
                 "depends_on_titles": [
-                  "Define requirements for Prepare pilot partnership agreements"
-                ]
-              },
-              {
-                "title": "Submit Prepare pilot partnership agreements",
-                "description": "Submit and track process for Prepare pilot partnership agreements",
-                "priority": "medium",
-                "complexity": "low",
-                "tags": [
-                  "operations"
-                ],
-                "acceptance_criteria": [
-                  "Prepare pilot partnership agreements submitted"
-                ],
-                "depends_on_titles": [
-                  "Prepare documents for Prepare pilot partnership agreements"
-                ]
-              },
-              {
-                "title": "Confirm completion of Prepare pilot partnership agreements",
-                "description": "Confirm final completion of Prepare pilot partnership agreements",
-                "priority": "medium",
-                "complexity": "low",
-                "tags": [
-                  "review"
-                ],
-                "acceptance_criteria": [
-                  "Prepare pilot partnership agreements completion confirmed"
-                ],
-                "depends_on_titles": [
-                  "Submit Prepare pilot partnership agreements"
+                  "Draft Pilot Partnership Agreement"
                 ]
               }
             ]
           }
         ],
         "risks": [
-          "Planning generated from local fallback because remote planning may be unavailable."
+          "Delays in legal registration may impact MVP launch",
+          "Payment integration issues may impact premium course sales"
         ],
         "assumptions": [
-          "Tasks are generated dynamically from factual state, not pre-seeded task lists.",
-          "Task decomposition guided by retrieved MVP/WBS knowledge patterns."
+          "The team will be able to complete tasks on time",
+          "The MVP will meet the needs of the target audience"
         ]
       },
-      "planner_used": "local_fallback",
+      "planner_used": "remote",
       "task_list": [
         {
-          "id": "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-          "parent_id": "MS_1_deliver_user_signup_and_authentication",
-          "milestone_title": "Deliver User signup and authentication",
-          "title": "Define scope for User signup and authentication",
-          "description": "Clarify boundaries and outcomes for User signup and authentication",
+          "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+          "parent_id": "MS_1_mvp_launch_preparation",
+          "milestone_title": "MVP Launch Preparation",
+          "title": "Define MVP Scope and Requirements",
+          "description": "Define the scope and requirements of the MVP",
           "priority": "high",
           "category": "product_execution",
           "complexity": "medium",
           "tags": [
-            "planning"
+            "mvp",
+            "scope",
+            "requirements"
           ],
           "acceptance_criteria": [
-            "Scope for User signup and authentication documented"
+            "MVP scope and requirements are defined"
           ],
           "depends_on_titles": [],
           "depends_on": [],
           "unblocks": [
-            "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication"
+            "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+            "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
           ],
           "assigned_to": "Omar",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
+          "actual_days": 0.0,
           "deadline": "2026-06-15",
-          "estimated_days": 2.0,
+          "estimated_days": 2.3,
           "business_value": 5,
-          "blocking_count": 1,
+          "blocking_count": 3,
           "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.599,
-          "match_confidence": 0.8,
-          "criticality_score": 2.6,
+          "priority_score": 3.3,
+          "assignment_score": 0.612,
+          "match_confidence": 0.65,
+          "criticality_score": 3.3,
           "blocked_reason": null,
           "graph_depth": 0,
-          "continuity_score": 0.0
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-34",
+          "jira_issue_id": "10097",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+          "jira_status": "En cours"
         },
         {
-          "id": "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication",
-          "parent_id": "MS_1_deliver_user_signup_and_authentication",
-          "milestone_title": "Deliver User signup and authentication",
-          "title": "Design User signup and authentication",
-          "description": "Create UX and technical design for User signup and authentication",
+          "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+          "parent_id": "MS_1_mvp_launch_preparation",
+          "milestone_title": "MVP Launch Preparation",
+          "title": "Design Learner Dashboard",
+          "description": "Design the learner dashboard",
           "priority": "high",
           "category": "product_execution",
           "complexity": "medium",
           "tags": [
-            "design"
+            "design",
+            "learner dashboard"
           ],
           "acceptance_criteria": [
-            "Design for User signup and authentication approved"
+            "Learner dashboard design is complete"
           ],
           "depends_on_titles": [
-            "Define scope for User signup and authentication"
+            "Define MVP Scope and Requirements"
           ],
           "depends_on": [
-            "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication"
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
           ],
-          "unblocks": [
-            "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication"
-          ],
+          "unblocks": [],
           "assigned_to": "Meriem",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 2.0,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.6215,
-          "match_confidence": 0.8,
-          "criticality_score": 2.625,
-          "blocked_reason": null,
-          "graph_depth": 1,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication",
-          "parent_id": "MS_1_deliver_user_signup_and_authentication",
-          "milestone_title": "Deliver User signup and authentication",
-          "title": "Implement User signup and authentication",
-          "description": "Build and integrate User signup and authentication",
-          "priority": "high",
-          "category": "product_execution",
-          "complexity": "high",
-          "tags": [
-            "development"
-          ],
-          "acceptance_criteria": [
-            "User signup and authentication implemented end-to-end"
-          ],
-          "depends_on_titles": [
-            "Design User signup and authentication"
-          ],
-          "depends_on": [
-            "MS_1_deliver_user_signup_and_authentication_T_2_design_user_signup_and_authentication"
-          ],
-          "unblocks": [
-            "MS_1_deliver_user_signup_and_authentication_T_4_test_user_signup_and_authentication"
-          ],
-          "assigned_to": "Amine",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 3.45,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 3.0,
-          "priority_score": 3.1,
-          "assignment_score": 0.589,
-          "match_confidence": 0.65,
-          "criticality_score": 3.15,
-          "blocked_reason": null,
-          "graph_depth": 2,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_1_deliver_user_signup_and_authentication_T_4_test_user_signup_and_authentication",
-          "parent_id": "MS_1_deliver_user_signup_and_authentication",
-          "milestone_title": "Deliver User signup and authentication",
-          "title": "Test User signup and authentication",
-          "description": "Validate quality and behavior of User signup and authentication",
-          "priority": "high",
-          "category": "product_execution",
-          "complexity": "medium",
-          "tags": [
-            "testing"
-          ],
-          "acceptance_criteria": [
-            "User signup and authentication passes acceptance tests"
-          ],
-          "depends_on_titles": [
-            "Implement User signup and authentication"
-          ],
-          "depends_on": [
-            "MS_1_deliver_user_signup_and_authentication_T_3_implement_user_signup_and_authentication"
-          ],
-          "unblocks": [],
-          "assigned_to": "Amine",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
+          "actual_days": 0.0,
           "deadline": "2026-06-15",
           "estimated_days": 2.0,
           "business_value": 5,
           "blocking_count": 0,
           "risk_weight": 1.0,
           "priority_score": 2.25,
-          "assignment_score": 0.61,
+          "assignment_score": 0.51,
           "match_confidence": 0.8,
-          "criticality_score": 2.525,
+          "criticality_score": 2.275,
           "blocked_reason": null,
-          "graph_depth": 3,
-          "continuity_score": 1.0
+          "graph_depth": 1,
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-35",
+          "jira_issue_id": "10098",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+          "jira_status": "À faire"
         },
         {
-          "id": "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-          "parent_id": "MS_2_deliver_learner_dashboard",
-          "milestone_title": "Deliver Learner dashboard",
-          "title": "Define scope for Learner dashboard",
-          "description": "Clarify boundaries and outcomes for Learner dashboard",
+          "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+          "parent_id": "MS_1_mvp_launch_preparation",
+          "milestone_title": "MVP Launch Preparation",
+          "title": "Implement User Signup and Authentication",
+          "description": "Implement user signup and authentication",
           "priority": "high",
           "category": "product_execution",
-          "complexity": "medium",
+          "complexity": "high",
           "tags": [
-            "planning"
+            "implementation",
+            "user signup",
+            "authentication"
           ],
           "acceptance_criteria": [
-            "Scope for Learner dashboard documented"
+            "User signup and authentication are implemented"
+          ],
+          "depends_on_titles": [
+            "Define MVP Scope and Requirements"
+          ],
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+          ],
+          "unblocks": [
+            "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features"
+          ],
+          "assigned_to": "Amine",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "deadline": "2026-06-15",
+          "estimated_days": 3.45,
+          "business_value": 5,
+          "blocking_count": 1,
+          "risk_weight": 3.0,
+          "priority_score": 3.1,
+          "assignment_score": 0.529,
+          "match_confidence": 0.65,
+          "criticality_score": 3.125,
+          "blocked_reason": null,
+          "graph_depth": 1,
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-36",
+          "jira_issue_id": "10099",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+          "jira_status": "À faire"
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+          "parent_id": "MS_1_mvp_launch_preparation",
+          "milestone_title": "MVP Launch Preparation",
+          "title": "Implement Payment Integration for Premium Courses",
+          "description": "Implement payment integration for premium courses",
+          "priority": "medium",
+          "category": "product_execution",
+          "complexity": "high",
+          "tags": [
+            "implementation",
+            "payment integration",
+            "premium courses"
+          ],
+          "acceptance_criteria": [
+            "Payment integration for premium courses is implemented"
+          ],
+          "depends_on_titles": [
+            "Define MVP Scope and Requirements"
+          ],
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+          ],
+          "unblocks": [
+            "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features"
+          ],
+          "assigned_to": "Amine",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "deadline": "2026-06-15",
+          "estimated_days": 3.45,
+          "business_value": 3,
+          "blocking_count": 1,
+          "risk_weight": 3.0,
+          "priority_score": 2.3,
+          "assignment_score": 0.472,
+          "match_confidence": 0.65,
+          "criticality_score": 2.325,
+          "blocked_reason": null,
+          "graph_depth": 1,
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-37",
+          "jira_issue_id": "10100",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+          "jira_status": "À faire"
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+          "parent_id": "MS_1_mvp_launch_preparation",
+          "milestone_title": "MVP Launch Preparation",
+          "title": "Test and Validate MVP Features",
+          "description": "Test and validate MVP features",
+          "priority": "high",
+          "category": "product_execution",
+          "complexity": "high",
+          "tags": [
+            "testing",
+            "validation",
+            "mvp features"
+          ],
+          "acceptance_criteria": [
+            "MVP features are tested and validated"
+          ],
+          "depends_on_titles": [
+            "Implement User Signup and Authentication",
+            "Implement Payment Integration for Premium Courses"
+          ],
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+          ],
+          "unblocks": [],
+          "assigned_to": "Amine",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "deadline": "2026-06-15",
+          "estimated_days": 3.0,
+          "business_value": 5,
+          "blocking_count": 0,
+          "risk_weight": 3.0,
+          "priority_score": 2.75,
+          "assignment_score": 0.63,
+          "match_confidence": 0.8,
+          "criticality_score": 3.0,
+          "blocked_reason": null,
+          "graph_depth": 2,
+          "continuity_score": 1.0,
+          "jira_issue_key": "KAN-38",
+          "jira_issue_id": "10101",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+          "jira_status": "À faire"
+        },
+        {
+          "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+          "parent_id": "MS_2_legal_registration",
+          "milestone_title": "Legal Registration",
+          "title": "Prepare Legal Registration Documents",
+          "description": "Prepare legal registration documents",
+          "priority": "high",
+          "category": "admin_execution",
+          "complexity": "medium",
+          "tags": [
+            "legal registration",
+            "documents"
+          ],
+          "acceptance_criteria": [
+            "Legal registration documents are prepared"
           ],
           "depends_on_titles": [],
           "depends_on": [],
           "unblocks": [
-            "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard"
+            "MS_2_legal_registration_T_2_submit_legal_registration_application"
           ],
           "assigned_to": "Omar",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
+          "actual_days": 0.0,
+          "deadline": "2026-05-10",
           "estimated_days": 2.0,
           "business_value": 5,
           "blocking_count": 1,
@@ -2155,117 +1422,40 @@
           "criticality_score": 2.6,
           "blocked_reason": null,
           "graph_depth": 0,
-          "continuity_score": 0.0
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-39",
+          "jira_issue_id": "10102",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+          "jira_status": "À faire"
         },
         {
-          "id": "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard",
-          "parent_id": "MS_2_deliver_learner_dashboard",
-          "milestone_title": "Deliver Learner dashboard",
-          "title": "Design Learner dashboard",
-          "description": "Create UX and technical design for Learner dashboard",
+          "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+          "parent_id": "MS_2_legal_registration",
+          "milestone_title": "Legal Registration",
+          "title": "Submit Legal Registration Application",
+          "description": "Submit legal registration application",
           "priority": "high",
-          "category": "product_execution",
+          "category": "admin_execution",
           "complexity": "medium",
           "tags": [
-            "design"
+            "legal registration",
+            "application"
           ],
           "acceptance_criteria": [
-            "Design for Learner dashboard approved"
+            "Legal registration application is submitted"
           ],
           "depends_on_titles": [
-            "Define scope for Learner dashboard"
+            "Prepare Legal Registration Documents"
           ],
           "depends_on": [
-            "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard"
-          ],
-          "unblocks": [
-            "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard"
-          ],
-          "assigned_to": "Meriem",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 2.0,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.599,
-          "match_confidence": 0.8,
-          "criticality_score": 2.625,
-          "blocked_reason": null,
-          "graph_depth": 1,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard",
-          "parent_id": "MS_2_deliver_learner_dashboard",
-          "milestone_title": "Deliver Learner dashboard",
-          "title": "Implement Learner dashboard",
-          "description": "Build and integrate Learner dashboard",
-          "priority": "high",
-          "category": "product_execution",
-          "complexity": "high",
-          "tags": [
-            "development"
-          ],
-          "acceptance_criteria": [
-            "Learner dashboard implemented end-to-end"
-          ],
-          "depends_on_titles": [
-            "Design Learner dashboard"
-          ],
-          "depends_on": [
-            "MS_2_deliver_learner_dashboard_T_2_design_learner_dashboard"
-          ],
-          "unblocks": [
-            "MS_2_deliver_learner_dashboard_T_4_test_learner_dashboard"
-          ],
-          "assigned_to": "Amine",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 3.45,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 3.0,
-          "priority_score": 3.1,
-          "assignment_score": 0.5665,
-          "match_confidence": 0.65,
-          "criticality_score": 3.15,
-          "blocked_reason": null,
-          "graph_depth": 2,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_2_deliver_learner_dashboard_T_4_test_learner_dashboard",
-          "parent_id": "MS_2_deliver_learner_dashboard",
-          "milestone_title": "Deliver Learner dashboard",
-          "title": "Test Learner dashboard",
-          "description": "Validate quality and behavior of Learner dashboard",
-          "priority": "high",
-          "category": "product_execution",
-          "complexity": "medium",
-          "tags": [
-            "testing"
-          ],
-          "acceptance_criteria": [
-            "Learner dashboard passes acceptance tests"
-          ],
-          "depends_on_titles": [
-            "Implement Learner dashboard"
-          ],
-          "depends_on": [
-            "MS_2_deliver_learner_dashboard_T_3_implement_learner_dashboard"
+            "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
           ],
           "unblocks": [],
-          "assigned_to": "Amine",
+          "assigned_to": "Omar",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
+          "actual_days": 0.0,
+          "deadline": "2026-05-10",
           "estimated_days": 2.0,
           "business_value": 5,
           "blocking_count": 0,
@@ -2273,583 +1463,1339 @@
           "priority_score": 2.25,
           "assignment_score": 0.61,
           "match_confidence": 0.8,
-          "criticality_score": 2.525,
+          "criticality_score": 2.475,
           "blocked_reason": null,
-          "graph_depth": 3,
-          "continuity_score": 1.0
+          "graph_depth": 1,
+          "continuity_score": 1.0,
+          "jira_issue_key": "KAN-40",
+          "jira_issue_id": "10103",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+          "jira_status": "À faire"
         },
         {
-          "id": "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-          "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-          "milestone_title": "Deliver Payment integration for premium courses",
-          "title": "Define scope for Payment integration for premium courses",
-          "description": "Clarify boundaries and outcomes for Payment integration for premium courses",
+          "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+          "parent_id": "MS_3_pilot_partnership_agreements",
+          "milestone_title": "Pilot Partnership Agreements",
+          "title": "Draft Pilot Partnership Agreement",
+          "description": "Draft pilot partnership agreement",
           "priority": "medium",
-          "category": "product_execution",
+          "category": "admin_execution",
           "complexity": "medium",
           "tags": [
-            "planning"
+            "pilot partnership",
+            "agreement"
           ],
           "acceptance_criteria": [
-            "Scope for Payment integration for premium courses documented"
+            "Pilot partnership agreement is drafted"
           ],
           "depends_on_titles": [],
           "depends_on": [],
           "unblocks": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses"
+            "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement"
           ],
           "assigned_to": "Omar",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 2.0,
+          "actual_days": 0.0,
+          "deadline": null,
+          "estimated_days": 2.8,
           "business_value": 3,
           "blocking_count": 1,
           "risk_weight": 1.0,
           "priority_score": 1.8,
-          "assignment_score": 0.5045,
-          "match_confidence": 0.8,
+          "assignment_score": 0.347,
+          "match_confidence": 0.35,
           "criticality_score": 1.8,
           "blocked_reason": null,
           "graph_depth": 0,
-          "continuity_score": 0.0
+          "continuity_score": 0.0,
+          "jira_issue_key": "KAN-41",
+          "jira_issue_id": "10104",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+          "jira_status": "À faire"
         },
         {
-          "id": "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses",
-          "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-          "milestone_title": "Deliver Payment integration for premium courses",
-          "title": "Design Payment integration for premium courses",
-          "description": "Create UX and technical design for Payment integration for premium courses",
+          "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+          "parent_id": "MS_3_pilot_partnership_agreements",
+          "milestone_title": "Pilot Partnership Agreements",
+          "title": "Review and Finalize Pilot Partnership Agreement",
+          "description": "Review and finalize pilot partnership agreement",
           "priority": "medium",
-          "category": "product_execution",
-          "complexity": "medium",
-          "tags": [
-            "design"
-          ],
-          "acceptance_criteria": [
-            "Design for Payment integration for premium courses approved"
-          ],
-          "depends_on_titles": [
-            "Define scope for Payment integration for premium courses"
-          ],
-          "depends_on": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses"
-          ],
-          "unblocks": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses"
-          ],
-          "assigned_to": "Meriem",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 2.0,
-          "business_value": 3,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 1.8,
-          "assignment_score": 0.542,
-          "match_confidence": 0.8,
-          "criticality_score": 1.825,
-          "blocked_reason": null,
-          "graph_depth": 1,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses",
-          "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-          "milestone_title": "Deliver Payment integration for premium courses",
-          "title": "Implement Payment integration for premium courses",
-          "description": "Build and integrate Payment integration for premium courses",
-          "priority": "medium",
-          "category": "product_execution",
-          "complexity": "high",
-          "tags": [
-            "development"
-          ],
-          "acceptance_criteria": [
-            "Payment integration for premium courses implemented end-to-end"
-          ],
-          "depends_on_titles": [
-            "Design Payment integration for premium courses"
-          ],
-          "depends_on": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_2_design_payment_integration_for_premium_courses"
-          ],
-          "unblocks": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_4_test_payment_integration_for_premium_courses"
-          ],
-          "assigned_to": "Amine",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 3.45,
-          "business_value": 3,
-          "blocking_count": 1,
-          "risk_weight": 3.0,
-          "priority_score": 2.3,
-          "assignment_score": 0.5095,
-          "match_confidence": 0.65,
-          "criticality_score": 2.35,
-          "blocked_reason": null,
-          "graph_depth": 2,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_3_deliver_payment_integration_for_premium_courses_T_4_test_payment_integration_for_premium_courses",
-          "parent_id": "MS_3_deliver_payment_integration_for_premium_courses",
-          "milestone_title": "Deliver Payment integration for premium courses",
-          "title": "Test Payment integration for premium courses",
-          "description": "Validate quality and behavior of Payment integration for premium courses",
-          "priority": "medium",
-          "category": "product_execution",
-          "complexity": "medium",
-          "tags": [
-            "testing"
-          ],
-          "acceptance_criteria": [
-            "Payment integration for premium courses passes acceptance tests"
-          ],
-          "depends_on_titles": [
-            "Implement Payment integration for premium courses"
-          ],
-          "depends_on": [
-            "MS_3_deliver_payment_integration_for_premium_courses_T_3_implement_payment_integration_for_premium_courses"
-          ],
-          "unblocks": [],
-          "assigned_to": "Amine",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-06-15",
-          "estimated_days": 2.0,
-          "business_value": 3,
-          "blocking_count": 0,
-          "risk_weight": 1.0,
-          "priority_score": 1.45,
-          "assignment_score": 0.553,
-          "match_confidence": 0.8,
-          "criticality_score": 1.725,
-          "blocked_reason": null,
-          "graph_depth": 3,
-          "continuity_score": 1.0
-        },
-        {
-          "id": "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-          "parent_id": "MS_4_complete_legal_registration",
-          "milestone_title": "Complete Legal registration",
-          "title": "Define requirements for Legal registration",
-          "description": "Clarify legal and process requirements for Legal registration",
-          "priority": "high",
           "category": "admin_execution",
           "complexity": "medium",
           "tags": [
-            "planning"
+            "pilot partnership",
+            "agreement"
           ],
           "acceptance_criteria": [
-            "Requirements for Legal registration documented"
-          ],
-          "depends_on_titles": [],
-          "depends_on": [],
-          "unblocks": [
-            "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration"
-          ],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 1.8,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.614,
-          "match_confidence": 0.95,
-          "criticality_score": 2.6,
-          "blocked_reason": null,
-          "graph_depth": 0,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration",
-          "parent_id": "MS_4_complete_legal_registration",
-          "milestone_title": "Complete Legal registration",
-          "title": "Prepare documents for Legal registration",
-          "description": "Prepare required documents for Legal registration",
-          "priority": "high",
-          "category": "admin_execution",
-          "complexity": "medium",
-          "tags": [
-            "documentation"
-          ],
-          "acceptance_criteria": [
-            "Documents for Legal registration ready"
+            "Pilot partnership agreement is reviewed and finalized"
           ],
           "depends_on_titles": [
-            "Define requirements for Legal registration"
+            "Draft Pilot Partnership Agreement"
           ],
           "depends_on": [
-            "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration"
-          ],
-          "unblocks": [
-            "MS_4_complete_legal_registration_T_3_submit_legal_registration"
-          ],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 1.8,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.6515,
-          "match_confidence": 0.95,
-          "criticality_score": 2.625,
-          "blocked_reason": null,
-          "graph_depth": 1,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_4_complete_legal_registration_T_3_submit_legal_registration",
-          "parent_id": "MS_4_complete_legal_registration",
-          "milestone_title": "Complete Legal registration",
-          "title": "Submit Legal registration",
-          "description": "Submit and track process for Legal registration",
-          "priority": "high",
-          "category": "admin_execution",
-          "complexity": "low",
-          "tags": [
-            "operations"
-          ],
-          "acceptance_criteria": [
-            "Legal registration submitted"
-          ],
-          "depends_on_titles": [
-            "Prepare documents for Legal registration"
-          ],
-          "depends_on": [
-            "MS_4_complete_legal_registration_T_2_prepare_documents_for_legal_registration"
-          ],
-          "unblocks": [
-            "MS_4_complete_legal_registration_T_4_confirm_completion_of_legal_registration"
-          ],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 1.44,
-          "business_value": 5,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 2.6,
-          "assignment_score": 0.674,
-          "match_confidence": 0.95,
-          "criticality_score": 2.65,
-          "blocked_reason": null,
-          "graph_depth": 2,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_4_complete_legal_registration_T_4_confirm_completion_of_legal_registration",
-          "parent_id": "MS_4_complete_legal_registration",
-          "milestone_title": "Complete Legal registration",
-          "title": "Confirm completion of Legal registration",
-          "description": "Confirm final completion of Legal registration",
-          "priority": "high",
-          "category": "admin_execution",
-          "complexity": "low",
-          "tags": [
-            "review"
-          ],
-          "acceptance_criteria": [
-            "Legal registration completion confirmed"
-          ],
-          "depends_on_titles": [
-            "Submit Legal registration"
-          ],
-          "depends_on": [
-            "MS_4_complete_legal_registration_T_3_submit_legal_registration"
+            "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
           ],
           "unblocks": [],
           "assigned_to": "Omar",
           "status": "todo",
           "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 1.6,
-          "business_value": 5,
-          "blocking_count": 0,
-          "risk_weight": 1.0,
-          "priority_score": 2.25,
-          "assignment_score": 0.61,
-          "match_confidence": 0.8,
-          "criticality_score": 2.525,
-          "blocked_reason": null,
-          "graph_depth": 3,
-          "continuity_score": 1.0
-        },
-        {
-          "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements",
-          "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-          "milestone_title": "Complete Prepare pilot partnership agreements",
-          "title": "Define requirements for Prepare pilot partnership agreements",
-          "description": "Clarify legal and process requirements for Prepare pilot partnership agreements",
-          "priority": "medium",
-          "category": "admin_execution",
-          "complexity": "medium",
-          "tags": [
-            "planning"
-          ],
-          "acceptance_criteria": [
-            "Requirements for Prepare pilot partnership agreements documented"
-          ],
-          "depends_on_titles": [],
-          "depends_on": [],
-          "unblocks": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements"
-          ],
-          "assigned_to": "Meriem",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 2.0,
-          "business_value": 3,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 1.8,
-          "assignment_score": 0.5045,
-          "match_confidence": 0.8,
-          "criticality_score": 1.8,
-          "blocked_reason": null,
-          "graph_depth": 0,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements",
-          "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-          "milestone_title": "Complete Prepare pilot partnership agreements",
-          "title": "Prepare documents for Prepare pilot partnership agreements",
-          "description": "Prepare required documents for Prepare pilot partnership agreements",
-          "priority": "medium",
-          "category": "admin_execution",
-          "complexity": "medium",
-          "tags": [
-            "documentation"
-          ],
-          "acceptance_criteria": [
-            "Documents for Prepare pilot partnership agreements ready"
-          ],
-          "depends_on_titles": [
-            "Define requirements for Prepare pilot partnership agreements"
-          ],
-          "depends_on": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements"
-          ],
-          "unblocks": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements"
-          ],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 2.0,
-          "business_value": 3,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 1.8,
-          "assignment_score": 0.5045,
-          "match_confidence": 0.8,
-          "criticality_score": 1.825,
-          "blocked_reason": null,
-          "graph_depth": 1,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements",
-          "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-          "milestone_title": "Complete Prepare pilot partnership agreements",
-          "title": "Submit Prepare pilot partnership agreements",
-          "description": "Submit and track process for Prepare pilot partnership agreements",
-          "priority": "medium",
-          "category": "admin_execution",
-          "complexity": "low",
-          "tags": [
-            "operations"
-          ],
-          "acceptance_criteria": [
-            "Prepare pilot partnership agreements submitted"
-          ],
-          "depends_on_titles": [
-            "Prepare documents for Prepare pilot partnership agreements"
-          ],
-          "depends_on": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_2_prepare_documents_for_prepare_pilot_partnership_agreements"
-          ],
-          "unblocks": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_4_confirm_completion_of_prepare_pilot_partnership_agreements"
-          ],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 1.6,
-          "business_value": 3,
-          "blocking_count": 1,
-          "risk_weight": 1.0,
-          "priority_score": 1.8,
-          "assignment_score": 0.5045,
-          "match_confidence": 0.8,
-          "criticality_score": 1.85,
-          "blocked_reason": null,
-          "graph_depth": 2,
-          "continuity_score": 0.0
-        },
-        {
-          "id": "MS_5_complete_prepare_pilot_partnership_agreements_T_4_confirm_completion_of_prepare_pilot_partnership_agreements",
-          "parent_id": "MS_5_complete_prepare_pilot_partnership_agreements",
-          "milestone_title": "Complete Prepare pilot partnership agreements",
-          "title": "Confirm completion of Prepare pilot partnership agreements",
-          "description": "Confirm final completion of Prepare pilot partnership agreements",
-          "priority": "medium",
-          "category": "admin_execution",
-          "complexity": "low",
-          "tags": [
-            "review"
-          ],
-          "acceptance_criteria": [
-            "Prepare pilot partnership agreements completion confirmed"
-          ],
-          "depends_on_titles": [
-            "Submit Prepare pilot partnership agreements"
-          ],
-          "depends_on": [
-            "MS_5_complete_prepare_pilot_partnership_agreements_T_3_submit_prepare_pilot_partnership_agreements"
-          ],
-          "unblocks": [],
-          "assigned_to": "Omar",
-          "status": "todo",
-          "progress": 0.0,
-          "actual_days": 0,
-          "deadline": "2026-05-10",
-          "estimated_days": 2.24,
+          "actual_days": 0.0,
+          "deadline": null,
+          "estimated_days": 2.8,
           "business_value": 3,
           "blocking_count": 0,
           "risk_weight": 1.0,
           "priority_score": 1.45,
           "assignment_score": 0.3955,
           "match_confidence": 0.35,
-          "criticality_score": 1.725,
+          "criticality_score": 1.675,
           "blocked_reason": null,
-          "graph_depth": 3,
-          "continuity_score": 1.0
+          "graph_depth": 1,
+          "continuity_score": 1.0,
+          "jira_issue_key": "KAN-42",
+          "jira_issue_id": "10105",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+          "jira_status": "À faire"
         }
       ],
       "dependency_graph_has_cycle": false,
       "ready_queue": [
-        "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-        "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-        "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-        "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements"
+        "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+        "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+        "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
       ],
       "priority_queue": [
-        "MS_4_complete_legal_registration_T_1_define_requirements_for_legal_registration",
-        "MS_1_deliver_user_signup_and_authentication_T_1_define_scope_for_user_signup_and_authentication",
-        "MS_2_deliver_learner_dashboard_T_1_define_scope_for_learner_dashboard",
-        "MS_3_deliver_payment_integration_for_premium_courses_T_1_define_scope_for_payment_integration_for_premium_courses",
-        "MS_5_complete_prepare_pilot_partnership_agreements_T_1_define_requirements_for_prepare_pilot_partnership_agreements"
+        "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+        "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+        "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
       ],
-      "critical_path_days": 9.45,
+      "critical_path_days": 8.75,
       "feasibility": {
         "status": "good",
-        "critical_path_days": 9.45,
-        "deadline_days": 64,
-        "buffer_days": 54.55
+        "critical_path_days": 8.75,
+        "deadline_days": 53,
+        "buffer_days": 44.25
       },
       "anomalies": [],
       "critic_report": {
-        "issues_found": [],
+        "issues_found": [
+          {
+            "issue": "Task 'Test and Validate MVP Features' depends on non-existent task 'MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication'.",
+            "severity": "high",
+            "suggested_fix": "Update the dependency to the correct task ID 'MS_1_mvp_launch_preparation_T_2_implement_user_signup_and_authentication'."
+          },
+          {
+            "issue": "Task 'Test and Validate MVP Features' depends on non-existent task 'MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses'.",
+            "severity": "high",
+            "suggested_fix": "Update the dependency to the correct task ID 'MS_1_mvp_launch_preparation_T_3_implement_payment_integration_for_premium_courses'."
+          },
+          {
+            "issue": "Task 'Submit Legal Registration Application' depends on task 'MS_2_legal_registration_T_1_prepare_legal_registration_documents' but the task ID does not match the actual task title 'Prepare Legal Registration Documents'.",
+            "severity": "medium",
+            "suggested_fix": "Update the dependency to the correct task ID 'MS_2_legal_registration_T_1_prepare_legal_registration_documents' to match the actual task title."
+          },
+          {
+            "issue": "Task 'Review and Finalize Pilot Partnership Agreement' depends on task 'MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement' but the task ID does not match the actual task title 'Draft Pilot Partnership Agreement'.",
+            "severity": "medium",
+            "suggested_fix": "Update the dependency to the correct task ID 'MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement' to match the actual task title."
+          }
+        ],
         "updated_next_actions": [
-          "Focus next on: Define scope for User signup and authentication (owner: Omar)",
-          "Focus next on: Define scope for Learner dashboard (owner: Omar)",
-          "Focus next on: Define requirements for Legal registration (owner: Omar)"
+          "Review and update task dependencies to ensure correct task IDs and titles.",
+          "Verify task dependencies to prevent potential project delays."
         ]
       },
-      "critic_used": "local_fallback",
+      "critic_used": "remote",
       "mcp_persist_result": {
         "ok": true,
-        "inserted": 20,
-        "updated": 0,
-        "total_tasks": 20
+        "inserted": 0,
+        "updated": 9,
+        "total_tasks": 9,
+        "jira": {
+          "enabled": true,
+          "project_key": "KAN",
+          "issues_synced": 9,
+          "created": 9,
+          "updated": 0,
+          "errors": 0,
+          "last_sync": "2026-04-23T12:47:56.956308Z",
+          "refreshed": 9,
+          "last_pull": "2026-04-23T12:51:59.140226Z"
+        }
+      },
+      "jira_sync_result": {
+        "ok": true,
+        "jira_enabled": true,
+        "summary": {
+          "enabled": true,
+          "project_key": "KAN",
+          "issues_synced": 9,
+          "created": 0,
+          "updated": 9,
+          "errors": 0,
+          "last_sync": "2026-04-23T12:53:20.004352Z"
+        },
+        "synced": [
+          {
+            "task_id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+            "jira_issue_key": "KAN-34",
+            "jira_status": "En cours",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34"
+          },
+          {
+            "task_id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+            "jira_issue_key": "KAN-35",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35"
+          },
+          {
+            "task_id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "jira_issue_key": "KAN-36",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36"
+          },
+          {
+            "task_id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+            "jira_issue_key": "KAN-37",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37"
+          },
+          {
+            "task_id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+            "jira_issue_key": "KAN-38",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38"
+          },
+          {
+            "task_id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+            "jira_issue_key": "KAN-39",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39"
+          },
+          {
+            "task_id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+            "jira_issue_key": "KAN-40",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40"
+          },
+          {
+            "task_id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+            "jira_issue_key": "KAN-41",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41"
+          },
+          {
+            "task_id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+            "jira_issue_key": "KAN-42",
+            "jira_status": "À faire",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42"
+          }
+        ],
+        "errors": [],
+        "tasks": [
+          {
+            "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+            "title": "Define MVP Scope and Requirements",
+            "description": "Define the scope and requirements of the MVP",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.3,
+            "priority_score": 3.3,
+            "criticality_score": 3.3,
+            "depends_on": [],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-34",
+            "jira_issue_id": "10097",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+            "jira_status": "En cours",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+            "title": "Design Learner Dashboard",
+            "description": "Design the learner dashboard",
+            "priority": "high",
+            "assigned_to": "Meriem",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.275,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-35",
+            "jira_issue_id": "10098",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "title": "Implement User Signup and Authentication",
+            "description": "Implement user signup and authentication",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.45,
+            "priority_score": 3.1,
+            "criticality_score": 3.125,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-36",
+            "jira_issue_id": "10099",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+            "title": "Implement Payment Integration for Premium Courses",
+            "description": "Implement payment integration for premium courses",
+            "priority": "medium",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.45,
+            "priority_score": 2.3,
+            "criticality_score": 2.325,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-37",
+            "jira_issue_id": "10100",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+            "title": "Test and Validate MVP Features",
+            "description": "Test and validate MVP features",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.0,
+            "priority_score": 2.75,
+            "criticality_score": 3.0,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+              "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-38",
+            "jira_issue_id": "10101",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+            "title": "Prepare Legal Registration Documents",
+            "description": "Prepare legal registration documents",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 2.0,
+            "priority_score": 2.6,
+            "criticality_score": 2.6,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-39",
+            "jira_issue_id": "10102",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+            "title": "Submit Legal Registration Application",
+            "description": "Submit legal registration application",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.475,
+            "depends_on": [
+              "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-40",
+            "jira_issue_id": "10103",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+            "title": "Draft Pilot Partnership Agreement",
+            "description": "Draft pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Omar",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.8,
+            "priority_score": 1.8,
+            "criticality_score": 1.8,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-41",
+            "jira_issue_id": "10104",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+            "title": "Review and Finalize Pilot Partnership Agreement",
+            "description": "Review and finalize pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Omar",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.8,
+            "priority_score": 1.45,
+            "criticality_score": 1.675,
+            "depends_on": [
+              "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-42",
+            "jira_issue_id": "10105",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          }
+        ]
+      },
+      "jira": {
+        "enabled": true,
+        "project_key": "KAN",
+        "issues_synced": 9,
+        "created": 0,
+        "updated": 9,
+        "errors": 0,
+        "last_sync": "2026-04-23T12:53:20.004352Z"
+      },
+      "jira_pull_after_sync": {
+        "ok": true,
+        "jira_enabled": true,
+        "summary": {
+          "enabled": true,
+          "project_key": "KAN",
+          "issues_synced": 9,
+          "created": 0,
+          "updated": 9,
+          "errors": 0,
+          "last_sync": "2026-04-23T12:53:20.004352Z",
+          "refreshed": 9,
+          "last_pull": "2026-04-23T12:53:28.731996Z"
+        },
+        "tasks": [
+          {
+            "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+            "title": "Define MVP Scope and Requirements",
+            "description": "Define the scope and requirements of the MVP",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.3,
+            "priority_score": 3.3,
+            "criticality_score": 3.3,
+            "depends_on": [],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-34",
+            "jira_issue_id": "10097",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+            "jira_status": "En cours",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+            "title": "Design Learner Dashboard",
+            "description": "Design the learner dashboard",
+            "priority": "high",
+            "assigned_to": "Meriem",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.275,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-35",
+            "jira_issue_id": "10098",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "title": "Implement User Signup and Authentication",
+            "description": "Implement user signup and authentication",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.45,
+            "priority_score": 3.1,
+            "criticality_score": 3.125,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-36",
+            "jira_issue_id": "10099",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+            "title": "Implement Payment Integration for Premium Courses",
+            "description": "Implement payment integration for premium courses",
+            "priority": "medium",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.45,
+            "priority_score": 2.3,
+            "criticality_score": 2.325,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-37",
+            "jira_issue_id": "10100",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+            "title": "Test and Validate MVP Features",
+            "description": "Test and validate MVP features",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.0,
+            "priority_score": 2.75,
+            "criticality_score": 3.0,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+              "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-38",
+            "jira_issue_id": "10101",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+            "title": "Prepare Legal Registration Documents",
+            "description": "Prepare legal registration documents",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 2.0,
+            "priority_score": 2.6,
+            "criticality_score": 2.6,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-39",
+            "jira_issue_id": "10102",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+            "title": "Submit Legal Registration Application",
+            "description": "Submit legal registration application",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.475,
+            "depends_on": [
+              "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-40",
+            "jira_issue_id": "10103",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+            "title": "Draft Pilot Partnership Agreement",
+            "description": "Draft pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Omar",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.8,
+            "priority_score": 1.8,
+            "criticality_score": 1.8,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-41",
+            "jira_issue_id": "10104",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+            "title": "Review and Finalize Pilot Partnership Agreement",
+            "description": "Review and finalize pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Omar",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0.0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.8,
+            "priority_score": 1.45,
+            "criticality_score": 1.675,
+            "depends_on": [
+              "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-42",
+            "jira_issue_id": "10105",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          }
+        ],
+        "errors": []
       },
       "next_actions": [
-        "Focus next on: Define scope for User signup and authentication (owner: Omar)",
-        "Focus next on: Define scope for Learner dashboard (owner: Omar)",
-        "Focus next on: Define requirements for Legal registration (owner: Omar)"
+        "Review and update task dependencies to ensure correct task IDs and titles.",
+        "Verify task dependencies to prevent potential project delays."
       ],
       "monitoring": {
         "summary": {
           "done": 0,
           "in_progress": 0,
-          "todo": 20,
+          "todo": 9,
           "blocked": 0
         },
         "anomaly_count": 0,
-        "critic_issues": 0,
-        "task_count": 20,
-        "ready_count": 5
+        "critic_issues": 4,
+        "task_count": 9,
+        "ready_count": 3
       }
     },
     "runtime": {
-      "tasks": [],
+      "tasks": [
+        {
+          "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+          "title": "Define MVP Scope and Requirements",
+          "description": "Define the scope and requirements of the MVP",
+          "priority": "high",
+          "assigned_to": "Omar",
+          "deadline": "2026-06-15",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "MVP Launch Preparation",
+          "estimated_days": 2.3,
+          "priority_score": 3.3,
+          "criticality_score": 3.3,
+          "depends_on": [],
+          "category": "product_execution",
+          "jira_issue_key": "KAN-34",
+          "jira_issue_id": "10097",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+          "jira_status": "En cours",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+          "title": "Design Learner Dashboard",
+          "description": "Design the learner dashboard",
+          "priority": "high",
+          "assigned_to": "Meriem",
+          "deadline": "2026-06-15",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "MVP Launch Preparation",
+          "estimated_days": 2.0,
+          "priority_score": 2.25,
+          "criticality_score": 2.275,
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+          ],
+          "category": "product_execution",
+          "jira_issue_key": "KAN-35",
+          "jira_issue_id": "10098",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+          "title": "Implement User Signup and Authentication",
+          "description": "Implement user signup and authentication",
+          "priority": "high",
+          "assigned_to": "Amine",
+          "deadline": "2026-06-15",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "MVP Launch Preparation",
+          "estimated_days": 3.45,
+          "priority_score": 3.1,
+          "criticality_score": 3.125,
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+          ],
+          "category": "product_execution",
+          "jira_issue_key": "KAN-36",
+          "jira_issue_id": "10099",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+          "title": "Implement Payment Integration for Premium Courses",
+          "description": "Implement payment integration for premium courses",
+          "priority": "medium",
+          "assigned_to": "Amine",
+          "deadline": "2026-06-15",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "MVP Launch Preparation",
+          "estimated_days": 3.45,
+          "priority_score": 2.3,
+          "criticality_score": 2.325,
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+          ],
+          "category": "product_execution",
+          "jira_issue_key": "KAN-37",
+          "jira_issue_id": "10100",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+          "title": "Test and Validate MVP Features",
+          "description": "Test and validate MVP features",
+          "priority": "high",
+          "assigned_to": "Amine",
+          "deadline": "2026-06-15",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "MVP Launch Preparation",
+          "estimated_days": 3.0,
+          "priority_score": 2.75,
+          "criticality_score": 3.0,
+          "depends_on": [
+            "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+          ],
+          "category": "product_execution",
+          "jira_issue_key": "KAN-38",
+          "jira_issue_id": "10101",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+          "title": "Prepare Legal Registration Documents",
+          "description": "Prepare legal registration documents",
+          "priority": "high",
+          "assigned_to": "Omar",
+          "deadline": "2026-05-10",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "Legal Registration",
+          "estimated_days": 2.0,
+          "priority_score": 2.6,
+          "criticality_score": 2.6,
+          "depends_on": [],
+          "category": "admin_execution",
+          "jira_issue_key": "KAN-39",
+          "jira_issue_id": "10102",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+          "title": "Submit Legal Registration Application",
+          "description": "Submit legal registration application",
+          "priority": "high",
+          "assigned_to": "Omar",
+          "deadline": "2026-05-10",
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "Legal Registration",
+          "estimated_days": 2.0,
+          "priority_score": 2.25,
+          "criticality_score": 2.475,
+          "depends_on": [
+            "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
+          ],
+          "category": "admin_execution",
+          "jira_issue_key": "KAN-40",
+          "jira_issue_id": "10103",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+          "title": "Draft Pilot Partnership Agreement",
+          "description": "Draft pilot partnership agreement",
+          "priority": "medium",
+          "assigned_to": "Omar",
+          "deadline": null,
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "Pilot Partnership Agreements",
+          "estimated_days": 2.8,
+          "priority_score": 1.8,
+          "criticality_score": 1.8,
+          "depends_on": [],
+          "category": "admin_execution",
+          "jira_issue_key": "KAN-41",
+          "jira_issue_id": "10104",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        },
+        {
+          "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+          "title": "Review and Finalize Pilot Partnership Agreement",
+          "description": "Review and finalize pilot partnership agreement",
+          "priority": "medium",
+          "assigned_to": "Omar",
+          "deadline": null,
+          "status": "todo",
+          "progress": 0.0,
+          "actual_days": 0.0,
+          "blocked_reason": null,
+          "milestone_title": "Pilot Partnership Agreements",
+          "estimated_days": 2.8,
+          "priority_score": 1.45,
+          "criticality_score": 1.675,
+          "depends_on": [
+            "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
+          ],
+          "category": "admin_execution",
+          "jira_issue_key": "KAN-42",
+          "jira_issue_id": "10105",
+          "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+          "jira_status": "À faire",
+          "jira_transition_result": {
+            "changed": false,
+            "reason": "No available Jira transition for status=todo."
+          }
+        }
+      ],
+      "jira": {
+        "enabled": true,
+        "project_key": "KAN",
+        "issues_synced": 9,
+        "created": 9,
+        "updated": 0,
+        "errors": 0,
+        "last_sync": "2026-04-23T12:47:56.956308Z",
+        "refreshed": 9,
+        "last_pull": "2026-04-23T12:51:59.140226Z"
+      },
+      "jira_pull": {
+        "ok": true,
+        "jira_enabled": true,
+        "summary": {
+          "enabled": true,
+          "project_key": "KAN",
+          "issues_synced": 9,
+          "created": 9,
+          "updated": 0,
+          "errors": 0,
+          "last_sync": "2026-04-23T12:47:56.956308Z",
+          "refreshed": 9,
+          "last_pull": "2026-04-23T12:51:59.140226Z"
+        },
+        "tasks": [
+          {
+            "id": "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements",
+            "title": "Define MVP Scope and Requirements",
+            "description": "Define the scope and requirements for the SkillBridge MVP",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.3,
+            "priority_score": 3.3,
+            "criticality_score": 3.3,
+            "depends_on": [],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-34",
+            "jira_issue_id": "10097",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-34",
+            "jira_status": "En cours",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_2_design_learner_dashboard",
+            "title": "Design Learner Dashboard",
+            "description": "Design the learner dashboard for the SkillBridge MVP",
+            "priority": "high",
+            "assigned_to": "Meriem",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.275,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-35",
+            "jira_issue_id": "10098",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-35",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+            "title": "Implement User Signup and Authentication",
+            "description": "Implement user signup and authentication for the SkillBridge MVP",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.0,
+            "priority_score": 3.1,
+            "criticality_score": 3.125,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-36",
+            "jira_issue_id": "10099",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-36",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses",
+            "title": "Implement Payment Integration for Premium Courses",
+            "description": "Implement payment integration for premium courses in the SkillBridge MVP",
+            "priority": "medium",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 3.0,
+            "priority_score": 2.3,
+            "criticality_score": 2.325,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_1_define_mvp_scope_and_requirements"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-37",
+            "jira_issue_id": "10100",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-37",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_1_mvp_launch_preparation_T_5_test_and_validate_mvp_features",
+            "title": "Test and Validate MVP Features",
+            "description": "Test and validate the features of the SkillBridge MVP",
+            "priority": "high",
+            "assigned_to": "Amine",
+            "deadline": "2026-06-15",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "MVP Launch Preparation",
+            "estimated_days": 2.0,
+            "priority_score": 2.25,
+            "criticality_score": 2.5,
+            "depends_on": [
+              "MS_1_mvp_launch_preparation_T_3_implement_user_signup_and_authentication",
+              "MS_1_mvp_launch_preparation_T_4_implement_payment_integration_for_premium_courses"
+            ],
+            "category": "product_execution",
+            "jira_issue_key": "KAN-38",
+            "jira_issue_id": "10101",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-38",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_1_prepare_legal_registration_documents",
+            "title": "Prepare Legal Registration Documents",
+            "description": "Prepare the necessary documents for legal registration",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 1.6,
+            "priority_score": 2.6,
+            "criticality_score": 2.6,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-39",
+            "jira_issue_id": "10102",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-39",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_2_legal_registration_T_2_submit_legal_registration_application",
+            "title": "Submit Legal Registration Application",
+            "description": "Submit the legal registration application",
+            "priority": "high",
+            "assigned_to": "Omar",
+            "deadline": "2026-05-10",
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "Legal Registration",
+            "estimated_days": 1.6,
+            "priority_score": 2.25,
+            "criticality_score": 2.475,
+            "depends_on": [
+              "MS_2_legal_registration_T_1_prepare_legal_registration_documents"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-40",
+            "jira_issue_id": "10103",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-40",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement",
+            "title": "Draft Pilot Partnership Agreement",
+            "description": "Draft the pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Meriem",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.24,
+            "priority_score": 1.8,
+            "criticality_score": 1.8,
+            "depends_on": [],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-41",
+            "jira_issue_id": "10104",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-41",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          },
+          {
+            "id": "MS_3_pilot_partnership_agreements_T_2_review_and_finalize_pilot_partnership_agreement",
+            "title": "Review and Finalize Pilot Partnership Agreement",
+            "description": "Review and finalize the pilot partnership agreement",
+            "priority": "medium",
+            "assigned_to": "Meriem",
+            "deadline": null,
+            "status": "todo",
+            "progress": 0.0,
+            "actual_days": 0,
+            "blocked_reason": null,
+            "milestone_title": "Pilot Partnership Agreements",
+            "estimated_days": 2.24,
+            "priority_score": 1.45,
+            "criticality_score": 1.675,
+            "depends_on": [
+              "MS_3_pilot_partnership_agreements_T_1_draft_pilot_partnership_agreement"
+            ],
+            "category": "admin_execution",
+            "jira_issue_key": "KAN-42",
+            "jira_issue_id": "10105",
+            "jira_issue_url": "https://esprit-team-r6neq63b.atlassian.net/browse/KAN-42",
+            "jira_status": "À faire",
+            "jira_transition_result": {
+              "changed": false,
+              "reason": "No available Jira transition for status=todo."
+            }
+          }
+        ],
+        "errors": []
+      },
+      "jira_empty": false,
       "team_capacity": [
         {
-          "name": "Amine",
-          "role": "Backend Engineer",
-          "availability": 0.9,
-          "current_load": 0,
+          "name": "Omar",
+          "role": "Operations Manager",
+          "availability": 1.0,
+          "current_load": 3,
           "skills": [
-            "python",
-            "fastapi",
-            "backend",
-            "api",
-            "database",
-            "testing"
+            "planning",
+            "documentation",
+            "legal",
+            "operations"
           ]
         },
         {
           "name": "Meriem",
-          "role": "Frontend Developer / UX",
+          "role": "Product Designer",
           "availability": 1.0,
-          "current_load": 0,
+          "current_load": 3,
           "skills": [
-            "react",
-            "frontend",
-            "ui",
+            "design",
             "ux",
-            "design"
+            "frontend",
+            "planning"
           ]
         },
         {
-          "name": "Omar",
-          "role": "Operations / Project Manager",
-          "availability": 0.8,
-          "current_load": 0,
+          "name": "Amine",
+          "role": "Backend Engineer",
+          "availability": 1.0,
+          "current_load": 3,
           "skills": [
-            "project management",
-            "documentation",
-            "planning",
-            "operations",
-            "legal"
+            "development",
+            "backend",
+            "api",
+            "testing"
           ]
         }
       ]

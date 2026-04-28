@@ -1,7 +1,7 @@
 # =========================================================
-# EXECUTION AGENT WITH MCP + A2A
-# Keeps MCP and Jira architecture unchanged.
-# A2A is added only for internal agent collaboration.
+# EXECUTION AGENT WITH MCP
+# State contains facts only.
+# Agent thinks, reasons, creates tasks, assigns them, then persists via MCP.
 # =========================================================
 
 import os
@@ -19,13 +19,6 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 from openai import OpenAI
 
 from mcp_client_adapter import MCPProjectOpsClient
-from a2a_protocol import A2ABus
-from a2a_agents import (
-    PlannerA2AAgent,
-    CriticA2AAgent,
-    ActionA2AAgent,
-    ReportA2AAgent,
-)
 
 # =========================================================
 # 0) CONFIG
@@ -119,6 +112,7 @@ def count_braces_balance(text: str) -> int:
     balance = 0
     in_string = False
     escape = False
+
     for ch in text:
         if escape:
             escape = False
@@ -136,18 +130,6 @@ def count_braces_balance(text: str) -> int:
                 balance -= 1
     return balance
 
-def normalize_status(value: Optional[str]) -> str:
-    v = normalize_label(value or "")
-    if v in {"in progress", "doing", "en cours"}:
-        return STATUS_IN_PROGRESS
-    if v in {"done", "termine", "terminé", "closed", "resolved"}:
-        return STATUS_DONE
-    if v in {"blocked", "bloque", "bloqué"}:
-        return STATUS_BLOCKED
-    if v in {"delayed", "retarde", "retardé"}:
-        return STATUS_DELAYED
-    return STATUS_TODO
-
 # =========================================================
 # 2) TOKEN FACTORY CLIENT
 # =========================================================
@@ -158,6 +140,7 @@ class LLMClient:
         self.base_url = base_url.rstrip("/")
         self._healthchecked = False
         self._health_ok = False
+
         http_client = httpx.Client(verify=VERIFY_SSL, timeout=120.0)
         self.client = OpenAI(
             api_key=self.api_key,
@@ -435,11 +418,14 @@ async def sync_runtime_from_mcp(state: Dict[str, Any], mcp_client: MCPProjectOps
         try:
             jira_pull = await mcp_client.fetch_jira_updates_async()
             state["runtime"]["jira_pull"] = jira_pull
+
             pulled_tasks = jira_pull.get("tasks", [])
             if pulled_tasks:
                 state["runtime"]["tasks"] = pulled_tasks
+
             state["runtime"]["jira"] = jira_pull.get("summary", state["runtime"].get("jira", {}))
             state["runtime"]["jira_empty"] = len(state["runtime"]["tasks"]) == 0
+
             if state["runtime"]["jira_empty"]:
                 print("[JIRA] Initial pull found no tasks. First-run creation mode.")
             else:
@@ -491,7 +477,6 @@ def is_valid_plan_schema(plan: Dict[str, Any]) -> bool:
             ]):
                 return False
     return True
-
 
 def adapt_remote_plan_to_schema(raw_plan: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if not isinstance(raw_plan, dict):
@@ -601,7 +586,6 @@ def retrieve_kb_patterns(state: Dict[str, Any], kb: LocalKnowledgeBase) -> Dict[
     }
     return state
 
-
 def local_planner_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
     milestones = []
     risks = []
@@ -610,6 +594,7 @@ def local_planner_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
     for feat in state.get("mvp_plan", {}).get("features", []):
         fname = feat["name"]
         prio = feat.get("priority", PRIORITY_MEDIUM)
+
         milestones.append({
             "title": f"Deliver {fname}",
             "description": f"Execution milestone for {fname}",
@@ -659,6 +644,7 @@ def local_planner_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
     for admin in state.get("mvp_plan", {}).get("admin_workflow", []):
         aname = admin["name"]
         prio = admin.get("priority", PRIORITY_MEDIUM)
+
         milestones.append({
             "title": f"Complete {aname}",
             "description": f"Administrative milestone for {aname}",
@@ -710,9 +696,9 @@ def local_planner_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
         assumptions.append("Task decomposition guided by retrieved MVP/WBS knowledge patterns.")
     else:
         assumptions.append("Task decomposition generated without KB support.")
+
     risks.append("Planning generated from local fallback because remote planning may be unavailable.")
     return {"milestones": milestones, "risks": risks, "assumptions": assumptions}
-
 
 def remote_planner_attempt(state: Dict[str, Any], llm: LLMClient) -> Optional[Dict[str, Any]]:
     if not llm.healthcheck():
@@ -746,7 +732,7 @@ def remote_planner_attempt(state: Dict[str, Any], llm: LLMClient) -> Optional[Di
 
     system_prompt = """
 You are an execution-planning agent for a startup.
-You are hybrid: reason deeply, but produce a deterministic-ready execution plan.
+You must reason from startup facts AND current execution reality.
 
 Return ONLY JSON.
 No markdown.
@@ -758,6 +744,7 @@ Schema:
     {
       "title": "string",
       "description": "string",
+      "why_now": "string",
       "priority": "high|medium|low",
       "category": "product_execution|admin_execution",
       "deadline": "YYYY-MM-DD or null",
@@ -765,6 +752,7 @@ Schema:
         {
           "title": "string",
           "description": "string",
+          "why_this_task": "string",
           "priority": "high|medium|low",
           "complexity": "low|medium|high",
           "tags": ["string"],
@@ -775,15 +763,18 @@ Schema:
     }
   ],
   "risks": ["string"],
-  "assumptions": ["string"]
+  "assumptions": ["string"],
+  "planning_notes": ["string"]
 }
 
 Rules:
-- Think from startup facts plus current execution reality.
-- If existing_runtime_tasks is non-empty, use them as current execution reality.
-- If jira_empty is true, build the initial roadmap from startup facts.
-- Do not duplicate task titles that already exist unless truly necessary.
-- Build enough tasks to be operationally useful in Jira.
+- Think from startup facts plus CURRENT execution reality.
+- If existing_runtime_tasks is non-empty, treat it as the current truth and replan around it.
+- If jira_empty is true, this is the first run. Build the full roadmap from startup facts.
+- Do not duplicate an already existing task unless there is a very clear reason.
+- For each MVP feature, create operationally useful tasks.
+- Include validation/testing tasks where relevant.
+- Explain briefly why each milestone and task exists.
 - Do not invent team assignments here.
 """.strip()
 
@@ -812,7 +803,6 @@ Rules:
     except Exception as e:
         print(f"[Planner] ✗ LLM failed: {type(e).__name__}: {str(e)[:250]}")
         return None
-
 
 def planner_step(state: Dict[str, Any], llm: LLMClient) -> Dict[str, Any]:
     state["execution_state"] = state.get("execution_state", {})
@@ -882,7 +872,6 @@ def infer_estimation_skill_factor(task: Dict[str, Any], member: Dict[str, Any]) 
         return 1.15
     return 1.4
 
-
 def normalize_work_items_from_plan(state: Dict[str, Any]) -> Dict[str, Any]:
     draft = state.get("execution_state", {}).get("draft_plan", {})
     milestones = draft.get("milestones", [])
@@ -936,8 +925,6 @@ def normalize_work_items_from_plan(state: Dict[str, Any]) -> Dict[str, Any]:
                 "jira_issue_id": None,
                 "jira_issue_url": None,
                 "jira_status": None,
-                "agent_action": "update",
-                "agent_action_reason": "",
             }
             items.append(rec)
             title_to_id[normalize_label(title)] = task_id
@@ -969,7 +956,7 @@ def normalize_work_items_from_plan(state: Dict[str, Any]) -> Dict[str, Any]:
         if not source:
             continue
 
-        task["status"] = normalize_status(source.get("status", task["status"]))
+        task["status"] = source.get("status", task["status"])
         task["progress"] = safe_float(source.get("progress", task["progress"]), task["progress"])
         task["actual_days"] = safe_float(source.get("actual_days", task["actual_days"]), task["actual_days"])
         task["blocked_reason"] = clean_text(source.get("blocked_reason", "")) or None
@@ -981,7 +968,6 @@ def normalize_work_items_from_plan(state: Dict[str, Any]) -> Dict[str, Any]:
 
     state["execution_state"]["task_list"] = items
     return state
-
 
 def build_dag_and_ready_queue(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks = state.get("execution_state", {}).get("task_list", [])
@@ -1017,7 +1003,6 @@ def build_dag_and_ready_queue(state: Dict[str, Any]) -> Dict[str, Any]:
     state["execution_state"]["ready_queue"] = ready_queue
     return state
 
-
 def compute_estimations(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks = state.get("execution_state", {}).get("task_list", [])
     team = state.get("team", [])
@@ -1042,7 +1027,6 @@ def compute_estimations(state: Dict[str, Any]) -> Dict[str, Any]:
 
     state["execution_state"]["task_list"] = tasks
     return state
-
 
 def compute_priority_scores(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks = state.get("execution_state", {}).get("task_list", [])
@@ -1082,7 +1066,6 @@ def compute_priority_scores(state: Dict[str, Any]) -> Dict[str, Any]:
     state["execution_state"]["priority_queue"] = [t["id"] for t in ready_tasks]
     return state
 
-
 def assign_tasks_graph_aware(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks = state.get("execution_state", {}).get("task_list", [])
     team = copy.deepcopy(state.get("team", []))
@@ -1098,9 +1081,6 @@ def assign_tasks_graph_aware(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks_sorted = sorted(tasks, key=lambda x: (-x.get("priority_score", 0), -x.get("graph_depth", 0)))
 
     for t in tasks_sorted:
-        if t.get("assigned_to"):
-            continue
-
         best_idx = None
         best_score = -1.0
         best_match = 0.0
@@ -1151,7 +1131,6 @@ def assign_tasks_graph_aware(state: Dict[str, Any]) -> Dict[str, Any]:
     state["execution_state"]["task_list"] = tasks
     return state
 
-
 def compute_critical_path_days(state: Dict[str, Any]) -> float:
     tasks = state.get("execution_state", {}).get("task_list", [])
     g = nx.DiGraph()
@@ -1180,7 +1159,6 @@ def compute_critical_path_days(state: Dict[str, Any]) -> float:
             longest[n] = node_cost
 
     return round(max(longest.values()) if longest else 0.0, 2)
-
 
 def compute_feasibility(state: Dict[str, Any]) -> Dict[str, Any]:
     deadlines = state.get("mvp_plan", {}).get("deadlines", {})
@@ -1217,7 +1195,6 @@ def compute_feasibility(state: Dict[str, Any]) -> Dict[str, Any]:
         "buffer_days": buffer,
     }
     return state
-
 
 def detect_anomalies(state: Dict[str, Any]) -> Dict[str, Any]:
     tasks = state.get("execution_state", {}).get("task_list", [])
@@ -1266,8 +1243,7 @@ def critic_local_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
             "severity": "high",
             "suggested_fix": "Break at least one circular dependency between tasks.",
         })
-        anomaly_review.append("The task graph contains a cycle and must be cleaned before execution.")
-        recommendations.append("Break circular dependencies before starting more tasks.")
+        anomaly_review.append("A dependency cycle was detected. Some tasks cannot progress until the loop is broken.")
 
     feasibility = state.get("execution_state", {}).get("feasibility", {})
     if feasibility.get("status") in ["fragile", "high_risk"]:
@@ -1276,28 +1252,44 @@ def critic_local_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
             "severity": "high" if feasibility.get("status") == "high_risk" else "medium",
             "suggested_fix": "Reduce scope, protect critical tasks, and postpone low-priority work.",
         })
-        critic_review.append(f"The roadmap is currently {feasibility.get('status')}.")
-        recommendations.append("Protect the critical path and reduce non-essential work.")
+        critic_review.append(f"The current delivery plan is {feasibility.get('status')} against the deadline.")
 
     anomalies = state.get("execution_state", {}).get("anomalies", [])
     if anomalies:
-        anomaly_review.append("Execution anomalies exist and should be reviewed immediately.")
-        next_actions.append("Resolve blocked and overrun tasks before starting new non-critical work.")
-        recommendations.append("Investigate anomaly root causes before accelerating execution.")
-    else:
-        anomaly_review.append("No major anomaly is currently detected by the deterministic checks.")
+        for anomaly in anomalies[:5]:
+            anomaly_review.append(f"Detected anomaly: {anomaly.get('type', 'unknown')}.")
+
+    if not anomaly_review:
+        anomaly_review.append("No major execution anomaly is currently visible from the deterministic checks.")
 
     top_priority_ids = set(state.get("execution_state", {}).get("priority_queue", [])[:3])
     for t in state.get("execution_state", {}).get("task_list", []):
         if t["id"] in top_priority_ids:
             next_actions.append(f"Focus next on: {t['title']} (owner: {t.get('assigned_to', 'unassigned')})")
 
-    if not critic_review:
-        critic_review.append("The plan is structurally acceptable based on local checks.")
-    if not recommendations:
-        recommendations.append("Continue with the highest-priority ready tasks.")
     if not next_actions:
         next_actions.append("Review the ready queue and start the highest-priority available task.")
+
+    recommendations.extend(next_actions[:3])
+    if not critic_review:
+        critic_review.append("The plan is structurally usable, but should still be reviewed for task sizing and workload balance.")
+
+    recommended_actions = []
+    for t in state.get("execution_state", {}).get("task_list", []):
+        if t.get("jira_issue_key"):
+            action = "update"
+            if t.get("status") == STATUS_IN_PROGRESS and t.get("jira_status") not in {"En cours", "In Progress"}:
+                action = "transition"
+        else:
+            action = "create"
+
+        recommended_actions.append({
+            "task_title": t.get("title"),
+            "action": action,
+            "reason": "Derived from current task/Jira state",
+            "target_status": t.get("status"),
+            "new_owner": t.get("assigned_to"),
+        })
 
     return {
         "anomaly_review": anomaly_review,
@@ -1305,21 +1297,27 @@ def critic_local_fallback(state: Dict[str, Any]) -> Dict[str, Any]:
         "recommendations": recommendations,
         "issues_found": issues,
         "updated_next_actions": next_actions,
+        "recommended_actions": recommended_actions,
     }
-
 
 def remote_critic_attempt(state: Dict[str, Any], llm: LLMClient) -> Optional[Dict[str, Any]]:
     if not llm.healthcheck():
         return None
 
     system_prompt = """
-You are the execution reviewer.
+You are the execution reviewer and recommendation engine for a startup.
 
 Return ONLY JSON:
 {
-  "anomaly_review": ["string"],
-  "critic_review": ["string"],
-  "recommendations": ["string"],
+  "anomaly_review": [
+    "string"
+  ],
+  "critic_review": [
+    "string"
+  ],
+  "recommendations": [
+    "string"
+  ],
   "issues_found": [
     {
       "issue": "string",
@@ -1327,26 +1325,46 @@ Return ONLY JSON:
       "suggested_fix": "string"
     }
   ],
-  "updated_next_actions": ["string"]
+  "updated_next_actions": ["string"],
+  "recommended_actions": [
+    {
+      "task_title": "string",
+      "action": "create|update|transition|reassign|defer|leave_unchanged|escalate",
+      "reason": "string",
+      "target_status": "todo|in_progress|done|blocked|delayed|null",
+      "new_owner": "string|null"
+    }
+  ]
 }
+
+Rules:
+- anomaly_review must explain the most important execution anomalies in clear founder-friendly language.
+- critic_review must explain the quality of the plan, its weaknesses, and structural concerns.
+- recommendations must give practical startup-level recommendations, not technical formulas.
+- recommended_actions should be operational and aligned with Jira reality.
+- be concise, concrete, and operational.
 """.strip()
 
     payload = {
         "feasibility": state.get("execution_state", {}).get("feasibility", {}),
         "anomalies": state.get("execution_state", {}).get("anomalies", []),
-        "priority_queue": state.get("execution_state", {}).get("priority_queue", [])[:5],
+        "priority_queue": state.get("execution_state", {}).get("priority_queue", [])[:8],
         "task_list": [
             {
                 "title": t.get("title"),
                 "status": t.get("status"),
+                "jira_status": t.get("jira_status"),
                 "priority": t.get("priority"),
                 "assigned_to": t.get("assigned_to"),
                 "estimated_days": t.get("estimated_days"),
                 "depends_on": t.get("depends_on"),
                 "tags": t.get("tags", []),
+                "jira_issue_key": t.get("jira_issue_key"),
+                "milestone_title": t.get("milestone_title"),
             }
-            for t in state.get("execution_state", {}).get("task_list", [])[:16]
+            for t in state.get("execution_state", {}).get("task_list", [])[:20]
         ],
+        "monitoring": state.get("execution_state", {}).get("monitoring", {}),
     }
 
     try:
@@ -1358,7 +1376,8 @@ Return ONLY JSON:
             max_tokens=CRITIC_MAX_TOKENS,
         )
 
-        if isinstance(raw, dict) and "issues_found" in raw and "updated_next_actions" in raw:
+        required = {"anomaly_review", "critic_review", "recommendations", "issues_found", "updated_next_actions", "recommended_actions"}
+        if isinstance(raw, dict) and required.issubset(set(raw.keys())):
             print("[Critic] ✓ Remote critic valid")
             return raw
 
@@ -1368,7 +1387,6 @@ Return ONLY JSON:
     except Exception as e:
         print(f"[Critic] ✗ Remote critic failed: {type(e).__name__}: {str(e)[:200]}")
         return None
-
 
 def critic_step(state: Dict[str, Any], llm: LLMClient) -> Dict[str, Any]:
     if MODEL_MODE == "hybrid":
@@ -1388,117 +1406,60 @@ def critic_step(state: Dict[str, Any], llm: LLMClient) -> Dict[str, Any]:
 # =========================================================
 
 def action_decision_step(state: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Decide what the agent should do on Jira without changing MCP/Jira architecture.
-    A2A ActionAgent will call this function.
-    """
-    state = copy.deepcopy(state)
-    tasks = state.get("execution_state", {}).get("task_list", [])
+    task_list = state.get("execution_state", {}).get("task_list", [])
+    critic = state.get("execution_state", {}).get("critic_report", {})
+    recommendations = critic.get("recommended_actions", [])
+
+    rec_by_title = {
+        normalize_label(r.get("task_title", "")): r
+        for r in recommendations
+        if r.get("task_title")
+    }
+
     action_plan = []
 
-    for t in tasks:
-        jira_key = clean_text(t.get("jira_issue_key"))
-        status = normalize_status(t.get("status"))
-        blocked = bool(t.get("blocked_reason"))
-        assigned = clean_text(t.get("assigned_to"))
+    for task in task_list:
+        title_key = normalize_label(task.get("title", ""))
+        rec = rec_by_title.get(title_key)
 
-        if not jira_key:
-            t["agent_action"] = "create"
-            t["agent_action_reason"] = "Task does not exist in Jira yet."
-        elif blocked:
-            t["agent_action"] = "transition"
-            t["agent_action_reason"] = "Task is blocked and Jira status may need update."
-        elif status == STATUS_IN_PROGRESS and normalize_label(t.get("jira_status", "")) not in {"en cours", "in progress", "doing"}:
-            t["agent_action"] = "transition"
-            t["agent_action_reason"] = "Task is in progress locally but not aligned in Jira."
-        elif assigned:
-            t["agent_action"] = "update"
-            t["agent_action_reason"] = "Keep Jira description and assignment metadata aligned."
+        if rec:
+            action_plan.append({
+                "task_id": task.get("id"),
+                "title": task.get("title"),
+                "action": rec.get("action", "leave_unchanged"),
+                "reason": rec.get("reason", ""),
+                "target_status": rec.get("target_status"),
+                "new_owner": rec.get("new_owner"),
+                "jira_issue_key": task.get("jira_issue_key"),
+            })
+            if rec.get("new_owner"):
+                task["assigned_to"] = rec["new_owner"]
+            if rec.get("target_status") in {"todo", "in_progress", "done", "blocked", "delayed"}:
+                task["status"] = rec["target_status"]
         else:
-            t["agent_action"] = "update"
-            t["agent_action_reason"] = "Refresh Jira issue fields."
+            if task.get("jira_issue_key"):
+                action = "update"
+                if task.get("status") == STATUS_IN_PROGRESS and task.get("jira_status") not in {"En cours", "In Progress"}:
+                    action = "transition"
+            else:
+                action = "create"
 
-        action_plan.append({
-            "task_id": t["id"],
-            "title": t["title"],
-            "agent_action": t["agent_action"],
-            "reason": t["agent_action_reason"],
-        })
+            action_plan.append({
+                "task_id": task.get("id"),
+                "title": task.get("title"),
+                "action": action,
+                "reason": "Derived from current task/Jira state",
+                "target_status": task.get("status"),
+                "new_owner": task.get("assigned_to"),
+                "jira_issue_key": task.get("jira_issue_key"),
+            })
 
-    state["execution_state"]["task_list"] = tasks
+    state["execution_state"]["task_list"] = task_list
     state["execution_state"]["action_plan"] = action_plan
     return state
 
 # =========================================================
-# 10) REPORT HELPERS
-# =========================================================
-
-def build_executive_summary(result: Dict[str, Any]) -> Dict[str, str]:
-    feasibility = result.get("feasibility", {})
-    monitoring = result.get("monitoring", {})
-    next_actions = result.get("next_actions", [])
-    critic_report = result.get("critic_report", {})
-    anomalies = result.get("anomalies", [])
-
-    status = clean_text(feasibility.get("status", "unknown"))
-    if status == "good":
-        headline = "The project is currently on track."
-    elif status == "fragile":
-        headline = "The project is feasible but needs close follow-up."
-    elif status == "high_risk":
-        headline = "The project is at risk and needs corrective action."
-    else:
-        headline = "The delivery outlook is still unclear."
-
-    main_risk = "No major risk identified."
-    issues = critic_report.get("issues_found", [])
-    if issues:
-        main_risk = clean_text(issues[0].get("issue", main_risk))
-    elif anomalies:
-        main_risk = clean_text(anomalies[0].get("type", main_risk))
-
-    next_step = next_actions[0] if next_actions else "Start the highest-priority ready task."
-
-    return {
-        "headline": headline,
-        "feasibility": status,
-        "task_count": str(monitoring.get("task_count", 0)),
-        "ready_count": str(monitoring.get("ready_count", 0)),
-        "main_risk": main_risk,
-        "next_step": next_step,
-    }
-
-
-def build_owner_action_plan(task_list: List[Dict[str, Any]]) -> Dict[str, List[str]]:
-    owner_map: Dict[str, List[str]] = {}
-    sorted_tasks = sorted(
-        task_list,
-        key=lambda x: (-safe_float(x.get("criticality_score", 0)), clean_text(x.get("title", "")))
-    )
-    for task in sorted_tasks:
-        owner = clean_text(task.get("assigned_to")) or "Unassigned"
-        owner_map.setdefault(owner, [])
-        if len(owner_map[owner]) < 4:
-            owner_map[owner].append(clean_text(task.get("title", "")))
-    return owner_map
-
-
-def build_decisions_list(result: Dict[str, Any]) -> List[str]:
-    decisions = []
-    executive_summary = build_executive_summary(result)
-    decisions.append(executive_summary["next_step"])
-
-    critic_report = result.get("critic_report", {})
-    for rec in critic_report.get("recommendations", [])[:3]:
-        decisions.append(clean_text(rec))
-
-    if not decisions:
-        decisions.append("Review the roadmap and start the top ready task.")
-
-    return decisions[:5]
-
-# =========================================================
-# 11) MCP PERSISTENCE
+# 10) MCP PERSISTENCE
 # =========================================================
 
 async def persist_tasks_to_mcp(state: Dict[str, Any], mcp_client: MCPProjectOpsClient) -> Dict[str, Any]:
@@ -1510,9 +1471,13 @@ async def persist_tasks_to_mcp(state: Dict[str, Any], mcp_client: MCPProjectOpsC
         if t.get("title")
     }
 
+    action_plan = state.get("execution_state", {}).get("action_plan", [])
+    action_by_id = {a.get("task_id"): a for a in action_plan if a.get("task_id")}
+
     payload = []
     for t in tasks:
         existing = runtime_by_title.get(normalize_label(t.get("title", "")), {})
+        action_info = action_by_id.get(t["id"], {})
         payload.append({
             "id": t["id"],
             "title": t["title"],
@@ -1534,8 +1499,8 @@ async def persist_tasks_to_mcp(state: Dict[str, Any], mcp_client: MCPProjectOpsC
             "jira_issue_id": t.get("jira_issue_id") or existing.get("jira_issue_id"),
             "jira_issue_url": t.get("jira_issue_url") or existing.get("jira_issue_url"),
             "jira_status": t.get("jira_status") or existing.get("jira_status"),
-            "agent_action": t.get("agent_action", "update"),
-            "agent_action_reason": t.get("agent_action_reason", ""),
+            "agent_action": action_info.get("action", "update"),
+            "agent_action_reason": action_info.get("reason", ""),
         })
 
     result = await mcp_client.upsert_tasks_async(payload)
@@ -1561,6 +1526,93 @@ async def persist_tasks_to_mcp(state: Dict[str, Any], mcp_client: MCPProjectOpsC
     return state
 
 # =========================================================
+# 11) FOUNDER-FACING REPORT HELPERS
+# =========================================================
+
+def get_project_status_label(feasibility: Dict[str, Any], anomalies: List[Dict[str, Any]], critic_report: Dict[str, Any]) -> str:
+    status = feasibility.get("status", "unknown")
+    critic_issues = len(critic_report.get("issues_found", []))
+    anomaly_count = len(anomalies)
+
+    if status == "high_risk" or anomaly_count >= 3:
+        return "At risk"
+    if status == "fragile" or critic_issues >= 3:
+        return "Needs attention"
+    if status == "good":
+        return "On track"
+    return "Unclear"
+
+def build_executive_summary(result: Dict[str, Any]) -> Dict[str, str]:
+    feasibility = result.get("feasibility", {})
+    anomalies = result.get("anomalies", [])
+    critic_report = result.get("critic_report", {})
+    next_actions = result.get("next_actions", [])
+    priority_tasks = result.get("priority_queue", [])
+
+    status_label = get_project_status_label(feasibility, anomalies, critic_report)
+
+    if feasibility.get("status") == "good":
+        reason = "The current roadmap fits within the deadline with a healthy time buffer."
+    elif feasibility.get("status") == "fragile":
+        reason = "The roadmap is still feasible, but there is little room for delay."
+    elif feasibility.get("status") == "high_risk":
+        reason = "The current plan is unlikely to fit the deadline without changes."
+    else:
+        reason = "The delivery outlook is not yet fully clear."
+
+    if priority_tasks:
+        immediate_focus = ", ".join([t.get("title", "") for t in priority_tasks[:3] if t.get("title")])
+    else:
+        immediate_focus = "Review the roadmap and identify the next executable tasks."
+
+    issues = critic_report.get("issues_found", [])
+    if issues:
+        main_risk = issues[0].get("issue", "Execution risks need review.")
+    elif anomalies:
+        main_risk = anomalies[0].get("type", "Execution issues need attention.")
+    else:
+        main_risk = "No major execution risk detected right now."
+
+    return {
+        "status": status_label,
+        "reason": reason,
+        "immediate_focus": immediate_focus,
+        "main_risk": main_risk,
+        "headline_action": next_actions[0] if next_actions else "Start the highest-priority ready task.",
+    }
+
+def build_owner_action_plan(task_list: List[Dict[str, Any]]) -> Dict[str, List[str]]:
+    plan: Dict[str, List[str]] = {}
+
+    actionable = [
+        t for t in task_list
+        if t.get("status") in {"todo", "in_progress"}
+    ]
+
+    actionable.sort(
+        key=lambda x: (
+            -x.get("criticality_score", 0),
+            x.get("estimated_days", 0),
+            x.get("title", "")
+        )
+    )
+
+    for task in actionable:
+        owner = task.get("assigned_to") or "Unassigned"
+        plan.setdefault(owner, [])
+        if len(plan[owner]) < 3:
+            plan[owner].append(task.get("title", "Untitled task"))
+
+    return plan
+
+def build_decisions_list(result: Dict[str, Any]) -> List[str]:
+    critic_report = result.get("critic_report", {})
+    decisions = critic_report.get("recommendations", [])
+    if not decisions:
+        decisions = ["No urgent founder decision is required right now."]
+    return decisions
+
+# =========================================================
 # 12) ORCHESTRATOR
 # =========================================================
 
@@ -1570,34 +1622,12 @@ class ExecutionOrchestrator:
         self.kb = kb
         self.mcp_client = mcp_client
 
-        self.a2a_bus = A2ABus()
-        self.a2a_bus.register("planner_agent", PlannerA2AAgent("planner_agent", planner_step))
-        self.a2a_bus.register("critic_agent", CriticA2AAgent("critic_agent", critic_step))
-        self.a2a_bus.register("action_agent", ActionA2AAgent("action_agent", action_decision_step))
-        self.a2a_bus.register(
-            "report_agent",
-            ReportA2AAgent(
-                "report_agent",
-                build_executive_summary,
-                build_owner_action_plan,
-                build_decisions_list,
-            ),
-        )
-
     async def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
         state = copy.deepcopy(state)
 
         state = await sync_runtime_from_mcp(state, self.mcp_client)
         state = retrieve_kb_patterns(state, self.kb)
-
-        plan_resp = await self.a2a_bus.send(
-            sender="execution_agent",
-            recipient="planner_agent",
-            performative="plan",
-            payload={"state": state, "llm": self.llm},
-        )
-        state = plan_resp["state"]
-
+        state = planner_step(state, self.llm)
         state = normalize_work_items_from_plan(state)
         state = build_dag_and_ready_queue(state)
         state = compute_estimations(state)
@@ -1606,23 +1636,23 @@ class ExecutionOrchestrator:
         state = compute_feasibility(state)
         state = detect_anomalies(state)
 
+        state["execution_state"]["monitoring"] = {
+            "summary": {
+                "done": 0,
+                "in_progress": 0,
+                "todo": 0,
+                "blocked": 0,
+            },
+            "anomaly_count": len(state["execution_state"].get("anomalies", [])),
+            "critic_issues": 0,
+            "task_count": len(state["execution_state"].get("task_list", [])),
+            "ready_count": len(state["execution_state"].get("ready_queue", [])),
+        }
+
         for _ in range(MAX_CRITIC_LOOPS):
-            critic_resp = await self.a2a_bus.send(
-                sender="execution_agent",
-                recipient="critic_agent",
-                performative="critic_review",
-                payload={"state": state, "llm": self.llm},
-            )
-            state = critic_resp["state"]
+            state = critic_step(state, self.llm)
 
-        action_resp = await self.a2a_bus.send(
-            sender="execution_agent",
-            recipient="action_agent",
-            performative="decide_actions",
-            payload={"state": state},
-        )
-        state = action_resp["state"]
-
+        state = action_decision_step(state)
         state = await persist_tasks_to_mcp(state, self.mcp_client)
 
         critic = state.get("execution_state", {}).get("critic_report", {})
@@ -1649,7 +1679,21 @@ class ExecutionOrchestrator:
             "ready_count": len(state["execution_state"].get("ready_queue", [])),
         }
 
-        result = {
+        founder_brief = {
+            "executive_summary": build_executive_summary({
+                "feasibility": state.get("execution_state", {}).get("feasibility", {}),
+                "anomalies": state.get("execution_state", {}).get("anomalies", []),
+                "critic_report": state.get("execution_state", {}).get("critic_report", {}),
+                "next_actions": state.get("execution_state", {}).get("next_actions", []),
+                "priority_queue": priority_queue,
+            }),
+            "owner_action_plan": build_owner_action_plan(task_list),
+            "decisions": build_decisions_list({
+                "critic_report": state.get("execution_state", {}).get("critic_report", {})
+            }),
+        }
+
+        return {
             "startup_name": state.get("startup_profile", {}).get("name", "Unknown startup"),
             "models": {
                 "planner_requested": LLM_PLANNER_MODEL,
@@ -1671,22 +1715,10 @@ class ExecutionOrchestrator:
             "critic_report": state.get("execution_state", {}).get("critic_report", {}),
             "next_actions": state.get("execution_state", {}).get("next_actions", []),
             "monitoring": state.get("execution_state", {}).get("monitoring", {}),
-            "jira": state.get("execution_state", {}).get("jira", state.get("runtime", {}).get("jira", {})),
             "dependency_graph_has_cycle": state.get("execution_state", {}).get("dependency_graph_has_cycle", False),
+            "founder_brief": founder_brief,
             "updated_state": state,
         }
-
-        report_resp = await self.a2a_bus.send(
-            sender="execution_agent",
-            recipient="report_agent",
-            performative="build_report_context",
-            payload={"result": result},
-        )
-        result["executive_summary"] = report_resp.get("executive_summary", {})
-        result["owner_action_plan"] = report_resp.get("owner_action_plan", {})
-        result["founder_decisions"] = report_resp.get("decisions", [])
-
-        return result
 
 # =========================================================
 # 13) OUTPUT
@@ -1694,106 +1726,111 @@ class ExecutionOrchestrator:
 
 def render_user_friendly_output(result: Dict[str, Any]):
     startup = result.get("startup_name", "Unknown startup")
-    models = result.get("models", {})
     feasibility = result.get("feasibility", {})
     monitoring = result.get("monitoring", {})
     critic_report = result.get("critic_report", {})
     next_actions = result.get("next_actions", [])
     priority_tasks = result.get("priority_queue", [])
+    task_list = result.get("task_list", [])
     summary = monitoring.get("summary", {})
-    executive_summary = result.get("executive_summary", {})
-    owner_action_plan = result.get("owner_action_plan", {})
-    founder_decisions = result.get("founder_decisions", [])
     jira = result.get("updated_state", {}).get("execution_state", {}).get("jira", {})
 
+    executive = build_executive_summary(result)
+    owner_plan = build_owner_action_plan(task_list)
     anomaly_review = critic_report.get("anomaly_review", [])
     critic_review = critic_report.get("critic_review", [])
     recommendations = critic_report.get("recommendations", [])
 
     print("\n" + "=" * 90)
-    print(f"EXECUTION REPORT — {startup}")
+    print(f"EXECUTION BRIEF — {startup}")
     print("=" * 90)
 
     print("\n1. EXECUTIVE SUMMARY")
     print("-" * 90)
-    for k, v in executive_summary.items():
-        print(f"{k.replace('_', ' ').title():20}: {v}")
+    print(f"Project status     : {executive['status']}")
+    print(f"Why                : {executive['reason']}")
+    print(f"Immediate focus    : {executive['immediate_focus']}")
+    print(f"Main risk          : {executive['main_risk']}")
+    print(f"Recommended action : {executive['headline_action']}")
 
-    print("\n2. GLOBAL STATUS")
+    print("\n2. CAN WE DELIVER ON TIME?")
     print("-" * 90)
-    print(f"Planning source : {models.get('planner_used', 'unknown')}")
-    print(f"Review source   : {models.get('critic_used', 'unknown')}")
+    print(f"Delivery outlook           : {feasibility.get('status')}")
+    print(f"Minimum time needed        : {feasibility.get('critical_path_days')} working days")
+    print(f"Days remaining to deadline : {feasibility.get('deadline_days')} days")
+    print(f"Safety buffer              : {feasibility.get('buffer_days')} days")
 
-    print("\n3. CAN WE DELIVER ON TIME?")
+    print("\n3. WHAT SHOULD HAPPEN NOW?")
     print("-" * 90)
-    print(f"Critical path duration : {feasibility.get('critical_path_days')} days")
-    print(f"Days until deadline    : {feasibility.get('deadline_days')} days")
-    print(f"Safety buffer          : {feasibility.get('buffer_days')} days")
-    print(f"Feasibility            : {feasibility.get('status')}")
+    if next_actions:
+        for i, action in enumerate(next_actions[:5], start=1):
+            print(f"{i}. {action}")
+    else:
+        print("No immediate action list available.")
 
-    print("\n4. WHAT SHOULD HAPPEN NOW?")
+    print("\n4. WHO SHOULD DO WHAT?")
     print("-" * 90)
-    for i, action in enumerate(next_actions[:7], start=1):
-        print(f"{i}. {action}")
-
-    print("\n5. WHO SHOULD DO WHAT?")
-    print("-" * 90)
-    for owner, tasks in owner_action_plan.items():
+    for owner, actions in owner_plan.items():
         print(f"{owner}:")
-        for t in tasks[:4]:
-            print(f"  - {t}")
+        for item in actions:
+            print(f"  - {item}")
 
-    print("\n6. MAIN RISKS AND ANOMALIES")
+    print("\n5. MAIN RISKS AND ANOMALIES")
     print("-" * 90)
-    for i, item in enumerate(anomaly_review[:5], start=1):
-        print(f"{i}. {item}")
+    if anomaly_review:
+        for i, item in enumerate(anomaly_review[:5], start=1):
+            print(f"{i}. {item}")
+    else:
+        print("No major anomaly highlighted by the reviewer.")
 
-    print("\n7. CRITIC REVIEW")
+    print("\n6. CRITIC REVIEW")
     print("-" * 90)
-    for i, item in enumerate(critic_review[:5], start=1):
-        print(f"{i}. {item}")
+    if critic_review:
+        for i, item in enumerate(critic_review[:5], start=1):
+            print(f"{i}. {item}")
+    else:
+        print("No major structural concern highlighted by the reviewer.")
 
-    print("\n8. RECOMMENDATIONS")
+    print("\n7. RECOMMENDATIONS")
     print("-" * 90)
-    for i, item in enumerate(recommendations[:7], start=1):
-        print(f"{i}. {item}")
+    if recommendations:
+        for i, item in enumerate(recommendations[:7], start=1):
+            print(f"{i}. {item}")
+    else:
+        print("No recommendation available.")
 
-    print("\n9. FOUNDER DECISIONS")
+    print("\n8. EXECUTION SNAPSHOT")
     print("-" * 90)
-    for i, item in enumerate(founder_decisions[:5], start=1):
-        print(f"{i}. {item}")
+    print(f"Total tasks           : {monitoring.get('task_count', 0)}")
+    print(f"Tasks that can start  : {monitoring.get('ready_count', 0)}")
+    print(f"Done                  : {summary.get('done', 0)}")
+    print(f"In progress           : {summary.get('in_progress', 0)}")
+    print(f"To do                 : {summary.get('todo', 0)}")
+    print(f"Blocked               : {summary.get('blocked', 0)}")
+    print(f"Execution problems    : {monitoring.get('anomaly_count', 0)}")
+    print(f"Planning concerns     : {monitoring.get('critic_issues', 0)}")
 
-    print("\n10. EXECUTION SNAPSHOT")
+    print("\n9. DETAILED PRIORITY TASKS")
     print("-" * 90)
-    print(f"Total tasks       : {monitoring.get('task_count', 0)}")
-    print(f"Ready tasks       : {monitoring.get('ready_count', 0)}")
-    print(f"Done              : {summary.get('done', 0)}")
-    print(f"In progress       : {summary.get('in_progress', 0)}")
-    print(f"Todo              : {summary.get('todo', 0)}")
-    print(f"Blocked           : {summary.get('blocked', 0)}")
-    print(f"Anomalies         : {monitoring.get('anomaly_count', 0)}")
-    print(f"Critic issues     : {monitoring.get('critic_issues', 0)}")
-
-    print("\n11. TOP PRIORITY TASKS")
-    print("-" * 90)
-    for i, task in enumerate(priority_tasks[:5], start=1):
+    for i, task in enumerate(priority_tasks[:7], start=1):
         print(f"{i}. {task.get('title')}")
-        print(f"   Owner     : {task.get('assigned_to', 'unassigned')}")
-        print(f"   Priority  : {task.get('priority')}")
-        print(f"   Estimate  : {task.get('estimated_days')} days")
-        print(f"   Score     : {task.get('criticality_score')}")
+        print(f"   Owner      : {task.get('assigned_to', 'unassigned')}")
+        print(f"   Priority   : {task.get('priority')}")
+        print(f"   Estimate   : {task.get('estimated_days')} days")
+        print(f"   Status     : {task.get('status')}")
+        print(f"   Milestone  : {task.get('milestone_title')}")
 
-    print("\n12. JIRA SYNC SUMMARY")
+    print("\n10. JIRA SYNC SUMMARY")
     print("-" * 90)
     if jira:
-        print(f"Enabled           : {jira.get('enabled', False)}")
-        print(f"Project key       : {jira.get('project_key', 'N/A')}")
-        print(f"Issues synced     : {jira.get('issues_synced', 0)}")
-        print(f"Created           : {jira.get('created', 0)}")
-        print(f"Updated           : {jira.get('updated', 0)}")
-        print(f"Errors            : {jira.get('errors', 0)}")
-        if jira.get('last_sync'):
-            print(f"Last sync         : {jira.get('last_sync')}")
+        print(f"Enabled        : {jira.get('enabled', False)}")
+        print(f"Project key    : {jira.get('project_key', 'N/A')}")
+        print(f"Issues synced  : {jira.get('issues_synced', 0)}")
+        print(f"Created        : {jira.get('created', 0)}")
+        print(f"Updated        : {jira.get('updated', 0)}")
+        print(f"Errors         : {jira.get('errors', 0)}")
+        if jira.get("last_sync"):
+            print(f"Last sync      : {jira.get('last_sync')}")
     else:
         print("No Jira sync summary available.")
 
@@ -1847,17 +1884,14 @@ async def main():
             "continuity_score",
             "depends_on",
             "category",
-            "jira_issue_key",
-            "jira_status",
-            "agent_action",
         ]
         display_cols = [c for c in display_cols if c in df_tasks.columns]
         df_display = df_tasks[display_cols].copy()
         print(df_display.head(25).to_string(index=False))
 
     os.makedirs("execution_agent_outputs", exist_ok=True)
-    startup_name = clean_text(result.get("startup_name", "startup")).replace(" ", "_")
-    out_path = f"execution_agent_outputs/execution_result_{startup_name}.json"
+    startup_name = result.get("startup_name", "startup")
+    out_path = f"execution_agent_outputs/execution_result_{slugify(startup_name) or 'startup'}.json"
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
