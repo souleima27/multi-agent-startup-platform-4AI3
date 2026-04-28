@@ -1,0 +1,2138 @@
+{
+  "video_path": "C:\\Users\\asus\\Downloads\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.mp4",
+  "created_at": "2026-04-28 21:04:52",
+  "agent_state": {
+    "video_path": "C:\\Users\\asus\\Downloads\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.mp4",
+    "output_dir": "C:\\Users\\asus\\Desktop\\pitch\\output",
+    "goal": "Coach this pitch using all enabled multimodal evidence before writing the report.",
+    "coaching_mode": "investor",
+    "observations": {
+      "audio_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\audio\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav",
+      "transcript_data": {
+        "language": "en",
+        "duration_sec": 172.2224375,
+        "segment_count": 69,
+        "text_preview": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that"
+      },
+      "transcript": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+      "language": "en",
+      "transcript_segment_count": 69,
+      "frame_paths": "40 sampled frame paths"
+    },
+    "analyses": {
+      "audio_features": {
+        "duration_sec": 172.2224375,
+        "word_count": 494,
+        "words_per_minute": 172.10301067768827,
+        "mean_energy": 0.07754607498645782,
+        "std_energy": 0.05773257091641426,
+        "mean_zcr": 0.14380971510939242,
+        "tempo_estimate": 104.16666666666667,
+        "filler_count": 1,
+        "avg_sentence_length_words": 16.466666666666665
+      },
+      "delivery": {
+        "score": 75,
+        "observations": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        }
+      },
+      "content": {
+        "score": 80,
+        "covered_parts": [
+          "problem",
+          "solution",
+          "value_proposition",
+          "differentiation",
+          "market",
+          "business_model",
+          "traction",
+          "closing"
+        ],
+        "missing_parts": [
+          "target_customer",
+          "team",
+          "ask"
+        ],
+        "weak_parts": [],
+        "has_metrics": true,
+        "generic_phrase_count": 2,
+        "component_feedback": {
+          "problem": "Weakly implied as the inefficiency of ordering food for employee meetings, but not explicitly stated.",
+          "target_customer": "Missing. Although corporate customers are mentioned, their characteristics and needs are not described.",
+          "solution": "Clearly described as an enterprise tool for companies to order food from restaurants.",
+          "value_proposition": "Clearly stated as making it easier and more efficient to order food, with fantastic economics.",
+          "differentiation": "Clearly stated as not being a delivery service and having a unique economic model.",
+          "market": "Clearly described as the takeout and delivery sector in the US, with a large potential market.",
+          "business_model": "Clearly described as taking a 12% cut across all orders.",
+          "traction": "Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.",
+          "team": "Missing. No information is provided about the team's experience or expertise.",
+          "ask": "Missing. No specific ask is made, although interest is solicited.",
+          "closing": "Weak. The closing is brief and does not summarize the key points or reiterate the ask."
+        },
+        "evidence": [
+          "$5.5 million in orders",
+          "93% retention annually",
+          "12% cut across all orders"
+        ],
+        "main_content_issue": "The pitch could be improved by explicitly stating the problem and providing more information about the target customer and team.",
+        "recommended_fix": "Add a clear statement of the problem, describe the target customer's characteristics and needs, and provide information about the team's experience and expertise.",
+        "similarity_scores": {}
+      },
+      "narrative": {
+        "score": 85,
+        "signals": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+          "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+          "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+          "key_gaps": [
+            "Lack of clear problem statement",
+            "Unclear ask"
+          ],
+          "coaching_directions": [
+            "Clearly articulate the problem Goodie Bag solves for its customers",
+            "Explicitly state the ask and what the company is seeking from the audience"
+          ]
+        },
+        "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+        "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+        "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+        "key_gaps": [
+          "Lack of clear problem statement",
+          "Unclear ask"
+        ],
+        "coaching_directions": [
+          "Clearly articulate the problem Goodie Bag solves for its customers",
+          "Explicitly state the ask and what the company is seeking from the audience"
+        ],
+        "evidence": [
+          "The company has 300 corporate customers and has processed over $5.5 million in orders",
+          "The company has a 93% retention rate and a CAC payback of four months",
+          "The company is growing consistently and has a clear path to scalability"
+        ]
+      },
+      "visual_features": {
+        "sampled_frames": 40,
+        "face_detected_ratio": 0.0,
+        "pose_detected_ratio": 0.15,
+        "avg_face_area": 0.0,
+        "nose_x_std": 0.006049026164742973,
+        "nose_y_std": 0.003518885293163286,
+        "frame_record_count": 40
+      },
+      "presence": {
+        "score": 56,
+        "observations": {
+          "face_detected_ratio": 0.0,
+          "pose_detected_ratio": 0.15,
+          "nose_x_std": 0.006,
+          "nose_y_std": 0.004,
+          "avg_face_area": 0.0
+        }
+      },
+      "visual_assurance": {
+        "global_visual_assurance_score": 6,
+        "lowest_visual_assurance_segments": [
+          {
+            "start": 0.0,
+            "end": 5.0,
+            "start_mmss": "00:00",
+            "end_mmss": "00:05",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 15.0,
+            "end": 20.0,
+            "start_mmss": "00:15",
+            "end_mmss": "00:20",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 35.0,
+            "end": 40.0,
+            "start_mmss": "00:35",
+            "end_mmss": "00:40",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          }
+        ],
+        "timeline_count": 8
+      },
+      "rewrites": [
+        {
+          "part": "opening",
+          "original": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.",
+          "improved": "Hello everyone, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER]."
+        },
+        {
+          "part": "closing",
+          "original": "The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+          "improved": "That's Goodie Bag, delivering [VALUE] to [TARGET CUSTOMER]. I'd love to discuss how our [SOLUTION] can help - let's schedule a follow-up to explore further."
+        }
+      ]
+    },
+    "decisions": [
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_path"
+        ],
+        "recommended_next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "args": {},
+        "done": false,
+        "executed_tool": "extract_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "transcript"
+        ],
+        "recommended_next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "args": {},
+        "done": false,
+        "executed_tool": "transcribe_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "frame_paths"
+        ],
+        "recommended_next_tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled.",
+        "args": {},
+        "done": false,
+        "executed_tool": "sample_frames"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_features"
+        ],
+        "recommended_next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "delivery"
+        ],
+        "recommended_next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_delivery"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "content"
+        ],
+        "recommended_next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_content"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "narrative"
+        ],
+        "recommended_next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_narrative"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "visual_features"
+        ],
+        "recommended_next_tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_visuals"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "presence"
+        ],
+        "recommended_next_tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_presence"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "visual_assurance"
+        ],
+        "recommended_next_tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_visual_assurance"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": true,
+        "missing_evidence": [],
+        "recommended_next_tool": null,
+        "reason": "All required analyses are complete."
+      }
+    ],
+    "tool_results": [
+      {
+        "tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "result_summary": "{\"audio_path\": \"C:\\\\Users\\\\asus\\\\Desktop\\\\pitch\\\\output\\\\audio\\\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav\"}"
+      },
+      {
+        "tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "result_summary": "{\"language\": \"en\", \"segment_count\": 69, \"text_preview\": \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month ..."
+      },
+      {
+        "tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled.",
+        "result_summary": "{\"sampled_frame_count\": 40}"
+      },
+      {
+        "tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "result_summary": "{\"duration_sec\": 172.2224375, \"word_count\": 494, \"words_per_minute\": 172.10301067768827, \"mean_energy\": 0.07754607498645782, \"std_energy\": 0.05773257091641426, \"mean_zcr\": 0.14380971510939242, \"tempo_estimate\": 104.16666666666667, \"filler_count\": 1, \"avg_sentence_length_words\": 16.466666666666665}"
+      },
+      {
+        "tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "result_summary": "{\"score\": 75, \"observations\": {\"words_per_minute\": 172.1, \"filler_count\": 1, \"mean_energy\": 0.07755, \"avg_sentence_length_words\": 16.47}}"
+      },
+      {
+        "tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "result_summary": "{\"score\": 80, \"covered_parts\": [\"problem\", \"solution\", \"value_proposition\", \"differentiation\", \"market\", \"business_model\", \"traction\", \"closing\"], \"missing_parts\": [\"target_customer\", \"team\", \"ask\"], \"weak_parts\": [], \"has_metrics\": true, \"generic_phrase_count\": 2, \"component_feedback\": {\"problem\": \"Weakly implied as the inefficiency of ordering food for employee meetings, but not explicitly stated.\", \"target_customer\": \"Missing. Although corporate customers are mentioned, their characteristics and needs are not described.\", \"solution\": \"Clearly described as an enterprise tool for companies to order food from restaurants.\", \"value_proposition\": \"Clearly stated as making it easier and more efficient to order food, with fantastic economics.\", \"differentiation\": \"Clearly stated as not being a delivery service and having a unique economic model.\", \"market\": \"Clearly described as the takeout and delivery sector in the US, with a large potential market.\", \"business_model\": \"Clearly described as taking a 12% cut across all orders.\", \"traction\": \"Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.\", \"team\": \"Missing. No informati..."
+      },
+      {
+        "tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "result_summary": "{\"score\": 85, \"signals\": {\"opening_hook_score\": 60, \"problem_clarity_score\": 80, \"solution_flow_score\": 90, \"proof_strength_score\": 95, \"closing_score\": 70, \"ask_clarity_score\": 40, \"memorability_score\": 80, \"narrative_summary\": \"The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.\", \"strongest_narrative_point\": \"The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.\", \"weakest_narrative_point\": \"The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.\", \"key_gaps\": [\"Lack of clear problem statement\", \"Unclear ask\"], \"coaching_directions\": [\"Clearly articulate the problem Goodie Bag solves for its customers\", \"Explicitly state the ask and what the company is seeking from the audience\"]}, \"narrative_summary\": \"The pitch effectively communicates the value proposition of Goodie Ba..."
+      },
+      {
+        "tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features.",
+        "result_summary": "{\"sampled_frames\": 40, \"face_detected_ratio\": 0.0, \"pose_detected_ratio\": 0.15, \"avg_face_area\": 0.0, \"nose_x_std\": 0.006049026164742973, \"nose_y_std\": 0.003518885293163286}"
+      },
+      {
+        "tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence.",
+        "result_summary": "{\"score\": 56, \"observations\": {\"face_detected_ratio\": 0.0, \"pose_detected_ratio\": 0.15, \"nose_x_std\": 0.006, \"nose_y_std\": 0.004, \"avg_face_area\": 0.0}}"
+      },
+      {
+        "tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance.",
+        "result_summary": "{\"global_visual_assurance_score\": 6, \"visual_assurance_timeline\": [{\"start\": 0.0, \"end\": 5.0, \"start_mmss\": \"00:00\", \"end_mmss\": \"00:05\", \"presentation_assurance_score\": 0, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.0, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 5.0, \"end\": 10.0, \"start_mmss\": \"00:05\", \"end_mmss\": \"00:10\", \"presentation_assurance_score\": 5, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.2, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 10.0, \"end\": 15.0, \"start_mmss\": \"00:10\", \"end_mmss\": \"00:15\", \"presentation_assurance_score\": 30, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.4, \"head_stability\": 0.995, \"camera_presence\": 0.0}}, {\"start\": 15.0, \"end\": 20.0, \"start_mmss\": \"00:15\", \"end_mmss\": \"00:20\", \"presentation_assurance_score\": 0, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.0, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 20.0, \"end\": 25.0, \"start_mmss\": \"00:20\", \"end_mmss\": \"00:25\", \"presentation_assurance_score\": 5, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.2, \"head_stabil..."
+      },
+      {
+        "tool": "generate_rewrite",
+        "reason": "Final rewrite generation.",
+        "result_summary": "[{'part': 'opening', 'original': \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.\", 'improved': \"Hello everyone, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER].\"}, {'part': 'closing', 'original': 'The company is Goodie Bag, and again, my name is Jay. Thanks a lot.', 'improved': \"That's Goodie Bag, delivering [VALUE] to [TARGET CUSTOMER]. I'd love to discuss how our [SOLUTION] can help - let's schedule a follow-up to explore further.\"}]"
+      }
+    ],
+    "warnings": [],
+    "completed_tools": [
+      "extract_audio",
+      "transcribe_audio",
+      "sample_frames",
+      "analyze_audio",
+      "analyze_delivery",
+      "analyze_content",
+      "analyze_narrative",
+      "analyze_visuals",
+      "analyze_presence",
+      "analyze_visual_assurance",
+      "generate_rewrite"
+    ],
+    "step_count": 10,
+    "max_steps": 20
+  },
+  "strategy": {
+    "dominant_problem": "Lack of clear problem statement and unclear ask",
+    "why_this_is_dominant": "The narrative analysis reveals that the pitch lacks a clear problem statement and the ask is unclear, which are crucial elements in a pitch. The content analysis also highlights the missing parts of the pitch, including the target customer and team, which are essential in understanding the problem and solution.",
+    "top_priorities": [
+      {
+        "priority": 1,
+        "area": "Clearly articulate the problem Goodie Bag solves for its customers",
+        "evidence": "The narrative analysis reveals a lack of clear problem statement, and the content analysis highlights the missing part of the pitch, including the target customer.",
+        "coaching_action": "Clearly state the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs.",
+        "success_test": "The problem statement is clear, concise, and well-articulated, and the target customer's characteristics and needs are well-defined."
+      }
+    ],
+    "what_not_to_focus_on_yet": [
+      {
+        "area": "Visual assurance",
+        "reason": "While the visual assurance score is low, it is not the dominant problem. The pitch's content and narrative structure need to be addressed first."
+      }
+    ],
+    "next_best_action": {
+      "action": "Revise the pitch to clearly articulate the problem Goodie Bag solves for its customers",
+      "why": "A clear problem statement is essential in a pitch, and it will help to establish a strong foundation for the rest of the pitch.",
+      "success_test": "The revised pitch clearly articulates the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs."
+    }
+  },
+  "report_plan": {
+    "report_sections": [
+      {
+        "title": "Executive Summary",
+        "purpose": "Provide a brief overview of the pitch and its key elements.",
+        "include": true,
+        "reason": "The executive summary will help to provide context for the rest of the report."
+      },
+      {
+        "title": "Pitch Analysis",
+        "purpose": "Analyze the pitch's content, narrative structure, and delivery.",
+        "include": true,
+        "reason": "The pitch analysis will help to identify the strengths and weaknesses of the pitch."
+      },
+      {
+        "title": "Coaching Strategy",
+        "purpose": "Outline the coaching strategy and priorities for improving the pitch.",
+        "include": true,
+        "reason": "The coaching strategy will help to guide the revisions and improvements to the pitch."
+      },
+      {
+        "title": "Content Analysis",
+        "purpose": "Analyze the pitch's content, including the problem statement, solution, and value proposition.",
+        "include": true,
+        "reason": "The content analysis will help to identify areas for improvement in the pitch's content."
+      },
+      {
+        "title": "Narrative Analysis",
+        "purpose": "Analyze the pitch's narrative structure, including the opening, problem statement, solution, and closing.",
+        "include": true,
+        "reason": "The narrative analysis will help to identify areas for improvement in the pitch's narrative structure."
+      },
+      {
+        "title": "Delivery Analysis",
+        "purpose": "Analyze the pitch's delivery, including the speaker's tone, pace, and body language.",
+        "include": false,
+        "reason": "The delivery analysis is not as critical as the content and narrative analysis, and can be omitted for now."
+      },
+      {
+        "title": "Visual Analysis",
+        "purpose": "Analyze the pitch's visual elements, including the slides and speaker's appearance.",
+        "include": false,
+        "reason": "The visual analysis is not as critical as the content and narrative analysis, and can be omitted for now."
+      },
+      {
+        "title": "Conclusion",
+        "purpose": "Summarize the key findings and recommendations from the report.",
+        "include": true,
+        "reason": "The conclusion will help to provide a final summary of the report's key points."
+      }
+    ]
+  },
+  "final_report": {
+    "title": "Pitch Coaching Report for Goodie Bag",
+    "markdown_report": "# Executive Summary The pitch for Goodie Bag effectively communicates the value proposition of an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential. However, the pitch lacks a clear problem statement and the ask is unclear, which are crucial elements in a pitch. # Pitch Analysis The pitch's content, narrative structure, and delivery were analyzed. The content analysis revealed that the pitch is missing key elements, including the target customer and team. The narrative analysis highlighted the lack of a clear problem statement and unclear ask. # Coaching Strategy The dominant problem is the lack of a clear problem statement and unclear ask. The top priority is to clearly articulate the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs. ## Top Priorities ### 1. Clearly Articulate the Problem * Evidence: Narrative analysis reveals a lack of clear problem statement, and content analysis highlights the missing part of the pitch, including the target customer. * Coaching Action: Clearly state the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs. * Success Test: The problem statement is clear, concise, and well-articulated, and the target customer's characteristics and needs are well-defined. ### 2. Clearly State the Ask * Evidence: Narrative analysis reveals an unclear ask. * Coaching Action: Clearly state the ask and what the company is seeking from the audience. * Success Test: The ask is clear, concise, and well-articulated, and the audience understands what the company is seeking. # Content Analysis The pitch's content was analyzed, including the problem statement, solution, and value proposition. The content analysis revealed that the pitch is missing key elements, including the target customer and team. # Narrative Analysis The pitch's narrative structure was analyzed, including the opening, problem statement, solution, and closing. The narrative analysis highlighted the lack of a clear problem statement and unclear ask. # Conclusion In conclusion, the pitch for Goodie Bag has potential but requires revisions to clearly articulate the problem statement and ask. By addressing these key areas, the pitch can be more effective in communicating the value proposition and securing investment. # Recommendations * Revise the pitch to clearly articulate the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs. * Clearly state the ask and what the company is seeking from the audience. * Consider adding more information about the target customer and team to provide a more comprehensive understanding of the business. # Appendices ## Rewrite Suggestions * Opening: \"Hello everyone, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER].\" * Closing: \"That's Goodie Bag, delivering [VALUE] to [TARGET CUSTOMER]. I'd love to discuss how our [SOLUTION] can help - let's schedule a follow-up to explore further.\" ## Evidence * The company has 300 corporate customers and has processed over $5.5 million in orders. * The company has a 93% retention rate and a CAC payback of four months. * The company is growing consistently and has a clear path to scalability.",
+    "diagnostic_summary": {},
+    "next_best_action": {
+      "action": "Revise the pitch to clearly articulate the problem Goodie Bag solves for its customers and clearly state the ask",
+      "why": "A clear problem statement and ask are essential in a pitch, and they will help to establish a strong foundation for the rest of the pitch.",
+      "success_test": "The revised pitch clearly articulates the problem Goodie Bag solves for its customers, including the target customer's characteristics and needs, and clearly states the ask."
+    },
+    "limitations": []
+  },
+  "scorecard": {
+    "overall_score": 73,
+    "overall_status": "Acceptable",
+    "scoring_scale": {
+      "0_39": "Weak",
+      "40_59": "Needs work",
+      "60_74": "Acceptable",
+      "75_89": "Strong",
+      "90_100": "Excellent"
+    },
+    "criteria": [
+      {
+        "id": "content_clarity",
+        "label": "Content clarity",
+        "score": 80,
+        "status": "Strong",
+        "evidence": {
+          "covered_parts": [
+            "problem",
+            "solution",
+            "value_proposition",
+            "differentiation",
+            "market",
+            "business_model",
+            "traction",
+            "closing"
+          ],
+          "missing_parts": [
+            "target_customer",
+            "team",
+            "ask"
+          ],
+          "weak_parts": [],
+          "has_metrics": true,
+          "main_content_issue": "The pitch could be improved by explicitly stating the problem and providing more information about the target customer and team."
+        },
+        "what_it_means": "How clearly the pitch explains problem, customer, solution, value, proof, and ask."
+      },
+      {
+        "id": "narrative_strength",
+        "label": "Narrative strength",
+        "score": 85,
+        "status": "Strong",
+        "evidence": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+          "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+          "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+          "key_gaps": [
+            "Lack of clear problem statement",
+            "Unclear ask"
+          ],
+          "coaching_directions": [
+            "Clearly articulate the problem Goodie Bag solves for its customers",
+            "Explicitly state the ask and what the company is seeking from the audience"
+          ]
+        },
+        "what_it_means": "How well the pitch flows from opening to problem, solution, proof, and closing."
+      },
+      {
+        "id": "delivery_fluency",
+        "label": "Delivery fluency",
+        "score": 75,
+        "status": "Strong",
+        "evidence": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        },
+        "what_it_means": "How controlled, fluent, and listenable the spoken delivery appears from audio features."
+      },
+      {
+        "id": "visual_pitching",
+        "label": "Visual pitching / camera presence",
+        "score": 56,
+        "status": "Needs work",
+        "evidence": {
+          "sampled_frames": 40,
+          "face_detected_ratio": 0.0,
+          "pose_detected_ratio": 0.15,
+          "avg_face_area": 0.0,
+          "nose_x_std": 0.006,
+          "nose_y_std": 0.004,
+          "skipped": false
+        },
+        "what_it_means": "How visible, stable, and camera-ready the speaker appears. This is not a psychological claim."
+      },
+      {
+        "id": "visual_assurance_cues",
+        "label": "Visual assurance cues",
+        "score": 6,
+        "status": "Weak",
+        "evidence": {
+          "lowest_segments": [
+            {
+              "start": 0.0,
+              "end": 5.0,
+              "start_mmss": "00:00",
+              "end_mmss": "00:05",
+              "presentation_assurance_score": 0,
+              "status": "low",
+              "signals": {
+                "face_visibility": 0.0,
+                "pose_visibility": 0.0,
+                "head_stability": 0.0,
+                "camera_presence": 0.0
+              }
+            },
+            {
+              "start": 15.0,
+              "end": 20.0,
+              "start_mmss": "00:15",
+              "end_mmss": "00:20",
+              "presentation_assurance_score": 0,
+              "status": "low",
+              "signals": {
+                "face_visibility": 0.0,
+                "pose_visibility": 0.0,
+                "head_stability": 0.0,
+                "camera_presence": 0.0
+              }
+            },
+            {
+              "start": 35.0,
+              "end": 40.0,
+              "start_mmss": "00:35",
+              "end_mmss": "00:40",
+              "presentation_assurance_score": 0,
+              "status": "low",
+              "signals": {
+                "face_visibility": 0.0,
+                "pose_visibility": 0.0,
+                "head_stability": 0.0,
+                "camera_presence": 0.0
+              }
+            }
+          ],
+          "skipped": false
+        },
+        "what_it_means": "Timestamped visual presentation cues such as framing, face visibility, pose visibility, and head stability."
+      },
+      {
+        "id": "vocal_assurance_cues",
+        "label": "Vocal assurance cues",
+        "score": 0,
+        "status": "Weak",
+        "evidence": {
+          "lowest_segments": [],
+          "skipped": true
+        },
+        "what_it_means": "Optional vocal assurance cues. This is not a diagnosis of emotion or personality."
+      },
+      {
+        "id": "evidence_quality",
+        "label": "Evidence quality",
+        "score": 100,
+        "status": "Excellent",
+        "evidence": {
+          "completed_tools": [
+            "extract_audio",
+            "transcribe_audio",
+            "sample_frames",
+            "analyze_audio",
+            "analyze_delivery",
+            "analyze_content",
+            "analyze_narrative",
+            "analyze_visuals",
+            "analyze_presence",
+            "analyze_visual_assurance",
+            "generate_rewrite"
+          ],
+          "warnings": [],
+          "transcript_segment_count": 69
+        },
+        "what_it_means": "How reliable the report is based on the amount and diversity of evidence collected."
+      }
+    ],
+    "summary": {
+      "strongest_criteria": [
+        {
+          "id": "evidence_quality",
+          "label": "Evidence quality",
+          "score": 100,
+          "status": "Excellent"
+        },
+        {
+          "id": "narrative_strength",
+          "label": "Narrative strength",
+          "score": 85,
+          "status": "Strong"
+        },
+        {
+          "id": "content_clarity",
+          "label": "Content clarity",
+          "score": 80,
+          "status": "Strong"
+        }
+      ],
+      "weakest_criteria": [
+        {
+          "id": "visual_assurance_cues",
+          "label": "Visual assurance cues",
+          "score": 6,
+          "status": "Weak"
+        },
+        {
+          "id": "visual_pitching",
+          "label": "Visual pitching / camera presence",
+          "score": 56,
+          "status": "Needs work"
+        },
+        {
+          "id": "delivery_fluency",
+          "label": "Delivery fluency",
+          "score": 75,
+          "status": "Strong"
+        }
+      ],
+      "agent_completed_tools": [
+        "extract_audio",
+        "transcribe_audio",
+        "sample_frames",
+        "analyze_audio",
+        "analyze_delivery",
+        "analyze_content",
+        "analyze_narrative",
+        "analyze_visuals",
+        "analyze_presence",
+        "analyze_visual_assurance",
+        "generate_rewrite"
+      ],
+      "important_note": "Visual and vocal assurance scores are presentation cues, not psychological diagnoses."
+    }
+  },
+  "judge_result": {
+    "approved": false,
+    "quality_score": 0,
+    "issues": [
+      "The report lacks specific evidence-based recommendations for improvement.",
+      "The report does not provide a clear and concise summary of the pitch's strengths and weaknesses.",
+      "The report does not address the unclear ask in the pitch."
+    ],
+    "requires_more_evidence": false,
+    "recommended_tool": null,
+    "revision_instructions": [
+      "Provide specific, evidence-based recommendations for improvement.",
+      "Summarize the pitch's strengths and weaknesses in a clear and concise manner.",
+      "Address the unclear ask in the pitch and provide guidance on how to improve it."
+    ],
+    "round": 2
+  },
+  "runtime_warnings": [],
+  "raw_state_full": {
+    "observations": {
+      "audio_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\audio\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav",
+      "transcript_data": {
+        "language": "en",
+        "duration_sec": 172.2224375,
+        "segments": [
+          {
+            "start": 7.63,
+            "end": 8.91,
+            "text": "Hello, everyone."
+          },
+          {
+            "start": 8.91,
+            "end": 13.23,
+            "text": "I'm Jay Panchal, and I'm the CEO of Goodie Bag."
+          },
+          {
+            "start": 13.23,
+            "end": 15.51,
+            "text": "Now, Goodie Bag is an enterprise tool"
+          },
+          {
+            "start": 15.51,
+            "end": 18.27,
+            "text": "we've built for companies that makes it easier and more"
+          },
+          {
+            "start": 18.27,
+            "end": 20.97,
+            "text": "efficient to order food from restaurants for things"
+          },
+          {
+            "start": 20.97,
+            "end": 24.03,
+            "text": "like employee meetings, lunches, and so on."
+          },
+          {
+            "start": 24.03,
+            "end": 26.61,
+            "text": "Now, something that's really important to remember about us"
+          },
+          {
+            "start": 26.61,
+            "end": 29.21,
+            "text": "is that we're actually not a delivery service."
+          },
+          {
+            "start": 29.21,
+            "end": 31.39,
+            "text": "So we're not one of your typical on-demand food"
+          },
+          {
+            "start": 31.39,
+            "end": 34.41,
+            "text": "delivery startups with those negative gross margins"
+          },
+          {
+            "start": 34.41,
+            "end": 36.47,
+            "text": "a few of you seem to love so much."
+          },
+          {
+            "start": 36.49,
+            "end": 37.99,
+            "text": "No."
+          },
+          {
+            "start": 37.99,
+            "end": 40.31,
+            "text": "The economics of what we're doing are fantastic,"
+          },
+          {
+            "start": 40.31,
+            "end": 42.71,
+            "text": "and we can scale very fast."
+          },
+          {
+            "start": 42.71,
+            "end": 45.27,
+            "text": "We already have over 300 corporate customers"
+          },
+          {
+            "start": 45.27,
+            "end": 47.83,
+            "text": "who have purchased over half a million meals through us,"
+          },
+          {
+            "start": 47.83,
+            "end": 51.07,
+            "text": "and that's roughly $5 and 1 half million in orders."
+          },
+          {
+            "start": 51.07,
+            "end": 52.99,
+            "text": "And to show you how our economics truly are"
+          },
+          {
+            "start": 52.99,
+            "end": 56.63,
+            "text": "different, our average order size is $350."
+          },
+          {
+            "start": 56.63,
+            "end": 59.11,
+            "text": "That's 10x the consumer space."
+          },
+          {
+            "start": 59.11,
+            "end": 62.39,
+            "text": "Our average customer spends $24,000 a year through us."
+          },
+          {
+            "start": 62.39,
+            "end": 65.35,
+            "text": "We have 93% retention annually,"
+          },
+          {
+            "start": 65.35,
+            "end": 69.03,
+            "text": "and our CAC payback right now is four months."
+          },
+          {
+            "start": 69.03,
+            "end": 73.03,
+            "text": "On top of this, we're growing consistently every month."
+          },
+          {
+            "start": 73.03,
+            "end": 76.75,
+            "text": "We're now crossing a $5 and 1 half million GMV run rate,"
+          },
+          {
+            "start": 76.75,
+            "end": 79.39,
+            "text": "and this is a million more than just one month prior."
+          },
+          {
+            "start": 79.39,
+            "end": 81.35,
+            "text": "Now, we take a 12% cut across all of this,"
+          },
+          {
+            "start": 81.35,
+            "end": 83.63,
+            "text": "so that's roughly $600,000 in revenues to us,"
+          },
+          {
+            "start": 83.63,
+            "end": 85.79,
+            "text": "growing at the same pace."
+          },
+          {
+            "start": 85.79,
+            "end": 88.31,
+            "text": "Now, this is across four markets,"
+          },
+          {
+            "start": 88.31,
+            "end": 90.71,
+            "text": "primarily our first market, Austin,"
+          },
+          {
+            "start": 90.71,
+            "end": 92.79,
+            "text": "which is already profitable."
+          },
+          {
+            "start": 92.79,
+            "end": 95.35,
+            "text": "But we've also pushed into three new markets already,"
+          },
+          {
+            "start": 95.35,
+            "end": 97.91,
+            "text": "and we've been able to achieve the same growth trajectory"
+          },
+          {
+            "start": 97.91,
+            "end": 99.63,
+            "text": "across all of them."
+          },
+          {
+            "start": 99.63,
+            "end": 101.95,
+            "text": "In fact, both Houston and Seattle"
+          },
+          {
+            "start": 101.95,
+            "end": 105.35,
+            "text": "will both be profitable in just three months."
+          },
+          {
+            "start": 105.35,
+            "end": 108.49,
+            "text": "So this is replicable, and some of this"
+          },
+          {
+            "start": 108.49,
+            "end": 111.11,
+            "text": "might sound interesting, but what's even better"
+          },
+          {
+            "start": 111.11,
+            "end": 113.55,
+            "text": "is how large we can make this."
+          },
+          {
+            "start": 113.55,
+            "end": 116.03,
+            "text": "So the entire takeout and delivery sector in the US"
+          },
+          {
+            "start": 116.03,
+            "end": 117.99,
+            "text": "is roughly $70 billion and growing."
+          },
+          {
+            "start": 117.99,
+            "end": 119.63,
+            "text": "What's interesting about that, though,"
+          },
+          {
+            "start": 119.63,
+            "end": 122.19,
+            "text": "is that nearly half is purchased and consumed"
+          },
+          {
+            "start": 122.23,
+            "end": 123.83,
+            "text": "inside companies today,"
+          },
+          {
+            "start": 123.83,
+            "end": 126.95,
+            "text": "where there's less than 1% total market penetration,"
+          },
+          {
+            "start": 126.95,
+            "end": 128.63,
+            "text": "and we're the ones to win it."
+          },
+          {
+            "start": 128.63,
+            "end": 131.87,
+            "text": "The reason why is we are the only ones"
+          },
+          {
+            "start": 131.87,
+            "end": 134.59,
+            "text": "who have figured out how to scale this quickly"
+          },
+          {
+            "start": 134.59,
+            "end": 136.33,
+            "text": "and profitably."
+          },
+          {
+            "start": 136.33,
+            "end": 137.95,
+            "text": "We can go into a new market,"
+          },
+          {
+            "start": 137.95,
+            "end": 139.43,
+            "text": "break even in six months,"
+          },
+          {
+            "start": 139.43,
+            "end": 141.63,
+            "text": "and then a total investment of 100 grand."
+          },
+          {
+            "start": 141.63,
+            "end": 142.75,
+            "text": "So all we have to do"
+          },
+          {
+            "start": 142.75,
+            "end": 144.99,
+            "text": "is take what we've already proven in Austin,"
+          },
+          {
+            "start": 144.99,
+            "end": 146.99,
+            "text": "where we're proving again in three other cities,"
+          },
+          {
+            "start": 146.99,
+            "end": 149.95,
+            "text": "and roll this out to well over 100 applicable cities"
+          },
+          {
+            "start": 149.95,
+            "end": 151.75,
+            "text": "in the US alone."
+          },
+          {
+            "start": 151.75,
+            "end": 153.67,
+            "text": "Just expanding out this model,"
+          },
+          {
+            "start": 153.67,
+            "end": 156.07,
+            "text": "we'll be crossing 100 million GMB run rate"
+          },
+          {
+            "start": 156.07,
+            "end": 157.23,
+            "text": "in two and a half years,"
+          },
+          {
+            "start": 157.23,
+            "end": 159.75,
+            "text": "and a billion dollar run rate in five."
+          },
+          {
+            "start": 159.75,
+            "end": 161.67,
+            "text": "And again, we're the only ones who figured out"
+          },
+          {
+            "start": 161.67,
+            "end": 163.43,
+            "text": "how to do this reliably."
+          },
+          {
+            "start": 163.43,
+            "end": 164.27,
+            "text": "Now thank you."
+          },
+          {
+            "start": 164.27,
+            "end": 165.09,
+            "text": "If you do have any interest,"
+          },
+          {
+            "start": 165.09,
+            "end": 166.31,
+            "text": "find me on the floor afterwards."
+          },
+          {
+            "start": 166.31,
+            "end": 168.99,
+            "text": "The company is Goodie Bag, and again, my name is Jay."
+          },
+          {
+            "start": 168.99,
+            "end": 169.83,
+            "text": "Thanks a lot."
+          }
+        ],
+        "text": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot."
+      },
+      "transcript": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+      "language": "en",
+      "transcript_segment_count": 69,
+      "frame_paths": [
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000000_0.00s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000030_1.00s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000060_2.01s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000090_3.01s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000120_4.01s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000150_5.02s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000180_6.02s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000210_7.02s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000240_8.03s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000270_9.03s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000300_10.03s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000330_11.04s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000360_12.04s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000390_13.04s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000420_14.05s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000450_15.05s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000480_16.05s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000510_17.06s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000540_18.06s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000570_19.06s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000600_20.07s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000630_21.07s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000660_22.07s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000690_23.08s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000720_24.08s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000750_25.08s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000780_26.09s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000810_27.09s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000840_28.09s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000870_29.10s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000900_30.10s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000930_31.10s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000960_32.11s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000990_33.11s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001020_34.11s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001050_35.12s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001080_36.12s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001110_37.12s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001140_38.13s.jpg",
+        "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001170_39.13s.jpg"
+      ]
+    },
+    "analyses": {
+      "audio_features": {
+        "duration_sec": 172.2224375,
+        "word_count": 494,
+        "words_per_minute": 172.10301067768827,
+        "mean_energy": 0.07754607498645782,
+        "std_energy": 0.05773257091641426,
+        "mean_zcr": 0.14380971510939242,
+        "tempo_estimate": 104.16666666666667,
+        "filler_count": 1,
+        "avg_sentence_length_words": 16.466666666666665
+      },
+      "delivery": {
+        "score": 75,
+        "observations": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        }
+      },
+      "content": {
+        "score": 80,
+        "covered_parts": [
+          "problem",
+          "solution",
+          "value_proposition",
+          "differentiation",
+          "market",
+          "business_model",
+          "traction",
+          "closing"
+        ],
+        "missing_parts": [
+          "target_customer",
+          "team",
+          "ask"
+        ],
+        "weak_parts": [],
+        "has_metrics": true,
+        "generic_phrase_count": 2,
+        "component_feedback": {
+          "problem": "Weakly implied as the inefficiency of ordering food for employee meetings, but not explicitly stated.",
+          "target_customer": "Missing. Although corporate customers are mentioned, their characteristics and needs are not described.",
+          "solution": "Clearly described as an enterprise tool for companies to order food from restaurants.",
+          "value_proposition": "Clearly stated as making it easier and more efficient to order food, with fantastic economics.",
+          "differentiation": "Clearly stated as not being a delivery service and having a unique economic model.",
+          "market": "Clearly described as the takeout and delivery sector in the US, with a large potential market.",
+          "business_model": "Clearly described as taking a 12% cut across all orders.",
+          "traction": "Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.",
+          "team": "Missing. No information is provided about the team's experience or expertise.",
+          "ask": "Missing. No specific ask is made, although interest is solicited.",
+          "closing": "Weak. The closing is brief and does not summarize the key points or reiterate the ask."
+        },
+        "evidence": [
+          "$5.5 million in orders",
+          "93% retention annually",
+          "12% cut across all orders"
+        ],
+        "main_content_issue": "The pitch could be improved by explicitly stating the problem and providing more information about the target customer and team.",
+        "recommended_fix": "Add a clear statement of the problem, describe the target customer's characteristics and needs, and provide information about the team's experience and expertise.",
+        "similarity_scores": {}
+      },
+      "narrative": {
+        "score": 85,
+        "signals": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+          "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+          "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+          "key_gaps": [
+            "Lack of clear problem statement",
+            "Unclear ask"
+          ],
+          "coaching_directions": [
+            "Clearly articulate the problem Goodie Bag solves for its customers",
+            "Explicitly state the ask and what the company is seeking from the audience"
+          ]
+        },
+        "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+        "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+        "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+        "key_gaps": [
+          "Lack of clear problem statement",
+          "Unclear ask"
+        ],
+        "coaching_directions": [
+          "Clearly articulate the problem Goodie Bag solves for its customers",
+          "Explicitly state the ask and what the company is seeking from the audience"
+        ],
+        "evidence": [
+          "The company has 300 corporate customers and has processed over $5.5 million in orders",
+          "The company has a 93% retention rate and a CAC payback of four months",
+          "The company is growing consistently and has a clear path to scalability"
+        ]
+      },
+      "visual_features": {
+        "sampled_frames": 40,
+        "face_detected_ratio": 0.0,
+        "pose_detected_ratio": 0.15,
+        "avg_face_area": 0.0,
+        "nose_x_std": 0.006049026164742973,
+        "nose_y_std": 0.003518885293163286,
+        "avg_shoulder_width": 0.047564784017524564,
+        "frames": [
+          {
+            "timestamp": 0.0,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000000_0.00s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 1.0,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000030_1.00s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 2.01,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000060_2.01s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 3.01,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000090_3.01s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 4.01,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000120_4.01s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 5.02,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000150_5.02s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.8120405077934265,
+            "nose_y": 0.5413156747817993,
+            "shoulder_width": 0.04845475221354811
+          },
+          {
+            "timestamp": 6.02,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000180_6.02s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 7.02,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000210_7.02s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 8.03,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000240_8.03s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 9.03,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000270_9.03s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 10.03,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000300_10.03s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 11.04,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000330_11.04s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 12.04,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000360_12.04s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.8072491884231567,
+            "nose_y": 0.5469475984573364,
+            "shoulder_width": 0.04724299313962299
+          },
+          {
+            "timestamp": 13.04,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000390_13.04s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.8093420267105103,
+            "nose_y": 0.5468971729278564,
+            "shoulder_width": 0.04794406792911041
+          },
+          {
+            "timestamp": 14.05,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000420_14.05s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 15.05,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000450_15.05s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 16.05,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000480_16.05s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 17.06,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000510_17.06s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 18.06,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000540_18.06s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 19.06,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000570_19.06s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 20.07,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000600_20.07s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.8133331537246704,
+            "nose_y": 0.543798565864563,
+            "shoulder_width": 0.047157941467944914
+          },
+          {
+            "timestamp": 21.07,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000630_21.07s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 22.07,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000660_22.07s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 23.08,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000690_23.08s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 24.08,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000720_24.08s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 25.08,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000750_25.08s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.8043769001960754,
+            "nose_y": 0.5523226857185364,
+            "shoulder_width": 0.04941696204511777
+          },
+          {
+            "timestamp": 26.09,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000780_26.09s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 27.09,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000810_27.09s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 28.09,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000840_28.09s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 29.1,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000870_29.10s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 30.1,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000900_30.10s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 31.1,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000930_31.10s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 32.11,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000960_32.11s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 33.11,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00000990_33.11s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 34.11,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001020_34.11s.jpg",
+            "face_detected": 0,
+            "pose_detected": 1,
+            "face_area": 0.0,
+            "nose_x": 0.7950981855392456,
+            "nose_y": 0.5489741563796997,
+            "shoulder_width": 0.04517198730980317
+          },
+          {
+            "timestamp": 35.12,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001050_35.12s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 36.12,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001080_36.12s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 37.12,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001110_37.12s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 38.13,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001140_38.13s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          },
+          {
+            "timestamp": 39.13,
+            "frame_path": "C:\\Users\\asus\\Desktop\\pitch\\output\\frames\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p\\frame_00001170_39.13s.jpg",
+            "face_detected": 0,
+            "pose_detected": 0,
+            "face_area": 0.0,
+            "nose_x": null,
+            "nose_y": null,
+            "shoulder_width": null
+          }
+        ]
+      },
+      "presence": {
+        "score": 56,
+        "observations": {
+          "face_detected_ratio": 0.0,
+          "pose_detected_ratio": 0.15,
+          "nose_x_std": 0.006,
+          "nose_y_std": 0.004,
+          "avg_face_area": 0.0
+        }
+      },
+      "visual_assurance": {
+        "global_visual_assurance_score": 6,
+        "visual_assurance_timeline": [
+          {
+            "start": 0.0,
+            "end": 5.0,
+            "start_mmss": "00:00",
+            "end_mmss": "00:05",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 5.0,
+            "end": 10.0,
+            "start_mmss": "00:05",
+            "end_mmss": "00:10",
+            "presentation_assurance_score": 5,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.2,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 10.0,
+            "end": 15.0,
+            "start_mmss": "00:10",
+            "end_mmss": "00:15",
+            "presentation_assurance_score": 30,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.4,
+              "head_stability": 0.995,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 15.0,
+            "end": 20.0,
+            "start_mmss": "00:15",
+            "end_mmss": "00:20",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 20.0,
+            "end": 25.0,
+            "start_mmss": "00:20",
+            "end_mmss": "00:25",
+            "presentation_assurance_score": 5,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.2,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 25.0,
+            "end": 30.0,
+            "start_mmss": "00:25",
+            "end_mmss": "00:30",
+            "presentation_assurance_score": 5,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.2,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 30.0,
+            "end": 35.0,
+            "start_mmss": "00:30",
+            "end_mmss": "00:35",
+            "presentation_assurance_score": 5,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.2,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 35.0,
+            "end": 40.0,
+            "start_mmss": "00:35",
+            "end_mmss": "00:40",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          }
+        ],
+        "lowest_visual_assurance_segments": [
+          {
+            "start": 0.0,
+            "end": 5.0,
+            "start_mmss": "00:00",
+            "end_mmss": "00:05",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 15.0,
+            "end": 20.0,
+            "start_mmss": "00:15",
+            "end_mmss": "00:20",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 35.0,
+            "end": 40.0,
+            "start_mmss": "00:35",
+            "end_mmss": "00:40",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          }
+        ]
+      },
+      "rewrites": [
+        {
+          "part": "opening",
+          "original": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.",
+          "improved": "Hello everyone, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER]."
+        },
+        {
+          "part": "closing",
+          "original": "The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+          "improved": "That's Goodie Bag, delivering [VALUE] to [TARGET CUSTOMER]. I'd love to discuss how our [SOLUTION] can help - let's schedule a follow-up to explore further."
+        }
+      ]
+    },
+    "decisions": [
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_path"
+        ],
+        "recommended_next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "args": {},
+        "done": false,
+        "executed_tool": "extract_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "transcript"
+        ],
+        "recommended_next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "args": {},
+        "done": false,
+        "executed_tool": "transcribe_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "frame_paths"
+        ],
+        "recommended_next_tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled.",
+        "args": {},
+        "done": false,
+        "executed_tool": "sample_frames"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_features"
+        ],
+        "recommended_next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "delivery"
+        ],
+        "recommended_next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_delivery"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "content"
+        ],
+        "recommended_next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_content"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "narrative"
+        ],
+        "recommended_next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_narrative"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "visual_features"
+        ],
+        "recommended_next_tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_visuals"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "presence"
+        ],
+        "recommended_next_tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_presence"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "visual_assurance"
+        ],
+        "recommended_next_tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_visual_assurance"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": true,
+        "missing_evidence": [],
+        "recommended_next_tool": null,
+        "reason": "All required analyses are complete."
+      }
+    ],
+    "tool_results": [
+      {
+        "tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "result_summary": "{\"audio_path\": \"C:\\\\Users\\\\asus\\\\Desktop\\\\pitch\\\\output\\\\audio\\\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav\"}"
+      },
+      {
+        "tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "result_summary": "{\"language\": \"en\", \"segment_count\": 69, \"text_preview\": \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month ..."
+      },
+      {
+        "tool": "sample_frames",
+        "reason": "Visual analysis is enabled, so frames must be sampled.",
+        "result_summary": "{\"sampled_frame_count\": 40}"
+      },
+      {
+        "tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "result_summary": "{\"duration_sec\": 172.2224375, \"word_count\": 494, \"words_per_minute\": 172.10301067768827, \"mean_energy\": 0.07754607498645782, \"std_energy\": 0.05773257091641426, \"mean_zcr\": 0.14380971510939242, \"tempo_estimate\": 104.16666666666667, \"filler_count\": 1, \"avg_sentence_length_words\": 16.466666666666665}"
+      },
+      {
+        "tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "result_summary": "{\"score\": 75, \"observations\": {\"words_per_minute\": 172.1, \"filler_count\": 1, \"mean_energy\": 0.07755, \"avg_sentence_length_words\": 16.47}}"
+      },
+      {
+        "tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "result_summary": "{\"score\": 80, \"covered_parts\": [\"problem\", \"solution\", \"value_proposition\", \"differentiation\", \"market\", \"business_model\", \"traction\", \"closing\"], \"missing_parts\": [\"target_customer\", \"team\", \"ask\"], \"weak_parts\": [], \"has_metrics\": true, \"generic_phrase_count\": 2, \"component_feedback\": {\"problem\": \"Weakly implied as the inefficiency of ordering food for employee meetings, but not explicitly stated.\", \"target_customer\": \"Missing. Although corporate customers are mentioned, their characteristics and needs are not described.\", \"solution\": \"Clearly described as an enterprise tool for companies to order food from restaurants.\", \"value_proposition\": \"Clearly stated as making it easier and more efficient to order food, with fantastic economics.\", \"differentiation\": \"Clearly stated as not being a delivery service and having a unique economic model.\", \"market\": \"Clearly described as the takeout and delivery sector in the US, with a large potential market.\", \"business_model\": \"Clearly described as taking a 12% cut across all orders.\", \"traction\": \"Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.\", \"team\": \"Missing. No informati..."
+      },
+      {
+        "tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "result_summary": "{\"score\": 85, \"signals\": {\"opening_hook_score\": 60, \"problem_clarity_score\": 80, \"solution_flow_score\": 90, \"proof_strength_score\": 95, \"closing_score\": 70, \"ask_clarity_score\": 40, \"memorability_score\": 80, \"narrative_summary\": \"The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.\", \"strongest_narrative_point\": \"The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.\", \"weakest_narrative_point\": \"The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.\", \"key_gaps\": [\"Lack of clear problem statement\", \"Unclear ask\"], \"coaching_directions\": [\"Clearly articulate the problem Goodie Bag solves for its customers\", \"Explicitly state the ask and what the company is seeking from the audience\"]}, \"narrative_summary\": \"The pitch effectively communicates the value proposition of Goodie Ba..."
+      },
+      {
+        "tool": "analyze_visuals",
+        "reason": "Required analysis is missing: visual_features.",
+        "result_summary": "{\"sampled_frames\": 40, \"face_detected_ratio\": 0.0, \"pose_detected_ratio\": 0.15, \"avg_face_area\": 0.0, \"nose_x_std\": 0.006049026164742973, \"nose_y_std\": 0.003518885293163286}"
+      },
+      {
+        "tool": "analyze_presence",
+        "reason": "Required analysis is missing: presence.",
+        "result_summary": "{\"score\": 56, \"observations\": {\"face_detected_ratio\": 0.0, \"pose_detected_ratio\": 0.15, \"nose_x_std\": 0.006, \"nose_y_std\": 0.004, \"avg_face_area\": 0.0}}"
+      },
+      {
+        "tool": "analyze_visual_assurance",
+        "reason": "Required analysis is missing: visual_assurance.",
+        "result_summary": "{\"global_visual_assurance_score\": 6, \"visual_assurance_timeline\": [{\"start\": 0.0, \"end\": 5.0, \"start_mmss\": \"00:00\", \"end_mmss\": \"00:05\", \"presentation_assurance_score\": 0, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.0, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 5.0, \"end\": 10.0, \"start_mmss\": \"00:05\", \"end_mmss\": \"00:10\", \"presentation_assurance_score\": 5, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.2, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 10.0, \"end\": 15.0, \"start_mmss\": \"00:10\", \"end_mmss\": \"00:15\", \"presentation_assurance_score\": 30, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.4, \"head_stability\": 0.995, \"camera_presence\": 0.0}}, {\"start\": 15.0, \"end\": 20.0, \"start_mmss\": \"00:15\", \"end_mmss\": \"00:20\", \"presentation_assurance_score\": 0, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.0, \"head_stability\": 0.0, \"camera_presence\": 0.0}}, {\"start\": 20.0, \"end\": 25.0, \"start_mmss\": \"00:20\", \"end_mmss\": \"00:25\", \"presentation_assurance_score\": 5, \"status\": \"low\", \"signals\": {\"face_visibility\": 0.0, \"pose_visibility\": 0.2, \"head_stabil..."
+      },
+      {
+        "tool": "generate_rewrite",
+        "reason": "Final rewrite generation.",
+        "result_summary": "[{'part': 'opening', 'original': \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.\", 'improved': \"Hello everyone, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER].\"}, {'part': 'closing', 'original': 'The company is Goodie Bag, and again, my name is Jay. Thanks a lot.', 'improved': \"That's Goodie Bag, delivering [VALUE] to [TARGET CUSTOMER]. I'd love to discuss how our [SOLUTION] can help - let's schedule a follow-up to explore further.\"}]"
+      }
+    ]
+  }
+}
