@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Execution Agent",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/execution_agent_with_mcp.py",
+      "env": {
+        "JIRA_SYNC_ENABLED": "true",
+        "JIRA_BASE_URL": "https://esprit-team-r6neq63b.atlassian.net",
+        "JIRA_USER_EMAIL": "farah.hassen@esprit.tn",
+        "JIRA_API_TOKEN": "ATATT3xFfGF0du1hg2KnbKB-Hy6ym2wi2gUZpz0F3lNp3uyw1AAJ0VQ2FpMGsghn52-d9P5KncGf_BHmk2MZhdVqm48PsvVkGeIfisNX6RcQHgnSN4rDTa99XEydE-MPhbsNmZccZYRfKG6pXVVEyDQywIaNgoUghR8idqGmcD2Fb9W8cZEEcME=0213C988",
+        "JIRA_PROJECT_KEY": "KAN",
+        "JIRA_ISSUE_TYPE": "Task",
+        "JIRA_VERIFY_SSL": "true"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+﻿{
+  "startup_profile": {
+    "startup_name": "Neuronix Legal AI",
+    "sector": "AI SaaS",
+    "activity_description": "AI platform for startup legal guidance and compliance automation.",
+    "founders_count": 3,
+    "funding_need_tnd": 250000,
+    "wants_investors": true,
+    "needs_limited_liability": true,
+    "has_foreign_investors": false,
+    "innovative": true,
+    "scalable": true,
+    "uses_technology": true
+  },
+  "documents": [
+    {"path":"C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\dataset\\images\\doc_0.png"},
+    {"path":"C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\dataset\\images\\doc_1.png"},
+    {"path":"C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\dataset\\images\\doc_2.png"},
+    {"path":"C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\dataset\\images\\doc_3.png"},
+    {"path":"C:\\Users\\maram\\Desktop\\track_b_legal_admin_pro\\data\\dataset\\images\\doc_4.png"}
+  ],
+  "options": {
+    "strict_mode": true,
+    "generate_json_report": true,
+    "generate_pdf_report": true,
+    "report_prefix": "committee_packet"
+  }
+}

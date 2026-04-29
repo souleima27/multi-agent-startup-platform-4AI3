@@ -1,0 +1,241 @@
+{
+  "overall_score": 73,
+  "overall_status": "Acceptable",
+  "scoring_scale": {
+    "0_39": "Weak",
+    "40_59": "Needs work",
+    "60_74": "Acceptable",
+    "75_89": "Strong",
+    "90_100": "Excellent"
+  },
+  "criteria": [
+    {
+      "id": "content_clarity",
+      "label": "Content clarity",
+      "score": 80,
+      "status": "Strong",
+      "evidence": {
+        "covered_parts": [
+          "problem",
+          "solution",
+          "value_proposition",
+          "differentiation",
+          "market",
+          "business_model",
+          "traction",
+          "closing"
+        ],
+        "missing_parts": [
+          "target_customer",
+          "team",
+          "ask"
+        ],
+        "weak_parts": [],
+        "has_metrics": true,
+        "main_content_issue": "The pitch could be improved by explicitly stating the problem and providing more information about the target customer and team."
+      },
+      "what_it_means": "How clearly the pitch explains problem, customer, solution, value, proof, and ask."
+    },
+    {
+      "id": "narrative_strength",
+      "label": "Narrative strength",
+      "score": 85,
+      "status": "Strong",
+      "evidence": {
+        "opening_hook_score": 60,
+        "problem_clarity_score": 80,
+        "solution_flow_score": 90,
+        "proof_strength_score": 95,
+        "closing_score": 70,
+        "ask_clarity_score": 40,
+        "memorability_score": 80,
+        "narrative_summary": "The pitch effectively communicates the value proposition of Goodie Bag, an enterprise tool for companies to order food from restaurants, highlighting its unique economics, scalability, and growth potential.",
+        "strongest_narrative_point": "The presentation of strong proof points, such as the company's retention rate, customer acquisition cost payback, and revenue growth, effectively demonstrates the viability and potential of the business.",
+        "weakest_narrative_point": "The ask is unclear, as the speaker does not explicitly state what they are seeking from the audience, whether it be funding, partnerships, or other forms of support.",
+        "key_gaps": [
+          "Lack of clear problem statement",
+          "Unclear ask"
+        ],
+        "coaching_directions": [
+          "Clearly articulate the problem Goodie Bag solves for its customers",
+          "Explicitly state the ask and what the company is seeking from the audience"
+        ]
+      },
+      "what_it_means": "How well the pitch flows from opening to problem, solution, proof, and closing."
+    },
+    {
+      "id": "delivery_fluency",
+      "label": "Delivery fluency",
+      "score": 75,
+      "status": "Strong",
+      "evidence": {
+        "words_per_minute": 172.1,
+        "filler_count": 1,
+        "mean_energy": 0.07755,
+        "avg_sentence_length_words": 16.47
+      },
+      "what_it_means": "How controlled, fluent, and listenable the spoken delivery appears from audio features."
+    },
+    {
+      "id": "visual_pitching",
+      "label": "Visual pitching / camera presence",
+      "score": 56,
+      "status": "Needs work",
+      "evidence": {
+        "sampled_frames": 40,
+        "face_detected_ratio": 0.0,
+        "pose_detected_ratio": 0.15,
+        "avg_face_area": 0.0,
+        "nose_x_std": 0.006,
+        "nose_y_std": 0.004,
+        "skipped": false
+      },
+      "what_it_means": "How visible, stable, and camera-ready the speaker appears. This is not a psychological claim."
+    },
+    {
+      "id": "visual_assurance_cues",
+      "label": "Visual assurance cues",
+      "score": 6,
+      "status": "Weak",
+      "evidence": {
+        "lowest_segments": [
+          {
+            "start": 0.0,
+            "end": 5.0,
+            "start_mmss": "00:00",
+            "end_mmss": "00:05",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 15.0,
+            "end": 20.0,
+            "start_mmss": "00:15",
+            "end_mmss": "00:20",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          },
+          {
+            "start": 35.0,
+            "end": 40.0,
+            "start_mmss": "00:35",
+            "end_mmss": "00:40",
+            "presentation_assurance_score": 0,
+            "status": "low",
+            "signals": {
+              "face_visibility": 0.0,
+              "pose_visibility": 0.0,
+              "head_stability": 0.0,
+              "camera_presence": 0.0
+            }
+          }
+        ],
+        "skipped": false
+      },
+      "what_it_means": "Timestamped visual presentation cues such as framing, face visibility, pose visibility, and head stability."
+    },
+    {
+      "id": "vocal_assurance_cues",
+      "label": "Vocal assurance cues",
+      "score": 0,
+      "status": "Weak",
+      "evidence": {
+        "lowest_segments": [],
+        "skipped": true
+      },
+      "what_it_means": "Optional vocal assurance cues. This is not a diagnosis of emotion or personality."
+    },
+    {
+      "id": "evidence_quality",
+      "label": "Evidence quality",
+      "score": 100,
+      "status": "Excellent",
+      "evidence": {
+        "completed_tools": [
+          "extract_audio",
+          "transcribe_audio",
+          "sample_frames",
+          "analyze_audio",
+          "analyze_delivery",
+          "analyze_content",
+          "analyze_narrative",
+          "analyze_visuals",
+          "analyze_presence",
+          "analyze_visual_assurance",
+          "generate_rewrite"
+        ],
+        "warnings": [],
+        "transcript_segment_count": 69
+      },
+      "what_it_means": "How reliable the report is based on the amount and diversity of evidence collected."
+    }
+  ],
+  "summary": {
+    "strongest_criteria": [
+      {
+        "id": "evidence_quality",
+        "label": "Evidence quality",
+        "score": 100,
+        "status": "Excellent"
+      },
+      {
+        "id": "narrative_strength",
+        "label": "Narrative strength",
+        "score": 85,
+        "status": "Strong"
+      },
+      {
+        "id": "content_clarity",
+        "label": "Content clarity",
+        "score": 80,
+        "status": "Strong"
+      }
+    ],
+    "weakest_criteria": [
+      {
+        "id": "visual_assurance_cues",
+        "label": "Visual assurance cues",
+        "score": 6,
+        "status": "Weak"
+      },
+      {
+        "id": "visual_pitching",
+        "label": "Visual pitching / camera presence",
+        "score": 56,
+        "status": "Needs work"
+      },
+      {
+        "id": "delivery_fluency",
+        "label": "Delivery fluency",
+        "score": 75,
+        "status": "Strong"
+      }
+    ],
+    "agent_completed_tools": [
+      "extract_audio",
+      "transcribe_audio",
+      "sample_frames",
+      "analyze_audio",
+      "analyze_delivery",
+      "analyze_content",
+      "analyze_narrative",
+      "analyze_visuals",
+      "analyze_presence",
+      "analyze_visual_assurance",
+      "generate_rewrite"
+    ],
+    "important_note": "Visual and vocal assurance scores are presentation cues, not psychological diagnoses."
+  }
+}

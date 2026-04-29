@@ -1,0 +1,86 @@
+{
+  "startup_profile": {
+    "name": "HealthFlow",
+    "objective": "Build a telemedicine platform for developing countries",
+    "problem_statement": "Patients in rural areas struggle to access quality healthcare due to distance and cost",
+    "target_users": "Rural patients, small clinics, healthcare providers",
+    "mvp_scope_paragraph": "MVP includes video consultations, prescription delivery, appointment booking, and basic health records",
+    "execution_context": "Team of 4 engineers, 2 months timeline, Bootstrap funding"
+  },
+  "mvp_plan": {
+    "features": [
+      {
+        "name": "User authentication & profiles",
+        "priority": "high"
+      },
+      {
+        "name": "Video consultation system",
+        "priority": "high"
+      },
+      {
+        "name": "Appointment scheduling",
+        "priority": "high"
+      },
+      {
+        "name": "Prescription management",
+        "priority": "medium"
+      },
+      {
+        "name": "Health records storage",
+        "priority": "medium"
+      },
+      {
+        "name": "Notification system",
+        "priority": "medium"
+      }
+    ],
+    "admin_workflow": [
+      {
+        "name": "Legal entity registration",
+        "priority": "high"
+      },
+      {
+        "name": "Healthcare compliance check",
+        "priority": "high"
+      },
+      {
+        "name": "Payment gateway integration",
+        "priority": "high"
+      }
+    ],
+    "deadlines": {
+      "mvp_launch": "2026-06-30",
+      "legal_deadline": "2026-05-30"
+    }
+  },
+  "team": [
+    {
+      "name": "Sarah",
+      "role": "Product Manager",
+      "skills": ["planning", "requirements", "operations"],
+      "availability": 1
+    },
+    {
+      "name": "Ahmed",
+      "role": "Backend Lead",
+      "skills": ["backend", "api", "database", "devops"],
+      "availability": 1
+    },
+    {
+      "name": "Leila",
+      "role": "Frontend Developer",
+      "skills": ["frontend", "react", "mobile"],
+      "availability": 0.9
+    },
+    {
+      "name": "Hassan",
+      "role": "Full Stack Engineer",
+      "skills": ["frontend", "backend", "testing"],
+      "availability": 1
+    }
+  ],
+  "live_status": {
+    "progress_signals": [],
+    "founder_notes": "First MVP target is Tunisia market"
+  }
+}

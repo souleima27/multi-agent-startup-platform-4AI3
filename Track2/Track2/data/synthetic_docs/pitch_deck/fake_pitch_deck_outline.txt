@@ -1,0 +1,5 @@
+Slide 1: NovaLegal Labs - AI legal-admin automation for startups
+Slide 2: The Problem - Legal and administrative setup creates friction
+Slide 3: Our Solution - Two-agent workflow with OCR and legal validation
+Slide 4: Why Now - Compliance automation is ready for practical deployment
+Slide 5: Traction and Next Steps - Prototype validated on synthetic and real document packs

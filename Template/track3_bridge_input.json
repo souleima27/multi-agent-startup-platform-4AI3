@@ -1,0 +1,88 @@
+{
+  "startup_profile": {
+    "name": "HealthTech",
+    "objective": "Build a patient management system for clinics",
+    "problem_statement": "Clinics struggle with patient records management",
+    "target_users": "Clinic staff and patients",
+    "mvp_scope_paragraph": "MVP includes patient registration, appointment booking, and medical records",
+    "execution_context": "Team of 3, 8 weeks, $50k budget"
+  },
+  "mvp_plan": {
+    "features": [
+      {
+        "name": "User auth system",
+        "priority": "high"
+      },
+      {
+        "name": "Patient dashboard",
+        "priority": "high"
+      },
+      {
+        "name": "Appointment booking",
+        "priority": "high"
+      },
+      {
+        "name": "Medical records storage",
+        "priority": "medium"
+      },
+      {
+        "name": "SMS notifications",
+        "priority": "medium"
+      }
+    ],
+    "admin_workflow": [
+      {
+        "name": "Business registration",
+        "priority": "high"
+      },
+      {
+        "name": "Compliance check",
+        "priority": "high"
+      },
+      {
+        "name": "Payment setup",
+        "priority": "high"
+      }
+    ],
+    "deadlines": {
+      "mvp_launch": "2026-06-30",
+      "legal_deadline": "2026-05-30"
+    }
+  },
+  "team": [
+    {
+      "name": "Alex",
+      "role": "Backend Engineer",
+      "skills": [
+        "backend",
+        "api",
+        "database"
+      ],
+      "availability": 1
+    },
+    {
+      "name": "Jordan",
+      "role": "Frontend Developer",
+      "skills": [
+        "frontend",
+        "react",
+        "ux"
+      ],
+      "availability": 0.9
+    },
+    {
+      "name": "Morgan",
+      "role": "DevOps",
+      "skills": [
+        "devops",
+        "deployment",
+        "monitoring"
+      ],
+      "availability": 0.8
+    }
+  ],
+  "live_status": {
+    "progress_signals": [],
+    "founder_notes": "First market is East Africa"
+  }
+}
