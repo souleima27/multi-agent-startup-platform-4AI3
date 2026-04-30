@@ -31,20 +31,6 @@ const TRACK3_FEATURES = [
     ],
     status: "Active",
   },
-  {
-    id: "marketing",
-    icon: "📢",
-    title: "Marketing Agent",
-    subtitle: "Go-to-Market & Growth Strategy",
-    description: "Develop comprehensive marketing strategies, customer acquisition plans, and growth experiments.",
-    features: [
-      "Market analysis",
-      "Customer acquisition",
-      "Growth experiments",
-      "Campaign planning",
-    ],
-    status: "Coming Soon",
-  },
 ];
 
 function FeatureCard({ feature, isActive, onClick }) {
@@ -52,71 +38,33 @@ function FeatureCard({ feature, isActive, onClick }) {
 
   return (
     <div
-      className="track3-feature-card"
+      className={`track3-feature-card${isActive ? " is-active" : ""}${isDisabled ? " is-disabled" : ""}`}
       onClick={!isDisabled ? onClick : undefined}
-      style={{
-        cursor: isDisabled ? "not-allowed" : "pointer",
-        opacity: isDisabled ? 0.6 : 1,
-        pointerEvents: isDisabled ? "none" : "auto",
-        border: isActive ? "2px solid rgba(75, 124, 255, 0.8)" : "1px solid var(--border)",
-        backgroundColor: isActive ? "rgba(75, 124, 255, 0.08)" : undefined,
-      }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: "12px" }}>
-        <div style={{ fontSize: "2.5rem" }}>{feature.icon}</div>
-        <span
-          style={{
-            display: "inline-block",
-            padding: "4px 10px",
-            borderRadius: "999px",
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            backgroundColor:
-              feature.status === "Active"
-                ? "rgba(34, 197, 94, 0.2)"
-                : "rgba(156, 163, 175, 0.2)",
-            color: feature.status === "Active" ? "#15803d" : "#6b7280",
-            textTransform: "uppercase",
-          }}
-        >
+      <div className="track3-feature-header">
+        <div className="track3-feature-icon" aria-hidden="true">
+          {feature.icon}
+        </div>
+        <span className={`track3-feature-status${feature.status === "Active" ? " is-active" : ""}`}>
           {feature.status}
         </span>
       </div>
 
-      <h3 style={{ margin: "0 0 4px 0", fontSize: "1.25rem", color: "var(--navy-900)", fontFamily: '"Space Grotesk", sans-serif' }}>
-        {feature.title}
-      </h3>
-      <p style={{ margin: "0 0 12px 0", fontSize: "0.9rem", color: "var(--text)" }}>
-        {feature.subtitle}
-      </p>
+      <div className="track3-feature-body">
+        <h3 className="track3-feature-title">{feature.title}</h3>
+        <p className="track3-feature-subtitle">{feature.subtitle}</p>
+        <p className="track3-feature-description">{feature.description}</p>
 
-      <p style={{ margin: "0 0 14px 0", fontSize: "0.95rem", color: "var(--text)", lineHeight: 1.6 }}>
-        {feature.description}
-      </p>
-
-      <ul style={{ margin: "0", paddingLeft: "18px", fontSize: "0.9rem" }}>
-        {feature.features.map((feat) => (
-          <li key={feat} style={{ color: "var(--text)", marginBottom: "6px" }}>
-            {feat}
-          </li>
-        ))}
-      </ul>
+        <ul className="track3-feature-list">
+          {feature.features.map((feat) => (
+            <li key={feat}>{feat}</li>
+          ))}
+        </ul>
+      </div>
 
       {!isDisabled && (
-        <div style={{ marginTop: "14px", paddingTop: "12px", borderTop: "1px solid var(--border)" }}>
-          <button
-            style={{
-              width: "100%",
-              padding: "8px 12px",
-              backgroundColor: "rgba(75, 124, 255, 0.2)",
-              color: "var(--blue-500)",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.9rem",
-            }}
-          >
+        <div className="track3-feature-action">
+          <button className="track3-feature-btn" type="button">
             Open {feature.title}
           </button>
         </div>
@@ -215,41 +163,121 @@ export function Track3Hub({ track }) {
 
         .track3-features-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 24px;
-          margin-bottom: 40px;
+          grid-template-columns: repeat(2, minmax(280px, 1fr));
+          gap: 28px;
+          margin: 0 auto 42px;
+          max-width: 920px;
         }
 
         .track3-feature-card {
-          padding: 24px;
+          padding: 28px;
           border: 1px solid var(--border);
-          border-radius: 20px;
-          background: rgba(255, 255, 255, 0.86);
-          box-shadow: var(--shadow-md);
-          transition: all 0.3s ease;
+          border-radius: 24px;
+          background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(237, 244, 255, 0.7));
+          box-shadow: 0 20px 50px rgba(10, 32, 73, 0.08);
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           display: flex;
           flex-direction: column;
+          gap: 16px;
         }
 
         body.dark-mode .track3-feature-card {
-          background: rgba(255, 255, 255, 0.04);
+          background: linear-gradient(160deg, rgba(10, 20, 40, 0.7), rgba(10, 20, 40, 0.3));
         }
 
-        .track3-feature-card:hover:not([style*="opacity: 0.6"]) {
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-lg);
-          border-color: rgba(75, 124, 255, 0.5);
+        .track3-feature-card.is-active {
+          border-color: rgba(75, 124, 255, 0.7);
+          box-shadow: 0 24px 60px rgba(20, 60, 150, 0.18);
+        }
+
+        .track3-feature-card.is-disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        .track3-feature-card:hover:not(.is-disabled) {
+          transform: translateY(-6px);
+          box-shadow: 0 28px 70px rgba(10, 32, 73, 0.16);
+          border-color: rgba(75, 124, 255, 0.45);
+        }
+
+        .track3-feature-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .track3-feature-icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 18px;
+          display: grid;
+          place-items: center;
+          font-size: 1.8rem;
+          background: linear-gradient(140deg, rgba(13, 33, 69, 0.9), rgba(75, 124, 255, 0.9));
+          color: #fff;
+          box-shadow: 0 16px 30px rgba(13, 33, 69, 0.25);
+        }
+
+        .track3-feature-status {
+          display: inline-flex;
+          align-items: center;
+          padding: 6px 12px;
+          border-radius: 999px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          background: rgba(156, 163, 175, 0.2);
+          color: #6b7280;
+        }
+
+        .track3-feature-status.is-active {
+          background: rgba(34, 197, 94, 0.18);
+          color: #15803d;
+        }
+
+        .track3-feature-body {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .track3-feature-title {
+          margin: 0;
+          font-size: 1.35rem;
+          color: var(--navy-900);
+          font-family: "Space Grotesk", sans-serif;
+        }
+
+        .track3-feature-subtitle {
+          margin: 0;
+          font-size: 0.92rem;
+          color: var(--navy-700);
+          font-weight: 600;
+        }
+
+        .track3-feature-description {
+          margin: 0;
+          font-size: 0.98rem;
+          color: var(--text);
+          line-height: 1.65;
         }
 
         .track3-feature-card ul {
           list-style: none;
           padding: 0;
-          margin: 0;
+          margin: 6px 0 0;
         }
 
         .track3-feature-card li {
           position: relative;
           padding-left: 20px;
+          color: var(--text);
+          font-size: 0.92rem;
+          line-height: 1.55;
         }
 
         .track3-feature-card li:before {
@@ -258,6 +286,30 @@ export function Track3Hub({ track }) {
           left: 0;
           color: #15803d;
           font-weight: bold;
+        }
+
+        .track3-feature-action {
+          margin-top: auto;
+          padding-top: 14px;
+          border-top: 1px solid var(--border);
+        }
+
+        .track3-feature-btn {
+          width: 100%;
+          padding: 10px 14px;
+          border-radius: 12px;
+          border: 1px solid rgba(75, 124, 255, 0.3);
+          background: linear-gradient(135deg, rgba(75, 124, 255, 0.18), rgba(13, 33, 69, 0.06));
+          color: var(--blue-500);
+          font-weight: 700;
+          font-size: 0.92rem;
+          cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .track3-feature-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 12px 24px rgba(20, 60, 150, 0.18);
         }
 
         .track3-hub-info {
@@ -280,11 +332,13 @@ export function Track3Hub({ track }) {
           line-height: 1.6;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
           .track3-features-grid {
             grid-template-columns: 1fr;
           }
+        }
 
+        @media (max-width: 768px) {
           .track3-hub-header h1 {
             font-size: 2rem;
           }
@@ -329,8 +383,7 @@ export function Track3Hub({ track }) {
         <h3 style={{ color: "#15803d" }}>💡 Pro Tips</h3>
         <p>
           Start with <strong>Execution Agent</strong> to get a clear project plan. Then use <strong>Pitch Coach</strong>
-          to refine your investor narrative, and <strong>Marketing Agent</strong> to plan your customer acquisition strategy.
-          Run these tools multiple times as your startup evolves!
+          to refine your investor narrative. Run these tools multiple times as your startup evolves!
         </p>
       </div>
     </section>

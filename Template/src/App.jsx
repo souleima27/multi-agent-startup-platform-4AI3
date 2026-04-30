@@ -18,6 +18,7 @@ import { useScrollEffects } from "./hooks/useScrollEffects";
 import { useTestimonials } from "./hooks/useTestimonials";
 import { Track1Analyzer } from "./pages/Track1Analyzer";
 import { Track1SavedReport } from "./pages/Track1SavedReport";
+import { Track3Hub } from "./pages/Track3Hub";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -71,7 +72,11 @@ if (window.location.hash === "#track1-report") {
         <main>
           {activeTrack ? (
             <>
-              <TrackPage track={activeTrack} />
+              {activeTrack.id === "track-c" ? (
+                <Track3Hub track={activeTrack} />
+              ) : (
+                <TrackPage track={activeTrack} />
+              )}
               <ContactSection />
             </>
           ) : (
