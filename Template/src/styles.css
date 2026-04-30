@@ -112,6 +112,7 @@ select {
   background: rgba(255, 255, 255, 0.76);
   backdrop-filter: blur(18px);
   box-shadow: 0 12px 40px rgba(10, 32, 73, 0.08);
+  overflow: visible;
 }
 
 body.dark-mode .topbar {
@@ -122,6 +123,14 @@ body.dark-mode .topbar {
   display: flex;
   align-items: center;
   gap: 12px;
+  height: 44px;
+  overflow: visible;
+}
+
+.brand-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
 }
 
 .brand-mark {

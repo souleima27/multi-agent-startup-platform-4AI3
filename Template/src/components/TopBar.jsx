@@ -1,12 +1,15 @@
+import logoLight from "../../images/logo.png";
+import logoDark from "../../images/darkLogo.png";
+
 export function TopBar({ darkMode, onToggleDarkMode, onOpenAuth, user, onSignOut }) {
   return (
     <header className="topbar">
       <a href="#home" className="brand">
-        <span className="brand-mark">VP</span>
-        <div>
-          <strong>Venture Path</strong>
-          <span>For startups and future founders</span>
-        </div>
+        <img
+          className="brand-logo"
+          src={darkMode ? logoDark : logoLight}
+          alt="Venture Path logo"
+        />
       </a>
 
       <nav className="nav-links">
