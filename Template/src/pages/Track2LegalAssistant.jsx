@@ -181,6 +181,7 @@ export function Track2LegalAssistant({ track }) {
   }
 
   const finalOutput = report?.final_output || {};
+  const externalResearch = report?.external_research || null;
   const strategic = report?.strategic_agent || {};
   const documentAgent = report?.document_agent || {};
   const checklist = strategic.checklist || [];
@@ -243,7 +244,8 @@ export function Track2LegalAssistant({ track }) {
         .track2-inline-card li,
         .track2-document-card p,
         .track2-json pre,
-        .track2-field label {
+        .track2-field label,
+        .track2-search-card a {
           color: var(--text);
           line-height: 1.65;
         }
@@ -398,6 +400,41 @@ export function Track2LegalAssistant({ track }) {
         .track2-document-card {
           display: grid;
           gap: 12px;
+        }
+
+        .track2-search-card {
+          display: grid;
+          gap: 14px;
+          padding: 20px;
+          border-radius: 18px;
+          border: 1px solid var(--border);
+          background: rgba(255, 255, 255, 0.88);
+          box-shadow: var(--shadow-md);
+        }
+
+        body.dark-mode .track2-search-card {
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .track2-search-card h3 {
+          margin: 0;
+          color: var(--navy-900);
+          font-family: "Space Grotesk", sans-serif;
+        }
+
+        .track2-search-card code {
+          display: block;
+          padding: 10px 12px;
+          border-radius: 10px;
+          background: rgba(18, 51, 100, 0.06);
+          color: var(--navy-900);
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
+        .track2-search-card a {
+          font-weight: 800;
+          color: var(--blue-500);
         }
 
         .track2-document-card p {
@@ -681,6 +718,45 @@ export function Track2LegalAssistant({ track }) {
                 </article>
               ))}
             </div>
+          </section>
+
+          <section className="track2-panel">
+            <h2>External research</h2>
+            {externalResearch ? (
+              <>
+                <p>{externalResearch.automation_note}</p>
+                <div className="track2-documents-grid" style={{ marginTop: 16 }}>
+                  {externalResearch.searches.map((search) => (
+                    <article className="track2-search-card" key={search.platform}>
+                      <div className="track2-badge-row">
+                        <Badge>{search.platform}</Badge>
+                        <Badge tone="info">Public search</Badge>
+                      </div>
+                      <h3>{search.purpose}</h3>
+                      <code>{search.query}</code>
+                      <a href={search.url} target="_blank" rel="noreferrer">
+                        Open {search.platform} search
+                      </a>
+                      <ul>
+                        {search.signals_to_check.map((signal) => (
+                          <li key={signal}>{signal}</li>
+                        ))}
+                      </ul>
+                    </article>
+                  ))}
+                </div>
+                <div className="track2-inline-card" style={{ marginTop: 16 }}>
+                  <h3>Research recommendations</h3>
+                  <ul>
+                    {externalResearch.recommendations.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            ) : (
+              <p>Run Track B to generate Google, LinkedIn and Facebook research checks.</p>
+            )}
           </section>
 
           <section className="track2-panel">

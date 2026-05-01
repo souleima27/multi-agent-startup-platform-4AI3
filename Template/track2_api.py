@@ -5,6 +5,7 @@ import os
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote_plus
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -81,6 +82,90 @@ SAMPLE_REQUEST: dict[str, Any] = {
 }
 
 
+def _as_text_list(values: Any) -> list[str]:
+    if not values:
+        return []
+    if isinstance(values, list):
+        return [str(item).strip() for item in values if str(item).strip()]
+    return [str(values).strip()]
+
+
+def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | None = None) -> dict[str, Any]:
+    profile = payload.get("startup_profile", {})
+    label_input = payload.get("label_input") or {}
+    final_output = (result or {}).get("final_output", {})
+    startup_name = str(profile.get("startup_name") or "startup").strip()
+    sector = str(profile.get("sector") or "").strip()
+    activity = str(profile.get("activity_description") or "").strip()
+    founders = profile.get("associates") or []
+    founder_names = [str(item.get("name", "")).strip() for item in founders if isinstance(item, dict) and item.get("name")]
+
+    core_terms = " ".join([startup_name, sector, "Tunisia startup"]).strip()
+    founder_terms = " OR ".join(founder_names) if founder_names else startup_name
+
+    searches = [
+        {
+            "platform": "Google",
+            "purpose": "Company, market, regulatory and public credibility check",
+            "query": f'"{startup_name}" {sector} Tunisia startup legal registration Startup Act',
+            "url": f"https://www.google.com/search?q={quote_plus(f'{startup_name} {sector} Tunisia startup legal registration Startup Act')}",
+            "signals_to_check": [
+                "Official website or product page",
+                "Press, accelerator, investor, or partner mentions",
+                "Regulatory or public registry mentions",
+                "Conflicting names, inactive pages, or reputation risks",
+            ],
+        },
+        {
+            "platform": "LinkedIn",
+            "purpose": "Founder and company professional presence check",
+            "query": f'site:linkedin.com/in OR site:linkedin.com/company "{startup_name}" {founder_terms}',
+            "url": f"https://www.google.com/search?q={quote_plus(f'site:linkedin.com/in OR site:linkedin.com/company {startup_name} {founder_terms}')}",
+            "signals_to_check": [
+                "Founder profiles match the declared team",
+                "Company page exists and matches sector/activity",
+                "Roles and experience support the legal dossier",
+                "Team claims are consistent with pitch and documents",
+            ],
+        },
+        {
+            "platform": "Facebook",
+            "purpose": "Public social proof and activity check",
+            "query": f'site:facebook.com "{startup_name}" {sector} Tunisia',
+            "url": f"https://www.google.com/search?q={quote_plus(f'site:facebook.com {startup_name} {sector} Tunisia')}",
+            "signals_to_check": [
+                "Active public page or founder/community presence",
+                "Recent posts, launch activity, or customer signals",
+                "Contact details consistent with the legal dossier",
+                "Negative comments, abandoned pages, or impersonation risks",
+            ],
+        },
+    ]
+
+    recommendations = [
+        "Open each search result and confirm the public evidence before submitting the legal dossier.",
+        "Save screenshots or URLs for strong evidence such as company page, founder profiles, press, or accelerator mentions.",
+        "Treat missing LinkedIn/Facebook presence as a warning, not an automatic blocker.",
+    ]
+
+    if final_output.get("final_decision") == "FAIL":
+        recommendations.insert(0, "Fix blocking document issues first, then use public research to strengthen the dossier.")
+
+    return {
+        "startup_name": startup_name,
+        "sector": sector,
+        "activity_description": activity,
+        "traction_signals": _as_text_list(label_input.get("traction_signals")),
+        "team_signals": _as_text_list(label_input.get("team_signals")),
+        "searches": searches,
+        "recommendations": recommendations,
+        "automation_note": (
+            "Google, LinkedIn and Facebook pages often block unauthenticated scraping. "
+            "This bridge prepares reliable public search URLs and review criteria; it can be connected to a search API key later for automatic result extraction."
+        ),
+    }
+
+
 def _resolve_document_paths(payload: dict[str, Any]) -> dict[str, Any]:
     normalized = deepcopy(payload)
     for document in normalized.get("documents", []):
@@ -106,11 +191,19 @@ def sample() -> dict[str, Any]:
 @app.post("/track2/run")
 def run_track_b(payload: dict[str, Any]) -> dict[str, Any]:
     global latest_result
-    request = TrackBRequest.model_validate(_resolve_document_paths(payload))
+    normalized_payload = _resolve_document_paths(payload)
+    request = TrackBRequest.model_validate(normalized_payload)
     latest_result = orchestrator.run(request)
-    return latest_result.model_dump()
+    result = latest_result.model_dump()
+    result["external_research"] = _build_external_research(normalized_payload, result)
+    return result
 
 
 @app.post("/track2/chat")
 def chat(payload: ChatRequest) -> dict[str, Any]:
     return chatbot.answer(payload.question, latest_result).model_dump()
+
+
+@app.post("/track2/research")
+def external_research(payload: dict[str, Any]) -> dict[str, Any]:
+    return _build_external_research(_resolve_document_paths(payload))
