@@ -778,37 +778,7 @@ python pdf_report_generator.py
 
 The first run may take time because the embedding and reranking models need to be downloaded.
 
----
 
-## 📌 Current Limitations
-
-- A2A is local and in-process, not distributed
-- Runtime state is stored in JSON instead of a database
-- Jira integration depends on correct credentials and permissions
-- The fallback planner is rule-based
-- More unit tests are needed
-- Error handling can be improved for corrupted JSON runtime files
-- The PDF report input path is currently fixed in the script and may need to be made configurable
-
----
-
-## 🚧 Future Improvements
-
-- Add a web dashboard
-- Add database persistence
-- Add FastAPI backend
-- Add real-time Jira webhook support
-- Add Docker support
-- Add CI/CD pipeline
-- Add unit and integration tests
-- Add configurable PDF input/output paths
-- Add better logging
-- Add user authentication
-- Add multi-project support
-- Add advanced explainability for task prioritization
-- Add LIME/SHAP-based explanations for priority decisions
-
----
 
 ## 🎓 Academic Value
 
@@ -831,20 +801,6 @@ This project demonstrates:
 ## 🧑‍💻 Author
 
 Developed as part of an AI-powered execution management project.
-
----
-
-## 📜 License
-
-This project is provided for academic and educational purposes.
-
-You may add a license such as:
-
-```text
-MIT License
-```
-
-or keep it private depending on your project requirements.
 
 ---
 
