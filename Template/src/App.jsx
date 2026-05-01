@@ -80,7 +80,7 @@ if (window.location.hash === "#track1-report") {
               ) : (
                 <TrackPage track={activeTrack} />
               )}
-              <ContactSection />
+              {activeTrack.id !== "track-b" ? <ContactSection /> : null}
             </>
           ) : (
             <>
@@ -107,7 +107,7 @@ if (window.location.hash === "#track1-report") {
           )}
         </main>
 
-        <Footer />
+        {activeTrack?.id !== "track-b" ? <Footer /> : null}
       </div>
 
       <AuthModal

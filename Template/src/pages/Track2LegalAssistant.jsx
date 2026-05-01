@@ -191,6 +191,27 @@ export function Track2LegalAssistant({ track }) {
   return (
     <section className="section track-page track2-legal">
       <style>{`
+        .track2-legal {
+          --track2-surface: #ffffff;
+          --track2-muted-surface: #f4f7fb;
+          --track2-line: #d8e1ef;
+          --track2-ink: #12233f;
+          --track2-muted: #53657f;
+          --track2-accent: #1f5eff;
+          --track2-success: #087443;
+          --track2-warning: #9a5a00;
+          --track2-danger: #b42318;
+          padding-top: 18px;
+        }
+
+        body.dark-mode .track2-legal {
+          --track2-surface: rgba(255, 255, 255, 0.045);
+          --track2-muted-surface: rgba(255, 255, 255, 0.065);
+          --track2-line: rgba(255, 255, 255, 0.12);
+          --track2-ink: var(--navy-900);
+          --track2-muted: var(--text);
+        }
+
         .track2-legal .track-page-hero {
           align-items: stretch;
         }
@@ -201,9 +222,9 @@ export function Track2LegalAssistant({ track }) {
         .track2-inline-card,
         .track2-document-card,
         .track2-metric {
-          border: 1px solid var(--border);
-          background: rgba(255, 255, 255, 0.88);
-          box-shadow: var(--shadow-md);
+          border: 1px solid var(--track2-line);
+          background: var(--track2-surface);
+          box-shadow: none;
         }
 
         body.dark-mode .track2-hero-card,
@@ -218,8 +239,8 @@ export function Track2LegalAssistant({ track }) {
         .track2-hero-card,
         .track2-panel,
         .track2-result-card {
-          padding: 30px;
-          border-radius: 24px;
+          padding: 22px;
+          border-radius: 8px;
         }
 
         .track2-hero-card h1,
@@ -233,9 +254,10 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-hero-card h1 {
-          max-width: 12ch;
-          font-size: clamp(2.4rem, 5vw, 4.1rem);
-          line-height: 0.98;
+          max-width: none;
+          font-size: 1.9rem;
+          line-height: 1.12;
+          letter-spacing: 0;
         }
 
         .track2-hero-card p,
@@ -261,7 +283,7 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-grid,
         .track2-result-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
         }
 
         .track2-form-row,
@@ -274,12 +296,14 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-panel {
-          margin-top: 24px;
+          margin-top: 16px;
         }
 
         .track2-panel h2,
         .track2-result-card h2 {
-          margin-bottom: 16px;
+          margin-bottom: 14px;
+          font-size: 1.15rem;
+          letter-spacing: 0;
         }
 
         .track2-field {
@@ -297,10 +321,10 @@ export function Track2LegalAssistant({ track }) {
         .track2-select {
           width: 100%;
           padding: 11px 12px;
-          border: 1px solid var(--gray-300);
+          border: 1px solid var(--track2-line);
           border-radius: 8px;
-          background: var(--gray-050);
-          color: var(--navy-900);
+          background: var(--track2-muted-surface);
+          color: var(--track2-ink);
           font: inherit;
           outline: none;
         }
@@ -333,7 +357,7 @@ export function Track2LegalAssistant({ track }) {
           display: inline-flex;
           align-items: center;
           padding: 7px 11px;
-          border-radius: 999px;
+          border-radius: 6px;
           font-size: 0.78rem;
           font-weight: 800;
           text-transform: capitalize;
@@ -341,31 +365,31 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-badge.info,
         .track2-metric.info {
-          color: var(--blue-500);
-          background: rgba(75, 124, 255, 0.12);
+          color: var(--track2-accent);
+          background: rgba(31, 94, 255, 0.1);
         }
 
         .track2-badge.good,
         .track2-metric.good {
-          color: #15803d;
-          background: rgba(34, 197, 94, 0.14);
+          color: var(--track2-success);
+          background: rgba(8, 116, 67, 0.1);
         }
 
         .track2-badge.warn,
         .track2-metric.warn {
-          color: #b45309;
-          background: rgba(245, 158, 11, 0.14);
+          color: var(--track2-warning);
+          background: rgba(154, 90, 0, 0.1);
         }
 
         .track2-badge.danger,
         .track2-metric.danger {
-          color: #b91c1c;
-          background: rgba(239, 68, 68, 0.14);
+          color: var(--track2-danger);
+          background: rgba(180, 35, 24, 0.1);
         }
 
         .track2-metric {
-          padding: 17px;
-          border-radius: 18px;
+          padding: 14px;
+          border-radius: 8px;
         }
 
         .track2-metric span {
@@ -378,18 +402,18 @@ export function Track2LegalAssistant({ track }) {
         .track2-metric strong {
           display: block;
           color: var(--navy-900);
-          font-size: 1.35rem;
+          font-size: 1.15rem;
           line-height: 1.1;
         }
 
         .track2-result-card {
-          margin-top: 24px;
+          margin-top: 16px;
         }
 
         .track2-inline-card,
         .track2-document-card {
-          padding: 20px;
-          border-radius: 18px;
+          padding: 16px;
+          border-radius: 8px;
         }
 
         .track2-inline-card ul {
@@ -406,10 +430,10 @@ export function Track2LegalAssistant({ track }) {
           display: grid;
           gap: 14px;
           padding: 20px;
-          border-radius: 18px;
-          border: 1px solid var(--border);
-          background: rgba(255, 255, 255, 0.88);
-          box-shadow: var(--shadow-md);
+          border-radius: 8px;
+          border: 1px solid var(--track2-line);
+          background: var(--track2-surface);
+          box-shadow: none;
         }
 
         body.dark-mode .track2-search-card {
@@ -425,9 +449,9 @@ export function Track2LegalAssistant({ track }) {
         .track2-search-card code {
           display: block;
           padding: 10px 12px;
-          border-radius: 10px;
-          background: rgba(18, 51, 100, 0.06);
-          color: var(--navy-900);
+          border-radius: 6px;
+          background: var(--track2-muted-surface);
+          color: var(--track2-ink);
           white-space: pre-wrap;
           word-break: break-word;
         }
@@ -444,8 +468,8 @@ export function Track2LegalAssistant({ track }) {
         .track2-json {
           margin-top: 18px;
           padding: 18px;
-          border-radius: 18px;
-          border: 1px solid var(--border);
+          border-radius: 8px;
+          border: 1px solid var(--track2-line);
           overflow: auto;
         }
 
@@ -460,11 +484,75 @@ export function Track2LegalAssistant({ track }) {
         .track2-message {
           margin-top: 16px;
           padding: 14px 16px;
-          border-radius: 14px;
+          border-radius: 8px;
           border: 1px solid rgba(239, 68, 68, 0.22);
           background: rgba(239, 68, 68, 0.08);
           color: #b91c1c;
           font-weight: 700;
+        }
+
+        .track2-app-header {
+          display: flex;
+          justify-content: space-between;
+          gap: 18px;
+          align-items: flex-start;
+          padding-bottom: 18px;
+          margin-bottom: 16px;
+          border-bottom: 1px solid var(--track2-line);
+        }
+
+        .track2-app-title {
+          display: grid;
+          gap: 8px;
+        }
+
+        .track2-app-title p {
+          max-width: 78ch;
+          margin: 0;
+        }
+
+        .track2-app-kicker {
+          color: var(--track2-muted);
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0;
+          text-transform: uppercase;
+        }
+
+        .track2-status-strip {
+          display: grid;
+          gap: 10px;
+          min-width: 260px;
+        }
+
+        .track2-run-note {
+          margin-top: 14px;
+          padding: 12px;
+          border: 1px solid var(--track2-line);
+          border-radius: 8px;
+          background: var(--track2-muted-surface);
+          color: var(--track2-muted);
+          font-size: 0.9rem;
+        }
+
+        .track2-section-header {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          align-items: center;
+          margin-bottom: 14px;
+        }
+
+        .track2-section-header h2 {
+          margin: 0;
+        }
+
+        .track2-legal .track-icon.large-track-icon {
+          width: 44px;
+          height: 44px;
+          border-radius: 8px;
+          font-size: 1rem;
+          box-shadow: none;
         }
 
         @media (max-width: 980px) {
@@ -475,34 +563,60 @@ export function Track2LegalAssistant({ track }) {
           .track2-documents-grid {
             grid-template-columns: 1fr;
           }
+
+          .track2-app-header {
+            display: grid;
+          }
+
+          .track2-status-strip {
+            min-width: 0;
+          }
         }
       `}</style>
 
       <div className="track-page-hero reveal track2-grid">
         <div className="track2-hero-card">
-          <div className="track-card-top">
-            <span className="track-label">{track?.track || "Track B"}</span>
-            <span className="track-badge">{track?.badge || "Best for setup"}</span>
+          <div className="track2-app-header">
+            <div className="track2-app-title">
+              <span className="track2-app-kicker">{track?.track || "Track B"} · Legal Operations Console</span>
+              <h1>Legal and administrative readiness</h1>
+              <p>
+                Analyze company structure, Startup Act readiness, document compliance, external public
+                evidence and filing blockers from one controlled workspace.
+              </p>
+            </div>
+            <div className="track2-status-strip">
+              <div className="track-card-top">
+                <span className="track-label">{track?.track || "Track B"}</span>
+                <span className="track-badge">{track?.badge || "Best for setup"}</span>
+              </div>
+              <div className="track2-badge-row">
+                <Badge>Legal Agent</Badge>
+                <Badge>Document Agent</Badge>
+              </div>
+            </div>
           </div>
-          <div className="track-icon large-track-icon">{track?.icon || "B"}</div>
-          <h1>Legal and administrative readiness</h1>
-          <p>
-            Run the Track B agents for Tunisian startup setup: legal structure, Startup Act readiness,
-            document intelligence, missing documents, corrections, and a final GO/NO-GO decision.
-          </p>
-          <div className="track2-badge-row">
-            <Badge>Strategic Legal Agent</Badge>
-            <Badge>Document Intelligence</Badge>
-            <Badge>MCP Context</Badge>
-            <Badge>A2A Orchestration</Badge>
-          </div>
+
+          {report ? (
+            <div className="track2-metrics">
+              <Metric label="Decision" value={finalOutput.final_decision || "N/A"} tone={decisionTone} />
+              <Metric label="Legal form" value={strategic.recommended_legal_form || "N/A"} />
+              <Metric label="Document score" value={`${documentAgent.overall_completeness_score ?? 0}%`} tone="info" />
+            </div>
+          ) : (
+            <div className="track2-run-note">
+              Connect the Track B API on port 5057, review the startup profile and documents, then run the legal analysis.
+            </div>
+          )}
         </div>
 
         <div className="track2-panel">
-          <h2>Run Track B</h2>
+          <div className="track2-section-header">
+            <h2>Execution</h2>
+            <Badge tone="info">API 5057</Badge>
+          </div>
           <p>
-            Start the bridge API first on port 5057, then run the analysis with synthetic documents
-            or your own absolute file paths.
+            Use the sample package for a fast demo or replace the document paths with your dossier files.
           </p>
           <div className="track2-actions">
             <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
