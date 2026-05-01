@@ -201,7 +201,10 @@ export function Track2LegalAssistant({ track }) {
           --track2-success: #087443;
           --track2-warning: #9a5a00;
           --track2-danger: #b42318;
-          padding-top: 18px;
+          width: min(1180px, calc(100% - 32px));
+          min-height: 100vh;
+          margin: 0 auto;
+          padding: 26px 0 44px;
         }
 
         body.dark-mode .track2-legal {
@@ -214,6 +217,73 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-legal .track-page-hero {
           align-items: stretch;
+        }
+
+        .track2-console-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          margin-bottom: 18px;
+          padding: 14px 16px;
+          border: 1px solid var(--track2-line);
+          border-radius: 8px;
+          background: var(--track2-surface);
+        }
+
+        .track2-console-brand {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          min-width: 0;
+        }
+
+        .track2-console-mark {
+          display: grid;
+          place-items: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          background: #12336c;
+          color: #fff;
+          font-weight: 900;
+          font-family: "Space Grotesk", sans-serif;
+        }
+
+        .track2-console-brand strong {
+          display: block;
+          color: var(--track2-ink);
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1rem;
+          letter-spacing: 0;
+        }
+
+        .track2-console-brand span {
+          display: block;
+          color: var(--track2-muted);
+          font-size: 0.78rem;
+        }
+
+        .track2-console-nav {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+
+        .track2-console-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 38px;
+          padding: 0 13px;
+          border: 1px solid var(--track2-line);
+          border-radius: 8px;
+          color: var(--track2-ink);
+          background: var(--track2-muted-surface);
+          font-weight: 800;
+          font-size: 0.88rem;
         }
 
         .track2-hero-card,
@@ -571,8 +641,31 @@ export function Track2LegalAssistant({ track }) {
           .track2-status-strip {
             min-width: 0;
           }
+
+          .track2-console-top {
+            align-items: stretch;
+            flex-direction: column;
+          }
+
+          .track2-console-nav {
+            justify-content: flex-start;
+          }
         }
       `}</style>
+
+      <div className="track2-console-top">
+        <div className="track2-console-brand">
+          <div className="track2-console-mark">B</div>
+          <div>
+            <strong>Track B Legal Console</strong>
+            <span>Legal setup, document control and public evidence review</span>
+          </div>
+        </div>
+        <div className="track2-console-nav">
+          <a className="track2-console-link" href="#services">Back to tracks</a>
+          <a className="track2-console-link" href="#home">Home</a>
+        </div>
+      </div>
 
       <div className="track-page-hero reveal track2-grid">
         <div className="track2-hero-card">
