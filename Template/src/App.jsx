@@ -18,6 +18,7 @@ import { useScrollEffects } from "./hooks/useScrollEffects";
 import { useTestimonials } from "./hooks/useTestimonials";
 import { Track1Analyzer } from "./pages/Track1Analyzer";
 import { Track1SavedReport } from "./pages/Track1SavedReport";
+import { Track2LegalAssistant } from "./pages/Track2LegalAssistant";
 import { Track3Hub } from "./pages/Track3Hub";
 
 function App() {
@@ -74,6 +75,8 @@ if (window.location.hash === "#track1-report") {
             <>
               {activeTrack.id === "track-c" ? (
                 <Track3Hub track={activeTrack} />
+              ) : activeTrack.id === "track-b" ? (
+                <Track2LegalAssistant track={activeTrack} />
               ) : (
                 <TrackPage track={activeTrack} />
               )}
