@@ -1,3 +1,4 @@
+import os
 import json
 from typing import Any, Dict, List, Optional
 
@@ -6,11 +7,6 @@ from mcp.client.stdio import stdio_client
 
 
 class MCPProjectOpsClient:
-    """
-    MCP client wrapper.
-    Use sync methods in scripts or async methods in notebooks / async flows.
-    """
-
     def __init__(self, server_script: str = "mcp_startup_server.py", python_cmd: str = "python"):
         self.server_script = server_script
         self.python_cmd = python_cmd
@@ -41,7 +37,7 @@ class MCPProjectOpsClient:
         server_params = StdioServerParameters(
             command=self.python_cmd,
             args=[self.server_script],
-            env=None,
+            env=dict(os.environ),
         )
 
         async with stdio_client(server_params) as (read_stream, write_stream):
@@ -57,8 +53,16 @@ class MCPProjectOpsClient:
     async def call_tool_async(self, tool_name: str, arguments: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         return await self._call_tool_async(tool_name, arguments or {})
 
-    async def create_task_async(self, task: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.call_tool_async("create_task", {"task": task})
+    async def list_tasks_async(self, status: Optional[str] = None, assigned_to: Optional[str] = None) -> Dict[str, Any]:
+        args = {}
+        if status is not None:
+            args["status"] = status
+        if assigned_to is not None:
+            args["assigned_to"] = assigned_to
+        return await self.call_tool_async("list_tasks", args)
+
+    async def upsert_tasks_async(self, tasks: List[Dict[str, Any]]) -> Dict[str, Any]:
+        return await self.call_tool_async("upsert_tasks", {"tasks": tasks})
 
     async def update_task_status_async(
         self,
@@ -76,31 +80,14 @@ class MCPProjectOpsClient:
             "actual_days": actual_days,
         })
 
-    async def assign_owner_async(self, task_id: str, owner: str) -> Dict[str, Any]:
-        return await self.call_tool_async("assign_owner", {"task_id": task_id, "owner": owner})
+    async def get_team_capacity_async(self) -> Dict[str, Any]:
+        return await self.call_tool_async("get_team_capacity", {})
 
-    async def generate_execution_summary_async(self, summary: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.call_tool_async("generate_execution_summary", {"summary": summary})
+    async def clear_runtime_tasks_async(self) -> Dict[str, Any]:
+        return await self.call_tool_async("clear_runtime_tasks", {})
 
-    async def execute_action_async(self, action: Dict[str, Any]) -> Dict[str, Any]:
-        action_type = action.get("type")
+    async def sync_tasks_to_jira_async(self, tasks: List[Dict[str, Any]]) -> Dict[str, Any]:
+        return await self.call_tool_async("sync_tasks_to_jira", {"tasks": tasks})
 
-        if action_type == "create_task":
-            return await self.create_task_async(action.get("task", {}))
-        if action_type == "update_status":
-            return await self.update_task_status_async(
-                task_id=action.get("task_id", ""),
-                new_status=action.get("new_status", "todo"),
-                blocked_reason=action.get("blocked_reason"),
-                progress=action.get("progress"),
-                actual_days=action.get("actual_days"),
-            )
-        if action_type == "assign_owner":
-            return await self.assign_owner_async(
-                task_id=action.get("task_id", ""),
-                owner=action.get("owner", ""),
-            )
-        if action_type == "generate_summary":
-            return await self.generate_execution_summary_async(action.get("summary", {}))
-
-        return {"ok": False, "error": f"Unsupported action type: {action_type}", "action": action}
+    async def fetch_jira_updates_async(self) -> Dict[str, Any]:
+        return await self.call_tool_async("fetch_jira_updates", {})

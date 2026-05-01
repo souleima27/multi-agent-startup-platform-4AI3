@@ -264,8 +264,36 @@ class ExecutionAgentPDFReport:
         self.story.append(table)
         self.story.append(Spacer(1, 0.18 * inch))
 
+    def add_jira_section(self):
+        jira = self.result.get("jira", {})
+        if not jira:
+            return
+
+        self._section_title("2. Jira Sync Summary")
+
+        data = [
+            ["Metric", "Value"],
+            ["Enabled", self._safe(jira.get("enabled", False))],
+            ["Project Key", self._safe(jira.get("project_key"))],
+            ["Issues Synced", self._safe(jira.get("issues_synced", 0))],
+            ["Created", self._safe(jira.get("created", 0))],
+            ["Updated", self._safe(jira.get("updated", 0))],
+            ["Errors", self._safe(jira.get("errors", 0))],
+            ["Last Sync", self._safe(jira.get("last_sync"))],
+        ]
+
+        table = self._simple_table(
+            data=data,
+            col_widths=[3.0 * inch, 2.2 * inch],
+            header_bg="#6A329F",
+            align="CENTER",
+            font_size=9,
+        )
+        self.story.append(table)
+        self.story.append(Spacer(1, 0.18 * inch))
+
     def add_team_section(self):
-        self._section_title("2. Team Composition and Workload")
+        self._section_title("3. Team Composition and Workload")
 
         team = self.result.get("updated_state", {}).get("team", [])
         data = [["Name", "Role", "Availability", "Current Load", "Skills"]]
@@ -291,7 +319,7 @@ class ExecutionAgentPDFReport:
         self.story.append(Spacer(1, 0.18 * inch))
 
     def add_kb_section(self):
-        self._section_title("3. Knowledge Retrieval Summary")
+        self._section_title("4. Knowledge Retrieval Summary")
 
         kb = self.result.get("kb_retrieval", {})
         queries = kb.get("queries", [])
@@ -327,7 +355,7 @@ class ExecutionAgentPDFReport:
         self.story.append(Spacer(1, 0.18 * inch))
 
     def add_dependency_analysis(self):
-        self._section_title("4. Dependency and Parallel Execution Analysis")
+        self._section_title("5. Dependency and Parallel Execution Analysis")
 
         tasks = self.result.get("task_list", [])
         parallel_groups = self._identify_parallel_groups(tasks)
@@ -374,7 +402,7 @@ class ExecutionAgentPDFReport:
         self.story.append(Spacer(1, 0.18 * inch))
 
     def add_priority_tasks(self):
-        self._section_title("5. Top Priority Tasks")
+        self._section_title("6. Top Priority Tasks")
 
         tasks = self.result.get("priority_queue", [])
         if not tasks:
@@ -405,7 +433,7 @@ class ExecutionAgentPDFReport:
         self.story.append(Spacer(1, 0.18 * inch))
 
     def add_blocked_tasks(self):
-        self._section_title("6. Blocked Tasks")
+        self._section_title("7. Blocked Tasks")
 
         blocked_tasks = [t for t in self.result.get("task_list", []) if t.get("status") == "blocked"]
 
@@ -627,6 +655,7 @@ class ExecutionAgentPDFReport:
     def generate(self) -> str:
         self.add_cover()
         self.add_execution_health()
+        self.add_jira_section()
         self.add_team_section()
         self.add_kb_section()
         self.add_dependency_analysis()
@@ -648,8 +677,8 @@ def load_result_json(path: str) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    input_json = "execution_agent_outputs/execution_result_SkillBridge.json"
-    output_pdf = "execution_agent_outputs/SkillBridge_Execution_Report.pdf"
+    input_json = "execution_agent_outputs/execution_result_MedLink.json"
+    output_pdf = "execution_agent_outputs/MedLink_Execution_Report.pdf"
 
     result = load_result_json(input_json)
 
