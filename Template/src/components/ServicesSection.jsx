@@ -31,7 +31,8 @@ export function ServicesSection({ services }) {
               ))}
             </div>
 
-            <a href={`#${service.id}`} className="secondary-btn track-link">
+            <a href={service.id === "track-a" ? "#track1-analyzer" : `#${service.id}`}
+            className="secondary-btn track-link">
               Explore Track
             </a>
           </article>
