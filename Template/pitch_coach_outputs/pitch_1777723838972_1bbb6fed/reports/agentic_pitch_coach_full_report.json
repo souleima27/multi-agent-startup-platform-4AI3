@@ -1,0 +1,1200 @@
+{
+  "video_path": "C:\\Users\\asus\\Desktop\\final\\Template\\pitch_coach_uploads\\pitch_1777723838972_1bbb6fed\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.mp4",
+  "created_at": "2026-05-02 13:16:38",
+  "agent_state": {
+    "video_path": "C:\\Users\\asus\\Desktop\\final\\Template\\pitch_coach_uploads\\pitch_1777723838972_1bbb6fed\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.mp4",
+    "output_dir": "C:\\Users\\asus\\Desktop\\final\\Template\\pitch_coach_outputs\\pitch_1777723838972_1bbb6fed",
+    "goal": "Coach this pitch using all enabled multimodal evidence before writing the report.",
+    "coaching_mode": "investor",
+    "observations": {
+      "audio_path": "C:\\Users\\asus\\Desktop\\final\\Template\\pitch_coach_outputs\\pitch_1777723838972_1bbb6fed\\audio\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav",
+      "transcript_data": {
+        "language": "en",
+        "duration_sec": 172.2224375,
+        "segment_count": 69,
+        "text_preview": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that"
+      },
+      "transcript": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+      "language": "en",
+      "transcript_segment_count": 69
+    },
+    "analyses": {
+      "audio_features": {
+        "duration_sec": 172.2224375,
+        "word_count": 494,
+        "words_per_minute": 172.10301067768827,
+        "mean_energy": 0.07754607498645782,
+        "std_energy": 0.05773257091641426,
+        "mean_zcr": 0.14380971510939242,
+        "tempo_estimate": 104.16666666666667,
+        "filler_count": 1,
+        "avg_sentence_length_words": 16.466666666666665
+      },
+      "delivery": {
+        "score": 75,
+        "observations": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        }
+      },
+      "content": {
+        "score": 80,
+        "covered_parts": [
+          "problem",
+          "solution",
+          "value_proposition",
+          "differentiation",
+          "market",
+          "business_model",
+          "traction",
+          "closing"
+        ],
+        "missing_parts": [
+          "target_customer",
+          "team",
+          "ask"
+        ],
+        "weak_parts": [],
+        "has_metrics": true,
+        "generic_phrase_count": 2,
+        "component_feedback": {
+          "problem": "Implicitly mentioned as the inefficiency of ordering food for employee meetings and lunches, but not explicitly stated.",
+          "target_customer": "Missing, but can be inferred as corporate customers.",
+          "solution": "Clearly stated as an enterprise tool for companies to order food from restaurants.",
+          "value_proposition": "Implicitly mentioned as making it easier and more efficient to order food, with fantastic economics.",
+          "differentiation": "Clearly stated as not being a delivery service and having a unique economic model.",
+          "market": "Clearly stated as the takeout and delivery sector in the US, with a focus on corporate customers.",
+          "business_model": "Clearly stated as taking a 12% cut across all orders.",
+          "traction": "Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.",
+          "team": "Missing, no information about the team is provided.",
+          "ask": "Missing, no specific ask is made.",
+          "closing": "Weak, ends abruptly with an invitation to discuss further, but no clear call to action."
+        },
+        "evidence": [
+          "$5.5 million in orders",
+          "93% retention annually",
+          "12% cut across all orders"
+        ],
+        "main_content_issue": "Lack of clarity on the target customer and no specific ask.",
+        "recommended_fix": "Clearly state the target customer and make a specific ask to investors, such as funding amount and proposed use of funds.",
+        "similarity_scores": {}
+      },
+      "narrative": {
+        "score": 85,
+        "signals": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.",
+          "strongest_narrative_point": "The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.",
+          "weakest_narrative_point": "The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+          "key_gaps": [
+            "Clear problem statement",
+            "Explicit ask for investment or support"
+          ],
+          "coaching_directions": [
+            "Start with a stronger opening hook to grab the audience's attention",
+            "Clearly articulate the problem Goodie Bag solves for companies",
+            "Explicitly state the ask and desired outcome from the pitch"
+          ]
+        },
+        "narrative_summary": "The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.",
+        "strongest_narrative_point": "The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.",
+        "weakest_narrative_point": "The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+        "key_gaps": [
+          "Clear problem statement",
+          "Explicit ask for investment or support"
+        ],
+        "coaching_directions": [
+          "Start with a stronger opening hook to grab the audience's attention",
+          "Clearly articulate the problem Goodie Bag solves for companies",
+          "Explicitly state the ask and desired outcome from the pitch"
+        ],
+        "evidence": [
+          "The CEO mentions that Goodie Bag is not a delivery service, but doesn't clearly explain the problem with existing solutions",
+          "The pitch focuses heavily on the company's growth and metrics, but doesn't provide a clear call to action"
+        ]
+      },
+      "rewrites": [
+        {
+          "part": "opening",
+          "original": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.",
+          "improved": "Hello, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER], and I'm excited to share our solution with you today."
+        },
+        {
+          "part": "closing",
+          "original": "The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+          "improved": "That's Goodie Bag in a nutshell - delivering [VALUE] to [TARGET CUSTOMER]. Our next step is to [ASK], and I'd love to discuss how we can work together to make that happen."
+        }
+      ]
+    },
+    "decisions": [
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_path"
+        ],
+        "recommended_next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "args": {},
+        "done": false,
+        "executed_tool": "extract_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "transcript"
+        ],
+        "recommended_next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "args": {},
+        "done": false,
+        "executed_tool": "transcribe_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_features"
+        ],
+        "recommended_next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "delivery"
+        ],
+        "recommended_next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_delivery"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "content"
+        ],
+        "recommended_next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_content"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "narrative"
+        ],
+        "recommended_next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_narrative"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": true,
+        "missing_evidence": [],
+        "recommended_next_tool": null,
+        "reason": "All required analyses are complete."
+      }
+    ],
+    "tool_results": [
+      {
+        "tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "result_summary": "{\"audio_path\": \"C:\\\\Users\\\\asus\\\\Desktop\\\\final\\\\Template\\\\pitch_coach_outputs\\\\pitch_1777723838972_1bbb6fed\\\\audio\\\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav\"}"
+      },
+      {
+        "tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "result_summary": "{\"language\": \"en\", \"segment_count\": 69, \"text_preview\": \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month ..."
+      },
+      {
+        "tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "result_summary": "{\"duration_sec\": 172.2224375, \"word_count\": 494, \"words_per_minute\": 172.10301067768827, \"mean_energy\": 0.07754607498645782, \"std_energy\": 0.05773257091641426, \"mean_zcr\": 0.14380971510939242, \"tempo_estimate\": 104.16666666666667, \"filler_count\": 1, \"avg_sentence_length_words\": 16.466666666666665}"
+      },
+      {
+        "tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "result_summary": "{\"score\": 75, \"observations\": {\"words_per_minute\": 172.1, \"filler_count\": 1, \"mean_energy\": 0.07755, \"avg_sentence_length_words\": 16.47}}"
+      },
+      {
+        "tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "result_summary": "{\"score\": 80, \"covered_parts\": [\"problem\", \"solution\", \"value_proposition\", \"differentiation\", \"market\", \"business_model\", \"traction\", \"closing\"], \"missing_parts\": [\"target_customer\", \"team\", \"ask\"], \"weak_parts\": [], \"has_metrics\": true, \"generic_phrase_count\": 2, \"component_feedback\": {\"problem\": \"Implicitly mentioned as the inefficiency of ordering food for employee meetings and lunches, but not explicitly stated.\", \"target_customer\": \"Missing, but can be inferred as corporate customers.\", \"solution\": \"Clearly stated as an enterprise tool for companies to order food from restaurants.\", \"value_proposition\": \"Implicitly mentioned as making it easier and more efficient to order food, with fantastic economics.\", \"differentiation\": \"Clearly stated as not being a delivery service and having a unique economic model.\", \"market\": \"Clearly stated as the takeout and delivery sector in the US, with a focus on corporate customers.\", \"business_model\": \"Clearly stated as taking a 12% cut across all orders.\", \"traction\": \"Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.\", \"team\": \"Missing, no information about the team is provided...."
+      },
+      {
+        "tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "result_summary": "{\"score\": 85, \"signals\": {\"opening_hook_score\": 60, \"problem_clarity_score\": 80, \"solution_flow_score\": 90, \"proof_strength_score\": 95, \"closing_score\": 70, \"ask_clarity_score\": 40, \"memorability_score\": 80, \"narrative_summary\": \"The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.\", \"strongest_narrative_point\": \"The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.\", \"weakest_narrative_point\": \"The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.\", \"key_gaps\": [\"Clear problem statement\", \"Explicit ask for investment or support\"], \"coaching_directions\": [\"Start with a stronger opening hook to grab the audience's attention\", \"Clearly articulate the problem Goodie Bag solves for compani..."
+      },
+      {
+        "tool": "generate_rewrite",
+        "reason": "Final rewrite generation.",
+        "result_summary": "[{'part': 'opening', 'original': \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.\", 'improved': \"Hello, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER], and I'm excited to share our solution with you today.\"}, {'part': 'closing', 'original': 'The company is Goodie Bag, and again, my name is Jay. Thanks a lot.', 'improved': \"That's Goodie Bag in a nutshell - delivering [VALUE] to [TARGET CUSTOMER]. Our next step is to [ASK], and I'd love to discuss how we can work together to make that happen.\"}]"
+      }
+    ],
+    "warnings": [],
+    "completed_tools": [
+      "extract_audio",
+      "transcribe_audio",
+      "analyze_audio",
+      "analyze_delivery",
+      "analyze_content",
+      "analyze_narrative",
+      "generate_rewrite"
+    ],
+    "step_count": 6,
+    "max_steps": 20
+  },
+  "strategy": {
+    "dominant_problem": "Lack of clear problem setup and explicit ask for investment or support",
+    "why_this_is_dominant": "The pitch lacks a clear problem statement, instead focusing on the company's solution and growth, and the ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+    "top_priorities": [
+      {
+        "priority": 1,
+        "area": "Clear problem setup and explicit ask for investment or support",
+        "evidence": "The pitch lacks a clear problem statement, and the ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+        "coaching_action": "Clearly articulate the problem Goodie Bag solves for companies and make a specific ask to investors, such as funding amount and proposed use of funds.",
+        "success_test": "The pitch clearly states the problem Goodie Bag solves and makes a specific ask to investors."
+      }
+    ],
+    "what_not_to_focus_on_yet": [
+      {
+        "area": "Team",
+        "reason": "While the team is missing from the pitch, it is not the dominant problem and can be addressed after the clear problem setup and explicit ask are established."
+      }
+    ],
+    "next_best_action": {
+      "action": "Revise the pitch to include a clear problem setup and explicit ask for investment or support",
+      "why": "This will help to address the dominant problem and make the pitch more effective in conveying the value proposition and growth potential of Goodie Bag.",
+      "success_test": "The revised pitch clearly states the problem Goodie Bag solves and makes a specific ask to investors."
+    }
+  },
+  "report_plan": {
+    "report_sections": [
+      {
+        "title": "Executive Summary",
+        "purpose": "Provide an overview of the pitch and its key takeaways",
+        "include": true,
+        "reason": "This section is essential for any pitch coaching report, as it provides a concise summary of the pitch and its main points."
+      },
+      {
+        "title": "Pitch Analysis",
+        "purpose": "Analyze the pitch's strengths and weaknesses, including its content, delivery, and narrative",
+        "include": true,
+        "reason": "This section is crucial for identifying areas of improvement and providing actionable feedback to the pitcher."
+      },
+      {
+        "title": "Coaching Strategy",
+        "purpose": "Outline the coaching strategy and priorities for improving the pitch",
+        "include": true,
+        "reason": "This section is essential for providing a clear direction for the pitcher to improve their pitch and address its weaknesses."
+      },
+      {
+        "title": "Action Plan",
+        "purpose": "Provide a step-by-step plan for the pitcher to implement the coaching strategy and improve their pitch",
+        "include": true,
+        "reason": "This section is important for ensuring that the pitcher has a clear understanding of what they need to do to improve their pitch and can take concrete steps to implement the coaching strategy."
+      },
+      {
+        "title": "Appendices",
+        "purpose": "Include any additional information or data that supports the pitch analysis and coaching strategy",
+        "include": false,
+        "reason": "While appendices can be useful for providing additional context, they are not essential for this report and can be omitted to keep the report concise."
+      },
+      {
+        "title": "Conclusion",
+        "purpose": "Summarize the main points of the report and reiterate the coaching strategy and action plan",
+        "include": false,
+        "reason": "The executive summary and coaching strategy sections already provide a clear summary of the report's main points, making a conclusion section redundant."
+      }
+    ]
+  },
+  "final_report": {
+    "title": "Pitch Coaching Report for Goodie Bag",
+    "markdown_report": "# Executive Summary Goodie Bag's pitch showcases the company's unique economics and scalability in the takeout and delivery sector. However, the pitch lacks a clear problem setup and explicit ask for investment or support. This report provides an analysis of the pitch's strengths and weaknesses, outlines a coaching strategy, and provides an action plan for improvement. # Pitch Analysis The pitch's content score is 80, with strengths in showcasing the company's growth, customer retention, and revenue. However, the pitch lacks a clear problem statement and explicit ask for investment or support. The delivery score is 75, with a fast pace and some filler words. The narrative score is 85, with a clear summary of the company's value proposition and growth potential. ## Key Findings * Lack of clear problem setup and explicit ask for investment or support * Fast pace and some filler words in delivery * Clear summary of company's value proposition and growth potential in narrative ## Evidence * The pitch lacks a clear problem statement, instead focusing on the company's solution and growth. * The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards. * The pitch showcases impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback. ## Impact * The lack of clear problem setup and explicit ask for investment or support may make it difficult for investors to understand the company's value proposition and growth potential. * The fast pace and filler words in delivery may make it difficult for the audience to follow the pitch. ## Fix * Clearly articulate the problem Goodie Bag solves for companies and make a specific ask to investors, such as funding amount and proposed use of funds. * Practice the pitch to improve delivery and reduce filler words. # Coaching Strategy The dominant problem is the lack of clear problem setup and explicit ask for investment or support. To address this, the CEO should clearly articulate the problem Goodie Bag solves for companies and make a specific ask to investors. This will help to make the pitch more effective in conveying the value proposition and growth potential of Goodie Bag. # Next Best Action Revise the pitch to include a clear problem setup and explicit ask for investment or support. This will help to address the dominant problem and make the pitch more effective in conveying the value proposition and growth potential of Goodie Bag.",
+    "diagnostic_summary": {},
+    "next_best_action": {
+      "action": "Revise the pitch to include a clear problem setup and explicit ask for investment or support",
+      "why": "This will help to address the dominant problem and make the pitch more effective in conveying the value proposition and growth potential of Goodie Bag.",
+      "success_test": "The revised pitch clearly states the problem Goodie Bag solves and makes a specific ask to investors."
+    },
+    "limitations": []
+  },
+  "scorecard": {
+    "overall_score": 81,
+    "overall_status": "Strong",
+    "scoring_scale": {
+      "0_39": "Weak",
+      "40_59": "Needs work",
+      "60_74": "Acceptable",
+      "75_89": "Strong",
+      "90_100": "Excellent"
+    },
+    "criteria": [
+      {
+        "id": "content_clarity",
+        "label": "Content clarity",
+        "score": 80,
+        "status": "Strong",
+        "evidence": {
+          "covered_parts": [
+            "problem",
+            "solution",
+            "value_proposition",
+            "differentiation",
+            "market",
+            "business_model",
+            "traction",
+            "closing"
+          ],
+          "missing_parts": [
+            "target_customer",
+            "team",
+            "ask"
+          ],
+          "weak_parts": [],
+          "has_metrics": true,
+          "main_content_issue": "Lack of clarity on the target customer and no specific ask."
+        },
+        "what_it_means": "How clearly the pitch explains problem, customer, solution, value, proof, and ask."
+      },
+      {
+        "id": "narrative_strength",
+        "label": "Narrative strength",
+        "score": 85,
+        "status": "Strong",
+        "evidence": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.",
+          "strongest_narrative_point": "The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.",
+          "weakest_narrative_point": "The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+          "key_gaps": [
+            "Clear problem statement",
+            "Explicit ask for investment or support"
+          ],
+          "coaching_directions": [
+            "Start with a stronger opening hook to grab the audience's attention",
+            "Clearly articulate the problem Goodie Bag solves for companies",
+            "Explicitly state the ask and desired outcome from the pitch"
+          ]
+        },
+        "what_it_means": "How well the pitch flows from opening to problem, solution, proof, and closing."
+      },
+      {
+        "id": "delivery_fluency",
+        "label": "Delivery fluency",
+        "score": 75,
+        "status": "Strong",
+        "evidence": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        },
+        "what_it_means": "How controlled, fluent, and listenable the spoken delivery appears from audio features."
+      },
+      {
+        "id": "visual_pitching",
+        "label": "Visual pitching / camera presence",
+        "score": 0,
+        "status": "Weak",
+        "evidence": {
+          "sampled_frames": 0,
+          "face_detected_ratio": 0,
+          "pose_detected_ratio": 0,
+          "avg_face_area": 0,
+          "nose_x_std": 0,
+          "nose_y_std": 0,
+          "skipped": true
+        },
+        "what_it_means": "How visible, stable, and camera-ready the speaker appears. This is not a psychological claim."
+      },
+      {
+        "id": "visual_assurance_cues",
+        "label": "Visual assurance cues",
+        "score": 0,
+        "status": "Weak",
+        "evidence": {
+          "lowest_segments": [],
+          "skipped": true
+        },
+        "what_it_means": "Timestamped visual presentation cues such as framing, face visibility, pose visibility, and head stability."
+      },
+      {
+        "id": "vocal_assurance_cues",
+        "label": "Vocal assurance cues",
+        "score": 0,
+        "status": "Weak",
+        "evidence": {
+          "lowest_segments": [],
+          "skipped": true
+        },
+        "what_it_means": "Optional vocal assurance cues. This is not a diagnosis of emotion or personality."
+      },
+      {
+        "id": "evidence_quality",
+        "label": "Evidence quality",
+        "score": 85,
+        "status": "Strong",
+        "evidence": {
+          "completed_tools": [
+            "extract_audio",
+            "transcribe_audio",
+            "analyze_audio",
+            "analyze_delivery",
+            "analyze_content",
+            "analyze_narrative",
+            "generate_rewrite"
+          ],
+          "warnings": [],
+          "transcript_segment_count": 69
+        },
+        "what_it_means": "How reliable the report is based on the amount and diversity of evidence collected."
+      }
+    ],
+    "summary": {
+      "strongest_criteria": [
+        {
+          "id": "narrative_strength",
+          "label": "Narrative strength",
+          "score": 85,
+          "status": "Strong"
+        },
+        {
+          "id": "evidence_quality",
+          "label": "Evidence quality",
+          "score": 85,
+          "status": "Strong"
+        },
+        {
+          "id": "content_clarity",
+          "label": "Content clarity",
+          "score": 80,
+          "status": "Strong"
+        }
+      ],
+      "weakest_criteria": [
+        {
+          "id": "delivery_fluency",
+          "label": "Delivery fluency",
+          "score": 75,
+          "status": "Strong"
+        },
+        {
+          "id": "content_clarity",
+          "label": "Content clarity",
+          "score": 80,
+          "status": "Strong"
+        },
+        {
+          "id": "narrative_strength",
+          "label": "Narrative strength",
+          "score": 85,
+          "status": "Strong"
+        }
+      ],
+      "agent_completed_tools": [
+        "extract_audio",
+        "transcribe_audio",
+        "analyze_audio",
+        "analyze_delivery",
+        "analyze_content",
+        "analyze_narrative",
+        "generate_rewrite"
+      ],
+      "important_note": "Visual and vocal assurance scores are presentation cues, not psychological diagnoses."
+    }
+  },
+  "judge_result": {
+    "approved": true,
+    "quality_score": 70,
+    "issues": [
+      "Judge approved the report but gave an unusually low score; score normalized to 70."
+    ],
+    "requires_more_evidence": false,
+    "recommended_tool": null,
+    "revision_instructions": [],
+    "round": 2
+  },
+  "runtime_warnings": [],
+  "raw_state_full": {
+    "observations": {
+      "audio_path": "C:\\Users\\asus\\Desktop\\final\\Template\\pitch_coach_outputs\\pitch_1777723838972_1bbb6fed\\audio\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav",
+      "transcript_data": {
+        "language": "en",
+        "duration_sec": 172.2224375,
+        "segments": [
+          {
+            "start": 7.63,
+            "end": 8.91,
+            "text": "Hello, everyone."
+          },
+          {
+            "start": 8.91,
+            "end": 13.23,
+            "text": "I'm Jay Panchal, and I'm the CEO of Goodie Bag."
+          },
+          {
+            "start": 13.23,
+            "end": 15.51,
+            "text": "Now, Goodie Bag is an enterprise tool"
+          },
+          {
+            "start": 15.51,
+            "end": 18.27,
+            "text": "we've built for companies that makes it easier and more"
+          },
+          {
+            "start": 18.27,
+            "end": 20.97,
+            "text": "efficient to order food from restaurants for things"
+          },
+          {
+            "start": 20.97,
+            "end": 24.03,
+            "text": "like employee meetings, lunches, and so on."
+          },
+          {
+            "start": 24.03,
+            "end": 26.61,
+            "text": "Now, something that's really important to remember about us"
+          },
+          {
+            "start": 26.61,
+            "end": 29.21,
+            "text": "is that we're actually not a delivery service."
+          },
+          {
+            "start": 29.21,
+            "end": 31.39,
+            "text": "So we're not one of your typical on-demand food"
+          },
+          {
+            "start": 31.39,
+            "end": 34.41,
+            "text": "delivery startups with those negative gross margins"
+          },
+          {
+            "start": 34.41,
+            "end": 36.47,
+            "text": "a few of you seem to love so much."
+          },
+          {
+            "start": 36.49,
+            "end": 37.99,
+            "text": "No."
+          },
+          {
+            "start": 37.99,
+            "end": 40.31,
+            "text": "The economics of what we're doing are fantastic,"
+          },
+          {
+            "start": 40.31,
+            "end": 42.71,
+            "text": "and we can scale very fast."
+          },
+          {
+            "start": 42.71,
+            "end": 45.27,
+            "text": "We already have over 300 corporate customers"
+          },
+          {
+            "start": 45.27,
+            "end": 47.83,
+            "text": "who have purchased over half a million meals through us,"
+          },
+          {
+            "start": 47.83,
+            "end": 51.07,
+            "text": "and that's roughly $5 and 1 half million in orders."
+          },
+          {
+            "start": 51.07,
+            "end": 52.99,
+            "text": "And to show you how our economics truly are"
+          },
+          {
+            "start": 52.99,
+            "end": 56.63,
+            "text": "different, our average order size is $350."
+          },
+          {
+            "start": 56.63,
+            "end": 59.11,
+            "text": "That's 10x the consumer space."
+          },
+          {
+            "start": 59.11,
+            "end": 62.39,
+            "text": "Our average customer spends $24,000 a year through us."
+          },
+          {
+            "start": 62.39,
+            "end": 65.35,
+            "text": "We have 93% retention annually,"
+          },
+          {
+            "start": 65.35,
+            "end": 69.03,
+            "text": "and our CAC payback right now is four months."
+          },
+          {
+            "start": 69.03,
+            "end": 73.03,
+            "text": "On top of this, we're growing consistently every month."
+          },
+          {
+            "start": 73.03,
+            "end": 76.75,
+            "text": "We're now crossing a $5 and 1 half million GMV run rate,"
+          },
+          {
+            "start": 76.75,
+            "end": 79.39,
+            "text": "and this is a million more than just one month prior."
+          },
+          {
+            "start": 79.39,
+            "end": 81.35,
+            "text": "Now, we take a 12% cut across all of this,"
+          },
+          {
+            "start": 81.35,
+            "end": 83.63,
+            "text": "so that's roughly $600,000 in revenues to us,"
+          },
+          {
+            "start": 83.63,
+            "end": 85.79,
+            "text": "growing at the same pace."
+          },
+          {
+            "start": 85.79,
+            "end": 88.31,
+            "text": "Now, this is across four markets,"
+          },
+          {
+            "start": 88.31,
+            "end": 90.71,
+            "text": "primarily our first market, Austin,"
+          },
+          {
+            "start": 90.71,
+            "end": 92.79,
+            "text": "which is already profitable."
+          },
+          {
+            "start": 92.79,
+            "end": 95.35,
+            "text": "But we've also pushed into three new markets already,"
+          },
+          {
+            "start": 95.35,
+            "end": 97.91,
+            "text": "and we've been able to achieve the same growth trajectory"
+          },
+          {
+            "start": 97.91,
+            "end": 99.63,
+            "text": "across all of them."
+          },
+          {
+            "start": 99.63,
+            "end": 101.95,
+            "text": "In fact, both Houston and Seattle"
+          },
+          {
+            "start": 101.95,
+            "end": 105.35,
+            "text": "will both be profitable in just three months."
+          },
+          {
+            "start": 105.35,
+            "end": 108.49,
+            "text": "So this is replicable, and some of this"
+          },
+          {
+            "start": 108.49,
+            "end": 111.11,
+            "text": "might sound interesting, but what's even better"
+          },
+          {
+            "start": 111.11,
+            "end": 113.55,
+            "text": "is how large we can make this."
+          },
+          {
+            "start": 113.55,
+            "end": 116.03,
+            "text": "So the entire takeout and delivery sector in the US"
+          },
+          {
+            "start": 116.03,
+            "end": 117.99,
+            "text": "is roughly $70 billion and growing."
+          },
+          {
+            "start": 117.99,
+            "end": 119.63,
+            "text": "What's interesting about that, though,"
+          },
+          {
+            "start": 119.63,
+            "end": 122.19,
+            "text": "is that nearly half is purchased and consumed"
+          },
+          {
+            "start": 122.23,
+            "end": 123.83,
+            "text": "inside companies today,"
+          },
+          {
+            "start": 123.83,
+            "end": 126.95,
+            "text": "where there's less than 1% total market penetration,"
+          },
+          {
+            "start": 126.95,
+            "end": 128.63,
+            "text": "and we're the ones to win it."
+          },
+          {
+            "start": 128.63,
+            "end": 131.87,
+            "text": "The reason why is we are the only ones"
+          },
+          {
+            "start": 131.87,
+            "end": 134.59,
+            "text": "who have figured out how to scale this quickly"
+          },
+          {
+            "start": 134.59,
+            "end": 136.33,
+            "text": "and profitably."
+          },
+          {
+            "start": 136.33,
+            "end": 137.95,
+            "text": "We can go into a new market,"
+          },
+          {
+            "start": 137.95,
+            "end": 139.43,
+            "text": "break even in six months,"
+          },
+          {
+            "start": 139.43,
+            "end": 141.63,
+            "text": "and then a total investment of 100 grand."
+          },
+          {
+            "start": 141.63,
+            "end": 142.75,
+            "text": "So all we have to do"
+          },
+          {
+            "start": 142.75,
+            "end": 144.99,
+            "text": "is take what we've already proven in Austin,"
+          },
+          {
+            "start": 144.99,
+            "end": 146.99,
+            "text": "where we're proving again in three other cities,"
+          },
+          {
+            "start": 146.99,
+            "end": 149.95,
+            "text": "and roll this out to well over 100 applicable cities"
+          },
+          {
+            "start": 149.95,
+            "end": 151.75,
+            "text": "in the US alone."
+          },
+          {
+            "start": 151.75,
+            "end": 153.67,
+            "text": "Just expanding out this model,"
+          },
+          {
+            "start": 153.67,
+            "end": 156.07,
+            "text": "we'll be crossing 100 million GMB run rate"
+          },
+          {
+            "start": 156.07,
+            "end": 157.23,
+            "text": "in two and a half years,"
+          },
+          {
+            "start": 157.23,
+            "end": 159.75,
+            "text": "and a billion dollar run rate in five."
+          },
+          {
+            "start": 159.75,
+            "end": 161.67,
+            "text": "And again, we're the only ones who figured out"
+          },
+          {
+            "start": 161.67,
+            "end": 163.43,
+            "text": "how to do this reliably."
+          },
+          {
+            "start": 163.43,
+            "end": 164.27,
+            "text": "Now thank you."
+          },
+          {
+            "start": 164.27,
+            "end": 165.09,
+            "text": "If you do have any interest,"
+          },
+          {
+            "start": 165.09,
+            "end": 166.31,
+            "text": "find me on the floor afterwards."
+          },
+          {
+            "start": 166.31,
+            "end": 168.99,
+            "text": "The company is Goodie Bag, and again, my name is Jay."
+          },
+          {
+            "start": 168.99,
+            "end": 169.83,
+            "text": "Thanks a lot."
+          }
+        ],
+        "text": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot."
+      },
+      "transcript": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month prior. Now, we take a 12% cut across all of this, so that's roughly $600,000 in revenues to us, growing at the same pace. Now, this is across four markets, primarily our first market, Austin, which is already profitable. But we've also pushed into three new markets already, and we've been able to achieve the same growth trajectory across all of them. In fact, both Houston and Seattle will both be profitable in just three months. So this is replicable, and some of this might sound interesting, but what's even better is how large we can make this. So the entire takeout and delivery sector in the US is roughly $70 billion and growing. What's interesting about that, though, is that nearly half is purchased and consumed inside companies today, where there's less than 1% total market penetration, and we're the ones to win it. The reason why is we are the only ones who have figured out how to scale this quickly and profitably. We can go into a new market, break even in six months, and then a total investment of 100 grand. So all we have to do is take what we've already proven in Austin, where we're proving again in three other cities, and roll this out to well over 100 applicable cities in the US alone. Just expanding out this model, we'll be crossing 100 million GMB run rate in two and a half years, and a billion dollar run rate in five. And again, we're the only ones who figured out how to do this reliably. Now thank you. If you do have any interest, find me on the floor afterwards. The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+      "language": "en",
+      "transcript_segment_count": 69
+    },
+    "analyses": {
+      "audio_features": {
+        "duration_sec": 172.2224375,
+        "word_count": 494,
+        "words_per_minute": 172.10301067768827,
+        "mean_energy": 0.07754607498645782,
+        "std_energy": 0.05773257091641426,
+        "mean_zcr": 0.14380971510939242,
+        "tempo_estimate": 104.16666666666667,
+        "filler_count": 1,
+        "avg_sentence_length_words": 16.466666666666665
+      },
+      "delivery": {
+        "score": 75,
+        "observations": {
+          "words_per_minute": 172.1,
+          "filler_count": 1,
+          "mean_energy": 0.07755,
+          "avg_sentence_length_words": 16.47
+        }
+      },
+      "content": {
+        "score": 80,
+        "covered_parts": [
+          "problem",
+          "solution",
+          "value_proposition",
+          "differentiation",
+          "market",
+          "business_model",
+          "traction",
+          "closing"
+        ],
+        "missing_parts": [
+          "target_customer",
+          "team",
+          "ask"
+        ],
+        "weak_parts": [],
+        "has_metrics": true,
+        "generic_phrase_count": 2,
+        "component_feedback": {
+          "problem": "Implicitly mentioned as the inefficiency of ordering food for employee meetings and lunches, but not explicitly stated.",
+          "target_customer": "Missing, but can be inferred as corporate customers.",
+          "solution": "Clearly stated as an enterprise tool for companies to order food from restaurants.",
+          "value_proposition": "Implicitly mentioned as making it easier and more efficient to order food, with fantastic economics.",
+          "differentiation": "Clearly stated as not being a delivery service and having a unique economic model.",
+          "market": "Clearly stated as the takeout and delivery sector in the US, with a focus on corporate customers.",
+          "business_model": "Clearly stated as taking a 12% cut across all orders.",
+          "traction": "Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.",
+          "team": "Missing, no information about the team is provided.",
+          "ask": "Missing, no specific ask is made.",
+          "closing": "Weak, ends abruptly with an invitation to discuss further, but no clear call to action."
+        },
+        "evidence": [
+          "$5.5 million in orders",
+          "93% retention annually",
+          "12% cut across all orders"
+        ],
+        "main_content_issue": "Lack of clarity on the target customer and no specific ask.",
+        "recommended_fix": "Clearly state the target customer and make a specific ask to investors, such as funding amount and proposed use of funds.",
+        "similarity_scores": {}
+      },
+      "narrative": {
+        "score": 85,
+        "signals": {
+          "opening_hook_score": 60,
+          "problem_clarity_score": 80,
+          "solution_flow_score": 90,
+          "proof_strength_score": 95,
+          "closing_score": 70,
+          "ask_clarity_score": 40,
+          "memorability_score": 80,
+          "narrative_summary": "The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.",
+          "strongest_narrative_point": "The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.",
+          "weakest_narrative_point": "The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+          "key_gaps": [
+            "Clear problem statement",
+            "Explicit ask for investment or support"
+          ],
+          "coaching_directions": [
+            "Start with a stronger opening hook to grab the audience's attention",
+            "Clearly articulate the problem Goodie Bag solves for companies",
+            "Explicitly state the ask and desired outcome from the pitch"
+          ]
+        },
+        "narrative_summary": "The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.",
+        "strongest_narrative_point": "The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.",
+        "weakest_narrative_point": "The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.",
+        "key_gaps": [
+          "Clear problem statement",
+          "Explicit ask for investment or support"
+        ],
+        "coaching_directions": [
+          "Start with a stronger opening hook to grab the audience's attention",
+          "Clearly articulate the problem Goodie Bag solves for companies",
+          "Explicitly state the ask and desired outcome from the pitch"
+        ],
+        "evidence": [
+          "The CEO mentions that Goodie Bag is not a delivery service, but doesn't clearly explain the problem with existing solutions",
+          "The pitch focuses heavily on the company's growth and metrics, but doesn't provide a clear call to action"
+        ]
+      },
+      "rewrites": [
+        {
+          "part": "opening",
+          "original": "Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.",
+          "improved": "Hello, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER], and I'm excited to share our solution with you today."
+        },
+        {
+          "part": "closing",
+          "original": "The company is Goodie Bag, and again, my name is Jay. Thanks a lot.",
+          "improved": "That's Goodie Bag in a nutshell - delivering [VALUE] to [TARGET CUSTOMER]. Our next step is to [ASK], and I'd love to discuss how we can work together to make that happen."
+        }
+      ]
+    },
+    "decisions": [
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_path"
+        ],
+        "recommended_next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "args": {},
+        "done": false,
+        "executed_tool": "extract_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "transcript"
+        ],
+        "recommended_next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "args": {},
+        "done": false,
+        "executed_tool": "transcribe_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "audio_features"
+        ],
+        "recommended_next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_audio"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "delivery"
+        ],
+        "recommended_next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_delivery"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "content"
+        ],
+        "recommended_next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_content"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": false,
+        "missing_evidence": [
+          "narrative"
+        ],
+        "recommended_next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative."
+      },
+      {
+        "type": "tool_decision",
+        "next_tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "args": {},
+        "done": false,
+        "executed_tool": "analyze_narrative"
+      },
+      {
+        "type": "evidence_sufficiency",
+        "enough_evidence": true,
+        "missing_evidence": [],
+        "recommended_next_tool": null,
+        "reason": "All required analyses are complete."
+      }
+    ],
+    "tool_results": [
+      {
+        "tool": "extract_audio",
+        "reason": "Audio must be extracted from the video first.",
+        "result_summary": "{\"audio_path\": \"C:\\\\Users\\\\asus\\\\Desktop\\\\final\\\\Template\\\\pitch_coach_outputs\\\\pitch_1777723838972_1bbb6fed\\\\audio\\\\YTDown.com_YouTube_YC-Demo-Day-Pitch-Official-Goodybag-Jay-_Media_ScDKs8m3CdU_001_720p.wav\"}"
+      },
+      {
+        "tool": "transcribe_audio",
+        "reason": "Transcript is required before pitch coaching.",
+        "result_summary": "{\"language\": \"en\", \"segment_count\": 69, \"text_preview\": \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag. Now, Goodie Bag is an enterprise tool we've built for companies that makes it easier and more efficient to order food from restaurants for things like employee meetings, lunches, and so on. Now, something that's really important to remember about us is that we're actually not a delivery service. So we're not one of your typical on-demand food delivery startups with those negative gross margins a few of you seem to love so much. No. The economics of what we're doing are fantastic, and we can scale very fast. We already have over 300 corporate customers who have purchased over half a million meals through us, and that's roughly $5 and 1 half million in orders. And to show you how our economics truly are different, our average order size is $350. That's 10x the consumer space. Our average customer spends $24,000 a year through us. We have 93% retention annually, and our CAC payback right now is four months. On top of this, we're growing consistently every month. We're now crossing a $5 and 1 half million GMV run rate, and this is a million more than just one month ..."
+      },
+      {
+        "tool": "analyze_audio",
+        "reason": "Required analysis is missing: audio_features.",
+        "result_summary": "{\"duration_sec\": 172.2224375, \"word_count\": 494, \"words_per_minute\": 172.10301067768827, \"mean_energy\": 0.07754607498645782, \"std_energy\": 0.05773257091641426, \"mean_zcr\": 0.14380971510939242, \"tempo_estimate\": 104.16666666666667, \"filler_count\": 1, \"avg_sentence_length_words\": 16.466666666666665}"
+      },
+      {
+        "tool": "analyze_delivery",
+        "reason": "Required analysis is missing: delivery.",
+        "result_summary": "{\"score\": 75, \"observations\": {\"words_per_minute\": 172.1, \"filler_count\": 1, \"mean_energy\": 0.07755, \"avg_sentence_length_words\": 16.47}}"
+      },
+      {
+        "tool": "analyze_content",
+        "reason": "Required analysis is missing: content.",
+        "result_summary": "{\"score\": 80, \"covered_parts\": [\"problem\", \"solution\", \"value_proposition\", \"differentiation\", \"market\", \"business_model\", \"traction\", \"closing\"], \"missing_parts\": [\"target_customer\", \"team\", \"ask\"], \"weak_parts\": [], \"has_metrics\": true, \"generic_phrase_count\": 2, \"component_feedback\": {\"problem\": \"Implicitly mentioned as the inefficiency of ordering food for employee meetings and lunches, but not explicitly stated.\", \"target_customer\": \"Missing, but can be inferred as corporate customers.\", \"solution\": \"Clearly stated as an enterprise tool for companies to order food from restaurants.\", \"value_proposition\": \"Implicitly mentioned as making it easier and more efficient to order food, with fantastic economics.\", \"differentiation\": \"Clearly stated as not being a delivery service and having a unique economic model.\", \"market\": \"Clearly stated as the takeout and delivery sector in the US, with a focus on corporate customers.\", \"business_model\": \"Clearly stated as taking a 12% cut across all orders.\", \"traction\": \"Clearly stated with metrics such as 300 corporate customers, $5.5 million in orders, and 93% retention annually.\", \"team\": \"Missing, no information about the team is provided...."
+      },
+      {
+        "tool": "analyze_narrative",
+        "reason": "Required analysis is missing: narrative.",
+        "result_summary": "{\"score\": 85, \"signals\": {\"opening_hook_score\": 60, \"problem_clarity_score\": 80, \"solution_flow_score\": 90, \"proof_strength_score\": 95, \"closing_score\": 70, \"ask_clarity_score\": 40, \"memorability_score\": 80, \"narrative_summary\": \"The pitch introduces Goodie Bag as an enterprise tool for companies to order food efficiently, highlighting its unique economics and scalability. The CEO showcases the company's growth, customer retention, and revenue, emphasizing its potential to capture a large market share.\", \"strongest_narrative_point\": \"The CEO effectively presents the company's proof of concept, showcasing impressive metrics such as 93% retention, $24,000 average customer spend, and a four-month CAC payback.\", \"weakest_narrative_point\": \"The pitch lacks a clear problem setup, instead focusing on the company's solution and growth. The ask is also unclear, with the CEO only mentioning that interested parties should find him on the floor afterwards.\", \"key_gaps\": [\"Clear problem statement\", \"Explicit ask for investment or support\"], \"coaching_directions\": [\"Start with a stronger opening hook to grab the audience's attention\", \"Clearly articulate the problem Goodie Bag solves for compani..."
+      },
+      {
+        "tool": "generate_rewrite",
+        "reason": "Final rewrite generation.",
+        "result_summary": "[{'part': 'opening', 'original': \"Hello, everyone. I'm Jay Panchal, and I'm the CEO of Goodie Bag.\", 'improved': \"Hello, I'm Jay Panchal, CEO of Goodie Bag. We're tackling [PAIN POINT] for [TARGET CUSTOMER], and I'm excited to share our solution with you today.\"}, {'part': 'closing', 'original': 'The company is Goodie Bag, and again, my name is Jay. Thanks a lot.', 'improved': \"That's Goodie Bag in a nutshell - delivering [VALUE] to [TARGET CUSTOMER]. Our next step is to [ASK], and I'd love to discuss how we can work together to make that happen.\"}]"
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "openai_api_key": "sk-4622166793314798a33463e49f2d91d1",
+  "openai_base_url": "https://tokenfactory.esprit.tn/api",
+  "openai_model": "hosted_vllm/Llama-3.1-70B-Instruct",
+  "enable_llm_analysis": true,
+  "python_executable": "C:\\Users\\asus\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+}
