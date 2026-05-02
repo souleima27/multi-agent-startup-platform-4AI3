@@ -478,43 +478,65 @@ export function Track2LegalAssistant({ track }) {
         }
       `}</style>
 
-      <div className="track-page-hero reveal track2-grid">
-        <div className="track2-hero-card">
+      <div className="track-page-hero reveal">
+        <div className="track-page-copy">
           <div className="track-card-top">
             <span className="track-label">{track?.track || "Track B"}</span>
             <span className="track-badge">{track?.badge || "Best for setup"}</span>
           </div>
           <div className="track-icon large-track-icon">{track?.icon || "B"}</div>
-          <h1>Legal and administrative readiness</h1>
-          <p>
-            Run the Track B agents for Tunisian startup setup: legal structure, Startup Act readiness,
-            document intelligence, missing documents, corrections, and a final GO/NO-GO decision.
-          </p>
-          <div className="track2-badge-row">
-            <Badge>Strategic Legal Agent</Badge>
-            <Badge>Document Intelligence</Badge>
-            <Badge>MCP Context</Badge>
-            <Badge>A2A Orchestration</Badge>
+          <h1>{track?.pageTitle || "Start with the right structure and fewer missed steps."}</h1>
+          <p>{track?.pageText || "This path helps founders understand the legal and administrative steps so they can build on a more solid base from the beginning."}</p>
+          <div className="track-highlights">
+            {(track?.highlights || ["Legal roadmap", "Document checklist", "Startup Act readiness"]).map((highlight) => (
+              <span key={highlight} className="track-chip">
+                {highlight}
+              </span>
+            ))}
           </div>
         </div>
 
-        <div className="track2-panel">
-          <h2>Run Track B</h2>
-          <p>
-            Start the bridge API first on port 5057, then run the analysis with synthetic documents
-            or your own absolute file paths.
-          </p>
-          <div className="track2-actions">
-            <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
-              {loading ? "Running Track B..." : "Run Legal Analysis"}
-            </button>
-            <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
-              {sampleLoading ? "Loading sample..." : "Load Sample"}
-            </button>
+        <div className="track-page-panel reveal delay-1">
+          <p className="eyebrow">This path helps you</p>
+          <div className="track-steps">
+            {(track?.steps || [
+              "Choose the company structure that fits your situation",
+              "Prepare the main documents you may need",
+              "Follow the important registration steps in order",
+              "Reduce confusion around deadlines and readiness",
+            ]).map((step, index) => (
+              <div key={step} className="track-step">
+                <span>{index + 1}</span>
+                <p>{step}</p>
+              </div>
+            ))}
           </div>
-          {error ? <div className="track2-message">{error}</div> : null}
         </div>
       </div>
+
+      <div className="track-page-outcome reveal delay-2">
+        <div>
+          <p className="eyebrow">Agent workspace</p>
+          <h2>{track?.title || "Start the Right Way"}</h2>
+          <p>
+            Run the Track B agents for legal structure, Startup Act readiness, document intelligence,
+            external public research, and a final GO/NO-GO decision.
+          </p>
+        </div>
+        <div className="track-page-actions">
+          <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
+            {loading ? "Running legal review..." : "Run legal review"}
+          </button>
+          <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
+            {sampleLoading ? "Loading sample..." : "Load sample"}
+          </button>
+          <a href="#services" className="secondary-btn">
+            Back to Tracks
+          </a>
+        </div>
+      </div>
+
+      {error ? <div className="track2-message">{error}</div> : null}
 
       {report ? (
         <section className="track2-result-card reveal delay-1">
