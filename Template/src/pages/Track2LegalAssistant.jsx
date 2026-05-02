@@ -63,6 +63,7 @@ const RESULT_TABS = [
   { id: "documents", label: "Documents" },
   { id: "roadmap", label: "Roadmap" },
   { id: "opportunities", label: "Opportunities" },
+  { id: "blockchain", label: "Blockchain" },
 ];
 
 const PROFILE_FLAGS = [
@@ -295,6 +296,7 @@ export function Track2LegalAssistant({ track }) {
 
   const finalOutput = report?.final_output || {};
   const externalResearch = report?.external_research || null;
+  const blockchainAudit = report?.blockchain_audit || null;
   const strategic = report?.strategic_agent || {};
   const documentAgent = report?.document_agent || {};
   const decisionTone = toneForDecision(finalOutput.final_decision || finalOutput.go_no_go);
@@ -921,10 +923,20 @@ export function Track2LegalAssistant({ track }) {
           align-items: stretch;
           padding: 0;
           overflow: hidden;
+          border-color: rgba(47, 107, 255, 0.22);
+          background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 255, 0.85)),
+            radial-gradient(circle at 90% 0%, rgba(47, 107, 255, 0.18), transparent 34%);
         }
 
         .track2-research-copy {
           padding: 28px;
+        }
+
+        .track2-research-copy h2 {
+          max-width: 17ch;
+          font-size: clamp(2.1rem, 4vw, 3.4rem);
+          line-height: 0.98;
         }
 
         .track2-research-board {
@@ -971,12 +983,13 @@ export function Track2LegalAssistant({ track }) {
           border: 1px solid var(--border);
           border-radius: 16px;
           background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 18px 48px rgba(18, 51, 100, 0.1);
         }
 
         .track2-search-head {
           padding: 20px;
           border-bottom: 1px solid var(--border);
-          background: linear-gradient(135deg, rgba(247, 249, 255, 0.96), rgba(255, 255, 255, 0.86));
+          background: linear-gradient(135deg, rgba(247, 249, 255, 0.98), rgba(255, 255, 255, 0.9));
         }
 
         .track2-search-head h3 {
@@ -1010,6 +1023,14 @@ export function Track2LegalAssistant({ track }) {
           border-radius: 13px;
           border: 1px solid rgba(47, 107, 255, 0.16);
           background: rgba(247, 249, 255, 0.78);
+          text-decoration: none;
+          transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .track2-public-result:hover {
+          transform: translateY(-2px);
+          border-color: rgba(47, 107, 255, 0.38);
+          background: rgba(255, 255, 255, 0.96);
         }
 
         .track2-public-result strong {
@@ -1046,6 +1067,113 @@ export function Track2LegalAssistant({ track }) {
           margin-top: auto;
         }
 
+        .track2-chain-hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(300px, 0.55fr);
+          gap: 18px;
+          align-items: stretch;
+          padding: 0;
+          overflow: hidden;
+          background: linear-gradient(135deg, rgba(16, 42, 86, 0.96), rgba(35, 84, 190, 0.94));
+        }
+
+        .track2-chain-hero h2,
+        .track2-chain-hero p,
+        .track2-chain-hero .track2-card-label {
+          color: #fff;
+        }
+
+        .track2-chain-copy {
+          padding: 30px;
+        }
+
+        .track2-chain-copy h2 {
+          max-width: 14ch;
+          font-size: clamp(2.1rem, 4vw, 3.4rem);
+          line-height: 0.98;
+        }
+
+        .track2-chain-proof {
+          display: grid;
+          gap: 12px;
+          padding: 24px;
+          background: rgba(255, 255, 255, 0.1);
+          border-left: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .track2-hash-box {
+          display: grid;
+          gap: 6px;
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #fff;
+        }
+
+        .track2-hash-box span {
+          font-size: 0.72rem;
+          font-weight: 900;
+          opacity: 0.8;
+          text-transform: uppercase;
+        }
+
+        .track2-hash-box code {
+          color: #fff;
+          font-family: Consolas, "Courier New", monospace;
+          font-size: 0.78rem;
+          overflow-wrap: anywhere;
+        }
+
+        .track2-chain-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 14px;
+        }
+
+        .track2-chain-block {
+          position: relative;
+          display: grid;
+          gap: 12px;
+          padding: 18px;
+          border-radius: 16px;
+          border: 1px solid rgba(47, 107, 255, 0.18);
+          background: rgba(255, 255, 255, 0.92);
+          box-shadow: 0 18px 48px rgba(18, 51, 100, 0.1);
+        }
+
+        .track2-chain-block::before {
+          content: "";
+          position: absolute;
+          left: 18px;
+          right: 18px;
+          top: 0;
+          height: 3px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #102a56, #2f6bff);
+        }
+
+        .track2-chain-index {
+          display: grid;
+          place-items: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 13px;
+          color: #fff;
+          background: linear-gradient(135deg, #102a56, #2f6bff);
+          font-family: "Space Grotesk", sans-serif;
+          font-weight: 900;
+        }
+
+        .track2-chain-block code {
+          padding: 10px;
+          border-radius: 10px;
+          background: rgba(18, 51, 100, 0.06);
+          color: var(--navy-800);
+          font-size: 0.74rem;
+          overflow-wrap: anywhere;
+        }
+
         .track2-tab-content {
           display: grid;
           gap: 18px;
@@ -1056,9 +1184,11 @@ export function Track2LegalAssistant({ track }) {
           .track2-workspace,
           .track2-result-hero,
           .track2-research-hero,
+          .track2-chain-hero,
           .track2-results-grid,
           .track2-search-grid,
-          .track2-opportunity-grid {
+          .track2-opportunity-grid,
+          .track2-chain-grid {
             grid-template-columns: 1fr;
           }
 
@@ -1518,7 +1648,7 @@ export function Track2LegalAssistant({ track }) {
                 <h2>Opportunities and ecosystem intelligence</h2>
                 <p>
                   The agent now executes public web searches for company credibility, LinkedIn presence, and Facebook
-                  activity, then displays the results directly in the dashboard.
+                  activity, then seals the research trace into the blockchain audit tab.
                 </p>
               </div>
               <div className="track2-research-board">
@@ -1590,6 +1720,63 @@ export function Track2LegalAssistant({ track }) {
               <EmptyState
                 title="No external search returned"
                 text="Run the legal review again after completing the startup name, sector, and networking goal."
+              />
+            )}
+          </div>
+        ) : null}
+
+        {report && activeTab === "blockchain" ? (
+          <div className="track2-tab-content">
+            <section className="track2-result-card is-wide track2-chain-hero">
+              <div className="track2-chain-copy">
+                <span className="track2-card-label">Blockchain audit</span>
+                <h2>Agent work proof chain</h2>
+                <p>
+                  Every important Track B action is sealed with SHA-256 hashes: intake, documents, decision, and
+                  external research. This gives the founder a tamper-evident audit trail for what the agent reviewed.
+                </p>
+              </div>
+              <div className="track2-chain-proof">
+                <div className="track2-hash-box">
+                  <span>Network</span>
+                  <code>{blockchainAudit?.network || "Track B local proof chain"}</code>
+                </div>
+                <div className="track2-hash-box">
+                  <span>Case hash</span>
+                  <code>{blockchainAudit?.case_hash || "Pending analysis"}</code>
+                </div>
+                <div className="track2-hash-box">
+                  <span>Latest block</span>
+                  <code>{blockchainAudit?.latest_block_hash || "Pending seal"}</code>
+                </div>
+              </div>
+            </section>
+
+            {blockchainAudit?.blocks?.length ? (
+              <div className="track2-chain-grid">
+                {blockchainAudit.blocks.map((block) => (
+                  <article className="track2-chain-block" key={block.block_hash}>
+                    <span className="track2-chain-index">{String(block.index).padStart(2, "0")}</span>
+                    <div>
+                      <span className="track2-card-label">{block.event}</span>
+                      <h3>{block.label}</h3>
+                      <p>{block.summary}</p>
+                    </div>
+                    <div>
+                      <span className="track2-card-label">Payload hash</span>
+                      <code>{block.payload_hash}</code>
+                    </div>
+                    <div>
+                      <span className="track2-card-label">Block hash</span>
+                      <code>{block.block_hash}</code>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <EmptyState
+                title="No blockchain audit yet"
+                text="Run the legal review to generate the local proof chain for this agent workflow."
               />
             )}
           </div>
