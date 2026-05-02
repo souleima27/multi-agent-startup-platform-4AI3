@@ -100,6 +100,23 @@ function readSearchHost(url) {
   return "Google";
 }
 
+function searchStatus(search) {
+  const resultCount = search.agent_search?.results?.length || 0;
+  if (search.agent_search?.status === "unavailable") return { label: "Offline", tone: "warn" };
+  if (resultCount > 0) return { label: "Found", tone: "good" };
+  return { label: "Checked", tone: "info" };
+}
+
+function searchGuidance(platform) {
+  if (platform === "LinkedIn") {
+    return "No public LinkedIn page was captured. Ask the founder for the company page or founder profile URL.";
+  }
+  if (platform === "Facebook") {
+    return "No public Facebook page was captured. Check whether the startup uses another community channel.";
+  }
+  return "No strong public company result was captured. Use the full search link to verify spelling or alternate brand names.";
+}
+
 function Field({ label, children }) {
   return (
     <label className="track2-field">
@@ -690,6 +707,12 @@ export function Track2LegalAssistant({ track }) {
           color: #b45309;
         }
 
+        .track2-status-chip.info {
+          border-color: rgba(47, 107, 255, 0.3);
+          background: rgba(47, 107, 255, 0.08);
+          color: var(--blue-500);
+        }
+
         .track2-status-chip.danger {
           border-color: rgba(239, 68, 68, 0.35);
           background: rgba(239, 68, 68, 0.09);
@@ -910,6 +933,38 @@ export function Track2LegalAssistant({ track }) {
           background: rgba(247, 249, 255, 0.68);
         }
 
+        .track2-search-empty {
+          display: grid;
+          gap: 12px;
+          min-height: 190px;
+          padding: 18px;
+          border-radius: 15px;
+          border: 1px solid rgba(47, 107, 255, 0.14);
+          background: linear-gradient(135deg, rgba(247, 249, 255, 0.92), rgba(255, 255, 255, 0.9));
+        }
+
+        .track2-search-empty strong {
+          color: var(--navy-900);
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1rem;
+        }
+
+        .track2-search-empty p {
+          margin: 0;
+          font-size: 0.84rem;
+          line-height: 1.6;
+        }
+
+        .track2-search-empty ul {
+          display: grid;
+          gap: 7px;
+          margin: 0;
+          padding-left: 18px;
+          color: var(--text);
+          font-size: 0.8rem;
+          line-height: 1.45;
+        }
+
         .track2-opportunity-grid {
           grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
         }
@@ -1056,6 +1111,11 @@ export function Track2LegalAssistant({ track }) {
           font-size: 0.76rem;
           font-weight: 800;
           word-break: break-word;
+        }
+
+        .track2-search-query.is-soft {
+          background: rgba(47, 107, 255, 0.055);
+          color: #38527a;
         }
 
         .track2-result-list {
@@ -1620,12 +1680,8 @@ export function Track2LegalAssistant({ track }) {
                     <div className="track2-search-head">
                       <div className="track2-search-topline">
                         <span className="track2-platform-badge">{search.platform.slice(0, 1)}</span>
-                        <span
-                          className={`track2-status-chip ${
-                            search.agent_search?.status === "completed" ? "good" : "warn"
-                          }`}
-                        >
-                          {search.agent_search?.status === "completed" ? "Searched" : "Needs retry"}
+                        <span className={`track2-status-chip ${searchStatus(search).tone}`}>
+                          {searchStatus(search).label}
                         </span>
                       </div>
                       <span className="track2-card-label">{readSearchHost(search.url)}</span>
@@ -1644,13 +1700,24 @@ export function Track2LegalAssistant({ track }) {
                           </a>
                         ))
                       ) : (
-                        <EmptyState
-                          title={search.agent_search?.status === "unavailable" ? "Search unavailable" : "No result captured"}
-                          text={
-                            search.agent_search?.message ||
-                            "The agent executed the query, but no public result was returned from the search provider."
-                          }
-                        />
+                        <div className="track2-search-empty">
+                          <strong>
+                            {search.agent_search?.status === "unavailable"
+                              ? "Search service unavailable"
+                              : "No strong public match found"}
+                          </strong>
+                          <p>{searchGuidance(search.platform)}</p>
+                          <ul>
+                            <li>Verify the startup spelling and public brand name.</li>
+                            <li>Ask for direct website or social links if available.</li>
+                            <li>Use the full search link for a manual check.</li>
+                          </ul>
+                          {(search.agent_search?.attempted_queries || []).slice(1, 3).map((query) => (
+                            <div className="track2-search-query is-soft" key={query}>
+                              {query}
+                            </div>
+                          ))}
+                        </div>
                       )}
                     </div>
 

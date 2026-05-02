@@ -109,7 +109,27 @@ def _clean_search_url(url: str) -> str:
     return url
 
 
-def _fetch_public_search_results(query: str, limit: int = 3) -> dict[str, Any]:
+def _fetch_public_search_results(query: str, limit: int = 3, fallback_queries: list[str] | None = None) -> dict[str, Any]:
+    attempted_queries = [query, *(fallback_queries or [])]
+    last_response: dict[str, Any] | None = None
+
+    for search_query in attempted_queries:
+        response = _fetch_single_public_search(search_query, limit)
+        response["attempted_queries"] = attempted_queries
+        if response["results"] or response["status"] == "unavailable":
+            return response
+        last_response = response
+
+    return last_response or {
+        "status": "no_results",
+        "source": "DuckDuckGo public HTML",
+        "message": "Public web search executed, but no matching public result was captured.",
+        "results": [],
+        "attempted_queries": attempted_queries,
+    }
+
+
+def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
     search_url = f"https://duckduckgo.com/html/?q={quote_plus(query)}"
     request = urllib.request.Request(
         search_url,
@@ -168,7 +188,11 @@ def _fetch_public_search_results(query: str, limit: int = 3) -> dict[str, Any]:
     return {
         "status": "completed" if results else "no_results",
         "source": "DuckDuckGo public HTML",
-        "message": "Public web search executed by the local Track B bridge.",
+        "message": (
+            "Public web search executed by the local Track B bridge."
+            if results
+            else "Public search executed, but no public result matched this query."
+        ),
         "results": results,
     }
 
@@ -191,6 +215,11 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
             "platform": "Google",
             "purpose": "Company, market, regulatory and public credibility check",
             "query": f'"{startup_name}" {sector} Tunisia startup legal registration Startup Act',
+            "fallback_queries": [
+                f"{startup_name} {sector} Tunisia",
+                f"{startup_name} startup Tunisia",
+                f"{sector} startups Tunisia Startup Act",
+            ],
             "url": f"https://www.google.com/search?q={quote_plus(f'{startup_name} {sector} Tunisia startup legal registration Startup Act')}",
             "signals_to_check": [
                 "Official website or product page",
@@ -202,7 +231,12 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         {
             "platform": "LinkedIn",
             "purpose": "Founder and company professional presence check",
-            "query": f'site:linkedin.com/in OR site:linkedin.com/company "{startup_name}" {founder_terms}',
+            "query": f'site:linkedin.com/company "{startup_name}" Tunisia',
+            "fallback_queries": [
+                f'site:linkedin.com/in "{startup_name}" {founder_terms}',
+                f'site:linkedin.com/company {startup_name}',
+                f"{startup_name} LinkedIn Tunisia",
+            ],
             "url": f"https://www.google.com/search?q={quote_plus(f'site:linkedin.com/in OR site:linkedin.com/company {startup_name} {founder_terms}')}",
             "signals_to_check": [
                 "Founder profiles match the declared team",
@@ -215,6 +249,11 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
             "platform": "Facebook",
             "purpose": "Public social proof and activity check",
             "query": f'site:facebook.com "{startup_name}" {sector} Tunisia',
+            "fallback_queries": [
+                f"{startup_name} Facebook Tunisia",
+                f'site:facebook.com "{startup_name}"',
+                f"{startup_name} {sector} social media",
+            ],
             "url": f"https://www.google.com/search?q={quote_plus(f'site:facebook.com {startup_name} {sector} Tunisia')}",
             "signals_to_check": [
                 "Active public page or founder/community presence",
@@ -226,7 +265,12 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
     ]
 
     with ThreadPoolExecutor(max_workers=3) as executor:
-        search_results = list(executor.map(lambda item: _fetch_public_search_results(str(item["query"])), searches))
+        search_results = list(
+            executor.map(
+                lambda item: _fetch_public_search_results(str(item["query"]), fallback_queries=item.get("fallback_queries")),
+                searches,
+            )
+        )
 
     for search, search_result in zip(searches, search_results):
         search["agent_search"] = search_result
