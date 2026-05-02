@@ -50,22 +50,11 @@ function App() {
     () => services.find((service) => `#${service.id}` === routeHash) ?? null,
     [routeHash]
   );
-  const isTrackB = activeTrack?.id === "track-b";
-
   if (window.location.hash === "#track1-analyzer") {
   return <Track1Analyzer />;
 }
 if (window.location.hash === "#track1-report") {
   return <Track1SavedReport />;
-}
-
-if (isTrackB) {
-  return (
-    <>
-      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
-      <Track2LegalAssistant track={activeTrack} />
-    </>
-  );
 }
 
   return (
@@ -86,10 +75,12 @@ if (isTrackB) {
             <>
               {activeTrack.id === "track-c" ? (
                 <Track3Hub track={activeTrack} />
+              ) : activeTrack.id === "track-b" ? (
+                <Track2LegalAssistant track={activeTrack} />
               ) : (
                 <TrackPage track={activeTrack} />
               )}
-              <ContactSection />
+              {activeTrack.id !== "track-b" ? <ContactSection /> : null}
             </>
           ) : (
             <>
@@ -116,7 +107,7 @@ if (isTrackB) {
           )}
         </main>
 
-        <Footer />
+        {activeTrack?.id !== "track-b" ? <Footer /> : null}
       </div>
 
       <AuthModal

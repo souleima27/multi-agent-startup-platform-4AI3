@@ -115,9 +115,10 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 14px 18px;
+  min-height: 68px;
+  padding: 10px 16px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius-xl);
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(18px);
   box-shadow: var(--shadow-sm);
@@ -132,13 +133,13 @@ body.dark-mode .topbar {
   display: flex;
   align-items: center;
   gap: 12px;
-  height: 44px;
-  overflow: visible;
+  height: 48px;
+  overflow: hidden;
 }
 
 .brand-logo {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 54px;
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(16, 40, 88, 0.12));
 }
