@@ -63,7 +63,6 @@ const RESULT_TABS = [
   { id: "documents", label: "Documents" },
   { id: "roadmap", label: "Roadmap" },
   { id: "opportunities", label: "Opportunities" },
-  { id: "blockchain", label: "Proof log" },
 ];
 
 const PROFILE_FLAGS = [
@@ -296,7 +295,6 @@ export function Track2LegalAssistant({ track }) {
 
   const finalOutput = report?.final_output || {};
   const externalResearch = report?.external_research || null;
-  const blockchainAudit = report?.blockchain_audit || null;
   const strategic = report?.strategic_agent || {};
   const documentAgent = report?.document_agent || {};
   const decisionTone = toneForDecision(finalOutput.final_decision || finalOutput.go_no_go);
@@ -913,20 +911,20 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-opportunity-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
         }
 
         .track2-research-hero {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
-          gap: 18px;
+          grid-template-columns: minmax(0, 1fr) minmax(320px, 0.5fr);
+          gap: 22px;
           align-items: stretch;
-          padding: 28px;
+          padding: 30px;
           overflow: hidden;
-          border-color: rgba(47, 107, 255, 0.22);
+          border-color: rgba(47, 107, 255, 0.2);
           background:
-            linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 255, 0.85)),
-            radial-gradient(circle at 90% 0%, rgba(47, 107, 255, 0.18), transparent 34%);
+            linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.9)),
+            radial-gradient(circle at 88% 10%, rgba(47, 107, 255, 0.16), transparent 34%);
         }
 
         .track2-research-copy {
@@ -934,19 +932,45 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-research-copy h2 {
-          max-width: 20ch;
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
+          max-width: 18ch;
+          font-size: clamp(2rem, 3vw, 3rem);
           line-height: 1.05;
+        }
+
+        .track2-research-note {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 12px;
+          align-items: start;
+          margin-top: 18px;
+          padding: 14px;
+          border-radius: 14px;
+          border: 1px solid rgba(47, 107, 255, 0.14);
+          background: rgba(255, 255, 255, 0.66);
+        }
+
+        .track2-research-note strong {
+          color: var(--navy-900);
+        }
+
+        .track2-research-dot {
+          width: 12px;
+          height: 12px;
+          margin-top: 6px;
+          border-radius: 999px;
+          background: #16a34a;
+          box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
         }
 
         .track2-research-board {
           display: grid;
           gap: 12px;
-          padding: 18px;
-          border: 1px solid rgba(47, 107, 255, 0.16);
+          padding: 20px;
+          border: 1px solid rgba(47, 107, 255, 0.14);
           border-radius: 18px;
-          background: rgba(255, 255, 255, 0.72);
+          background: rgba(255, 255, 255, 0.78);
           color: var(--navy-900);
+          box-shadow: 0 16px 38px rgba(18, 51, 100, 0.08);
         }
 
         .track2-research-board span,
@@ -959,7 +983,7 @@ export function Track2LegalAssistant({ track }) {
           gap: 4px;
           padding: 14px;
           border-radius: 14px;
-          background: rgba(247, 249, 255, 0.82);
+          background: rgba(247, 249, 255, 0.92);
           border: 1px solid rgba(47, 107, 255, 0.12);
         }
 
@@ -977,21 +1001,21 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-search-card {
           display: flex;
-          min-height: 360px;
+          min-height: 430px;
           flex-direction: column;
           justify-content: space-between;
           padding: 0;
           overflow: hidden;
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          background: rgba(255, 255, 255, 0.9);
-          box-shadow: 0 18px 48px rgba(18, 51, 100, 0.1);
+          border: 1px solid rgba(47, 107, 255, 0.14);
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.96);
+          box-shadow: 0 20px 52px rgba(18, 51, 100, 0.1);
         }
 
         .track2-search-head {
-          padding: 20px;
-          border-bottom: 1px solid var(--border);
-          background: linear-gradient(135deg, rgba(247, 249, 255, 0.98), rgba(255, 255, 255, 0.9));
+          padding: 22px;
+          border-bottom: 1px solid rgba(47, 107, 255, 0.12);
+          background: linear-gradient(135deg, rgba(247, 249, 255, 0.98), rgba(255, 255, 255, 0.95));
         }
 
         .track2-search-head h3 {
@@ -999,15 +1023,37 @@ export function Track2LegalAssistant({ track }) {
           align-items: center;
           justify-content: space-between;
           gap: 10px;
+          margin-top: 8px;
+        }
+
+        .track2-platform-badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 42px;
+          height: 42px;
+          border-radius: 14px;
+          background: linear-gradient(135deg, rgba(16, 42, 86, 0.94), rgba(47, 107, 255, 0.88));
+          color: #fff;
+          font-family: "Space Grotesk", sans-serif;
+          font-weight: 900;
+          letter-spacing: 0;
+        }
+
+        .track2-search-topline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
         }
 
         .track2-search-query {
           margin-top: 12px;
           padding: 11px;
           border-radius: 10px;
-          background: rgba(18, 51, 100, 0.06);
+          background: rgba(18, 51, 100, 0.055);
           color: var(--navy-800);
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           font-weight: 800;
           word-break: break-word;
         }
@@ -1015,16 +1061,16 @@ export function Track2LegalAssistant({ track }) {
         .track2-result-list {
           display: grid;
           gap: 10px;
-          padding: 16px;
+          padding: 18px;
         }
 
         .track2-public-result {
           display: grid;
           gap: 7px;
-          padding: 13px;
+          padding: 14px;
           border-radius: 13px;
           border: 1px solid rgba(47, 107, 255, 0.16);
-          background: rgba(247, 249, 255, 0.78);
+          background: rgba(247, 249, 255, 0.8);
           text-decoration: none;
           transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
@@ -1069,115 +1115,6 @@ export function Track2LegalAssistant({ track }) {
           margin-top: auto;
         }
 
-        .track2-chain-hero {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(300px, 0.55fr);
-          gap: 18px;
-          align-items: stretch;
-          padding: 28px;
-          overflow: hidden;
-          border-color: rgba(47, 107, 255, 0.18);
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 246, 255, 0.9));
-        }
-
-        .track2-chain-hero h2,
-        .track2-chain-hero p,
-        .track2-chain-hero .track2-card-label {
-          color: var(--navy-900);
-        }
-
-        .track2-chain-copy {
-          align-self: center;
-        }
-
-        .track2-chain-copy h2 {
-          max-width: 16ch;
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
-          line-height: 1.05;
-        }
-
-        .track2-chain-proof {
-          display: grid;
-          gap: 12px;
-          padding: 18px;
-          border: 1px solid rgba(47, 107, 255, 0.14);
-          border-radius: 18px;
-          background: rgba(255, 255, 255, 0.72);
-        }
-
-        .track2-hash-box {
-          display: grid;
-          gap: 6px;
-          padding: 14px;
-          border-radius: 14px;
-          background: rgba(247, 249, 255, 0.82);
-          border: 1px solid rgba(47, 107, 255, 0.12);
-          color: var(--navy-900);
-        }
-
-        .track2-hash-box span {
-          font-size: 0.72rem;
-          font-weight: 900;
-          opacity: 0.8;
-          text-transform: uppercase;
-        }
-
-        .track2-hash-box code {
-          color: var(--navy-800);
-          font-family: Consolas, "Courier New", monospace;
-          font-size: 0.78rem;
-          overflow-wrap: anywhere;
-        }
-
-        .track2-chain-grid {
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: 14px;
-        }
-
-        .track2-chain-block {
-          position: relative;
-          display: grid;
-          gap: 12px;
-          padding: 18px;
-          border-radius: 16px;
-          border: 1px solid rgba(47, 107, 255, 0.18);
-          background: rgba(255, 255, 255, 0.92);
-          box-shadow: 0 18px 48px rgba(18, 51, 100, 0.1);
-        }
-
-        .track2-chain-block::before {
-          content: "";
-          position: absolute;
-          left: 18px;
-          right: 18px;
-          top: 0;
-          height: 3px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #102a56, #2f6bff);
-        }
-
-        .track2-chain-index {
-          display: grid;
-          place-items: center;
-          width: 38px;
-          height: 38px;
-          border-radius: 13px;
-          color: #fff;
-          background: linear-gradient(135deg, #102a56, #2f6bff);
-          font-family: "Space Grotesk", sans-serif;
-          font-weight: 900;
-        }
-
-        .track2-chain-block code {
-          padding: 10px;
-          border-radius: 10px;
-          background: rgba(18, 51, 100, 0.06);
-          color: var(--navy-800);
-          font-size: 0.74rem;
-          overflow-wrap: anywhere;
-        }
-
         .track2-tab-content {
           display: grid;
           gap: 18px;
@@ -1188,11 +1125,9 @@ export function Track2LegalAssistant({ track }) {
           .track2-workspace,
           .track2-result-hero,
           .track2-research-hero,
-          .track2-chain-hero,
           .track2-results-grid,
           .track2-search-grid,
-          .track2-opportunity-grid,
-          .track2-chain-grid {
+          .track2-opportunity-grid {
             grid-template-columns: 1fr;
           }
 
@@ -1652,8 +1587,15 @@ export function Track2LegalAssistant({ track }) {
                 <h2>Opportunities and ecosystem intelligence</h2>
                 <p>
                   The agent now executes public web searches for company credibility, LinkedIn presence, and Facebook
-                  activity, then adds a simple proof log so the client can see what was checked.
+                  activity, then displays the most useful findings in a clean review board.
                 </p>
+                <div className="track2-research-note">
+                  <span className="track2-research-dot" />
+                  <p>
+                    <strong>Agent research is ready.</strong> Review the findings below, open the strongest sources,
+                    and keep only evidence that matches the startup identity.
+                  </p>
+                </div>
               </div>
               <div className="track2-research-board">
                 <div className="track2-research-stat">
@@ -1676,9 +1618,8 @@ export function Track2LegalAssistant({ track }) {
                 {searches.map((search) => (
                   <article className="track2-search-card" key={`${search.platform}-${search.query}`}>
                     <div className="track2-search-head">
-                      <span className="track2-card-label">{readSearchHost(search.url)}</span>
-                      <h3>
-                        {search.platform}
+                      <div className="track2-search-topline">
+                        <span className="track2-platform-badge">{search.platform.slice(0, 1)}</span>
                         <span
                           className={`track2-status-chip ${
                             search.agent_search?.status === "completed" ? "good" : "warn"
@@ -1686,7 +1627,9 @@ export function Track2LegalAssistant({ track }) {
                         >
                           {search.agent_search?.status === "completed" ? "Searched" : "Needs retry"}
                         </span>
-                      </h3>
+                      </div>
+                      <span className="track2-card-label">{readSearchHost(search.url)}</span>
+                      <h3>{search.platform}</h3>
                       <p>{search.purpose}</p>
                       <div className="track2-search-query">{search.query}</div>
                     </div>
@@ -1712,7 +1655,9 @@ export function Track2LegalAssistant({ track }) {
                     </div>
 
                     <div className="track2-search-footer">
-                      <span className="track2-mini-chip">{search.agent_search?.source || "Public search"}</span>
+                      <span className="track2-mini-chip">
+                        {(search.agent_search?.results || []).length || 0} public result
+                      </span>
                       <a href={search.url} target="_blank" rel="noreferrer">
                         Open full search
                       </a>
@@ -1724,63 +1669,6 @@ export function Track2LegalAssistant({ track }) {
               <EmptyState
                 title="No external search returned"
                 text="Run the legal review again after completing the startup name, sector, and networking goal."
-              />
-            )}
-          </div>
-        ) : null}
-
-        {report && activeTab === "blockchain" ? (
-          <div className="track2-tab-content">
-            <section className="track2-result-card is-wide track2-chain-hero">
-              <div className="track2-chain-copy">
-                <span className="track2-card-label">Client proof log</span>
-                <h2>What the agent checked</h2>
-                <p>
-                  A simple activity record for the client: case intake, uploaded documents, final decision, and public
-                  research. The technical proof is kept discreetly below for audit purposes.
-                </p>
-              </div>
-              <div className="track2-chain-proof">
-                <div className="track2-hash-box">
-                  <span>Status</span>
-                  <code>{blockchainAudit?.status === "sealed" ? "Review saved and verified" : "Pending review"}</code>
-                </div>
-                <div className="track2-hash-box">
-                  <span>Client reference</span>
-                  <code>{blockchainAudit?.case_hash?.slice(0, 16) || "Pending analysis"}</code>
-                </div>
-                <div className="track2-hash-box">
-                  <span>Checks completed</span>
-                  <code>{blockchainAudit?.blocks?.length || 0} steps recorded</code>
-                </div>
-              </div>
-            </section>
-
-            {blockchainAudit?.blocks?.length ? (
-              <div className="track2-chain-grid">
-                {blockchainAudit.blocks.map((block) => (
-                  <article className="track2-chain-block" key={block.block_hash}>
-                    <span className="track2-chain-index">{String(block.index).padStart(2, "0")}</span>
-                    <div>
-                      <span className="track2-card-label">{block.event}</span>
-                      <h3>{block.label}</h3>
-                      <p>{block.summary}</p>
-                    </div>
-                    <div>
-                      <span className="track2-card-label">Payload hash</span>
-                      <code>{block.payload_hash.slice(0, 18)}...</code>
-                    </div>
-                    <div>
-                      <span className="track2-card-label">Audit reference</span>
-                      <code>{block.block_hash.slice(0, 18)}...</code>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <EmptyState
-                title="No proof log yet"
-                text="Run the legal review to generate a simple record of what the agent checked."
               />
             )}
           </div>

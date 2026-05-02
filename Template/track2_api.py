@@ -3,10 +3,7 @@ from __future__ import annotations
 import sys
 import os
 import html
-import hashlib
-import json
 import re
-from datetime import datetime, timezone
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -173,76 +170,6 @@ def _fetch_public_search_results(query: str, limit: int = 3) -> dict[str, Any]:
         "source": "DuckDuckGo public HTML",
         "message": "Public web search executed by the local Track B bridge.",
         "results": results,
-    }
-
-
-def _hash_payload(value: Any) -> str:
-    safe_value = _json_safe(value)
-    encoded = json.dumps(safe_value, sort_keys=True, ensure_ascii=True, default=str).encode("utf-8")
-    return hashlib.sha256(encoded).hexdigest()
-
-
-def _build_blockchain_audit(payload: dict[str, Any], result: dict[str, Any], external_research: dict[str, Any]) -> dict[str, Any]:
-    timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    documents = payload.get("documents") or []
-    searches = external_research.get("searches") or []
-    discovered_results = sum(len(search.get("agent_search", {}).get("results", [])) for search in searches)
-    events = [
-        {
-            "event": "case_intake",
-            "label": "Case intake sealed",
-            "summary": f"{payload.get('startup_profile', {}).get('startup_name', 'Startup')} profile and legal context captured.",
-            "payload": payload.get("startup_profile", {}),
-        },
-        {
-            "event": "document_evidence",
-            "label": "Document evidence hashed",
-            "summary": f"{len(documents)} uploaded or declared documents included in the review.",
-            "payload": documents,
-        },
-        {
-            "event": "agent_decision",
-            "label": "Agent decision recorded",
-            "summary": result.get("final_output", {}).get("user_message") or "Track B legal decision generated.",
-            "payload": result.get("final_output", {}),
-        },
-        {
-            "event": "external_research",
-            "label": "External research notarized",
-            "summary": f"{len(searches)} searches executed with {discovered_results} public results captured.",
-            "payload": searches,
-        },
-    ]
-
-    previous_hash = "0" * 64
-    chain = []
-    for index, event in enumerate(events, start=1):
-        payload_hash = _hash_payload(event["payload"])
-        block_content = {
-            "index": index,
-            "timestamp": timestamp,
-            "event": event["event"],
-            "payload_hash": payload_hash,
-            "previous_hash": previous_hash,
-        }
-        block_hash = _hash_payload(block_content)
-        chain.append(
-            {
-                **block_content,
-                "label": event["label"],
-                "summary": event["summary"],
-                "block_hash": block_hash,
-            }
-        )
-        previous_hash = block_hash
-
-    return {
-        "network": "Track B local proof chain",
-        "status": "sealed",
-        "verification": "local_sha256",
-        "case_hash": _hash_payload({"payload": payload, "result": result, "research": external_research}),
-        "latest_block_hash": previous_hash,
-        "blocks": chain,
     }
 
 
@@ -417,7 +344,6 @@ def run_track_b(payload: dict[str, Any]) -> JSONResponse:
     result = latest_result.model_dump()
     external_research = _build_external_research(normalized_payload, result)
     result["external_research"] = external_research
-    result["blockchain_audit"] = _build_blockchain_audit(normalized_payload, result, external_research)
     return JSONResponse(content=_json_safe(result))
 
 
