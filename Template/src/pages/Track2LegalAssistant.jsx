@@ -200,6 +200,24 @@ export function Track2LegalAssistant({ track }) {
   const strategic = report?.strategic_agent || {};
   const documentAgent = report?.document_agent || {};
   const decisionTone = toneForDecision(finalOutput.final_decision || finalOutput.go_no_go);
+  const missingDocuments = documentAgent.missing_documents || [];
+  const documentScore = Number(documentAgent.overall_completeness_score ?? 0);
+  const riskScore = Number(documentAgent.global_risk_score ?? 0);
+  const isStrictBlocked =
+    finalOutput.strict_mode && (finalOutput.strict_fail || missingDocuments.length > 0 || finalOutput.go_no_go === "NO_GO");
+  const decisionLabel =
+    finalOutput.final_decision === "PASS"
+      ? "Ready to file"
+      : isStrictBlocked
+        ? "Blocked by legal file"
+        : finalOutput.final_decision === "WARNING"
+          ? "Needs review"
+          : "Blocked";
+  const documentStatus = documentScore >= 80 ? "Complete" : documentScore > 0 ? "Incomplete" : "Not reviewed";
+  const riskLabel = riskScore >= 60 ? "High" : riskScore >= 35 ? "Medium" : "Low";
+  const primaryBlocker = missingDocuments.length
+    ? `${missingDocuments.length} required document${missingDocuments.length > 1 ? "s" : ""} missing`
+    : finalOutput.user_message || "No blocking issue returned.";
 
   return (
     <section className="section track-page track2-legal">
@@ -552,6 +570,37 @@ export function Track2LegalAssistant({ track }) {
           margin-top: 18px;
         }
 
+        .track2-decision-banner {
+          margin-top: 18px;
+          padding: 18px;
+          border-radius: 16px;
+          border: 1px solid rgba(245, 158, 11, 0.28);
+          background: rgba(245, 158, 11, 0.1);
+        }
+
+        .track2-decision-banner.good {
+          border-color: rgba(34, 197, 94, 0.28);
+          background: rgba(34, 197, 94, 0.1);
+        }
+
+        .track2-decision-banner.danger {
+          border-color: rgba(239, 68, 68, 0.28);
+          background: rgba(239, 68, 68, 0.09);
+        }
+
+        .track2-decision-banner strong {
+          display: block;
+          color: var(--navy-900);
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1.1rem;
+        }
+
+        .track2-decision-banner p {
+          margin: 8px 0 0;
+          color: var(--text);
+          line-height: 1.65;
+        }
+
         .track2-result-panel {
           padding: 18px;
           border-radius: 14px;
@@ -824,12 +873,20 @@ export function Track2LegalAssistant({ track }) {
           <span className="track2-card-label">Decision package</span>
           <h2>{formState.startup_profile.startup_name} legal dashboard</h2>
           <div className="track2-metrics">
-            <Metric label="Final decision" value={finalOutput.final_decision || "N/A"} tone={decisionTone} />
-            <Metric label="GO / NO-GO" value={finalOutput.go_no_go || "N/A"} tone={toneForDecision(finalOutput.go_no_go)} />
+            <Metric label="Decision" value={decisionLabel} tone={decisionTone} />
             <Metric label="Legal form" value={strategic.recommended_legal_form || "N/A"} />
             <Metric label="Startup Act" value={`${strategic.startup_act_eligibility_score ?? 0}%`} tone="good" />
-            <Metric label="Document score" value={`${documentAgent.overall_completeness_score ?? 0}%`} tone="info" />
-            <Metric label="Risk score" value={`${documentAgent.global_risk_score ?? 0}%`} tone={documentAgent.global_risk_score >= 60 ? "danger" : "warn"} />
+            <Metric label="Documents" value={documentStatus} tone={documentScore >= 80 ? "good" : "warn"} />
+            <Metric label="Risk level" value={riskLabel} tone={riskScore >= 60 ? "danger" : "warn"} />
+            <Metric label="Main blocker" value={primaryBlocker} tone={missingDocuments.length ? "danger" : "good"} />
+          </div>
+
+          <div className={`track2-decision-banner ${decisionTone}`}>
+            <strong>{decisionLabel}</strong>
+            <p>
+              The Startup Act and label scores describe eligibility potential. The final decision is blocked only
+              because the legal file is not complete enough for strict review.
+            </p>
           </div>
 
           <div className="track2-results-grid">
@@ -842,15 +899,15 @@ export function Track2LegalAssistant({ track }) {
               </ul>
             </div>
             <div className="track2-result-panel">
-              <h3>Missing documents</h3>
-              {documentAgent.missing_documents?.length ? (
+              <h3>Required documents to complete</h3>
+              {missingDocuments.length ? (
                 <ul>
-                  {documentAgent.missing_documents.map((item) => (
+                  {missingDocuments.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               ) : (
-                <p>No missing document returned.</p>
+                <p>No mandatory missing document was returned by the document agent.</p>
               )}
             </div>
           </div>
