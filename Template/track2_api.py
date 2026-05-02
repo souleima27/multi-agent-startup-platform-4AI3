@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote_plus
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +37,7 @@ app.add_middleware(
 orchestrator = TrackBOrchestrator()
 chatbot = TrackBChatbot(llm=get_local_llm_client(), kb=load_knowledge_base())
 latest_result = None
+UPLOADS_DIR = Path(__file__).resolve().parent / "track2_uploads"
 
 SAMPLE_REQUEST: dict[str, Any] = {
     "startup_profile": {
@@ -186,6 +187,33 @@ def health() -> dict[str, str]:
 @app.get("/track2/sample")
 def sample() -> dict[str, Any]:
     return _resolve_document_paths(SAMPLE_REQUEST)
+
+
+@app.post("/track2/upload")
+async def upload_documents(files: list[UploadFile] = File(...)) -> dict[str, Any]:
+    UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
+    uploaded: list[dict[str, str | None]] = []
+
+    for file in files:
+        safe_name = Path(file.filename or "document").name.replace("|", "_")
+        target = UPLOADS_DIR / safe_name
+        suffix = target.suffix
+        stem = target.stem
+        counter = 1
+        while target.exists():
+            target = UPLOADS_DIR / f"{stem}_{counter}{suffix}"
+            counter += 1
+
+        target.write_bytes(await file.read())
+        uploaded.append(
+            {
+                "path": str(target),
+                "declared_type": None,
+                "file_name": safe_name,
+            }
+        )
+
+    return {"documents": uploaded}
 
 
 @app.post("/track2/run")

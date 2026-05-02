@@ -105,6 +105,8 @@ export function Track2LegalAssistant({ track }) {
   );
   const [loading, setLoading] = useState(false);
   const [sampleLoading, setSampleLoading] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const [uploadedDocuments, setUploadedDocuments] = useState([]);
   const [error, setError] = useState("");
   const [report, setReport] = useState(null);
 
@@ -154,11 +156,54 @@ export function Track2LegalAssistant({ track }) {
       if (!response.ok) throw new Error(data.detail || "Unable to load sample.");
       setFormState(data);
       setDocumentsText(data.documents.map((doc) => `${doc.path}|${doc.declared_type || ""}`).join("\n"));
+      setUploadedDocuments(data.documents.map((doc) => ({ file_name: doc.path.split(/[\\/]/).pop(), path: doc.path })));
       setReport(null);
     } catch (sampleError) {
-      setError(sampleError.message || "Unable to load sample.");
+      setError(toFriendlyNetworkError(sampleError, "Unable to load sample."));
     } finally {
       setSampleLoading(false);
+    }
+  }
+
+  function toFriendlyNetworkError(error, fallback) {
+    const message = error?.message || "";
+    if (message === "Failed to fetch" || error instanceof TypeError) {
+      return "Track B API is not running. Start it with: python -m uvicorn track2_api:app --host 127.0.0.1 --port 5057 --reload";
+    }
+    return message || fallback;
+  }
+
+  async function uploadLegalDocuments(event) {
+    const files = Array.from(event.target.files || []);
+    if (!files.length) return;
+
+    setUploadLoading(true);
+    setError("");
+
+    try {
+      const formData = new FormData();
+      files.forEach((file) => formData.append("files", file));
+
+      const response = await fetch(`${API_URL}/track2/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok || data.detail) {
+        throw new Error(typeof data.detail === "string" ? data.detail : "Document upload failed.");
+      }
+
+      const uploaded = data.documents || [];
+      setUploadedDocuments((prev) => [...prev, ...uploaded]);
+      setDocumentsText((prev) => {
+        const nextLines = uploaded.map((doc) => `${doc.path}|${doc.declared_type || ""}`);
+        return [prev, ...nextLines].filter(Boolean).join("\n");
+      });
+    } catch (uploadError) {
+      setError(toFriendlyNetworkError(uploadError, "Document upload failed."));
+    } finally {
+      setUploadLoading(false);
+      event.target.value = "";
     }
   }
 
@@ -193,7 +238,7 @@ export function Track2LegalAssistant({ track }) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (runError) {
       setReport(null);
-      setError(runError.message || "Track B analysis failed.");
+      setError(toFriendlyNetworkError(runError, "Track B analysis failed."));
     } finally {
       setLoading(false);
     }
@@ -487,6 +532,14 @@ export function Track2LegalAssistant({ track }) {
           background: rgba(247, 249, 255, 0.72);
           color: var(--text);
           text-align: center;
+          cursor: pointer;
+          transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+        }
+
+        .track2-upload-box:hover {
+          border-color: rgba(47, 107, 255, 0.72);
+          background: rgba(237, 244, 255, 0.92);
+          transform: translateY(-1px);
         }
 
         .track2-upload-box strong {
@@ -498,6 +551,29 @@ export function Track2LegalAssistant({ track }) {
         .track2-upload-box span {
           display: block;
           font-size: 0.78rem;
+        }
+
+        .track2-upload-box input {
+          display: none;
+        }
+
+        .track2-upload-list {
+          display: grid;
+          gap: 8px;
+          margin-top: 12px;
+        }
+
+        .track2-upload-item {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 10px 12px;
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          background: rgba(18, 51, 100, 0.04);
+          color: var(--navy-800);
+          font-size: 0.82rem;
+          font-weight: 800;
         }
 
         .track2-documents-text {
@@ -814,13 +890,31 @@ export function Track2LegalAssistant({ track }) {
             </Field>
           </div>
 
-          <div className="track2-upload-box">
+          <label className="track2-upload-box">
+            <input
+              type="file"
+              multiple
+              accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.bmp,.tif,.tiff,.webp"
+              onChange={uploadLegalDocuments}
+              disabled={uploadLoading}
+            />
             <div>
               <strong>Upload legal documents</strong>
-              <span>Choose files from your computer</span>
+              <span>{uploadLoading ? "Uploading documents..." : "Choose files from your computer"}</span>
               <span>PDF, Word, PowerPoint, images, scans</span>
             </div>
-          </div>
+          </label>
+
+          {uploadedDocuments.length ? (
+            <div className="track2-upload-list">
+              {uploadedDocuments.map((document) => (
+                <div className="track2-upload-item" key={document.path}>
+                  <span>{document.file_name || document.path.split(/[\\/]/).pop()}</span>
+                  <span>Ready</span>
+                </div>
+              ))}
+            </div>
+          ) : null}
 
           <div className="track2-actions">
             <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
