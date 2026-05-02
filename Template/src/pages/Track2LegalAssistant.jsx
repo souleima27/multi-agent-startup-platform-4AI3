@@ -63,7 +63,7 @@ const RESULT_TABS = [
   { id: "documents", label: "Documents" },
   { id: "roadmap", label: "Roadmap" },
   { id: "opportunities", label: "Opportunities" },
-  { id: "blockchain", label: "Blockchain" },
+  { id: "blockchain", label: "Proof log" },
 ];
 
 const PROFILE_FLAGS = [
@@ -921,7 +921,7 @@ export function Track2LegalAssistant({ track }) {
           grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
           gap: 18px;
           align-items: stretch;
-          padding: 0;
+          padding: 28px;
           overflow: hidden;
           border-color: rgba(47, 107, 255, 0.22);
           background:
@@ -930,26 +930,28 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-research-copy {
-          padding: 28px;
+          align-self: center;
         }
 
         .track2-research-copy h2 {
-          max-width: 17ch;
-          font-size: clamp(2.1rem, 4vw, 3.4rem);
-          line-height: 0.98;
+          max-width: 20ch;
+          font-size: clamp(1.8rem, 3vw, 2.6rem);
+          line-height: 1.05;
         }
 
         .track2-research-board {
           display: grid;
           gap: 12px;
-          padding: 22px;
-          background: linear-gradient(135deg, rgba(16, 42, 86, 0.96), rgba(47, 107, 255, 0.9));
-          color: #fff;
+          padding: 18px;
+          border: 1px solid rgba(47, 107, 255, 0.16);
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.72);
+          color: var(--navy-900);
         }
 
         .track2-research-board span,
         .track2-research-board strong {
-          color: #fff;
+          color: var(--navy-900);
         }
 
         .track2-research-stat {
@@ -957,8 +959,8 @@ export function Track2LegalAssistant({ track }) {
           gap: 4px;
           padding: 14px;
           border-radius: 14px;
-          background: rgba(255, 255, 255, 0.13);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(247, 249, 255, 0.82);
+          border: 1px solid rgba(47, 107, 255, 0.12);
         }
 
         .track2-research-stat span {
@@ -1072,33 +1074,35 @@ export function Track2LegalAssistant({ track }) {
           grid-template-columns: minmax(0, 1fr) minmax(300px, 0.55fr);
           gap: 18px;
           align-items: stretch;
-          padding: 0;
+          padding: 28px;
           overflow: hidden;
-          background: linear-gradient(135deg, rgba(16, 42, 86, 0.96), rgba(35, 84, 190, 0.94));
+          border-color: rgba(47, 107, 255, 0.18);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 246, 255, 0.9));
         }
 
         .track2-chain-hero h2,
         .track2-chain-hero p,
         .track2-chain-hero .track2-card-label {
-          color: #fff;
+          color: var(--navy-900);
         }
 
         .track2-chain-copy {
-          padding: 30px;
+          align-self: center;
         }
 
         .track2-chain-copy h2 {
-          max-width: 14ch;
-          font-size: clamp(2.1rem, 4vw, 3.4rem);
-          line-height: 0.98;
+          max-width: 16ch;
+          font-size: clamp(1.8rem, 3vw, 2.6rem);
+          line-height: 1.05;
         }
 
         .track2-chain-proof {
           display: grid;
           gap: 12px;
-          padding: 24px;
-          background: rgba(255, 255, 255, 0.1);
-          border-left: 1px solid rgba(255, 255, 255, 0.18);
+          padding: 18px;
+          border: 1px solid rgba(47, 107, 255, 0.14);
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.72);
         }
 
         .track2-hash-box {
@@ -1106,9 +1110,9 @@ export function Track2LegalAssistant({ track }) {
           gap: 6px;
           padding: 14px;
           border-radius: 14px;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          color: #fff;
+          background: rgba(247, 249, 255, 0.82);
+          border: 1px solid rgba(47, 107, 255, 0.12);
+          color: var(--navy-900);
         }
 
         .track2-hash-box span {
@@ -1119,7 +1123,7 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-hash-box code {
-          color: #fff;
+          color: var(--navy-800);
           font-family: Consolas, "Courier New", monospace;
           font-size: 0.78rem;
           overflow-wrap: anywhere;
@@ -1648,7 +1652,7 @@ export function Track2LegalAssistant({ track }) {
                 <h2>Opportunities and ecosystem intelligence</h2>
                 <p>
                   The agent now executes public web searches for company credibility, LinkedIn presence, and Facebook
-                  activity, then seals the research trace into the blockchain audit tab.
+                  activity, then adds a simple proof log so the client can see what was checked.
                 </p>
               </div>
               <div className="track2-research-board">
@@ -1729,25 +1733,25 @@ export function Track2LegalAssistant({ track }) {
           <div className="track2-tab-content">
             <section className="track2-result-card is-wide track2-chain-hero">
               <div className="track2-chain-copy">
-                <span className="track2-card-label">Blockchain audit</span>
-                <h2>Agent work proof chain</h2>
+                <span className="track2-card-label">Client proof log</span>
+                <h2>What the agent checked</h2>
                 <p>
-                  Every important Track B action is sealed with SHA-256 hashes: intake, documents, decision, and
-                  external research. This gives the founder a tamper-evident audit trail for what the agent reviewed.
+                  A simple activity record for the client: case intake, uploaded documents, final decision, and public
+                  research. The technical proof is kept discreetly below for audit purposes.
                 </p>
               </div>
               <div className="track2-chain-proof">
                 <div className="track2-hash-box">
-                  <span>Network</span>
-                  <code>{blockchainAudit?.network || "Track B local proof chain"}</code>
+                  <span>Status</span>
+                  <code>{blockchainAudit?.status === "sealed" ? "Review saved and verified" : "Pending review"}</code>
                 </div>
                 <div className="track2-hash-box">
-                  <span>Case hash</span>
-                  <code>{blockchainAudit?.case_hash || "Pending analysis"}</code>
+                  <span>Client reference</span>
+                  <code>{blockchainAudit?.case_hash?.slice(0, 16) || "Pending analysis"}</code>
                 </div>
                 <div className="track2-hash-box">
-                  <span>Latest block</span>
-                  <code>{blockchainAudit?.latest_block_hash || "Pending seal"}</code>
+                  <span>Checks completed</span>
+                  <code>{blockchainAudit?.blocks?.length || 0} steps recorded</code>
                 </div>
               </div>
             </section>
@@ -1764,19 +1768,19 @@ export function Track2LegalAssistant({ track }) {
                     </div>
                     <div>
                       <span className="track2-card-label">Payload hash</span>
-                      <code>{block.payload_hash}</code>
+                      <code>{block.payload_hash.slice(0, 18)}...</code>
                     </div>
                     <div>
-                      <span className="track2-card-label">Block hash</span>
-                      <code>{block.block_hash}</code>
+                      <span className="track2-card-label">Audit reference</span>
+                      <code>{block.block_hash.slice(0, 18)}...</code>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
               <EmptyState
-                title="No blockchain audit yet"
-                text="Run the legal review to generate the local proof chain for this agent workflow."
+                title="No proof log yet"
+                text="Run the legal review to generate a simple record of what the agent checked."
               />
             )}
           </div>
