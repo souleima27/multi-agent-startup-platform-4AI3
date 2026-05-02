@@ -9,6 +9,8 @@ from urllib.parse import quote_plus
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 TRACK2_ROOT = PROJECT_ROOT / "Track2"
@@ -179,6 +181,40 @@ def _resolve_document_paths(payload: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+def _json_safe(value: Any, seen: set[int] | None = None) -> Any:
+    if seen is None:
+        seen = set()
+
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+
+    if isinstance(value, Path):
+        return str(value)
+
+    if isinstance(value, BaseModel):
+        value = value.model_dump()
+
+    if isinstance(value, dict):
+        value_id = id(value)
+        if value_id in seen:
+            return "[circular-reference]"
+        seen.add(value_id)
+        cleaned = {str(key): _json_safe(item, seen) for key, item in value.items()}
+        seen.remove(value_id)
+        return cleaned
+
+    if isinstance(value, (list, tuple, set)):
+        value_id = id(value)
+        if value_id in seen:
+            return ["[circular-reference]"]
+        seen.add(value_id)
+        cleaned = [_json_safe(item, seen) for item in value]
+        seen.remove(value_id)
+        return cleaned
+
+    return str(value)
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok", "app": "track-b-legal-bridge"}
@@ -217,14 +253,14 @@ async def upload_documents(files: list[UploadFile] = File(...)) -> dict[str, Any
 
 
 @app.post("/track2/run")
-def run_track_b(payload: dict[str, Any]) -> dict[str, Any]:
+def run_track_b(payload: dict[str, Any]) -> JSONResponse:
     global latest_result
     normalized_payload = _resolve_document_paths(payload)
     request = TrackBRequest.model_validate(normalized_payload)
     latest_result = orchestrator.run(request)
     result = latest_result.model_dump()
     result["external_research"] = _build_external_research(normalized_payload, result)
-    return result
+    return JSONResponse(content=_json_safe(result))
 
 
 @app.post("/track2/chat")
@@ -233,5 +269,5 @@ def chat(payload: ChatRequest) -> dict[str, Any]:
 
 
 @app.post("/track2/research")
-def external_research(payload: dict[str, Any]) -> dict[str, Any]:
-    return _build_external_research(_resolve_document_paths(payload))
+def external_research(payload: dict[str, Any]) -> JSONResponse:
+    return JSONResponse(content=_json_safe(_build_external_research(_resolve_document_paths(payload))))
