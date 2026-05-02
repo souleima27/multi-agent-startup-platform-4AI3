@@ -4,11 +4,11 @@ const API_URL = "http://127.0.0.1:5057";
 
 const INITIAL_FORM = {
   startup_profile: {
-    startup_name: "Neuronix Legal AI",
-    sector: "AI SaaS",
-    activity_description: "AI platform for startup legal guidance and compliance automation.",
-    founders_count: 3,
-    funding_need_tnd: 250000,
+    startup_name: "Demo Startup Tunisia",
+    sector: "LegalTech SaaS",
+    activity_description: "Automates startup legal and administrative case preparation.",
+    founders_count: 2,
+    funding_need_tnd: 350000,
     wants_investors: true,
     needs_limited_liability: true,
     has_foreign_investors: false,
@@ -16,9 +16,7 @@ const INITIAL_FORM = {
     scalable: true,
     uses_technology: true,
     associates: [
-      { name: "Mariam", role: "CEO", equity_pct: 45, active: true },
-      { name: "Youssef", role: "CTO", equity_pct: 35, active: true },
-      { name: "Nour", role: "COO", equity_pct: 20, active: true },
+      { name: "Founder with legal operations and AI engineering experience", role: "Founder", equity_pct: 100, active: true },
     ],
   },
   documents: [
@@ -29,13 +27,14 @@ const INITIAL_FORM = {
     { path: "Track2/data/synthetic_docs/scans/fake_05_cin.png", declared_type: "cin" },
   ],
   label_input: {
-    startup_name: "Neuronix Legal AI",
-    transcript: "We automate legal readiness for Tunisian startups.",
-    slide_text: "AI legal compliance, Startup Act readiness, document diagnostics.",
-    sector: "AI SaaS",
-    traction_signals: ["pilot customers", "legal workflow automation"],
-    team_signals: ["technical founder", "legal operations experience"],
-    pitch_notes: ["clear market pain", "strong compliance use case"],
+    startup_name: "Demo Startup Tunisia",
+    transcript:
+      "Problem: legal setup is complex and slow. Solution: guided legal workflow with document diagnostics. Proof: OCR and cross-document validation pipeline.",
+    slide_text: "Startup legal readiness, document review, compliance scoring, public evidence research.",
+    sector: "LegalTech SaaS",
+    traction_signals: ["pilot users", "advisor feedback"],
+    team_signals: ["legal operations", "AI engineering"],
+    pitch_notes: ["clear legal blocker", "strong compliance use case"],
   },
   options: {
     strict_mode: true,
@@ -45,10 +44,38 @@ const INITIAL_FORM = {
   },
 };
 
-function labelize(value) {
+const ROADMAP_CARDS = [
+  {
+    number: "01",
+    title: "Legal structure",
+    text: "Recommended form, investor readiness, liability fit, and founding structure.",
+  },
+  {
+    number: "02",
+    title: "Compliance evidence",
+    text: "Required documents, missing pieces, quality checks, and correction priorities.",
+  },
+  {
+    number: "03",
+    title: "Decision package",
+    text: "Scores, risk indicators, next steps, and report-ready recommendations.",
+  },
+  {
+    number: "04",
+    title: "Ecosystem readiness",
+    text: "Investor fit, mentor timing, event relevance, and relationship follow-up priorities.",
+  },
+];
+
+function splitLines(value) {
   return String(value || "")
-    .replaceAll("_", " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function prettyJson(value) {
+  return JSON.stringify(value, null, 2);
 }
 
 function toneForDecision(value) {
@@ -58,8 +85,17 @@ function toneForDecision(value) {
   return "warn";
 }
 
-function prettyJson(value) {
-  return JSON.stringify(value, null, 2);
+function Field({ label, children }) {
+  return (
+    <label className="track2-field">
+      <span>{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function Pill({ children, active = false }) {
+  return <span className={`track2-pill${active ? " is-active" : ""}`}>{children}</span>;
 }
 
 function Metric({ label, value, tone = "info" }) {
@@ -71,17 +107,6 @@ function Metric({ label, value, tone = "info" }) {
   );
 }
 
-function Badge({ children, tone = "info" }) {
-  return <span className={`track2-badge ${tone}`}>{children}</span>;
-}
-
-function splitLines(value) {
-  return String(value || "")
-    .split("\n")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
 export function Track2LegalAssistant({ track }) {
   const [formState, setFormState] = useState(INITIAL_FORM);
   const [documentsText, setDocumentsText] = useState(
@@ -91,24 +116,33 @@ export function Track2LegalAssistant({ track }) {
   const [sampleLoading, setSampleLoading] = useState(false);
   const [error, setError] = useState("");
   const [report, setReport] = useState(null);
-  const [chatQuestion, setChatQuestion] = useState("What should we fix first?");
-  const [chatAnswer, setChatAnswer] = useState(null);
 
   const updateProfile = (field, value) => {
     setFormState((prev) => ({
       ...prev,
       startup_profile: { ...prev.startup_profile, [field]: value },
-      label_input: field === "startup_name" || field === "sector"
-        ? { ...prev.label_input, [field]: value }
-        : prev.label_input,
+      label_input:
+        field === "startup_name" || field === "sector"
+          ? { ...prev.label_input, [field]: value }
+          : prev.label_input,
     }));
   };
 
-  const updateOption = (field, value) => {
+  const updateLabelInput = (field, value) => {
     setFormState((prev) => ({
       ...prev,
-      options: { ...prev.options, [field]: value },
+      label_input: { ...prev.label_input, [field]: value },
     }));
+  };
+
+  const updateSignalList = (field, value) => {
+    updateLabelInput(
+      field,
+      value
+        .split("\n")
+        .map((item) => item.trim())
+        .filter(Boolean)
+    );
   };
 
   const documents = useMemo(
@@ -130,7 +164,6 @@ export function Track2LegalAssistant({ track }) {
       setFormState(data);
       setDocumentsText(data.documents.map((doc) => `${doc.path}|${doc.declared_type || ""}`).join("\n"));
       setReport(null);
-      setChatAnswer(null);
     } catch (sampleError) {
       setError(sampleError.message || "Unable to load sample.");
     } finally {
@@ -141,7 +174,6 @@ export function Track2LegalAssistant({ track }) {
   async function runTrackB() {
     setLoading(true);
     setError("");
-    setChatAnswer(null);
 
     try {
       const response = await fetch(`${API_URL}/track2/run`, {
@@ -163,268 +195,383 @@ export function Track2LegalAssistant({ track }) {
     }
   }
 
-  async function askChatbot() {
-    setError("");
-    setChatAnswer(null);
-    try {
-      const response = await fetch(`${API_URL}/track2/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: chatQuestion }),
-      });
-      const data = await response.json();
-      if (!response.ok || data.detail) throw new Error("Track B chatbot failed.");
-      setChatAnswer(data);
-    } catch (chatError) {
-      setError(chatError.message || "Track B chatbot failed.");
-    }
-  }
-
   const finalOutput = report?.final_output || {};
   const externalResearch = report?.external_research || null;
   const strategic = report?.strategic_agent || {};
   const documentAgent = report?.document_agent || {};
-  const checklist = strategic.checklist || [];
-  const docs = documentAgent.documents || [];
   const decisionTone = toneForDecision(finalOutput.final_decision || finalOutput.go_no_go);
 
   return (
     <section className="section track-page track2-legal">
       <style>{`
-        .track2-legal .track-page-hero {
-          align-items: stretch;
+        .track2-legal {
+          padding-top: 18px;
         }
 
-        .track2-hero-card,
-        .track2-panel,
-        .track2-result-card,
-        .track2-inline-card,
-        .track2-document-card,
-        .track2-metric {
-          border: 1px solid var(--border);
-          background: rgba(255, 255, 255, 0.88);
+        .track2-hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.88fr);
+          gap: 24px;
+          align-items: stretch;
+          min-height: 520px;
+        }
+
+        .track2-hero-copy {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 20px 0 34px;
+        }
+
+        .track2-kicker-row,
+        .track2-tabs,
+        .track2-chip-row,
+        .track2-actions {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .track2-kicker {
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 11px;
+          border-radius: 999px;
+          border: 1px solid rgba(47, 107, 255, 0.22);
+          background: rgba(47, 107, 255, 0.08);
+          color: var(--blue-500);
+          font-size: 0.73rem;
+          font-weight: 800;
+        }
+
+        .track2-hero h1 {
+          max-width: 12ch;
+          margin: 18px 0 16px;
+          color: var(--navy-900);
+          font-family: "Space Grotesk", sans-serif;
+          font-size: clamp(3rem, 7vw, 5.6rem);
+          line-height: 0.9;
+          letter-spacing: 0;
+        }
+
+        .track2-hero-copy p {
+          max-width: 64ch;
+          margin: 0;
+          color: var(--text);
+          line-height: 1.7;
+        }
+
+        .track2-actions {
+          margin-top: 28px;
+        }
+
+        .track2-roadmap {
+          display: grid;
+          gap: 18px;
+          padding: 14px;
+          border-radius: 24px;
+          background: rgba(255, 255, 255, 0.38);
+          border: 1px solid rgba(255, 255, 255, 0.58);
           box-shadow: var(--shadow-md);
         }
 
-        body.dark-mode .track2-hero-card,
-        body.dark-mode .track2-panel,
-        body.dark-mode .track2-result-card,
-        body.dark-mode .track2-inline-card,
-        body.dark-mode .track2-document-card,
-        body.dark-mode .track2-metric {
-          background: rgba(255, 255, 255, 0.04);
+        body.dark-mode .track2-roadmap {
+          background: rgba(255, 255, 255, 0.035);
         }
 
-        .track2-hero-card,
-        .track2-panel,
+        .track2-roadmap-card,
+        .track2-form-card,
         .track2-result-card {
-          padding: 30px;
-          border-radius: 24px;
+          border: 1px solid var(--border);
+          background: rgba(255, 255, 255, 0.92);
+          box-shadow: var(--shadow-md);
         }
 
-        .track2-hero-card h1,
-        .track2-panel h2,
+        body.dark-mode .track2-roadmap-card,
+        body.dark-mode .track2-form-card,
+        body.dark-mode .track2-result-card {
+          background: rgba(255, 255, 255, 0.045);
+        }
+
+        .track2-roadmap-card {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 16px;
+          align-items: start;
+          padding: 22px;
+          border-radius: 20px;
+        }
+
+        .track2-roadmap-card.is-active {
+          border-color: rgba(47, 107, 255, 0.55);
+          box-shadow: 0 18px 46px rgba(47, 107, 255, 0.14);
+        }
+
+        .track2-step-number {
+          display: grid;
+          place-items: center;
+          width: 42px;
+          height: 42px;
+          border-radius: 14px;
+          color: #fff;
+          background: linear-gradient(135deg, #102a56, #2f6bff);
+          font-family: "Space Grotesk", sans-serif;
+          font-weight: 800;
+        }
+
+        .track2-roadmap-card h3,
+        .track2-form-card h2,
         .track2-result-card h2,
-        .track2-inline-card h3,
-        .track2-document-card strong {
+        .track2-result-card h3 {
           margin: 0;
           color: var(--navy-900);
           font-family: "Space Grotesk", sans-serif;
+          letter-spacing: 0;
         }
 
-        .track2-hero-card h1 {
-          max-width: 12ch;
-          font-size: clamp(2.4rem, 5vw, 4.1rem);
-          line-height: 0.98;
-        }
-
-        .track2-hero-card p,
-        .track2-panel p,
-        .track2-inline-card p,
-        .track2-inline-card li,
-        .track2-document-card p,
-        .track2-json pre,
-        .track2-field label,
-        .track2-search-card a {
+        .track2-roadmap-card p,
+        .track2-form-card p,
+        .track2-result-card p,
+        .track2-result-card li {
+          margin: 8px 0 0;
           color: var(--text);
           line-height: 1.65;
         }
 
-        .track2-grid,
-        .track2-result-grid,
-        .track2-metrics,
-        .track2-form-row,
-        .track2-documents-grid {
+        .track2-tabs {
+          margin: 26px 0 18px;
+        }
+
+        .track2-pill {
+          display: inline-flex;
+          align-items: center;
+          min-height: 34px;
+          padding: 0 15px;
+          border-radius: 999px;
+          border: 1px solid var(--border);
+          background: rgba(255, 255, 255, 0.88);
+          color: var(--navy-800);
+          font-size: 0.82rem;
+          font-weight: 800;
+        }
+
+        .track2-pill.is-active {
+          color: #fff;
+          border-color: transparent;
+          background: linear-gradient(135deg, #102a56, #2f6bff);
+        }
+
+        .track2-workspace {
           display: grid;
-          gap: 16px;
+          grid-template-columns: minmax(0, 1fr) minmax(330px, 0.95fr);
+          gap: 18px;
+          align-items: start;
         }
 
-        .track2-grid,
-        .track2-result-grid {
-          grid-template-columns: 1fr 1fr;
+        .track2-form-card,
+        .track2-result-card {
+          padding: 24px;
+          border-radius: 18px;
         }
 
-        .track2-form-row,
-        .track2-metrics {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+        .track2-form-card.is-wide,
+        .track2-result-card.is-wide {
+          grid-column: 1 / -1;
         }
 
-        .track2-documents-grid {
+        .track2-card-label {
+          display: block;
+          margin-bottom: 8px;
+          color: #7a8cab;
+          font-size: 0.72rem;
+          font-weight: 900;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+
+        .track2-form-grid {
+          display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          margin-top: 18px;
         }
 
-        .track2-panel {
-          margin-top: 24px;
-        }
-
-        .track2-panel h2,
-        .track2-result-card h2 {
-          margin-bottom: 16px;
+        .track2-form-grid.single {
+          grid-template-columns: 1fr;
         }
 
         .track2-field {
           display: grid;
           gap: 7px;
-        }
-
-        .track2-field label {
-          font-size: 0.88rem;
-          font-weight: 700;
+          color: var(--text);
+          font-size: 0.82rem;
+          font-weight: 800;
         }
 
         .track2-input,
-        .track2-textarea,
-        .track2-select {
+        .track2-textarea {
           width: 100%;
+          min-height: 42px;
           padding: 11px 12px;
-          border: 1px solid var(--gray-300);
-          border-radius: 8px;
-          background: var(--gray-050);
+          border: 1px solid rgba(47, 107, 255, 0.32);
+          border-radius: 9px;
+          background: rgba(247, 249, 255, 0.92);
           color: var(--navy-900);
           font: inherit;
           outline: none;
         }
 
         body.dark-mode .track2-input,
-        body.dark-mode .track2-textarea,
-        body.dark-mode .track2-select {
-          background: rgba(255, 255, 255, 0.04);
-          border-color: rgba(255, 255, 255, 0.12);
+        body.dark-mode .track2-textarea {
+          background: rgba(255, 255, 255, 0.045);
+          border-color: rgba(255, 255, 255, 0.14);
         }
 
         .track2-textarea {
-          min-height: 92px;
+          min-height: 96px;
           resize: vertical;
         }
 
-        .track2-actions,
-        .track2-badge-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          align-items: center;
+        .track2-chip-row {
+          margin-top: 14px;
         }
 
-        .track2-actions {
-          margin-top: 20px;
-        }
-
-        .track2-badge {
+        .track2-mini-chip {
           display: inline-flex;
           align-items: center;
-          padding: 7px 11px;
+          gap: 6px;
+          padding: 7px 10px;
           border-radius: 999px;
+          border: 1px solid var(--border);
+          background: rgba(18, 51, 100, 0.04);
+          color: var(--navy-800);
           font-size: 0.78rem;
           font-weight: 800;
-          text-transform: capitalize;
         }
 
-        .track2-badge.info,
-        .track2-metric.info {
+        body.dark-mode .track2-mini-chip {
+          background: rgba(255, 255, 255, 0.045);
+        }
+
+        .track2-upload-box {
+          display: grid;
+          place-items: center;
+          min-height: 150px;
+          margin-top: 18px;
+          padding: 20px;
+          border: 2px dashed rgba(47, 107, 255, 0.42);
+          border-radius: 16px;
+          background: rgba(247, 249, 255, 0.72);
+          color: var(--text);
+          text-align: center;
+        }
+
+        .track2-upload-box strong {
+          display: block;
+          margin-bottom: 8px;
           color: var(--blue-500);
-          background: rgba(75, 124, 255, 0.12);
         }
 
-        .track2-badge.good,
-        .track2-metric.good {
-          color: #15803d;
-          background: rgba(34, 197, 94, 0.14);
+        .track2-upload-box span {
+          display: block;
+          font-size: 0.78rem;
         }
 
-        .track2-badge.warn,
-        .track2-metric.warn {
-          color: #b45309;
-          background: rgba(245, 158, 11, 0.14);
+        .track2-documents-text {
+          min-height: 90px;
+          margin-top: 12px;
         }
 
-        .track2-badge.danger,
-        .track2-metric.danger {
+        .track2-message {
+          margin: 14px 0 0;
+          padding: 14px 16px;
+          border-radius: 14px;
+          border: 1px solid rgba(239, 68, 68, 0.22);
+          background: rgba(239, 68, 68, 0.08);
           color: #b91c1c;
-          background: rgba(239, 68, 68, 0.14);
+          font-weight: 800;
+        }
+
+        .track2-result-card {
+          margin-top: 18px;
+        }
+
+        .track2-metrics,
+        .track2-results-grid,
+        .track2-search-grid {
+          display: grid;
+          gap: 14px;
+        }
+
+        .track2-metrics {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          margin-top: 18px;
         }
 
         .track2-metric {
-          padding: 17px;
-          border-radius: 18px;
+          padding: 15px;
+          border-radius: 14px;
+          border: 1px solid var(--border);
+          background: rgba(247, 249, 255, 0.84);
+        }
+
+        body.dark-mode .track2-metric {
+          background: rgba(255, 255, 255, 0.045);
         }
 
         .track2-metric span {
           display: block;
           margin-bottom: 8px;
-          font-size: 0.82rem;
           color: var(--text);
+          font-size: 0.76rem;
+          font-weight: 800;
         }
 
         .track2-metric strong {
-          display: block;
           color: var(--navy-900);
-          font-size: 1.35rem;
-          line-height: 1.1;
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1.18rem;
         }
 
-        .track2-result-card {
-          margin-top: 24px;
+        .track2-metric.good strong {
+          color: #15803d;
         }
 
-        .track2-inline-card,
-        .track2-document-card {
-          padding: 20px;
-          border-radius: 18px;
+        .track2-metric.warn strong {
+          color: #b45309;
         }
 
-        .track2-inline-card ul {
-          margin: 14px 0 0;
+        .track2-metric.danger strong {
+          color: #b91c1c;
+        }
+
+        .track2-results-grid,
+        .track2-search-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          margin-top: 18px;
+        }
+
+        .track2-result-panel {
+          padding: 18px;
+          border-radius: 14px;
+          border: 1px solid var(--border);
+          background: rgba(255, 255, 255, 0.72);
+        }
+
+        body.dark-mode .track2-result-panel {
+          background: rgba(255, 255, 255, 0.035);
+        }
+
+        .track2-result-panel ul {
+          margin: 12px 0 0;
           padding-left: 18px;
         }
 
-        .track2-document-card {
-          display: grid;
-          gap: 12px;
-        }
-
-        .track2-search-card {
-          display: grid;
-          gap: 14px;
-          padding: 20px;
-          border-radius: 18px;
-          border: 1px solid var(--border);
-          background: rgba(255, 255, 255, 0.88);
-          box-shadow: var(--shadow-md);
-        }
-
-        body.dark-mode .track2-search-card {
-          background: rgba(255, 255, 255, 0.04);
-        }
-
-        .track2-search-card h3 {
-          margin: 0;
-          color: var(--navy-900);
-          font-family: "Space Grotesk", sans-serif;
-        }
-
-        .track2-search-card code {
+        .track2-result-panel code {
           display: block;
-          padding: 10px 12px;
+          margin-top: 10px;
+          padding: 10px;
           border-radius: 10px;
           background: rgba(18, 51, 100, 0.06);
           color: var(--navy-900);
@@ -432,127 +579,261 @@ export function Track2LegalAssistant({ track }) {
           word-break: break-word;
         }
 
-        .track2-search-card a {
-          font-weight: 800;
-          color: var(--blue-500);
-        }
-
-        .track2-document-card p {
-          margin: 0;
-        }
-
         .track2-json {
           margin-top: 18px;
           padding: 18px;
-          border-radius: 18px;
+          border-radius: 14px;
           border: 1px solid var(--border);
           overflow: auto;
         }
 
         .track2-json pre {
           margin: 0;
+          color: var(--text);
           white-space: pre-wrap;
           word-break: break-word;
           font-family: Consolas, "Courier New", monospace;
           font-size: 0.86rem;
         }
 
-        .track2-message {
-          margin-top: 16px;
-          padding: 14px 16px;
-          border-radius: 14px;
-          border: 1px solid rgba(239, 68, 68, 0.22);
-          background: rgba(239, 68, 68, 0.08);
-          color: #b91c1c;
-          font-weight: 700;
+        @media (max-width: 1100px) {
+          .track2-hero,
+          .track2-workspace,
+          .track2-results-grid,
+          .track2-search-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .track2-metrics {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
         }
 
-        @media (max-width: 980px) {
-          .track2-grid,
-          .track2-result-grid,
-          .track2-form-row,
-          .track2-metrics,
-          .track2-documents-grid {
+        @media (max-width: 700px) {
+          .track2-form-grid,
+          .track2-metrics {
             grid-template-columns: 1fr;
+          }
+
+          .track2-hero h1 {
+            font-size: clamp(2.5rem, 13vw, 4rem);
           }
         }
       `}</style>
 
-      <div className="track-page-hero reveal">
-        <div className="track-page-copy">
-          <div className="track-card-top">
-            <span className="track-label">{track?.track || "Track B"}</span>
-            <span className="track-badge">{track?.badge || "Best for setup"}</span>
+      <div className="track2-hero reveal">
+        <div className="track2-hero-copy">
+          <div className="track2-kicker-row">
+            <span className="track2-kicker">{track?.track || "Track B"}</span>
+            <span className="track2-kicker">Legal & Administrative PRO</span>
           </div>
-          <div className="track-icon large-track-icon">{track?.icon || "B"}</div>
-          <h1>{track?.pageTitle || "Start with the right structure and fewer missed steps."}</h1>
-          <p>{track?.pageText || "This path helps founders understand the legal and administrative steps so they can build on a more solid base from the beginning."}</p>
-          <div className="track-highlights">
-            {(track?.highlights || ["Legal roadmap", "Document checklist", "Startup Act readiness"]).map((highlight) => (
-              <span key={highlight} className="track-chip">
-                {highlight}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="track-page-panel reveal delay-1">
-          <p className="eyebrow">This path helps you</p>
-          <div className="track-steps">
-            {(track?.steps || [
-              "Choose the company structure that fits your situation",
-              "Prepare the main documents you may need",
-              "Follow the important registration steps in order",
-              "Reduce confusion around deadlines and readiness",
-            ]).map((step, index) => (
-              <div key={step} className="track-step">
-                <span>{index + 1}</span>
-                <p>{step}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="track-page-outcome reveal delay-2">
-        <div>
-          <p className="eyebrow">Agent workspace</p>
-          <h2>{track?.title || "Start the Right Way"}</h2>
+          <h1>Legal readiness dashboard for Tunisian startups.</h1>
           <p>
-            Run the Track B agents for legal structure, Startup Act readiness, document intelligence,
-            external public research, and a final GO/NO-GO decision.
+            Prepare a founder-ready legal file with structure guidance, Startup Act readiness,
+            document review, and team-sourced evidence that is clear enough for a committee or advisor.
           </p>
+          <div className="track2-actions">
+            <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
+              {loading ? "Reviewing..." : "Run legal review"}
+            </button>
+            <a href="#services" className="secondary-btn">
+              Back to Tracks
+            </a>
+          </div>
+          {error ? <div className="track2-message">{error}</div> : null}
         </div>
-        <div className="track-page-actions">
-          <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
-            {loading ? "Running legal review..." : "Run legal review"}
-          </button>
-          <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
-            {sampleLoading ? "Loading sample..." : "Load sample"}
-          </button>
-          <a href="#services" className="secondary-btn">
-            Back to Tracks
-          </a>
+
+        <div className="track2-roadmap">
+          {ROADMAP_CARDS.map((card, index) => (
+            <article className={`track2-roadmap-card${index === 0 ? " is-active" : ""}`} key={card.number}>
+              <span className="track2-step-number">{card.number}</span>
+              <div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
 
-      {error ? <div className="track2-message">{error}</div> : null}
+      <div className="track2-tabs">
+        <Pill active>Case</Pill>
+        <Pill>Decision</Pill>
+        <Pill>Documents</Pill>
+        <Pill>Roadmap</Pill>
+        <Pill>Opportunities</Pill>
+      </div>
+
+      <div className="track2-workspace">
+        <section className="track2-form-card">
+          <span className="track2-card-label">Startup profile</span>
+          <h2>Company information</h2>
+
+          <div className="track2-form-grid">
+            <Field label="Startup name">
+              <input
+                className="track2-input"
+                value={formState.startup_profile.startup_name}
+                onChange={(event) => updateProfile("startup_name", event.target.value)}
+              />
+            </Field>
+            <Field label="Sector">
+              <input
+                className="track2-input"
+                value={formState.startup_profile.sector}
+                onChange={(event) => updateProfile("sector", event.target.value)}
+              />
+            </Field>
+            <Field label="Founders count">
+              <input
+                className="track2-input"
+                type="number"
+                min="1"
+                value={formState.startup_profile.founders_count}
+                onChange={(event) => updateProfile("founders_count", Number(event.target.value))}
+              />
+            </Field>
+            <Field label="Funding need TND">
+              <input
+                className="track2-input"
+                type="number"
+                value={formState.startup_profile.funding_need_tnd}
+                onChange={(event) => updateProfile("funding_need_tnd", Number(event.target.value))}
+              />
+            </Field>
+          </div>
+
+          <div className="track2-form-grid single">
+            <Field label="Activity description">
+              <textarea
+                className="track2-textarea"
+                value={formState.startup_profile.activity_description}
+                onChange={(event) => updateProfile("activity_description", event.target.value)}
+              />
+            </Field>
+          </div>
+
+          <div className="track2-chip-row">
+            <span className="track2-mini-chip">Investors</span>
+            <span className="track2-mini-chip">Foreign investors</span>
+            <span className="track2-mini-chip">Innovative</span>
+            <span className="track2-mini-chip">Scalable</span>
+            <span className="track2-mini-chip">Technology</span>
+          </div>
+        </section>
+
+        <section className="track2-form-card">
+          <span className="track2-card-label">Pitching package</span>
+          <h2>Pitch and legal file</h2>
+
+          <div className="track2-form-grid single">
+            <Field label="Pitch notes">
+              <textarea
+                className="track2-textarea"
+                value={formState.label_input.transcript}
+                onChange={(event) => updateLabelInput("transcript", event.target.value)}
+              />
+            </Field>
+          </div>
+
+          <div className="track2-form-grid">
+            <Field label="Traction signals">
+              <textarea
+                className="track2-textarea"
+                value={formState.label_input.traction_signals.join("\n")}
+                onChange={(event) => updateSignalList("traction_signals", event.target.value)}
+              />
+            </Field>
+            <Field label="Team signals">
+              <textarea
+                className="track2-textarea"
+                value={formState.label_input.team_signals.join("\n")}
+                onChange={(event) => updateSignalList("team_signals", event.target.value)}
+              />
+            </Field>
+          </div>
+
+          <div className="track2-upload-box">
+            <div>
+              <strong>Upload legal documents</strong>
+              <span>Choose files from your computer</span>
+              <span>PDF, Word, PowerPoint, images, scans</span>
+            </div>
+          </div>
+
+          <textarea
+            className="track2-textarea track2-documents-text"
+            value={documentsText}
+            onChange={(event) => setDocumentsText(event.target.value)}
+          />
+
+          <div className="track2-actions">
+            <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
+              {sampleLoading ? "Loading..." : "Load sample"}
+            </button>
+            <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
+              {loading ? "Reviewing..." : "Review legal file"}
+            </button>
+          </div>
+        </section>
+
+        <section className="track2-form-card is-wide">
+          <span className="track2-card-label">Accelerator readiness</span>
+          <h2>Network and funding context</h2>
+          <div className="track2-form-grid">
+            <Field label="Founder profile">
+              <textarea
+                className="track2-textarea"
+                value={formState.startup_profile.associates?.[0]?.name || ""}
+                onChange={(event) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    startup_profile: {
+                      ...prev.startup_profile,
+                      associates: [{ name: event.target.value, role: "Founder", equity_pct: 100, active: true }],
+                    },
+                  }))
+                }
+              />
+            </Field>
+            <Field label="Stage">
+              <input className="track2-input" value="Pre-seed / preparing launch" readOnly />
+            </Field>
+          </div>
+          <div className="track2-form-grid single">
+            <Field label="Networking goal">
+              <textarea
+                className="track2-textarea"
+                value="Find mentors, early investors, and events that improve legal and funding readiness."
+                readOnly
+              />
+            </Field>
+          </div>
+          <div className="track2-chip-row">
+            <span className="track2-mini-chip">Google discovery</span>
+            <span className="track2-mini-chip">LinkedIn relationship</span>
+            <span className="track2-mini-chip">Facebook ecosystem signals</span>
+            <span className="track2-mini-chip">Event database</span>
+            <span className="track2-mini-chip">Relationship history</span>
+          </div>
+        </section>
+      </div>
 
       {report ? (
-        <section className="track2-result-card reveal delay-1">
-          <p className="eyebrow">Track B result</p>
+        <section className="track2-result-card is-wide">
+          <span className="track2-card-label">Decision package</span>
           <h2>{formState.startup_profile.startup_name} legal dashboard</h2>
           <div className="track2-metrics">
             <Metric label="Final decision" value={finalOutput.final_decision || "N/A"} tone={decisionTone} />
             <Metric label="GO / NO-GO" value={finalOutput.go_no_go || "N/A"} tone={toneForDecision(finalOutput.go_no_go)} />
             <Metric label="Legal form" value={strategic.recommended_legal_form || "N/A"} />
-            <Metric label="Startup Act score" value={`${strategic.startup_act_eligibility_score ?? 0}%`} tone="good" />
+            <Metric label="Startup Act" value={`${strategic.startup_act_eligibility_score ?? 0}%`} tone="good" />
             <Metric label="Document score" value={`${documentAgent.overall_completeness_score ?? 0}%`} tone="info" />
             <Metric label="Risk score" value={`${documentAgent.global_risk_score ?? 0}%`} tone={documentAgent.global_risk_score >= 60 ? "danger" : "warn"} />
           </div>
 
-          <div className="track2-result-grid" style={{ marginTop: 20 }}>
-            <div className="track2-inline-card">
+          <div className="track2-results-grid">
+            <div className="track2-result-panel">
               <h3>Strategic guidance</h3>
               <ul>
                 {(strategic.rationale || []).slice(0, 5).map((item, index) => (
@@ -560,7 +841,7 @@ export function Track2LegalAssistant({ track }) {
                 ))}
               </ul>
             </div>
-            <div className="track2-inline-card">
+            <div className="track2-result-panel">
               <h3>Missing documents</h3>
               {documentAgent.missing_documents?.length ? (
                 <ul>
@@ -573,246 +854,29 @@ export function Track2LegalAssistant({ track }) {
               )}
             </div>
           </div>
-        </section>
-      ) : null}
 
-      <section className="track2-panel reveal delay-2">
-        <h2>Startup profile</h2>
-        <div className="track2-form-row">
-          <div className="track2-field">
-            <label>Startup name</label>
-            <input
-              className="track2-input"
-              value={formState.startup_profile.startup_name}
-              onChange={(event) => updateProfile("startup_name", event.target.value)}
-            />
-          </div>
-          <div className="track2-field">
-            <label>Sector</label>
-            <input
-              className="track2-input"
-              value={formState.startup_profile.sector}
-              onChange={(event) => updateProfile("sector", event.target.value)}
-            />
-          </div>
-          <div className="track2-field">
-            <label>Funding need TND</label>
-            <input
-              className="track2-input"
-              type="number"
-              value={formState.startup_profile.funding_need_tnd}
-              onChange={(event) => updateProfile("funding_need_tnd", Number(event.target.value))}
-            />
-          </div>
-        </div>
-
-        <div className="track2-field" style={{ marginTop: 16 }}>
-          <label>Activity description</label>
-          <textarea
-            className="track2-textarea"
-            value={formState.startup_profile.activity_description}
-            onChange={(event) => updateProfile("activity_description", event.target.value)}
-          />
-        </div>
-
-        <div className="track2-form-row" style={{ marginTop: 16 }}>
-          <div className="track2-field">
-            <label>Founders count</label>
-            <input
-              className="track2-input"
-              type="number"
-              min="1"
-              value={formState.startup_profile.founders_count}
-              onChange={(event) => updateProfile("founders_count", Number(event.target.value))}
-            />
-          </div>
-          <div className="track2-field">
-            <label>Wants investors</label>
-            <select
-              className="track2-select"
-              value={String(formState.startup_profile.wants_investors)}
-              onChange={(event) => updateProfile("wants_investors", event.target.value === "true")}
-            >
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
-          </div>
-          <div className="track2-field">
-            <label>Foreign investors</label>
-            <select
-              className="track2-select"
-              value={String(formState.startup_profile.has_foreign_investors)}
-              onChange={(event) => updateProfile("has_foreign_investors", event.target.value === "true")}
-            >
-              <option value="false">No</option>
-              <option value="true">Yes</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <section className="track2-panel reveal delay-3">
-        <h2>Documents</h2>
-        <p>One document per line. Format: path|declared_type</p>
-        <textarea
-          className="track2-textarea"
-          style={{ minHeight: 170 }}
-          value={documentsText}
-          onChange={(event) => setDocumentsText(event.target.value)}
-        />
-        <div className="track2-form-row" style={{ marginTop: 16 }}>
-          <div className="track2-field">
-            <label>Strict mode</label>
-            <select
-              className="track2-select"
-              value={String(formState.options.strict_mode)}
-              onChange={(event) => updateOption("strict_mode", event.target.value === "true")}
-            >
-              <option value="true">Enabled</option>
-              <option value="false">Disabled</option>
-            </select>
-          </div>
-          <div className="track2-field">
-            <label>JSON report</label>
-            <select
-              className="track2-select"
-              value={String(formState.options.generate_json_report)}
-              onChange={(event) => updateOption("generate_json_report", event.target.value === "true")}
-            >
-              <option value="true">Generate</option>
-              <option value="false">Skip</option>
-            </select>
-          </div>
-          <div className="track2-field">
-            <label>PDF report</label>
-            <select
-              className="track2-select"
-              value={String(formState.options.generate_pdf_report)}
-              onChange={(event) => updateOption("generate_pdf_report", event.target.value === "true")}
-            >
-              <option value="false">Skip</option>
-              <option value="true">Generate</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      {report ? (
-        <>
-          <section className="track2-panel">
-            <h2>Administrative checklist</h2>
-            <div className="track2-documents-grid">
-              {checklist.slice(0, 8).map((step) => (
-                <article className="track2-document-card" key={step.step_no}>
-                  <div className="track2-badge-row">
-                    <Badge>{`Step ${step.step_no}`}</Badge>
-                    <Badge tone="info">{step.estimated_delay_days} days</Badge>
-                  </div>
-                  <strong>{step.title}</strong>
-                  <p>{step.institution}</p>
-                  <p>{(step.deliverables || []).join(", ")}</p>
-                </article>
+          {externalResearch ? (
+            <div className="track2-search-grid">
+              {externalResearch.searches.map((search) => (
+                <div className="track2-result-panel" key={search.platform}>
+                  <h3>{search.platform}</h3>
+                  <p>{search.purpose}</p>
+                  <code>{search.query}</code>
+                  <p>
+                    <a href={search.url} target="_blank" rel="noreferrer">
+                      Open search
+                    </a>
+                  </p>
+                </div>
               ))}
             </div>
-          </section>
-
-          <section className="track2-panel">
-            <h2>Document diagnostics</h2>
-            <div className="track2-documents-grid">
-              {docs.map((document) => (
-                <article className="track2-document-card" key={document.file_name}>
-                  <div className="track2-badge-row">
-                    <Badge tone={document.completeness_score >= 80 ? "good" : "warn"}>
-                      {document.completeness_score}% complete
-                    </Badge>
-                    <Badge tone={document.quality === "good" ? "good" : "warn"}>{document.quality}</Badge>
-                  </div>
-                  <strong>{document.file_name}</strong>
-                  <p>{labelize(document.document_type)}</p>
-                  <p>{document.suggested_fix || "No specific fix returned."}</p>
-                  {document.issues?.length ? (
-                    <ul>
-                      {document.issues.slice(0, 3).map((issue) => (
-                        <li key={issue}>{issue}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="track2-panel">
-            <h2>External research</h2>
-            {externalResearch ? (
-              <>
-                <p>{externalResearch.automation_note}</p>
-                <div className="track2-documents-grid" style={{ marginTop: 16 }}>
-                  {externalResearch.searches.map((search) => (
-                    <article className="track2-search-card" key={search.platform}>
-                      <div className="track2-badge-row">
-                        <Badge>{search.platform}</Badge>
-                        <Badge tone="info">Public search</Badge>
-                      </div>
-                      <h3>{search.purpose}</h3>
-                      <code>{search.query}</code>
-                      <a href={search.url} target="_blank" rel="noreferrer">
-                        Open {search.platform} search
-                      </a>
-                      <ul>
-                        {search.signals_to_check.map((signal) => (
-                          <li key={signal}>{signal}</li>
-                        ))}
-                      </ul>
-                    </article>
-                  ))}
-                </div>
-                <div className="track2-inline-card" style={{ marginTop: 16 }}>
-                  <h3>Research recommendations</h3>
-                  <ul>
-                    {externalResearch.recommendations.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            ) : (
-              <p>Run Track B to generate Google, LinkedIn and Facebook research checks.</p>
-            )}
-          </section>
-
-          <section className="track2-panel">
-            <h2>Track B assistant</h2>
-            <div className="track2-field">
-              <label>Question</label>
-              <input
-                className="track2-input"
-                value={chatQuestion}
-                onChange={(event) => setChatQuestion(event.target.value)}
-              />
-            </div>
-            <div className="track2-actions">
-              <button className="secondary-btn" type="button" onClick={askChatbot}>
-                Ask Assistant
-              </button>
-            </div>
-            {chatAnswer ? (
-              <div className="track2-inline-card" style={{ marginTop: 16 }}>
-                <h3>Answer</h3>
-                <p>{chatAnswer.answer}</p>
-                <div className="track2-badge-row">
-                  <Badge>{chatAnswer.confidence}</Badge>
-                  {chatAnswer.context_available ? <Badge tone="good">Context loaded</Badge> : <Badge tone="warn">No context</Badge>}
-                </div>
-              </div>
-            ) : null}
-          </section>
+          ) : null}
 
           <details className="track2-json">
             <summary>View raw Track B JSON</summary>
             <pre>{prettyJson(report)}</pre>
           </details>
-        </>
+        </section>
       ) : null}
     </section>
   );
