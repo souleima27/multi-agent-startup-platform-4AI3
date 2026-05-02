@@ -4,37 +4,28 @@ const API_URL = "http://127.0.0.1:5057";
 
 const INITIAL_FORM = {
   startup_profile: {
-    startup_name: "Demo Startup Tunisia",
-    sector: "LegalTech SaaS",
-    activity_description: "Automates startup legal and administrative case preparation.",
-    founders_count: 2,
-    funding_need_tnd: 350000,
-    wants_investors: true,
+    startup_name: "",
+    sector: "",
+    activity_description: "",
+    founders_count: "",
+    funding_need_tnd: "",
+    wants_investors: false,
     needs_limited_liability: true,
     has_foreign_investors: false,
-    innovative: true,
-    scalable: true,
-    uses_technology: true,
-    associates: [
-      { name: "Founder with legal operations and AI engineering experience", role: "Founder", equity_pct: 100, active: true },
-    ],
+    innovative: false,
+    scalable: false,
+    uses_technology: false,
+    associates: [{ name: "", role: "Founder", equity_pct: 100, active: true }],
   },
-  documents: [
-    { path: "Track2/data/synthetic_docs/scans/fake_01_statuts.png", declared_type: "statuts" },
-    { path: "Track2/data/synthetic_docs/scans/fake_02_rc.png", declared_type: "registre_commerce" },
-    { path: "Track2/data/synthetic_docs/scans/fake_03_if.png", declared_type: "identifiant_fiscal" },
-    { path: "Track2/data/synthetic_docs/scans/fake_04_attestation_bancaire.png", declared_type: "attestation_bancaire" },
-    { path: "Track2/data/synthetic_docs/scans/fake_05_cin.png", declared_type: "cin" },
-  ],
+  documents: [],
   label_input: {
-    startup_name: "Demo Startup Tunisia",
-    transcript:
-      "Problem: legal setup is complex and slow. Solution: guided legal workflow with document diagnostics. Proof: OCR and cross-document validation pipeline.",
-    slide_text: "Startup legal readiness, document review, compliance scoring, public evidence research.",
-    sector: "LegalTech SaaS",
-    traction_signals: ["pilot users", "advisor feedback"],
-    team_signals: ["legal operations", "AI engineering"],
-    pitch_notes: ["clear legal blocker", "strong compliance use case"],
+    startup_name: "",
+    transcript: "",
+    slide_text: "",
+    sector: "",
+    traction_signals: [],
+    team_signals: [],
+    pitch_notes: [],
   },
   options: {
     strict_mode: true,
@@ -172,6 +163,11 @@ export function Track2LegalAssistant({ track }) {
   }
 
   async function runTrackB() {
+    if (!formState.startup_profile.startup_name.trim() || !formState.startup_profile.sector.trim()) {
+      setError("Please complete the startup name and sector before running the legal review.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
@@ -179,7 +175,15 @@ export function Track2LegalAssistant({ track }) {
       const response = await fetch(`${API_URL}/track2/run`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formState, documents }),
+        body: JSON.stringify({
+          ...formState,
+          startup_profile: {
+            ...formState.startup_profile,
+            founders_count: Number(formState.startup_profile.founders_count) || 1,
+            funding_need_tnd: Number(formState.startup_profile.funding_need_tnd) || 0,
+          },
+          documents,
+        }),
       });
       const data = await response.json();
       if (!response.ok || data.detail) {
@@ -722,6 +726,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Startup name">
               <input
                 className="track2-input"
+                placeholder="Example: MedLink Tunisia"
                 value={formState.startup_profile.startup_name}
                 onChange={(event) => updateProfile("startup_name", event.target.value)}
               />
@@ -729,6 +734,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Sector">
               <input
                 className="track2-input"
+                placeholder="Example: HealthTech SaaS"
                 value={formState.startup_profile.sector}
                 onChange={(event) => updateProfile("sector", event.target.value)}
               />
@@ -738,16 +744,18 @@ export function Track2LegalAssistant({ track }) {
                 className="track2-input"
                 type="number"
                 min="1"
+                placeholder="Example: 2"
                 value={formState.startup_profile.founders_count}
-                onChange={(event) => updateProfile("founders_count", Number(event.target.value))}
+                onChange={(event) => updateProfile("founders_count", event.target.value)}
               />
             </Field>
             <Field label="Funding need TND">
               <input
                 className="track2-input"
                 type="number"
+                placeholder="Example: 350000"
                 value={formState.startup_profile.funding_need_tnd}
-                onChange={(event) => updateProfile("funding_need_tnd", Number(event.target.value))}
+                onChange={(event) => updateProfile("funding_need_tnd", event.target.value)}
               />
             </Field>
           </div>
@@ -756,6 +764,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Activity description">
               <textarea
                 className="track2-textarea"
+                placeholder="Describe what the startup does, who it serves, and what problem it solves."
                 value={formState.startup_profile.activity_description}
                 onChange={(event) => updateProfile("activity_description", event.target.value)}
               />
@@ -779,6 +788,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Pitch notes">
               <textarea
                 className="track2-textarea"
+                placeholder="Problem: ...&#10;Solution: ...&#10;Proof: ..."
                 value={formState.label_input.transcript}
                 onChange={(event) => updateLabelInput("transcript", event.target.value)}
               />
@@ -789,6 +799,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Traction signals">
               <textarea
                 className="track2-textarea"
+                placeholder="pilot users&#10;advisor feedback&#10;letters of intent"
                 value={formState.label_input.traction_signals.join("\n")}
                 onChange={(event) => updateSignalList("traction_signals", event.target.value)}
               />
@@ -796,6 +807,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Team signals">
               <textarea
                 className="track2-textarea"
+                placeholder="legal operations&#10;AI engineering&#10;domain expertise"
                 value={formState.label_input.team_signals.join("\n")}
                 onChange={(event) => updateSignalList("team_signals", event.target.value)}
               />
@@ -827,6 +839,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Founder profile">
               <textarea
                 className="track2-textarea"
+                placeholder="Founder background, relevant experience, and execution strengths."
                 value={formState.startup_profile.associates?.[0]?.name || ""}
                 onChange={(event) =>
                   setFormState((prev) => ({
@@ -847,8 +860,7 @@ export function Track2LegalAssistant({ track }) {
             <Field label="Networking goal">
               <textarea
                 className="track2-textarea"
-                value="Find mentors, early investors, and events that improve legal and funding readiness."
-                readOnly
+                placeholder="Find mentors, early investors, and events that improve legal and funding readiness."
               />
             </Field>
           </div>
