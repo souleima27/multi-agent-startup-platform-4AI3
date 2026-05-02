@@ -810,12 +810,6 @@ export function Track2LegalAssistant({ track }) {
             </div>
           </div>
 
-          <textarea
-            className="track2-textarea track2-documents-text"
-            value={documentsText}
-            onChange={(event) => setDocumentsText(event.target.value)}
-          />
-
           <div className="track2-actions">
             <button className="secondary-btn" type="button" onClick={loadSample} disabled={sampleLoading || loading}>
               {sampleLoading ? "Loading..." : "Load sample"}
