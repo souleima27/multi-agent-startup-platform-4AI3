@@ -650,22 +650,141 @@ export function Track2LegalAssistant({ track }) {
           .track2-console-nav {
             justify-content: flex-start;
           }
+
+          .track2-photo-hero {
+            grid-template-columns: 1fr;
+          }
+
+          .track2-hero-visual {
+            aspect-ratio: 16/7;
+          }
+        }
+
+        /* ── Track2 photo hero ──────────────────── */
+        .track2-photo-hero {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 40px;
+          align-items: center;
+          padding: 44px 40px;
+          border-radius: 28px;
+          border: 1px solid var(--track2-line);
+          background: var(--track2-surface);
+          box-shadow: 0 8px 36px rgba(14,38,84,0.08);
+          overflow: hidden;
+          position: relative;
+          margin-bottom: 28px;
+        }
+
+        body.dark-mode .track2-photo-hero { background: rgba(10,20,42,0.82); }
+
+        .track2-photo-hero::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 5px;
+          background: linear-gradient(90deg, #12336c, #1f5eff, #5a8fff);
+        }
+
+        .track2-hero-copy { display: flex; flex-direction: column; gap: 20px; }
+
+        .track2-hero-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 14px;
+          border-radius: 999px;
+          font-size: .72rem;
+          font-weight: 800;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          background: rgba(31,94,255,.1);
+          color: var(--track2-accent);
+          width: fit-content;
+        }
+
+        .track2-hero-title {
+          margin: 0;
+          font-family: "Space Grotesk", sans-serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 700;
+          color: var(--navy-900);
+          line-height: 1.05;
+          letter-spacing: -.03em;
+        }
+
+        .track2-hero-sub {
+          margin: 0;
+          color: var(--track2-muted);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 46ch;
+        }
+
+        .track2-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .track2-hero-back {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 20px;
+          border-radius: 999px;
+          font-size: .88rem;
+          font-weight: 700;
+          color: var(--track2-ink);
+          border: 1px solid var(--track2-line);
+          background: var(--track2-muted-surface);
+          text-decoration: none;
+          transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .track2-hero-back:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(14,38,84,.1); }
+
+        .track2-hero-visual {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          aspect-ratio: 4/3;
+          box-shadow: 0 16px 48px rgba(14,38,84,.14);
+        }
+
+        .track2-hero-visual img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .track2-hero-visual::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 40%, rgba(10,25,60,.18));
         }
       `}</style>
 
-      <div className="track2-console-top">
-        <div className="track2-console-brand">
-          <div className="track2-console-mark">B</div>
-          <div>
-            <strong>Track B Legal Console</strong>
-            <span>Legal setup, document control and public evidence review</span>
+      {/* Photo Hero */}
+      <div className="track2-photo-hero reveal">
+        <div className="track2-hero-copy">
+          <span className="track2-hero-eyebrow">Track B · Legal Operations Console</span>
+          <h1 className="track2-hero-title">Start your startup the right way</h1>
+          <p className="track2-hero-sub">
+            Analyze company structure, Startup Act readiness, document compliance and external evidence
+            — all from one controlled legal workspace.
+          </p>
+          <div className="track2-hero-actions">
+            <a href="#services" className="track2-hero-back">← Back to Tracks</a>
           </div>
         </div>
-        <div className="track2-console-nav">
-          <a className="track2-console-link" href="#services">Back to tracks</a>
-          <a className="track2-console-link" href="#home">Home</a>
+        <div className="track2-hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=75"
+            alt="Legal documents and startup compliance workspace"
+            loading="lazy"
+          />
         </div>
       </div>
+
+
 
       <div className="track-page-hero reveal track2-grid">
         <div className="track2-hero-card">

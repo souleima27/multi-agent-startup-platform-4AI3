@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div>
-        <strong>Venture Path</strong>
+        <strong>Starti</strong>
         <p>Helping founders turn ideas into clear plans, next steps, and stronger startup progress.</p>
       </div>
       <div className="footer-links">

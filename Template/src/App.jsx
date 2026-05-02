@@ -53,18 +53,50 @@ function App() {
   const isTrackB = activeTrack?.id === "track-b";
 
   if (window.location.hash === "#track1-analyzer") {
-  return <Track1Analyzer />;
+  return (
+    <div className="site-shell">
+      <TopBar
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode((current) => !current)}
+        onOpenAuth={() => setAuthOpen(true)}
+        user={user}
+        onSignOut={signOut}
+      />
+      <Track1Analyzer />
+      <Footer />
+    </div>
+  );
 }
 if (window.location.hash === "#track1-report") {
-  return <Track1SavedReport />;
+  return (
+    <div className="site-shell">
+      <TopBar
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode((current) => !current)}
+        onOpenAuth={() => setAuthOpen(true)}
+        user={user}
+        onSignOut={signOut}
+      />
+      <Track1SavedReport />
+      <Footer />
+    </div>
+  );
 }
 
 if (isTrackB) {
   return (
-    <>
+    <div className="site-shell">
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      <TopBar
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode((current) => !current)}
+        onOpenAuth={() => setAuthOpen(true)}
+        user={user}
+        onSignOut={signOut}
+      />
       <Track2LegalAssistant track={activeTrack} />
-    </>
+      <Footer />
+    </div>
   );
 }
 

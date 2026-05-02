@@ -935,6 +935,90 @@ export function Track1Analyzer() {
           }
         }
 
+        /* ── Track1 photo hero ──────────────────── */
+        .track1-photo-hero {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 40px;
+          align-items: center;
+          padding: 44px 40px;
+          border-radius: 28px;
+          border: 1px solid var(--border);
+          background: rgba(255,255,255,0.97);
+          box-shadow: 0 8px 36px rgba(14,38,84,0.08);
+          overflow: hidden;
+          position: relative;
+          margin-bottom: 28px;
+        }
+
+        body.dark-mode .track1-photo-hero { background: rgba(10,20,42,0.82); }
+
+        .track1-photo-hero::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 5px;
+          background: linear-gradient(90deg, #0d2145, #2f6bff, #5a92ff);
+        }
+
+        .track1-hero-copy { display: flex; flex-direction: column; gap: 20px; }
+
+        .track1-hero-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 14px;
+          border-radius: 999px;
+          font-size: .72rem;
+          font-weight: 800;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          background: rgba(47,107,255,.1);
+          color: var(--navy-800);
+          width: fit-content;
+        }
+
+        .track1-hero-title {
+          margin: 0;
+          font-family: "Space Grotesk", sans-serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 700;
+          color: var(--navy-900);
+          line-height: 1.05;
+          letter-spacing: -.03em;
+        }
+
+        .track1-hero-sub {
+          margin: 0;
+          color: var(--text);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 46ch;
+        }
+
+        .track1-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .track1-hero-visual {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          aspect-ratio: 4/3;
+          box-shadow: 0 16px 48px rgba(14,38,84,.14);
+        }
+
+        .track1-hero-visual img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .track1-hero-visual::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 40%, rgba(10,25,60,.18));
+        }
+
         @media (max-width: 900px) {
           .track1-grid,
           .track1-grid-3,
@@ -945,23 +1029,48 @@ export function Track1Analyzer() {
           .track1-page {
             padding: 100px 18px 50px;
           }
+
+          .track1-photo-hero {
+            grid-template-columns: 1fr;
+          }
+
+          .track1-hero-visual {
+            aspect-ratio: 16/7;
+          }
         }
       `}</style>
 
       <div className="track1-shell">
-        <section className="track1-hero">
-          <div className="track1-eyebrow">
-            {report ? "Track 1 · Startup Review" : "Track 1 · Startup Evaluation"}
+        <div className="track1-photo-hero reveal">
+          <div className="track1-hero-copy">
+            <span className="track1-hero-eyebrow">
+              {report ? "Track A · Startup Review" : "Track A · Startup Evaluation"}
+            </span>
+            <h1 className="track1-hero-title">
+              {report ? "Startup Review Dashboard" : "Validate your idea with clarity"}
+            </h1>
+            <p className="track1-hero-sub">
+              {report
+                ? "Review the final Track A analysis with market, MVP, operations, finance, and legal insights."
+                : "Fill in your startup details, run the full AI pipeline, and get a clear picture of market fit, risks, MVP direction, and legal readiness."}
+            </p>
+            <div className="track1-hero-actions">
+              {!report && (
+                <a href="#services" className="t3-secondary-btn" style={{ textDecoration: "none" }}>← Back to Tracks</a>
+              )}
+              {report && (
+                <button className="track1-btn secondary" type="button" onClick={() => { window.location.hash = "#services"; }}>← Back to Tracks</button>
+              )}
+            </div>
           </div>
-
-          <h1>{report ? "Startup Review Dashboard" : "Startup Evaluation Pipeline"}</h1>
-
-          <p>
-            {report
-              ? "Review the final Track1 analysis with market, MVP, operations, finance, and legal insights."
-              : "Fill in the startup input, run the full pipeline, then review the final dashboard."}
-          </p>
-        </section>
+          <div className="track1-hero-visual">
+            <img
+              src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=900&q=75"
+              alt="Founders analysing startup idea and data"
+              loading="lazy"
+            />
+          </div>
+        </div>
 
         {!report && (
           <>
