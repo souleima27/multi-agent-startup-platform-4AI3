@@ -319,6 +319,8 @@ export function Track2LegalAssistant({ track }) {
     ? `${missingDocuments.length} required document${missingDocuments.length > 1 ? "s" : ""} missing`
     : finalOutput.user_message || "No blocking issue returned.";
   const searches = externalResearch?.searches || [];
+  const executedSearchCount = searches.filter((search) => search.agent_search?.status === "completed").length;
+  const discoveredResultCount = searches.reduce((total, search) => total + (search.agent_search?.results?.length || 0), 0);
   const roadmapItems = [
     {
       title: "Complete the legal evidence pack",
@@ -912,15 +914,76 @@ export function Track2LegalAssistant({ track }) {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
+        .track2-research-hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+          gap: 18px;
+          align-items: stretch;
+          padding: 0;
+          overflow: hidden;
+        }
+
+        .track2-research-copy {
+          padding: 28px;
+        }
+
+        .track2-research-board {
+          display: grid;
+          gap: 12px;
+          padding: 22px;
+          background: linear-gradient(135deg, rgba(16, 42, 86, 0.96), rgba(47, 107, 255, 0.9));
+          color: #fff;
+        }
+
+        .track2-research-board span,
+        .track2-research-board strong {
+          color: #fff;
+        }
+
+        .track2-research-stat {
+          display: grid;
+          gap: 4px;
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.13);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .track2-research-stat span {
+          font-size: 0.74rem;
+          font-weight: 800;
+          opacity: 0.82;
+        }
+
+        .track2-research-stat strong {
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1.6rem;
+          line-height: 1;
+        }
+
         .track2-search-card {
           display: flex;
-          min-height: 220px;
+          min-height: 360px;
           flex-direction: column;
           justify-content: space-between;
-          padding: 20px;
+          padding: 0;
+          overflow: hidden;
           border: 1px solid var(--border);
           border-radius: 16px;
-          background: rgba(255, 255, 255, 0.78);
+          background: rgba(255, 255, 255, 0.9);
+        }
+
+        .track2-search-head {
+          padding: 20px;
+          border-bottom: 1px solid var(--border);
+          background: linear-gradient(135deg, rgba(247, 249, 255, 0.96), rgba(255, 255, 255, 0.86));
+        }
+
+        .track2-search-head h3 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
         }
 
         .track2-search-query {
@@ -934,10 +997,53 @@ export function Track2LegalAssistant({ track }) {
           word-break: break-word;
         }
 
+        .track2-result-list {
+          display: grid;
+          gap: 10px;
+          padding: 16px;
+        }
+
+        .track2-public-result {
+          display: grid;
+          gap: 7px;
+          padding: 13px;
+          border-radius: 13px;
+          border: 1px solid rgba(47, 107, 255, 0.16);
+          background: rgba(247, 249, 255, 0.78);
+        }
+
+        .track2-public-result strong {
+          color: var(--navy-900);
+          font-size: 0.92rem;
+          line-height: 1.35;
+        }
+
+        .track2-public-result p {
+          margin: 0;
+          font-size: 0.8rem;
+          line-height: 1.55;
+        }
+
+        .track2-result-domain {
+          color: #7a8cab;
+          font-size: 0.72rem;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+
         .track2-search-card a {
-          margin-top: 16px;
           color: var(--blue-500);
           font-weight: 900;
+        }
+
+        .track2-search-footer {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 20px 20px;
+          margin-top: auto;
         }
 
         .track2-tab-content {
@@ -949,6 +1055,7 @@ export function Track2LegalAssistant({ track }) {
           .track2-hero,
           .track2-workspace,
           .track2-result-hero,
+          .track2-research-hero,
           .track2-results-grid,
           .track2-search-grid,
           .track2-opportunity-grid {
@@ -1405,28 +1512,77 @@ export function Track2LegalAssistant({ track }) {
 
         {report && activeTab === "opportunities" ? (
           <div className="track2-tab-content">
-            <section className="track2-result-card is-wide">
-              <span className="track2-card-label">External research</span>
-              <h2>Opportunities and ecosystem research</h2>
-              <p>
-                The agent prepares targeted Google, LinkedIn, and Facebook research links from the startup profile so
-                the founder can continue discovery with clean search intent.
-              </p>
+            <section className="track2-result-card is-wide track2-research-hero">
+              <div className="track2-research-copy">
+                <span className="track2-card-label">External research agent</span>
+                <h2>Opportunities and ecosystem intelligence</h2>
+                <p>
+                  The agent now executes public web searches for company credibility, LinkedIn presence, and Facebook
+                  activity, then displays the results directly in the dashboard.
+                </p>
+              </div>
+              <div className="track2-research-board">
+                <div className="track2-research-stat">
+                  <span>Searches executed</span>
+                  <strong>{executedSearchCount}/{searches.length || 3}</strong>
+                </div>
+                <div className="track2-research-stat">
+                  <span>Public results found</span>
+                  <strong>{discoveredResultCount}</strong>
+                </div>
+                <div className="track2-research-stat">
+                  <span>Agent status</span>
+                  <strong>{discoveredResultCount ? "Active" : "Limited"}</strong>
+                </div>
+              </div>
             </section>
 
             {searches.length ? (
               <div className="track2-opportunity-grid">
                 {searches.map((search) => (
                   <article className="track2-search-card" key={`${search.platform}-${search.query}`}>
-                    <div>
+                    <div className="track2-search-head">
                       <span className="track2-card-label">{readSearchHost(search.url)}</span>
-                      <h3>{search.platform}</h3>
+                      <h3>
+                        {search.platform}
+                        <span
+                          className={`track2-status-chip ${
+                            search.agent_search?.status === "completed" ? "good" : "warn"
+                          }`}
+                        >
+                          {search.agent_search?.status === "completed" ? "Searched" : "Needs retry"}
+                        </span>
+                      </h3>
                       <p>{search.purpose}</p>
                       <div className="track2-search-query">{search.query}</div>
                     </div>
-                    <a href={search.url} target="_blank" rel="noreferrer">
-                      Open research
-                    </a>
+
+                    <div className="track2-result-list">
+                      {(search.agent_search?.results || []).length ? (
+                        search.agent_search.results.map((result) => (
+                          <a className="track2-public-result" href={result.url} target="_blank" rel="noreferrer" key={result.url}>
+                            <span className="track2-result-domain">{result.domain || "Public source"}</span>
+                            <strong>{result.title}</strong>
+                            <p>{result.snippet}</p>
+                          </a>
+                        ))
+                      ) : (
+                        <EmptyState
+                          title={search.agent_search?.status === "unavailable" ? "Search unavailable" : "No result captured"}
+                          text={
+                            search.agent_search?.message ||
+                            "The agent executed the query, but no public result was returned from the search provider."
+                          }
+                        />
+                      )}
+                    </div>
+
+                    <div className="track2-search-footer">
+                      <span className="track2-mini-chip">{search.agent_search?.source || "Public search"}</span>
+                      <a href={search.url} target="_blank" rel="noreferrer">
+                        Open full search
+                      </a>
+                    </div>
                   </article>
                 ))}
               </div>

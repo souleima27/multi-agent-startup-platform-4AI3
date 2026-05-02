@@ -2,10 +2,15 @@ from __future__ import annotations
 
 import sys
 import os
+import html
+import re
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, unquote, urlparse, parse_qs
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -93,6 +98,81 @@ def _as_text_list(values: Any) -> list[str]:
     return [str(values).strip()]
 
 
+def _clean_search_url(url: str) -> str:
+    if url.startswith("//"):
+        url = f"https:{url}"
+    parsed = urlparse(url)
+    if parsed.path.startswith("/l/"):
+        redirect = parse_qs(parsed.query).get("uddg", [""])[0]
+        if redirect:
+            return unquote(redirect)
+    return url
+
+
+def _fetch_public_search_results(query: str, limit: int = 3) -> dict[str, Any]:
+    search_url = f"https://duckduckgo.com/html/?q={quote_plus(query)}"
+    request = urllib.request.Request(
+        search_url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            )
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=7) as response:
+            page = response.read().decode("utf-8", errors="ignore")
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return {
+            "status": "unavailable",
+            "source": "DuckDuckGo public HTML",
+            "message": f"External search could not be reached from the local API: {exc}",
+            "results": [],
+        }
+
+    results = []
+    title_matches = list(
+        re.finditer(
+            r'<a[^>]*class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>',
+            page,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+    )
+
+    for match in title_matches:
+        url, title = match.groups()
+        block = page[match.end() : match.end() + 2400]
+        snippet_match = re.search(
+            r'<a[^>]*class="result__snippet"[^>]*>(.*?)</a>',
+            block,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        snippet = snippet_match.group(1) if snippet_match else ""
+        clean_title = re.sub(r"<[^>]+>", "", html.unescape(title)).strip()
+        clean_snippet = re.sub(r"<[^>]+>", "", html.unescape(snippet)).strip()
+        clean_url = _clean_search_url(html.unescape(url))
+        if clean_title and clean_url:
+            results.append(
+                {
+                    "title": clean_title,
+                    "url": clean_url,
+                    "snippet": clean_snippet or "Public result found for this research query.",
+                    "domain": urlparse(clean_url).netloc.replace("www.", ""),
+                }
+            )
+        if len(results) >= limit:
+            break
+
+    return {
+        "status": "completed" if results else "no_results",
+        "source": "DuckDuckGo public HTML",
+        "message": "Public web search executed by the local Track B bridge.",
+        "results": results,
+    }
+
+
 def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | None = None) -> dict[str, Any]:
     profile = payload.get("startup_profile", {})
     label_input = payload.get("label_input") or {}
@@ -145,9 +225,15 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         },
     ]
 
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        search_results = list(executor.map(lambda item: _fetch_public_search_results(str(item["query"])), searches))
+
+    for search, search_result in zip(searches, search_results):
+        search["agent_search"] = search_result
+
     recommendations = [
-        "Open each search result and confirm the public evidence before submitting the legal dossier.",
-        "Save screenshots or URLs for strong evidence such as company page, founder profiles, press, or accelerator mentions.",
+        "Review the returned results and keep only public evidence that matches the startup identity.",
+        "Save screenshots or URLs for strong evidence such as company page, founder profiles, press, accelerator mentions, or events.",
         "Treat missing LinkedIn/Facebook presence as a warning, not an automatic blocker.",
     ]
 
@@ -162,10 +248,7 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         "team_signals": _as_text_list(label_input.get("team_signals")),
         "searches": searches,
         "recommendations": recommendations,
-        "automation_note": (
-            "Google, LinkedIn and Facebook pages often block unauthenticated scraping. "
-            "This bridge prepares reliable public search URLs and review criteria; it can be connected to a search API key later for automatic result extraction."
-        ),
+        "automation_note": "The local API executes public search queries and displays the results it can retrieve.",
     }
 
 
