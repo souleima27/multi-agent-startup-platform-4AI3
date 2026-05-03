@@ -107,6 +107,37 @@ except Exception:
     Paragraph = None
     Spacer = None
 
+# XAI (Explainable AI) imports
+try:
+    import sys
+    from pathlib import Path as PathlibPath
+    xai_path = PathlibPath(__file__).parent.parent / "ExecutionAgent" / "xai_explainability.py"
+    if xai_path.exists():
+        sys.path.insert(0, str(xai_path.parent))
+        from xai_explainability import (
+            explain_evidence_sufficiency,
+            explain_tool_selection,
+            explain_coaching_strategy,
+            explain_judge_decision,
+            explain_report_revision,
+        )
+    else:
+        # Fallback: try direct import
+        from xai_explainability import (
+            explain_evidence_sufficiency,
+            explain_tool_selection,
+            explain_coaching_strategy,
+            explain_judge_decision,
+            explain_report_revision,
+        )
+except Exception as xai_import_error:
+    # XAI module not available - continue without XAI
+    explain_evidence_sufficiency = None
+    explain_tool_selection = None
+    explain_coaching_strategy = None
+    explain_judge_decision = None
+    explain_report_revision = None
+
 
 # =========================================================
 # 1) DEFAULT CONFIG
@@ -125,6 +156,44 @@ USE_CUDA = bool(torch and torch.cuda.is_available())
 # =========================================================
 def log(msg: str) -> None:
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
+
+
+def ascii_safe(text: Any) -> str:
+    value = re.sub(r"\s+", " ", str(text or "")).strip()
+    replacements = {
+        "\u2014": "-",
+        "\u2013": "-",
+        "\u2022": "*",
+        "\u2713": "[OK]",
+        "\u2717": "[X]",
+        "\u2192": "->",
+        "\u2265": ">=",
+        "\u2264": "<=",
+    }
+    for src, dst in replacements.items():
+        value = value.replace(src, dst)
+    return value.encode("ascii", errors="replace").decode("ascii")
+
+
+def xai_confidence_label(confidence: Any) -> str:
+    try:
+        numeric = float(confidence)
+    except Exception:
+        return ascii_safe(confidence or "unknown")
+    if numeric <= 1:
+        numeric *= 100
+    return f"{numeric:.1f}%"
+
+
+def print_xai_comment(stage: str, explanation: Optional[Dict[str, Any]]) -> None:
+    if not explanation:
+        return
+    title = ascii_safe(explanation.get("title", stage))
+    confidence = xai_confidence_label(explanation.get("confidence", "unknown"))
+    reasoning = explanation.get("reasoning", [])
+    lead = ascii_safe(reasoning[0]) if reasoning else "Decision captured."
+    log(f"XAI[{stage}] {title} | confidence={confidence}")
+    log(f"XAI[{stage}] {lead}")
 
 
 def save_json(obj: Any, path: Path) -> None:
@@ -344,6 +413,7 @@ class AgentState:
     completed_tools: List[str] = field(default_factory=list)
     step_count: int = 0
     max_steps: int = 20
+    xai_explanations: List[Dict[str, Any]] = field(default_factory=list)  # XAI: Track explanations
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -2001,6 +2071,15 @@ class AgenticPitchCoach:
             sufficiency = self.evidence_agent.run(state)
             state.decisions.append({"type": "evidence_sufficiency", **sufficiency})
 
+            # XAI: Explain evidence sufficiency decision
+            if explain_evidence_sufficiency:
+                try:
+                    xai_exp = explain_evidence_sufficiency(state.to_dict())
+                    state.xai_explanations.append(xai_exp.to_dict())
+                    print_xai_comment("Evidence", xai_exp.to_dict())
+                except Exception:
+                    pass
+
             if sufficiency.get("enough_evidence"):
                 log("AGENT: enough evidence detected")
                 break
@@ -2027,6 +2106,15 @@ class AgenticPitchCoach:
                 fallback = choose_safe_fallback_tool(state, self.config)
                 state.warnings.append(f"Planner selected {tool_name}, but prerequisites were missing; using fallback {fallback}.")
                 tool_name = fallback
+
+            # XAI: Explain tool selection
+            if explain_tool_selection:
+                try:
+                    xai_tool = explain_tool_selection(state.to_dict(), tool_name, ["alternative_tool_1", "alternative_tool_2"])
+                    state.xai_explanations.append(xai_tool.to_dict())
+                    print_xai_comment("Planner", xai_tool.to_dict())
+                except Exception:
+                    pass
 
             if tool_name == "write_report":
                 # Avoid early report if hard gate says evidence is not enough.
@@ -2065,6 +2153,15 @@ class AgenticPitchCoach:
         log("AGENT: creating coaching strategy")
         strategy = self.strategy_agent.run(state)
 
+        # XAI: Explain strategy creation
+        if explain_coaching_strategy:
+            try:
+                xai_strategy = explain_coaching_strategy(state.to_dict(), strategy)
+                state.xai_explanations.append(xai_strategy.to_dict())
+                print_xai_comment("Strategy", xai_strategy.to_dict())
+            except Exception:
+                pass
+
         log("AGENT: planning report")
         report_plan = self.report_planner.run(state, strategy)
 
@@ -2077,6 +2174,16 @@ class AgenticPitchCoach:
         for round_idx in range(self.config.judge_revision_rounds):
             judge_result = normalize_judge_result(self.judge.run(state, strategy, final_report))
             judge_result["round"] = round_idx + 1
+            
+            # XAI: Explain judge decision
+            if explain_judge_decision:
+                try:
+                    xai_judge = explain_judge_decision(final_report, judge_result)
+                    state.xai_explanations.append(xai_judge.to_dict())
+                    print_xai_comment("Judge", xai_judge.to_dict())
+                except Exception:
+                    pass
+            
             if judge_result.get("approved"):
                 break
 
@@ -2094,6 +2201,16 @@ class AgenticPitchCoach:
                         state.warnings.append(f"Judge-requested tool {tool_name} failed: {exc}")
 
             final_report = self.revision_agent.run(state, strategy, final_report, judge_result)
+            
+            # XAI: Explain report revision
+            if explain_report_revision:
+                try:
+                    original_report = draft_report if round_idx == 0 else state.analyses.get("last_report", {})
+                    xai_revision = explain_report_revision(original_report, judge_result, final_report)
+                    state.xai_explanations.append(xai_revision.to_dict())
+                    print_xai_comment("Revision", xai_revision.to_dict())
+                except Exception:
+                    pass
 
         scorecard = self.scorecard_builder.build(state, self.config)
 
@@ -2106,12 +2223,22 @@ class AgenticPitchCoach:
             "final_report": sanitize_language(final_report),
             "scorecard": scorecard,
             "judge_result": sanitize_language(judge_result),
+            "xai_explanations": {  # XAI: Include all explanations in output
+                "total_explanations": len(state.xai_explanations),
+                "by_phase": {
+                    "evidence_gathering": [x for x in state.xai_explanations if x.get("category") == "pitch_analysis"],
+                    "tool_planning": [x for x in state.xai_explanations if x.get("category") == "pitch_strategy"],
+                    "review": [x for x in state.xai_explanations if x.get("category") == "pitch_review"],
+                },
+                "all_explanations": state.xai_explanations,
+            },
             "runtime_warnings": state.warnings,
             "raw_state_full": {
                 "observations": state.observations,
                 "analyses": state.analyses,
                 "decisions": state.decisions,
                 "tool_results": state.tool_results,
+                "xai_explanations": state.xai_explanations,  # XAI: Include in raw state
             },
         }
 
@@ -2161,6 +2288,8 @@ def print_report_summary(report_obj: Dict[str, Any]) -> None:
     title = final_report.get("title", "Pitch Coaching Report")
     next_action = final_report.get("next_best_action", {})
     judge = report_obj.get("judge_result", {})
+    xai_explanations = report_obj.get("xai_explanations", {})
+    
     print("\n" + "=" * 90)
     print(title.upper())
     print("=" * 90)
@@ -2177,6 +2306,186 @@ def print_report_summary(report_obj: Dict[str, Any]) -> None:
         print("Warnings:")
         for w in warnings[:8]:
             print(" -", w)
+    
+    # XAI SECTIONS 20-24: EXPLAIN PITCH COACH DECISIONS
+    print("\n" + "=" * 90)
+    print("XAI DECISION TRANSPARENCY")
+    print("=" * 90)
+    
+    xai_list = xai_explanations.get("all_explanations", [])
+    
+    # Section 20: Evidence Sufficiency
+    print("\n20. WHY EVIDENCE WAS SUFFICIENT/INSUFFICIENT")
+    evidence_exps = [x for x in xai_list if "evidence" in x.get("title", "").lower()]
+    if evidence_exps:
+        for exp in evidence_exps[:1]:
+            print(f"   Title: {exp.get('title')}")
+            print(f"   Confidence: {exp.get('confidence', 0):.2f}")
+            print("   Reasoning:")
+            for reason in exp.get("reasoning", [])[:4]:
+                print(f"     • {reason}")
+    else:
+        print("   Evidence analysis was sufficient for comprehensive coaching")
+    
+    # Section 21: Tool Selection
+    print("\n21. WHY TOOLS WERE SELECTED (Evidence Gathering Phase)")
+    tool_exps = [x for x in xai_list if "tool" in x.get("title", "").lower() or x.get("category") == "pitch_strategy"]
+    if tool_exps:
+        for i, exp in enumerate(tool_exps[:3], 1):
+            print(f"   {i}. {exp.get('title')}")
+            print(f"      Confidence: {exp.get('confidence', 0):.2f}")
+            print("      Reason:", exp.get("reasoning", ["Tool was necessary"])[-1])
+    else:
+        print("   Tools selected based on evidence sufficiency and analysis prerequisites")
+    
+    # Section 22: Strategy
+    print("\n22. WHY THIS COACHING STRATEGY")
+    strategy_exps = [x for x in xai_list if "strategy" in x.get("title", "").lower()]
+    if strategy_exps:
+        for exp in strategy_exps[:1]:
+            print(f"   Strategy: {exp.get('title')}")
+            print(f"   Confidence: {exp.get('confidence', 0):.2f}")
+            print("   Key Factors:")
+            for detail in exp.get("details", [])[:5]:
+                print(f"     • {detail}")
+    else:
+        strategy = report_obj.get("strategy", {})
+        coaching_mode = strategy.get("coaching_mode", "investor")
+        print(f"   Strategy: {coaching_mode}-focused pitch coaching")
+        print("   Focus areas identified based on multimodal analysis of video content")
+    
+    # Section 23: Judge Decision
+    print("\n23. WHY JUDGE APPROVED/REJECTED REPORT")
+    judge_exps = [x for x in xai_list if "judge" in x.get("title", "").lower() and "approve" in x.get("title", "").lower()]
+    if judge_exps:
+        for exp in judge_exps[:1]:
+            print(f"   {exp.get('title')}")
+            print(f"   Confidence: {exp.get('confidence', 0):.2f}")
+            print("   Criteria:")
+            for detail in exp.get("details", [])[:5]:
+                print(f"     {detail}")
+    else:
+        status = "APPROVED" if judge.get("approved") else "REJECTED"
+        print(f"   Status: {status}")
+        print(f"   Quality Score: {judge.get('quality_score', 'N/A')}/100")
+    
+    # Section 24: Revisions
+    print("\n24. WHY REPORT WAS REVISED")
+    revision_exps = [x for x in xai_list if "revision" in x.get("title", "").lower() or "revised" in x.get("title", "").lower()]
+    if revision_exps:
+        for exp in revision_exps:
+            print(f"   {exp.get('title')}")
+            print(f"   Confidence: {exp.get('confidence', 0):.2f}")
+            print("   Changes Made:")
+            for detail in exp.get("details", [])[:4]:
+                print(f"     • {detail}")
+    else:
+        print("   Report finalized after judge review")
+    
+    # Section 25: XAI Summary
+    print("\n25. XAI DECISION SUMMARY")
+    print(f"   Total explanations generated: {xai_explanations.get('total_explanations', 0)}")
+    print(f"   Transparency phases covered:")
+    print(f"     • Evidence gathering: {len(xai_explanations.get('by_phase', {}).get('evidence_gathering', []))} explanations")
+    print(f"     • Tool planning: {len(xai_explanations.get('by_phase', {}).get('tool_planning', []))} explanations")
+    print(f"     • Review: {len(xai_explanations.get('by_phase', {}).get('review', []))} explanations")
+    print("\n" + "=" * 90)
+
+
+def print_report_summary_v2(report_obj: Dict[str, Any]) -> None:
+    final_report = report_obj.get("final_report", {})
+    scorecard = report_obj.get("scorecard", {})
+    title = final_report.get("title", "Pitch Coaching Report")
+    next_action = final_report.get("next_best_action", {})
+    judge = report_obj.get("judge_result", {})
+    xai_explanations = report_obj.get("xai_explanations", {})
+    xai_list = xai_explanations.get("all_explanations", [])
+
+    def print_explanation(exp: Dict[str, Any], reason_limit: int = 4, detail_limit: int = 4) -> None:
+        print(f"   Title: {ascii_safe(exp.get('title', 'Untitled explanation'))}")
+        print(f"   Confidence: {xai_confidence_label(exp.get('confidence', 'unknown'))}")
+        reasoning = exp.get("reasoning", [])
+        if reasoning:
+            print("   Reasoning:")
+            for reason in reasoning[:reason_limit]:
+                print(f"     * {ascii_safe(reason)}")
+        details = exp.get("details", [])
+        if details:
+            print("   Details:")
+            for detail in details[:detail_limit]:
+                print(f"     * {ascii_safe(detail)}")
+
+    print("\n" + "=" * 90)
+    print(ascii_safe(title).upper())
+    print("=" * 90)
+    print(f"Overall score: {scorecard.get('overall_score', 'N/A')}/100 - {ascii_safe(scorecard.get('overall_status', 'N/A'))}")
+    print("Criteria scores:")
+    for item in scorecard.get("criteria", []):
+        print(f" - {ascii_safe(item.get('label'))}: {item.get('score')}/100 - {ascii_safe(item.get('status'))}")
+    if isinstance(next_action, dict) and next_action:
+        print("Next best action:", ascii_safe(next_action.get("action") or next_action))
+    print("Judge quality score:", judge.get("quality_score", "N/A"))
+    print("Approved:", judge.get("approved", "N/A"))
+    warnings = report_obj.get("runtime_warnings", [])
+    if warnings:
+        print("Warnings:")
+        for warning in warnings[:8]:
+            print(" -", ascii_safe(warning))
+
+    print("\n" + "=" * 90)
+    print("XAI DECISION TRANSPARENCY")
+    print("=" * 90)
+
+    print("\n20. WHY EVIDENCE WAS SUFFICIENT/INSUFFICIENT")
+    evidence_exps = [x for x in xai_list if "evidence" in x.get("title", "").lower()]
+    if evidence_exps:
+        print_explanation(evidence_exps[0], reason_limit=4, detail_limit=4)
+    else:
+        print("   No evidence explanation was generated.")
+
+    print("\n21. WHY TOOLS WERE SELECTED (EVIDENCE GATHERING PHASE)")
+    tool_exps = [x for x in xai_list if "tool" in x.get("title", "").lower()]
+    if tool_exps:
+        for idx, exp in enumerate(tool_exps[:3], start=1):
+            print(f"   {idx}. {ascii_safe(exp.get('title', 'Tool decision'))}")
+            print(f"      Confidence: {xai_confidence_label(exp.get('confidence', 'unknown'))}")
+            reasoning = exp.get("reasoning", [])
+            if reasoning:
+                print(f"      Reason: {ascii_safe(reasoning[-1])}")
+    else:
+        print("   No tool-selection explanation was generated.")
+
+    print("\n22. WHY THIS COACHING STRATEGY")
+    strategy_exps = [x for x in xai_list if "strategy" in x.get("title", "").lower()]
+    if strategy_exps:
+        print_explanation(strategy_exps[0], reason_limit=3, detail_limit=5)
+    else:
+        strategy = report_obj.get("strategy", {})
+        print(f"   Strategy: {ascii_safe(strategy.get('coaching_mode', 'investor'))}-focused pitch coaching")
+
+    print("\n23. WHY JUDGE APPROVED/REJECTED REPORT")
+    judge_exps = [x for x in xai_list if "judge" in x.get("title", "").lower() or "approved/rejected" in x.get("title", "").lower()]
+    if judge_exps:
+        print_explanation(judge_exps[0], reason_limit=3, detail_limit=5)
+    else:
+        status = "APPROVED" if judge.get("approved") else "REJECTED"
+        print(f"   Status: {status}")
+        print(f"   Quality Score: {judge.get('quality_score', 'N/A')}/100")
+
+    print("\n24. WHY REPORT WAS REVISED")
+    revision_exps = [x for x in xai_list if "revision" in x.get("title", "").lower() or "revised" in x.get("title", "").lower()]
+    if revision_exps:
+        for exp in revision_exps:
+            print_explanation(exp, reason_limit=3, detail_limit=4)
+    else:
+        print("   No revision explanation was generated.")
+
+    print("\n25. XAI DECISION SUMMARY")
+    print(f"   Total explanations generated: {xai_explanations.get('total_explanations', 0)}")
+    print(f"   * Evidence gathering: {len(xai_explanations.get('by_phase', {}).get('evidence_gathering', []))} explanations")
+    print(f"   * Tool planning: {len(xai_explanations.get('by_phase', {}).get('tool_planning', []))} explanations")
+    print(f"   * Review: {len(xai_explanations.get('by_phase', {}).get('review', []))} explanations")
+    print("\n" + "=" * 90)
 
 
 # =========================================================
@@ -2238,10 +2547,13 @@ def main() -> None:
     md = report_obj.get("final_report", {}).get("markdown_report", "")
     pdf_ok = save_pdf_from_markdown(md, pdf_path)
 
-    print_report_summary(report_obj)
+    print_report_summary_v2(report_obj)
     print(f"Saved full JSON report to: {report_json_path}")
     print(f"Saved clean scorecard JSON to: {scorecard_json_path}")
     print(f"Saved Markdown report to: {markdown_path}")
+    xai_json_path = config.report_dir / "agentic_pitch_coach_xai.json"
+    save_json(report_obj.get("xai_explanations", {}), xai_json_path)
+    print(f"Saved XAI JSON report to: {xai_json_path}")
     if pdf_ok:
         print(f"Saved PDF report to: {pdf_path}")
     else:
