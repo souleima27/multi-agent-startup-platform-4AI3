@@ -2,3 +2,10 @@ track3.local.json
 __pycache__/
 .env
 pitch_coach.config.json
+node_modules/
+dist/
+pitch_coach_outputs/
+pitch_coach_uploads/
+track2_reports/
+track2_uploads/
+*.pyc
