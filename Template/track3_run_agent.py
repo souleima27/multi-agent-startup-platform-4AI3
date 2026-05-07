@@ -38,6 +38,76 @@ def load_base_state() -> dict:
     return json.loads(state_path.read_text(encoding="utf-8"))
 
 
+def build_fallback_result(payload: dict, reason: str) -> dict:
+    startup_profile = payload.get("startup_profile", {})
+    mvp_plan = payload.get("mvp_plan", {})
+    team = payload.get("team", [])
+    startup_name = startup_profile.get("name") or startup_profile.get("startup_name") or "Startup"
+    features = normalize_items(mvp_plan.get("features"))
+    workflow = normalize_items(mvp_plan.get("admin_workflow"))
+    tasks = features + workflow
+    if not tasks:
+        tasks = [
+            {"name": "Validate MVP scope with founders", "priority": "high"},
+            {"name": "Prepare first delivery sprint", "priority": "high"},
+            {"name": "Define launch metrics", "priority": "medium"},
+        ]
+
+    owners = normalize_team(team)
+    owner_names = [member.get("name") or member.get("role") for member in owners] or ["Founder"]
+    task_list = [
+        {
+            "id": f"T{i + 1:02d}",
+            "title": task["name"],
+            "priority": task.get("priority", "medium"),
+            "owner": owner_names[i % len(owner_names)],
+            "status": "ready",
+            "estimate_days": 2 if task.get("priority") == "high" else 3,
+        }
+        for i, task in enumerate(tasks)
+    ]
+
+    return {
+        "startup_name": startup_name,
+        "models": {"mode": "fallback", "planner": "local", "critic": "local"},
+        "executive_summary": (
+            f"{startup_name} has a workable execution path, but the deployed Track3 agent "
+            "could not load its full ExecutionAgent package. This response is a structured fallback."
+        ),
+        "founder_decisions": [
+            "Confirm the MVP scope before adding integrations.",
+            "Assign one owner for each high-priority task.",
+            "Review the Render deployment logs to restore the full Track3 agent.",
+        ],
+        "owner_action_plan": [
+            {"owner": owner, "next_action": "Pick the highest priority ready task and report progress."}
+            for owner in owner_names
+        ],
+        "feasibility": {
+            "status": "partial",
+            "risk_level": "medium",
+            "reason": "Fallback generated because the full Track3 runner failed.",
+        },
+        "monitoring": {
+            "cadence": "Daily execution check",
+            "signals": ["completed_tasks", "blocked_tasks", "owner_capacity"],
+        },
+        "next_actions": [task["title"] for task in task_list[:5]],
+        "anomalies": [reason],
+        "critic_report": {
+            "status": "needs_full_agent",
+            "notes": [
+                "The online service is reachable.",
+                "The complete ExecutionAgent dependency must be available for full AI planning.",
+            ],
+        },
+        "priority_queue": task_list,
+        "ready_queue": task_list[:5],
+        "task_list": task_list,
+        "jira": {"sync_enabled": False, "status": "skipped_in_fallback"},
+    }
+
+
 def ensure_agent_defaults(state: dict) -> dict:
     state.setdefault("knowledge_base", {"sources": [], "last_retrieval": {}})
     state.setdefault("retrospective", {"velocity_default": 1.0, "notes": []})
@@ -195,8 +265,12 @@ def main():
     output_path = Path(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_OUTPUT_PATH
 
     payload = load_payload(input_path)
-    state = merge_state(payload)
-    result = asyncio.run(run_agent(state))
+    try:
+        state = merge_state(payload)
+        result = asyncio.run(run_agent(state))
+    except Exception as error:
+        result = build_fallback_result(payload, f"{type(error).__name__}: {error}")
+
     output_path.write_text(
         json.dumps(build_response(result), ensure_ascii=False, indent=2),
         encoding="utf-8",
