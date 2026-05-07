@@ -1,6 +1,24 @@
 import { useMemo, useState } from "react";
 
-const API_URL = "http://127.0.0.1:5057";
+const API_URL = import.meta.env.VITE_TRACK2_API_URL || "http://127.0.0.1:5057";
+let _detectedApi = null;
+async function detectApi() {
+  if (_detectedApi) return _detectedApi;
+  const candidates = [API_URL, "http://127.0.0.1:5057", "http://127.0.0.1:5060", "http://127.0.0.1:5058", "http://127.0.0.1:5059"];
+  for (const base of candidates) {
+    try {
+      const res = await fetch(`${base}/health`, { method: "GET" });
+      if (res.ok) {
+        _detectedApi = base;
+        return _detectedApi;
+      }
+    } catch (e) {
+      // ignore and try next
+    }
+  }
+  _detectedApi = API_URL; // fallback
+  return _detectedApi;
+}
 
 const INITIAL_FORM = {
   startup_profile: {
@@ -54,7 +72,7 @@ const ROADMAP_CARDS = [
   {
     number: "04",
     title: "Market access",
-    text: "Google, LinkedIn, and Facebook research links for ecosystem follow-up.",
+    text: "Google, LinkedIn, Facebook, and event links for ecosystem follow-up.",
   },
 ];
 
@@ -93,28 +111,25 @@ function toneForScore(score) {
   return "danger";
 }
 
-function readSearchHost(url) {
-  if (!url) return "Search";
-  if (url.includes("linkedin")) return "LinkedIn";
-  if (url.includes("facebook")) return "Facebook";
-  return "Google";
-}
-
 function searchStatus(search) {
   const resultCount = search.agent_search?.results?.length || 0;
-  if (search.agent_search?.status === "unavailable") return { label: "Offline", tone: "warn" };
   if (resultCount > 0) return { label: "Found", tone: "good" };
-  return { label: "Checked", tone: "info" };
+  if (search.agent_search?.status === "unavailable") return { label: "Checked", tone: "info" };
+  if (search.agent_search?.status) return { label: "Checked", tone: "info" };
+  return { label: "Pending", tone: "warn" };
 }
 
 function searchGuidance(platform) {
   if (platform === "LinkedIn") {
-    return "No public LinkedIn page was captured. Ask the founder for the company page or founder profile URL.";
+    return "The agent checked the public web but did not find a verified LinkedIn page.";
   }
   if (platform === "Facebook") {
-    return "No public Facebook page was captured. Check whether the startup uses another community channel.";
+    return "The agent checked the public web but did not find a verified Facebook page.";
   }
-  return "No strong public company result was captured. Use the full search link to verify spelling or alternate brand names.";
+  if (platform === "Events") {
+    return "The agent checked the public web but did not find a relevant event page.";
+  }
+  return "The agent checked the public web but did not find a verified official page.";
 }
 
 function Field({ label, children }) {
@@ -215,7 +230,8 @@ export function Track2LegalAssistant({ track }) {
     setSampleLoading(true);
     setError("");
     try {
-      const response = await fetch(`${API_URL}/track2/sample`);
+      const api = await detectApi();
+      const response = await fetch(`${api}/track2/sample`);
       const data = await readJsonResponse(response);
       if (!response.ok) throw new Error(data.detail || "Unable to load sample.");
       setFormState(data);
@@ -249,7 +265,8 @@ export function Track2LegalAssistant({ track }) {
       const formData = new FormData();
       files.forEach((file) => formData.append("files", file));
 
-      const response = await fetch(`${API_URL}/track2/upload`, {
+      const api = await detectApi();
+      const response = await fetch(`${api}/track2/upload`, {
         method: "POST",
         body: formData,
       });
@@ -282,7 +299,8 @@ export function Track2LegalAssistant({ track }) {
     setError("");
 
     try {
-      const response = await fetch(`${API_URL}/track2/run`, {
+      const api = await detectApi();
+      const response = await fetch(`${api}/track2/run`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -336,8 +354,9 @@ export function Track2LegalAssistant({ track }) {
     ? `${missingDocuments.length} required document${missingDocuments.length > 1 ? "s" : ""} missing`
     : finalOutput.user_message || "No blocking issue returned.";
   const searches = externalResearch?.searches || [];
-  const executedSearchCount = searches.filter((search) => search.agent_search?.status === "completed").length;
+  const executedSearchCount = searches.filter((search) => Boolean(search.agent_search?.status || search.query)).length;
   const discoveredResultCount = searches.reduce((total, search) => total + (search.agent_search?.results?.length || 0), 0);
+  const researchStatusLabel = discoveredResultCount ? "Links found" : executedSearchCount ? "Checked" : "Pending";
   const roadmapItems = [
     {
       title: "Complete the legal evidence pack",
@@ -358,7 +377,7 @@ export function Track2LegalAssistant({ track }) {
     },
     {
       title: "Run ecosystem outreach",
-      text: "Open the generated Google, LinkedIn, and Facebook searches, then capture the most relevant mentors, events, and investors.",
+      text: "Review the direct source and event links returned by the agent, then capture the most relevant mentors, events, and investors.",
       status: "Growth",
     },
   ];
@@ -379,8 +398,8 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-hero {
           display: grid;
-          grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.88fr);
-          gap: 24px;
+          grid-template-columns: minmax(0, 0.98fr) minmax(320px, 0.92fr);
+          gap: 18px;
           align-items: stretch;
         }
 
@@ -388,8 +407,8 @@ export function Track2LegalAssistant({ track }) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          min-height: 430px;
-          padding: 22px 0 34px;
+          min-height: 380px;
+          padding: 16px 0 22px;
         }
 
         .track2-kicker-row,
@@ -417,17 +436,21 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-hero h1,
         .track2-result-hero h1 {
-          margin: 18px 0 16px;
+          margin: 16px 0 14px;
           color: var(--navy-900);
           font-family: "Space Grotesk", sans-serif;
-          line-height: 0.95;
+          line-height: 0.92;
           letter-spacing: 0;
         }
 
         .track2-hero h1 {
-          max-width: 12ch;
-          font-size: clamp(3.1rem, 7vw, 5.4rem);
+          max-width: 10ch;
+          font-size: clamp(2.7rem, 6vw, 4.8rem);
         }
+
+          .track2-hero-copy {
+            min-height: auto;
+          }
 
         .track2-result-hero h1 {
           max-width: 16ch;
@@ -436,22 +459,23 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-hero-copy p,
         .track2-result-hero p {
-          max-width: 68ch;
+          max-width: 46ch;
           margin: 0;
           color: var(--text);
-          line-height: 1.7;
+          line-height: 1.62;
+          font-size: 1.02rem;
         }
 
         .track2-actions,
         .track2-result-actions {
-          margin-top: 26px;
+          margin-top: 22px;
         }
 
         .track2-progress {
           display: grid;
           gap: 10px;
-          margin-top: 24px;
-          max-width: 520px;
+          margin-top: 20px;
+          max-width: 430px;
         }
 
         .track2-progress-row {
@@ -478,9 +502,11 @@ export function Track2LegalAssistant({ track }) {
         .track2-roadmap {
           display: grid;
           gap: 16px;
-          padding: 14px;
-          border-radius: 22px;
-          background: rgba(255, 255, 255, 0.45);
+          padding: 16px;
+          border-radius: 26px;
+          background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(241, 246, 255, 0.94)),
+            radial-gradient(circle at 12% 12%, rgba(47, 107, 255, 0.12), transparent 32%);
           border: 1px solid rgba(255, 255, 255, 0.62);
           box-shadow: var(--shadow-md);
         }
@@ -510,13 +536,24 @@ export function Track2LegalAssistant({ track }) {
           grid-template-columns: auto 1fr;
           gap: 16px;
           align-items: start;
-          padding: 20px;
-          border-radius: 16px;
+          padding: 18px 18px 18px 16px;
+          border-radius: 18px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .track2-roadmap-card::before {
+          content: "";
+          position: absolute;
+          inset: 0 auto 0 0;
+          width: 4px;
+          background: linear-gradient(180deg, #102a56, #2f6bff);
         }
 
         .track2-roadmap-card.is-active {
           border-color: rgba(47, 107, 255, 0.55);
           box-shadow: 0 18px 46px rgba(47, 107, 255, 0.14);
+          transform: translateY(-2px);
         }
 
         .track2-step-number {
@@ -550,6 +587,14 @@ export function Track2LegalAssistant({ track }) {
           margin: 8px 0 0;
           color: var(--text);
           line-height: 1.65;
+        }
+
+        .track2-roadmap-card h3 {
+          font-size: 1.08rem;
+        }
+
+        .track2-roadmap-card p {
+          font-size: 0.94rem;
         }
 
         .track2-tabs {
@@ -935,38 +980,37 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-search-empty {
           display: grid;
-          gap: 12px;
-          min-height: 190px;
-          padding: 18px;
-          border-radius: 15px;
-          border: 1px solid rgba(47, 107, 255, 0.14);
-          background: linear-gradient(135deg, rgba(247, 249, 255, 0.92), rgba(255, 255, 255, 0.9));
+          gap: 10px;
+          padding: 16px;
+          border-radius: 14px;
+          border: 1px solid rgba(47, 107, 255, 0.18);
+          background: rgba(249, 251, 255, 0.86);
         }
 
         .track2-search-empty strong {
           color: var(--navy-900);
           font-family: "Space Grotesk", sans-serif;
-          font-size: 1rem;
+          font-size: 0.95rem;
         }
 
         .track2-search-empty p {
           margin: 0;
-          font-size: 0.84rem;
+          font-size: 0.78rem;
           line-height: 1.6;
         }
 
         .track2-search-empty ul {
           display: grid;
-          gap: 7px;
+          gap: 5px;
           margin: 0;
           padding-left: 18px;
           color: var(--text);
-          font-size: 0.8rem;
+          font-size: 0.74rem;
           line-height: 1.45;
         }
 
         .track2-opportunity-grid {
-          grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
         .track2-research-hero {
@@ -1056,7 +1100,7 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-search-card {
           display: flex;
-          min-height: 430px;
+          min-height: 0;
           flex-direction: column;
           justify-content: space-between;
           padding: 0;
@@ -1068,7 +1112,7 @@ export function Track2LegalAssistant({ track }) {
         }
 
         .track2-search-head {
-          padding: 22px;
+          padding: 18px;
           border-bottom: 1px solid rgba(47, 107, 255, 0.12);
           background: linear-gradient(135deg, rgba(247, 249, 255, 0.98), rgba(255, 255, 255, 0.95));
         }
@@ -1085,9 +1129,9 @@ export function Track2LegalAssistant({ track }) {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 42px;
-          height: 42px;
-          border-radius: 14px;
+          width: 34px;
+          height: 34px;
+          border-radius: 11px;
           background: linear-gradient(135deg, rgba(16, 42, 86, 0.94), rgba(47, 107, 255, 0.88));
           color: #fff;
           font-family: "Space Grotesk", sans-serif;
@@ -1104,11 +1148,11 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-search-query {
           margin-top: 12px;
-          padding: 11px;
+          padding: 10px;
           border-radius: 10px;
           background: rgba(18, 51, 100, 0.055);
           color: var(--navy-800);
-          font-size: 0.76rem;
+          font-size: 0.72rem;
           font-weight: 800;
           word-break: break-word;
         }
@@ -1118,16 +1162,46 @@ export function Track2LegalAssistant({ track }) {
           color: #38527a;
         }
 
+        .track2-query-stack {
+          display: grid;
+          gap: 8px;
+          margin-top: 2px;
+        }
+
+        .track2-query-title {
+          color: #7a8cab;
+          font-size: 0.68rem;
+          font-weight: 900;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+
+        .track2-query-chip {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          padding: 9px 10px;
+          border-radius: 9px;
+          border: 1px solid rgba(47, 107, 255, 0.12);
+          background: rgba(255, 255, 255, 0.82);
+          color: #38527a;
+          font-size: 0.72rem;
+          font-weight: 850;
+          line-height: 1.35;
+          word-break: break-word;
+        }
+
         .track2-result-list {
           display: grid;
           gap: 10px;
-          padding: 18px;
+          padding: 14px;
         }
 
         .track2-public-result {
           display: grid;
           gap: 7px;
-          padding: 14px;
+          padding: 13px;
           border-radius: 13px;
           border: 1px solid rgba(47, 107, 255, 0.16);
           background: rgba(247, 249, 255, 0.8);
@@ -1149,7 +1223,7 @@ export function Track2LegalAssistant({ track }) {
 
         .track2-public-result p {
           margin: 0;
-          font-size: 0.8rem;
+          font-size: 0.76rem;
           line-height: 1.55;
         }
 
@@ -1165,13 +1239,31 @@ export function Track2LegalAssistant({ track }) {
           font-weight: 900;
         }
 
+        .track2-result-action {
+          display: inline-flex;
+          width: fit-content;
+          margin-top: 6px;
+          color: var(--blue-500);
+          font-size: 0.78rem;
+          font-weight: 900;
+          text-decoration: none;
+        }
+
+        .track2-result-query {
+          display: block;
+          color: #7a8cab;
+          font-size: 0.7rem;
+          font-weight: 800;
+          line-height: 1.4;
+        }
+
         .track2-search-footer {
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
           align-items: center;
           justify-content: space-between;
-          padding: 16px 20px 20px;
+          padding: 14px 18px 18px;
           margin-top: auto;
         }
 
@@ -1220,8 +1312,308 @@ export function Track2LegalAssistant({ track }) {
           .track2-score-line {
             grid-template-columns: 1fr;
           }
+
+          .track2-photo-hero {
+            grid-template-columns: 1fr;
+          }
+
+          .track2-hero-visual {
+            aspect-ratio: 16/7;
+          }
         }
+
+        .track2-photo-hero {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 40px;
+          align-items: center;
+          padding: 44px 40px;
+          border-radius: 28px;
+          border: 1px solid var(--track2-line);
+          background: var(--track2-surface);
+          box-shadow: 0 8px 36px rgba(14,38,84,0.08);
+          overflow: hidden;
+          position: relative;
+          margin-bottom: 28px;
+        }
+
+        body.dark-mode .track2-photo-hero { background: rgba(10,20,42,0.82); }
+
+        .track2-photo-hero::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 5px;
+          background: linear-gradient(90deg, #12336c, #1f5eff, #5a8fff);
+        }
+
+        .track2-hero-copy { display: flex; flex-direction: column; gap: 20px; }
+
+        .track2-hero-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 14px;
+          border-radius: 999px;
+          font-size: .72rem;
+          font-weight: 800;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          background: rgba(31,94,255,.1);
+          color: var(--track2-accent);
+          width: fit-content;
+        }
+
+        .track2-hero-title {
+          margin: 0;
+          font-family: "Space Grotesk", sans-serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 700;
+          color: var(--navy-900);
+          line-height: 1.05;
+          letter-spacing: -.03em;
+        }
+
+        .track2-hero-sub {
+          margin: 0;
+          color: var(--track2-muted);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 46ch;
+        }
+
+        .track2-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .track2-hero-back {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 20px;
+          border-radius: 999px;
+          font-size: .88rem;
+          font-weight: 700;
+          color: var(--track2-ink);
+          border: 1px solid var(--track2-line);
+          background: var(--track2-muted-surface);
+          text-decoration: none;
+          transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .track2-hero-back:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(14,38,84,.1); }
+
+        .track2-hero-visual {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          aspect-ratio: 4/3;
+          box-shadow: 0 16px 48px rgba(14,38,84,.14);
+        }
+
+        .track2-hero-visual img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .track2-hero-visual::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, transparent 40%, rgba(10,25,60,.18));
+        }
+
+
+        /* ===== UPDATED HERO + ROADMAP ONLY ===== */
+        .track2-hero {
+          grid-template-columns: minmax(0, 0.85fr) minmax(300px, 0.72fr);
+          gap: 28px;
+          align-items: center;
+          padding: 34px;
+          border-radius: 30px;
+          background:
+            radial-gradient(circle at 8% 12%, rgba(146, 197, 253, 0.28), transparent 35%),
+            linear-gradient(135deg, #fbfdff 0%, #eef5ff 54%, #f8fbff 100%);
+          border: 1px solid rgba(47, 107, 255, 0.13);
+          box-shadow: 0 22px 55px rgba(18, 51, 100, 0.09);
+          overflow: hidden;
+          position: relative;
+        }
+
+        .track2-hero::after {
+          content: "";
+          position: absolute;
+          width: 210px;
+          height: 210px;
+          right: -75px;
+          top: -75px;
+          border-radius: 999px;
+          background: rgba(47, 107, 255, 0.08);
+          pointer-events: none;
+        }
+
+        .track2-hero > * {
+          position: relative;
+          z-index: 1;
+        }
+
+        .track2-hero .track2-hero-copy {
+          min-height: auto;
+          padding: 6px 0;
+          justify-content: center;
+        }
+
+        .track2-hero h1 {
+          max-width: 13ch;
+          margin: 14px 0 12px;
+          font-size: clamp(2.35rem, 4.7vw, 3.85rem);
+          line-height: 1.02;
+          letter-spacing: -0.035em;
+        }
+
+        .track2-hero-copy p {
+          max-width: 37ch;
+          font-size: 0.96rem;
+          line-height: 1.55;
+          color: #5d6f8c;
+        }
+
+        .track2-kicker-row {
+          gap: 8px;
+        }
+
+        .track2-kicker {
+          padding: 6px 10px;
+          font-size: 0.68rem;
+          background: rgba(47, 107, 255, 0.09);
+          border-color: rgba(47, 107, 255, 0.16);
+        }
+
+        .track2-progress {
+          max-width: 330px;
+          margin-top: 18px;
+        }
+
+        .track2-progress-track {
+          height: 7px;
+          background: rgba(47, 107, 255, 0.12);
+        }
+
+        .track2-progress-fill {
+          background: linear-gradient(90deg, #2f6bff, #8bb8ff);
+        }
+
+        .track2-actions {
+          margin-top: 18px;
+        }
+
+        .track2-roadmap {
+          gap: 12px;
+          padding: 14px;
+          border-radius: 26px;
+          background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 249, 255, 0.96)),
+            radial-gradient(circle at top right, rgba(47, 107, 255, 0.12), transparent 35%);
+          box-shadow: 0 20px 50px rgba(18, 51, 100, 0.1);
+        }
+
+        .track2-roadmap-card {
+          grid-template-columns: auto 1fr;
+          gap: 12px;
+          padding: 14px;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.96);
+          border: 1px solid rgba(47, 107, 255, 0.13);
+          box-shadow: 0 10px 24px rgba(18, 51, 100, 0.055);
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .track2-roadmap-card::before {
+          width: 0;
+        }
+
+        .track2-roadmap-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(47, 107, 255, 0.38);
+          box-shadow: 0 18px 40px rgba(47, 107, 255, 0.16);
+        }
+
+        .track2-roadmap-card.is-active {
+          border-color: rgba(47, 107, 255, 0.55);
+          background: linear-gradient(135deg, #ffffff, #f2f7ff);
+          box-shadow: 0 18px 42px rgba(47, 107, 255, 0.18);
+        }
+
+        .track2-step-number {
+          width: 36px;
+          height: 36px;
+          border-radius: 13px;
+          font-size: 0.78rem;
+          background: linear-gradient(135deg, #2f6bff, #86b6ff);
+        }
+
+        .track2-roadmap-card h3 {
+          font-size: 0.96rem;
+          line-height: 1.2;
+        }
+
+        .track2-roadmap-card p {
+          margin-top: 4px;
+          font-size: 0.78rem;
+          line-height: 1.42;
+          color: #6d7d96;
+        }
+
+        @media (max-width: 1100px) {
+          .track2-hero {
+            grid-template-columns: 1fr;
+            padding: 28px;
+          }
+        }
+
+        @media (max-width: 700px) {
+          .track2-hero {
+            padding: 22px;
+            gap: 20px;
+          }
+
+          .track2-hero h1 {
+            max-width: 12ch;
+            font-size: clamp(2rem, 10vw, 3rem);
+          }
+
+          .track2-roadmap {
+            padding: 10px;
+          }
+
+          .track2-roadmap-card {
+            padding: 12px;
+          }
+        }
+
       `}</style>
+
+      <div className="track2-photo-hero reveal">
+        <div className="track2-hero-copy">
+          <span className="track2-hero-eyebrow">Track B · Legal Operations Console</span>
+          <h1 className="track2-hero-title">Start your startup the right way</h1>
+          <p className="track2-hero-sub">
+            Analyze company structure, Startup Act readiness, document compliance, and external evidence from one
+            controlled legal workspace.
+          </p>
+          <div className="track2-hero-actions">
+            <a href="#services" className="track2-hero-back">
+              &larr; Back to Tracks
+            </a>
+          </div>
+        </div>
+        <div className="track2-hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1100&q=80"
+            alt="Startup legal documents and business planning workspace"
+            loading="lazy"
+          />
+        </div>
+      </div>
 
       <div className="track2-shell">
         {!report ? (
@@ -1646,8 +2038,8 @@ export function Track2LegalAssistant({ track }) {
                 <span className="track2-card-label">External research agent</span>
                 <h2>Opportunities and ecosystem intelligence</h2>
                 <p>
-                  The agent now executes public web searches for company credibility, LinkedIn presence, and Facebook
-                  activity, then displays the most useful findings in a clean review board.
+                  The agent now executes public web searches for company credibility, LinkedIn presence, Facebook
+                  activity, and relevant startup events, then displays the most useful findings in a clean review board.
                 </p>
                 <div className="track2-research-note">
                   <span className="track2-research-dot" />
@@ -1660,7 +2052,7 @@ export function Track2LegalAssistant({ track }) {
               <div className="track2-research-board">
                 <div className="track2-research-stat">
                   <span>Searches executed</span>
-                  <strong>{executedSearchCount}/{searches.length || 3}</strong>
+                  <strong>{executedSearchCount}/{searches.length || 4}</strong>
                 </div>
                 <div className="track2-research-stat">
                   <span>Public results found</span>
@@ -1668,7 +2060,7 @@ export function Track2LegalAssistant({ track }) {
                 </div>
                 <div className="track2-research-stat">
                   <span>Agent status</span>
-                  <strong>{discoveredResultCount ? "Active" : "Limited"}</strong>
+                  <strong>{researchStatusLabel}</strong>
                 </div>
               </div>
             </section>
@@ -1684,7 +2076,9 @@ export function Track2LegalAssistant({ track }) {
                           {searchStatus(search).label}
                         </span>
                       </div>
-                      <span className="track2-card-label">{readSearchHost(search.url)}</span>
+                      <span className="track2-card-label">
+                        {search.platform === "Events" ? "Event discovery" : `${search.platform} direct page check`}
+                      </span>
                       <h3>{search.platform}</h3>
                       <p>{search.purpose}</p>
                       <div className="track2-search-query">{search.query}</div>
@@ -1692,31 +2086,36 @@ export function Track2LegalAssistant({ track }) {
 
                     <div className="track2-result-list">
                       {(search.agent_search?.results || []).length ? (
-                        search.agent_search.results.map((result) => (
-                          <a className="track2-public-result" href={result.url} target="_blank" rel="noreferrer" key={result.url}>
-                            <span className="track2-result-domain">{result.domain || "Public source"}</span>
-                            <strong>{result.title}</strong>
+                        search.agent_search.results.map((result, idx) => (
+                          <div className="track2-public-result" key={`${result.url || idx}`}>
+                            <a href={result.url} target="_blank" rel="noreferrer">
+                              <span className="track2-result-domain">{result.domain || "Public source"}</span>
+                              <strong>{result.title}</strong>
+                            </a>
                             <p>{result.snippet}</p>
-                          </a>
+                            {result.matched_query ? <small className="track2-result-query">Found via: {result.matched_query}</small> : null}
+                            <a className="track2-result-action" href={result.url} target="_blank" rel="noreferrer">
+                              Open page
+                            </a>
+                          </div>
                         ))
                       ) : (
                         <div className="track2-search-empty">
-                          <strong>
-                            {search.agent_search?.status === "unavailable"
-                              ? "Search service unavailable"
-                              : "No strong public match found"}
-                          </strong>
+                          <strong>No verified direct page found</strong>
                           <p>{searchGuidance(search.platform)}</p>
                           <ul>
                             <li>Verify the startup spelling and public brand name.</li>
-                            <li>Ask for direct website or social links if available.</li>
-                            <li>Use the full search link for a manual check.</li>
+                            <li>Add the official website or profile URL in the case notes if the founder has one.</li>
+                            <li>Run the review again so the agent can include that direct page.</li>
                           </ul>
-                          {(search.agent_search?.attempted_queries || []).slice(1, 3).map((query) => (
-                            <div className="track2-search-query is-soft" key={query}>
-                              {query}
-                            </div>
-                          ))}
+                          <div className="track2-query-stack">
+                            <span className="track2-query-title">Agent checked</span>
+                            {(search.agent_search?.attempted_queries || [search.query]).slice(0, 3).map((query) => (
+                              <span className="track2-query-chip" key={query}>
+                                <span>{query}</span>
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -1725,9 +2124,9 @@ export function Track2LegalAssistant({ track }) {
                       <span className="track2-mini-chip">
                         {(search.agent_search?.results || []).length || 0} public result
                       </span>
-                      <a href={search.url} target="_blank" rel="noreferrer">
-                        Open full search
-                      </a>
+                      {(search.agent_search?.results || []).length ? (
+                        <span className="track2-mini-chip">Direct page links</span>
+                      ) : null}
                     </div>
                   </article>
                 ))}

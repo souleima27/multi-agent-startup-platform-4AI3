@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const REPORT_URL = "http://127.0.0.1:5055/track1/report";
+const TRACK1_API_BASE_URL = import.meta.env.VITE_TRACK1_API_URL || "http://127.0.0.1:5055";
+const REPORT_URL = `${TRACK1_API_BASE_URL}/track1/report`;
 
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];
 

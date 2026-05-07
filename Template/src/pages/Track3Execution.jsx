@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 
-const API_URL = "http://127.0.0.1:5056/track3/execution/run";
+const TRACK3_EXECUTION_API_BASE_URL = import.meta.env.VITE_TRACK3_EXECUTION_API_URL || "http://127.0.0.1:5056";
+const API_URL = `${TRACK3_EXECUTION_API_BASE_URL}/track3/execution/run`;
 
 const INITIAL_STATE = {
   startup_profile: {

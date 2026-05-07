@@ -313,11 +313,17 @@ body.dark-mode .toggle-option {
 
 .hero-section {
   display: grid;
-  grid-template-columns: 1.03fr 0.97fr;
-  gap: 34px;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 28px;
+  align-items: stretch;
   min-height: calc(100vh - 130px);
-  padding: 34px 0 26px;
+  padding: 30px 0 22px;
+}
+
+.hero-copy {
+  align-self: center;
+  max-width: 640px;
+  padding: 10px 0;
 }
 
 .hero-copy h1,
@@ -333,9 +339,9 @@ body.dark-mode .toggle-option {
 }
 
 .hero-copy h1 {
-  max-width: 11ch;
-  font-size: clamp(3rem, 7vw, 5.9rem);
-  line-height: 0.95;
+  max-width: 9ch;
+  font-size: clamp(2.8rem, 6.4vw, 5.1rem);
+  line-height: 0.9;
 }
 
 .hero-text,
@@ -363,16 +369,17 @@ body.dark-mode .toggle-option {
 }
 
 .hero-text {
-  max-width: 56ch;
-  margin: 22px 0 0;
-  font-size: 1.05rem;
+  max-width: 42ch;
+  margin: 16px 0 0;
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 30px;
+  margin-top: 24px;
 }
 
 .hero-stats,
@@ -390,7 +397,7 @@ body.dark-mode .toggle-option {
 
 .hero-stats {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 34px;
+  margin-top: 26px;
 }
 
 .hero-stats div,
@@ -457,14 +464,22 @@ body.dark-mode .stat-counter span {
 
 .hero-visual {
   position: relative;
-  min-height: 620px;
+  min-height: 560px;
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(245, 249, 255, 0.92)),
+    radial-gradient(circle at 18% 12%, rgba(75, 124, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 86% 78%, rgba(13, 33, 69, 0.1), transparent 30%);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
 }
 
 .hero-image-frame {
   position: absolute;
-  inset: 34px 0 0 34px;
+  inset: 18px;
   overflow: hidden;
-  border-radius: var(--radius-xl);
+  border-radius: 28px;
   box-shadow: var(--shadow-lg);
   will-change: transform;
 }
@@ -492,17 +507,28 @@ body.dark-mode .stat-counter span {
 .hero-visual::before {
   content: "";
   position: absolute;
-  right: 28px;
-  top: 0;
-  width: 220px;
-  height: 220px;
-  border-radius: 32px;
-  background: linear-gradient(135deg, rgba(75, 124, 255, 0.22), rgba(13, 33, 69, 0.08));
+  right: 20px;
+  top: 16px;
+  width: 180px;
+  height: 180px;
+  border-radius: 38px;
+  background: linear-gradient(135deg, rgba(75, 124, 255, 0.22), rgba(13, 33, 69, 0.06));
+  filter: blur(2px);
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 18px auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(75, 124, 255, 0.18), transparent 70%);
 }
 
 .floating-card {
   position: absolute;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.8);
@@ -522,25 +548,25 @@ body.dark-mode .floating-card {
 }
 
 .card-a {
-  left: 0;
-  bottom: 110px;
+  left: 18px;
+  bottom: 104px;
 }
 
 .card-b {
-  right: 10px;
-  top: 90px;
+  right: 18px;
+  top: 88px;
   animation-delay: 1.2s;
 }
 
 .card-c {
-  left: 22px;
-  top: 86px;
+  left: 24px;
+  top: 96px;
   animation-delay: 0.7s;
 }
 
 .card-d {
-  right: 34px;
-  bottom: 36px;
+  right: 26px;
+  bottom: 34px;
   animation-delay: 1.8s;
 }
 
@@ -1336,7 +1362,7 @@ body.dark-mode .modal-close {
   }
 
   .hero-visual {
-    min-height: 520px;
+    min-height: 500px;
   }
 
   .contact-copy {
@@ -1396,15 +1422,16 @@ body.dark-mode .modal-close {
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.6rem, 14vw, 4.5rem);
+    font-size: clamp(2.5rem, 13vw, 4.2rem);
   }
 
   .hero-visual {
-    min-height: 420px;
+    min-height: 390px;
+    padding: 12px;
   }
 
   .hero-image-frame {
-    inset: 20px 0 0 20px;
+    inset: 14px;
     border-radius: 24px;
   }
 

@@ -6,6 +6,7 @@ import html
 import re
 import urllib.error
 import urllib.request
+import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from pathlib import Path
@@ -33,6 +34,26 @@ from app.services.local_llm import get_local_llm_client  # noqa: E402
 from app.services.orchestrator import TrackBOrchestrator  # noqa: E402
 
 app = FastAPI(title="Track B Legal Bridge")
+
+SEARCH_STOP_TERMS = {
+    "com",
+    "www",
+    "site",
+    "page",
+    "pages",
+    "profile",
+    "official",
+    "company",
+    "startup",
+    "startups",
+    "social",
+    "media",
+    "google",
+    "linkedin",
+    "facebook",
+    "tunisia",
+    "tunisian",
+}
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -109,28 +130,196 @@ def _clean_search_url(url: str) -> str:
     return url
 
 
-def _fetch_public_search_results(query: str, limit: int = 3, fallback_queries: list[str] | None = None) -> dict[str, Any]:
+def _fetch_public_search_results(
+    query: str,
+    limit: int = 3,
+    fallback_queries: list[str] | None = None,
+    strict_identity: bool = True,
+) -> dict[str, Any]:
     attempted_queries = [query, *(fallback_queries or [])]
+    collected_results: list[dict[str, Any]] = []
+    seen_urls: set[str] = set()
     last_response: dict[str, Any] | None = None
+    search_terms = {
+        term
+        for term in re.findall(r"[\w-]+", " ".join(attempted_queries).lower())
+        if len(term) > 2 and term not in SEARCH_STOP_TERMS
+    }
+    identity_terms = {
+        term
+        for term in re.findall(r"[\w-]+", query.lower())
+        if len(term) > 2 and term not in SEARCH_STOP_TERMS
+    } or search_terms
 
     for search_query in attempted_queries:
         response = _fetch_single_public_search(search_query, limit)
         response["attempted_queries"] = attempted_queries
-        if response["results"] or response["status"] == "unavailable":
-            return response
+        if response["status"] == "unavailable":
+            last_response = response
+            continue
+
+        for result in response.get("results", []):
+            result_url = str(result.get("url") or "").strip()
+            if not result_url or result_url in seen_urls:
+                continue
+            if strict_identity and identity_terms and not _result_contains_any(result, identity_terms):
+                continue
+            if _score_search_result(result, search_terms) <= 0:
+                continue
+            seen_urls.add(result_url)
+            enriched_result = dict(result)
+            enriched_result["matched_query"] = search_query
+            collected_results.append(enriched_result)
+
+        if len(collected_results) >= limit:
+            break
+
         last_response = response
 
-    return last_response or {
+    if collected_results:
+        collected_results.sort(
+            key=lambda result: (
+                -_score_search_result(result, search_terms),
+                result.get("domain", ""),
+                result.get("title", ""),
+            )
+        )
+        final_results = collected_results[:limit]
+        return {
+            "status": "completed",
+            "source": "DuckDuckGo public HTML",
+            "message": "Public web search executed by the local Track B bridge.",
+            "results": final_results,
+            "attempted_queries": attempted_queries,
+        }
+
+    if last_response and last_response.get("status") == "unavailable":
+        last_response["attempted_queries"] = attempted_queries
+        return last_response
+
+    return {
         "status": "no_results",
-        "source": "DuckDuckGo public HTML",
+        "source": "DuckDuckGo + Bing public search",
         "message": "Public web search executed, but no matching public result was captured.",
         "results": [],
         "attempted_queries": attempted_queries,
     }
 
 
+def _result_haystack(result: dict[str, Any]) -> str:
+    return " ".join(
+        [
+            str(result.get("title") or ""),
+            str(result.get("snippet") or ""),
+            str(result.get("domain") or ""),
+            str(result.get("url") or ""),
+        ]
+    ).lower()
+
+
+def _contains_term(text: str, term: str) -> bool:
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(term.lower())}(?![a-z0-9])", text))
+
+
+def _result_contains_any(result: dict[str, Any], terms: set[str]) -> bool:
+    haystack = _result_haystack(result)
+    return any(_contains_term(haystack, term) for term in terms)
+
+
+def _score_search_result(result: dict[str, Any], search_terms: set[str]) -> int:
+    title = str(result.get("title") or "").lower()
+    domain = str(result.get("domain") or "").lower()
+    haystack = _result_haystack(result)
+
+    score = 0
+    for term in search_terms:
+        if _contains_term(title, term):
+            score += 6
+        elif _contains_term(haystack, term):
+            score += 3
+
+    if "linkedin.com" in domain:
+        score += 2
+    if "facebook.com" in domain:
+        score += 2
+    if domain.endswith(".tn"):
+        score += 1
+
+    return score
+
+
+def _build_search_query(*terms: str) -> str:
+    parts: list[str] = []
+
+    for term in terms:
+        value = str(term).strip()
+        if not value:
+            continue
+        current_text = " ".join(parts).lower()
+        if value.lower() in current_text:
+            continue
+        parts.append(value)
+
+    return " ".join(parts)
+
+
 def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
-    search_url = f"https://duckduckgo.com/html/?q={quote_plus(query)}"
+    # Demo fallback: when running in a restricted environment set
+    # environment variable TRACK2_PUBLIC_SEARCH_DEMO=1 to return synthetic results.
+    if str(os.environ.get("TRACK2_PUBLIC_SEARCH_DEMO", "")).lower() in ("1", "true", "yes"):
+        demo_domain = "example.com"
+        demo_startup = query or "startup"
+        demo_results = [
+            {
+                "title": f"{demo_startup} — Official website",
+                "url": f"https://{demo_domain}/{quote_plus(demo_startup)}",
+                "snippet": "Demo result: official website placeholder.",
+                "domain": demo_domain,
+            },
+            {
+                "title": f"{demo_startup} — LinkedIn profile",
+                "url": f"https://linkedin.com/company/{quote_plus(demo_startup)}",
+                "snippet": "Demo result: LinkedIn company page placeholder.",
+                "domain": "linkedin.com",
+            },
+            {
+                "title": f"{demo_startup} — Facebook page",
+                "url": f"https://facebook.com/{quote_plus(demo_startup)}",
+                "snippet": "Demo result: Facebook page placeholder.",
+                "domain": "facebook.com",
+            },
+        ]
+        return {
+            "status": "demo",
+            "source": "demo",
+            "message": "Demo public search results (environment network blocked).",
+            "results": demo_results[:limit],
+        }
+
+    duckduckgo_response = _fetch_duckduckgo_search(query, limit)
+    if duckduckgo_response.get("results"):
+        return duckduckgo_response
+
+    bing_response = _fetch_bing_search(query, limit)
+    if bing_response.get("results"):
+        return bing_response
+
+    if duckduckgo_response.get("status") == "unavailable":
+        return duckduckgo_response
+
+    if bing_response.get("status") == "unavailable":
+        return bing_response
+
+    return {
+        "status": "no_results",
+        "source": "DuckDuckGo + Bing public HTML",
+        "message": "Public web search executed, but no verified direct public page was captured.",
+        "results": [],
+    }
+
+
+def _fetch_duckduckgo_search(query: str, limit: int = 3) -> dict[str, Any]:
+    search_url = f"https://duckduckgo.com/lite/?q={quote_plus(query)}"
     request = urllib.request.Request(
         search_url,
         headers={
@@ -142,7 +331,7 @@ def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
     )
 
     try:
-        with urllib.request.urlopen(request, timeout=7) as response:
+        with urllib.request.urlopen(request, timeout=5) as response:
             page = response.read().decode("utf-8", errors="ignore")
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         return {
@@ -153,33 +342,33 @@ def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
         }
 
     results = []
-    title_matches = list(
-        re.finditer(
-            r'<a[^>]*class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>',
-            page,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-    )
+    anchor_matches = list(re.finditer(r'<a\b[^>]*>.*?</a>', page, flags=re.IGNORECASE | re.DOTALL))
 
-    for match in title_matches:
-        url, title = match.groups()
-        block = page[match.end() : match.end() + 2400]
-        snippet_match = re.search(
-            r'<a[^>]*class="result__snippet"[^>]*>(.*?)</a>',
-            block,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
+    for match in anchor_matches:
+        anchor = match.group(0)
+        opening_tag = anchor.split(">", 1)[0]
+        if "result-link" not in opening_tag.lower():
+            continue
+
+        url_match = re.search(r'href=[\'\"]([^\'\"]+)[\'\"]', opening_tag, flags=re.IGNORECASE)
+        if not url_match:
+            continue
+
+        title = anchor.split(">", 1)[1].rsplit("</a>", 1)[0]
+        block = page[match.end() : match.end() + 1800]
+        snippet_match = re.search(r'<td[^>]*class=[\'\"]result-snippet[\'\"][^>]*>(.*?)</td>', block, flags=re.IGNORECASE | re.DOTALL)
         snippet = snippet_match.group(1) if snippet_match else ""
         clean_title = re.sub(r"<[^>]+>", "", html.unescape(title)).strip()
         clean_snippet = re.sub(r"<[^>]+>", "", html.unescape(snippet)).strip()
-        clean_url = _clean_search_url(html.unescape(url))
+        clean_url = _clean_search_url(html.unescape(url_match.group(1)))
         if clean_title and clean_url:
+            domain = urlparse(clean_url).netloc.replace("www.", "")
             results.append(
                 {
                     "title": clean_title,
                     "url": clean_url,
                     "snippet": clean_snippet or "Public result found for this research query.",
-                    "domain": urlparse(clean_url).netloc.replace("www.", ""),
+                    "domain": domain,
                 }
             )
         if len(results) >= limit:
@@ -192,6 +381,137 @@ def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
             "Public web search executed by the local Track B bridge."
             if results
             else "Public search executed, but no public result matched this query."
+        ),
+        "results": results,
+    }
+
+
+def _fetch_bing_search(query: str, limit: int = 3) -> dict[str, Any]:
+    rss_response = _fetch_bing_rss_search(query, limit)
+    if rss_response.get("results"):
+        return rss_response
+
+    search_url = f"https://www.bing.com/search?q={quote_plus(query)}"
+    request = urllib.request.Request(
+        search_url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            )
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=5) as response:
+            page = response.read().decode("utf-8", errors="ignore")
+    except (urllib.error.URLError, TimeoutError, OSError):
+        return {
+            "status": "no_results",
+            "source": "Bing public HTML",
+            "message": "Bing fallback search did not return reachable results.",
+            "results": [],
+        }
+
+    results = []
+    matches = re.finditer(
+        r'<li\s+class="b_algo".*?<h2[^>]*>\s*<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>.*?</h2>(.*?)</li>',
+        page,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    for match in matches:
+        raw_url, raw_title, block = match.groups()
+        clean_url = html.unescape(raw_url).strip()
+        clean_title = re.sub(r"<[^>]+>", "", html.unescape(raw_title)).strip()
+        snippet_match = re.search(r"<p[^>]*>(.*?)</p>", block, flags=re.IGNORECASE | re.DOTALL)
+        clean_snippet = (
+            re.sub(r"<[^>]+>", "", html.unescape(snippet_match.group(1))).strip()
+            if snippet_match
+            else "Public result found for this research query."
+        )
+        domain = urlparse(clean_url).netloc.replace("www.", "")
+        if clean_url.startswith("http") and clean_title and domain and "bing.com" not in domain:
+            results.append(
+                {
+                    "title": clean_title,
+                    "url": clean_url,
+                    "snippet": clean_snippet,
+                    "domain": domain,
+                }
+            )
+        if len(results) >= limit:
+            break
+
+    return {
+        "status": "completed" if results else "no_results",
+        "source": "Bing public HTML",
+        "message": (
+            "Bing fallback search returned direct public links."
+            if results
+            else "Bing fallback search found no direct public links."
+        ),
+        "results": results,
+    }
+
+
+def _fetch_bing_rss_search(query: str, limit: int = 3) -> dict[str, Any]:
+    search_url = f"https://www.bing.com/search?format=rss&mkt=en-US&setlang=en-US&q={quote_plus(query)}"
+    request = urllib.request.Request(
+        search_url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            )
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=5) as response:
+            page = response.read().decode("utf-8", errors="ignore")
+    except (urllib.error.URLError, TimeoutError, OSError):
+        return {
+            "status": "unavailable",
+            "source": "Bing public RSS",
+            "message": "Bing RSS fallback could not be reached from the local API.",
+            "results": [],
+        }
+
+    results = []
+    try:
+        root = ET.fromstring(page)
+    except ET.ParseError:
+        return {
+            "status": "no_results",
+            "source": "Bing public RSS",
+            "message": "Bing RSS fallback did not return readable public results.",
+            "results": [],
+        }
+
+    for item in root.findall(".//item"):
+        clean_title = "".join(item.findtext("title", "")).strip()
+        clean_url = _clean_search_url(item.findtext("link", "").strip())
+        clean_snippet = html.unescape(item.findtext("description", "")).strip()
+        domain = urlparse(clean_url).netloc.replace("www.", "")
+        if clean_url.startswith("http") and clean_title and domain and "bing.com" not in domain:
+            results.append(
+                {
+                    "title": clean_title,
+                    "url": clean_url,
+                    "snippet": clean_snippet or "Public result found for this research query.",
+                    "domain": domain,
+                }
+            )
+        if len(results) >= limit:
+            break
+
+    return {
+        "status": "completed" if results else "no_results",
+        "source": "Bing public RSS",
+        "message": (
+            "Bing RSS fallback returned direct public links."
+            if results
+            else "Bing RSS fallback found no direct public links."
         ),
         "results": results,
     }
@@ -214,13 +534,14 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         {
             "platform": "Google",
             "purpose": "Company, market, regulatory and public credibility check",
-            "query": f'"{startup_name}" {sector} Tunisia startup legal registration Startup Act',
+            "query": _build_search_query(startup_name, "Tunisia", "startup"),
             "fallback_queries": [
-                f"{startup_name} {sector} Tunisia",
-                f"{startup_name} startup Tunisia",
-                f"{sector} startups Tunisia Startup Act",
+                _build_search_query(startup_name, "Tunisia"),
+                _build_search_query(startup_name, "startup", "Tunisia"),
+                _build_search_query(startup_name, sector) if sector else _build_search_query(startup_name, "company"),
+                _build_search_query(startup_name, sector, "Tunisia") if sector else _build_search_query(startup_name, "Tunisia", "company"),
             ],
-            "url": f"https://www.google.com/search?q={quote_plus(f'{startup_name} {sector} Tunisia startup legal registration Startup Act')}",
+            "url": None,
             "signals_to_check": [
                 "Official website or product page",
                 "Press, accelerator, investor, or partner mentions",
@@ -231,13 +552,14 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         {
             "platform": "LinkedIn",
             "purpose": "Founder and company professional presence check",
-            "query": f'site:linkedin.com/company "{startup_name}" Tunisia',
+            "query": f"{startup_name} LinkedIn",
             "fallback_queries": [
-                f'site:linkedin.com/in "{startup_name}" {founder_terms}',
-                f'site:linkedin.com/company {startup_name}',
-                f"{startup_name} LinkedIn Tunisia",
+                _build_search_query(startup_name, "startup"),
+                f'site:linkedin.com "{startup_name}"',
+                f'site:linkedin.com {startup_name}',
+                f'site:linkedin.com/company "{startup_name}"' if not founder_names else f'site:linkedin.com/in {founder_terms}',
             ],
-            "url": f"https://www.google.com/search?q={quote_plus(f'site:linkedin.com/in OR site:linkedin.com/company {startup_name} {founder_terms}')}",
+            "url": None,
             "signals_to_check": [
                 "Founder profiles match the declared team",
                 "Company page exists and matches sector/activity",
@@ -248,13 +570,14 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
         {
             "platform": "Facebook",
             "purpose": "Public social proof and activity check",
-            "query": f'site:facebook.com "{startup_name}" {sector} Tunisia',
+            "query": f"{startup_name} Facebook Tunisia",
             "fallback_queries": [
-                f"{startup_name} Facebook Tunisia",
+                _build_search_query(startup_name, "page"),
+                _build_search_query(startup_name, "social media"),
                 f'site:facebook.com "{startup_name}"',
-                f"{startup_name} {sector} social media",
+                f"site:facebook.com {startup_name} Tunisia",
             ],
-            "url": f"https://www.google.com/search?q={quote_plus(f'site:facebook.com {startup_name} {sector} Tunisia')}",
+            "url": None,
             "signals_to_check": [
                 "Active public page or founder/community presence",
                 "Recent posts, launch activity, or customer signals",
@@ -262,12 +585,35 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
                 "Negative comments, abandoned pages, or impersonation risks",
             ],
         },
+        {
+            "platform": "Events",
+            "purpose": "Relevant startup, sector, accelerator, and investor events",
+            "query": _build_search_query(sector or activity or startup_name, "Tunisia", "startup events"),
+            "fallback_queries": [
+                _build_search_query("Tunisia startup events", "accelerator"),
+                _build_search_query(sector, "Tunisia events") if sector else _build_search_query("startup events", "Tunisia"),
+                _build_search_query("Open Startup Tunisia events"),
+                _build_search_query("startup ecosystem Tunisia events investors"),
+            ],
+            "url": None,
+            "strict_identity": False,
+            "signals_to_check": [
+                "Upcoming founder, accelerator, pitch, or investor events",
+                "Sector relevance to the startup activity",
+                "Application deadlines, eligibility, and location",
+                "Mentor, partner, or investor access",
+            ],
+        },
     ]
 
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=min(4, len(searches))) as executor:
         search_results = list(
             executor.map(
-                lambda item: _fetch_public_search_results(str(item["query"]), fallback_queries=item.get("fallback_queries")),
+                lambda item: _fetch_public_search_results(
+                    str(item["query"]),
+                    fallback_queries=item.get("fallback_queries"),
+                    strict_identity=bool(item.get("strict_identity", True)),
+                ),
                 searches,
             )
         )
@@ -278,7 +624,8 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
     recommendations = [
         "Review the returned results and keep only public evidence that matches the startup identity.",
         "Save screenshots or URLs for strong evidence such as company page, founder profiles, press, accelerator mentions, or events.",
-        "Treat missing LinkedIn/Facebook presence as a warning, not an automatic blocker.",
+        "Use event links to plan founder networking, mentor access, and investor follow-up.",
+        "Treat missing LinkedIn/Facebook/events presence as a warning, not an automatic blocker.",
     ]
 
     if final_output.get("final_decision") == "FAIL":

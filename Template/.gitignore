@@ -1,2 +1,4 @@
 track3.local.json
 __pycache__/
+.env
+pitch_coach.config.json

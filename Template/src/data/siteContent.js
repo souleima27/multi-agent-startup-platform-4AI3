@@ -69,6 +69,7 @@ export const values = [
 export const services = [
   {
     id: "track-a",
+    directHref: "#track1-analyzer",
     track: "Track A",
     icon: "A",
     title: "Validate Your Idea",
