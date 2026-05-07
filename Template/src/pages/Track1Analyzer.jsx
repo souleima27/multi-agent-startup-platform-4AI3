@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getApiBase } from "../lib/apiBase";
 
 const INDUSTRY_OPTIONS = [
   "technology",
@@ -66,7 +67,7 @@ const TARGET_CUSTOMER_TYPES = [
   "Mixed / other",
 ];
 
-const TRACK1_API_BASE_URL = import.meta.env.VITE_TRACK1_API_URL || "";
+const TRACK1_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK1_API_URL);
 const API_URL = `${TRACK1_API_BASE_URL}/track1/analyze`;
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];
 
@@ -519,9 +520,7 @@ export function Track1Analyzer() {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch {
-      setError(
-        "Could not connect to Track1 backend. Make sure FastAPI is running on port 5055."
-      );
+      setError("Could not connect to Track1 backend. Make sure the Render web service is deployed and running.");
     } finally {
       setLoading(false);
     }
