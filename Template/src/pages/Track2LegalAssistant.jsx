@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-const API_URL = import.meta.env.VITE_TRACK2_API_URL || "http://127.0.0.1:5057";
+const API_URL = import.meta.env.VITE_TRACK2_API_URL || "";
 let _detectedApi = null;
 async function detectApi() {
   if (_detectedApi) return _detectedApi;
