@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import { getApiBase } from "../lib/apiBase";
 
-const TRACK3_EXECUTION_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK3_EXECUTION_API_URL);
+const TRACK3_EXECUTION_API_BASE_URL = getApiBase(
+  import.meta.env.VITE_TRACK3_EXECUTION_API_URL || import.meta.env.VITE_API_BASE_URL
+);
 const API_URL = `${TRACK3_EXECUTION_API_BASE_URL}/track3/execution/run`;
 
 const INITIAL_STATE = {

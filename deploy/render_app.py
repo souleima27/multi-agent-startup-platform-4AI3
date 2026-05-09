@@ -13,6 +13,7 @@ from fastapi.staticfiles import StaticFiles
 ROOT_DIR = Path(__file__).resolve().parents[1]
 TRACK1_DIR = ROOT_DIR / "Track1"
 TRACK2_DIR = ROOT_DIR / "Track2"
+TEMPLATE_DIR = ROOT_DIR / "Template"
 FRONTEND_DIST = ROOT_DIR / "Template" / "dist"
 
 startup_errors: dict[str, str] = {}
@@ -44,6 +45,16 @@ except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
     track1_health = _unavailable("track1")
     startup_errors["track1"] = repr(exc)
 
+try:
+    sys.path.insert(0, str(TEMPLATE_DIR))
+    from track3_run_agent import build_fallback_result, build_response, merge_state, run_agent  # noqa: E402
+except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
+    build_fallback_result = None
+    build_response = None
+    merge_state = None
+    run_agent = None
+    startup_errors["track3"] = repr(exc)
+
 
 def _parse_cors_origins() -> list[str]:
     raw = os.getenv("CORS_ALLOW_ORIGINS", "")
@@ -71,6 +82,34 @@ def health() -> dict[str, str]:
         "service": "startup-platform-api",
         "startup_errors": startup_errors,
     }
+
+
+@app.get("/track3/health")
+def track3_health() -> dict[str, Any]:
+    return {
+        "ok": run_agent is not None,
+        "startup_error": startup_errors.get("track3"),
+        "model_mode": os.getenv("MODEL_MODE", ""),
+        "llm_base_url_set": bool(os.getenv("LLM_BASE_URL")),
+        "jira_sync_enabled": os.getenv("JIRA_SYNC_ENABLED", "false"),
+    }
+
+
+@app.post("/track3/execution/run")
+async def track3_execution_run(payload: dict[str, Any]) -> dict[str, Any]:
+    if not all([build_fallback_result, build_response, merge_state, run_agent]):
+        raise HTTPException(
+            status_code=503,
+            detail=f"track3 is unavailable: {startup_errors.get('track3', 'unknown startup error')}",
+        )
+
+    try:
+        state = merge_state(payload)
+        result = await run_agent(state)
+    except Exception as exc:
+        result = build_fallback_result(payload, f"{type(exc).__name__}: {exc}")
+
+    return build_response(result)
 
 
 app.add_api_route("/track1/health", track1_health, methods=["GET"])

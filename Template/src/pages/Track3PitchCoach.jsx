@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import { getApiBase } from "../lib/apiBase";
 
-const PITCH_COACH_API_BASE_URL = getApiBase(import.meta.env.VITE_PITCH_COACH_API_URL);
+const PITCH_COACH_API_BASE_URL = getApiBase(
+  import.meta.env.VITE_PITCH_COACH_API_URL || import.meta.env.VITE_API_BASE_URL
+);
 const API_URL = `${PITCH_COACH_API_BASE_URL}/pitch/analyze`;
 
 function Badge({ children, tone = "info" }) {
