@@ -14,8 +14,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-import track2_api
-
 BASE_DIR = Path(__file__).resolve().parent
 DIST_DIR = BASE_DIR / "dist"
 TRACK1_REPORT_PATH = BASE_DIR / "track1_latest_report.json"
@@ -29,6 +27,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+def normalize_model_environment() -> None:
+    aliases = {
+        "OPENAI_API_KEY": ["LLM_API_KEY"],
+        "OPENAI_BASE_URL": ["LLM_BASE_URL"],
+        "OPENAI_MODEL": ["LLM_MODEL", "LLM_PLANNER_MODEL", "LLM_CRITIC_MODEL"],
+    }
+    for source, targets in aliases.items():
+        source_value = os.getenv(source)
+        if not source_value:
+            continue
+        for target in targets:
+            os.environ.setdefault(target, source_value)
+
+
+normalize_model_environment()
+
+import track2_api  # noqa: E402
 
 app.include_router(track2_api.app.router)
 
@@ -53,6 +69,11 @@ def full_stack_health() -> dict[str, Any]:
         "track2": "mounted",
         "track3": "proxied",
         "pitch": "proxied",
+        "models": {
+            "openai_api_key_set": bool(os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY")),
+            "openai_base_url_set": bool(os.getenv("OPENAI_BASE_URL") or os.getenv("LLM_BASE_URL")),
+            "openai_model_set": bool(os.getenv("OPENAI_MODEL") or os.getenv("LLM_MODEL") or os.getenv("LLM_PLANNER_MODEL")),
+        },
     }
 
 

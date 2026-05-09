@@ -31,14 +31,23 @@ PORT = 5057
 # Load configuration
 def load_config():
     """Load Pitch Coach configuration from JSON file"""
-    if not CONFIG_FILE.exists():
-        return {}
+    config = {}
     try:
-        with open(CONFIG_FILE, 'r') as f:
-            return json.load(f)
+        if CONFIG_FILE.exists():
+            with open(CONFIG_FILE, 'r') as f:
+                config = json.load(f)
     except Exception as e:
         print(f"[Pitch Coach] Warning: Could not load config file: {e}")
-        return {}
+        config = {}
+
+    env_config = {
+        "openai_api_key": os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY"),
+        "openai_base_url": os.getenv("OPENAI_BASE_URL") or os.getenv("LLM_BASE_URL"),
+        "openai_model": os.getenv("OPENAI_MODEL") or os.getenv("LLM_PLANNER_MODEL"),
+    }
+    config.update({key: value for key, value in env_config.items() if value})
+    config.setdefault("enable_llm_analysis", True)
+    return config
 
 CONFIG = load_config()
 
