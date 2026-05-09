@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: startup-platform-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: MODEL_MODE
+        value: hybrid
+      - key: LLM_BASE_URL
+        value: https://tokenfactory.esprit.tn/api
+      - key: LLM_PLANNER_MODEL
+        value: hosted_vllm/Llama-3.1-70B-Instruct
+      - key: LLM_CRITIC_MODEL
+        value: hosted_vllm/Llama-3.1-70B-Instruct
+      - key: LLM_VERIFY_SSL
+        value: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: JIRA_SYNC_ENABLED
+        value: true
+      - key: JIRA_BASE_URL
+        value: https://esprit-team-r6neq63b.atlassian.net
+      - key: JIRA_USER_EMAIL
+        value: farah.hassen@esprit.tn
+      - key: JIRA_API_TOKEN
+        sync: false
+      - key: JIRA_PROJECT_KEY
+        value: KAN
+      - key: JIRA_ISSUE_TYPE
+        value: Task
+      - key: JIRA_VERIFY_SSL
+        value: true
+      - key: A2A_LOCAL_FALLBACK
+        value: true
+      - key: CORS_ALLOW_ORIGINS
+        value: https://startup-platform-frontend.onrender.com
+
+  - type: web
+    name: startup-platform-frontend
+    runtime: static
+    rootDir: Template
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://startup-platform-api.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

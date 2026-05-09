@@ -1,0 +1,13 @@
+.git
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/node_modules/
+Template/dist/
+Track3/pitch/output/
+Track3/pitch/pitch_coach_output/
+Track3/pitch/my_pitch.mp4
+Track3/pitch/output/audio/
+Track3/pitch/output/frames/
+Track3/pitch/pitch_coach_output/frames/
+Track3/pitch/pitch_coach_output/audio/
