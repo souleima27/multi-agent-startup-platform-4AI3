@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import os
 import html
+import json
 import re
 import urllib.error
 import urllib.request
@@ -13,9 +14,10 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote_plus, unquote, urlparse, parse_qs
 
+import requests
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, PlainTextResponse
 from pydantic import BaseModel
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -23,9 +25,51 @@ TRACK2_ROOT = PROJECT_ROOT / "Track2"
 
 os.environ.setdefault("LLM_TIMEOUT_SECONDS", "6")
 os.environ.setdefault("REPORTS_DIR", str(Path(__file__).resolve().parent / "track2_reports"))
+if os.getenv("LLM_PLANNER_MODEL") and not os.getenv("LLM_MODEL"):
+    os.environ["LLM_MODEL"] = os.getenv("LLM_PLANNER_MODEL", "")
 
 if str(TRACK2_ROOT) not in sys.path:
     sys.path.insert(0, str(TRACK2_ROOT))
+
+from app.services import local_llm as track2_llm  # noqa: E402
+
+
+def _complete_with_openai_compatible_or_ollama(self, prompt: str, system: str = "") -> str:
+    api_key = os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
+    base_url = self.base_url.rstrip("/")
+
+    if api_key or "tokenfactory" in base_url or "openai" in base_url:
+        headers = {"Content-Type": "application/json"}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+        response = requests.post(
+            f"{base_url}/chat/completions",
+            json={
+                "model": self.model,
+                "messages": [
+                    {"role": "system", "content": system or "Return strict JSON when requested."},
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": 0.2,
+            },
+            headers=headers,
+            timeout=self.timeout_seconds,
+        )
+        response.raise_for_status()
+        body = response.json()
+        return str(body.get("choices", [{}])[0].get("message", {}).get("content", "")).strip()
+
+    response = requests.post(
+        f"{base_url}/api/generate",
+        json={"model": self.model, "prompt": prompt, "system": system, "stream": False},
+        timeout=self.timeout_seconds,
+    )
+    response.raise_for_status()
+    body = response.json()
+    return str(body.get("response", "")).strip()
+
+
+track2_llm.LocalLLMClient.complete = _complete_with_openai_compatible_or_ollama
 
 from app.models.schemas import ChatRequest, TrackBRequest  # noqa: E402
 from app.services.chatbot import TrackBChatbot  # noqa: E402
@@ -51,8 +95,21 @@ SEARCH_STOP_TERMS = {
     "google",
     "linkedin",
     "facebook",
+    "meaning",
+    "dictionary",
+    "definition",
+    "translation",
+    "wikipedia",
     "tunisia",
     "tunisian",
+}
+BLOCKED_SEARCH_DOMAINS = {
+    "openmeaning.com",
+    "dictionary.com",
+    "merriam-webster.com",
+    "cambridge.org",
+    "wikipedia.org",
+    "wiktionary.org",
 }
 app.add_middleware(
     CORSMiddleware,
@@ -221,6 +278,16 @@ def _contains_term(text: str, term: str) -> bool:
     return bool(re.search(rf"(?<![a-z0-9]){re.escape(term.lower())}(?![a-z0-9])", text))
 
 
+def _is_blocked_search_result(result: dict[str, Any]) -> bool:
+    domain = str(result.get("domain") or "").lower().replace("www.", "")
+    title = str(result.get("title") or "").lower()
+    snippet = str(result.get("snippet") or "").lower()
+    if any(domain == blocked or domain.endswith(f".{blocked}") for blocked in BLOCKED_SEARCH_DOMAINS):
+        return True
+    blocked_text = ("meaning of", "definition of", "dictionary", "translation", "word meaning")
+    return any(term in title or term in snippet for term in blocked_text)
+
+
 def _result_contains_any(result: dict[str, Any], terms: set[str]) -> bool:
     haystack = _result_haystack(result)
     return any(_contains_term(haystack, term) for term in terms)
@@ -230,6 +297,9 @@ def _score_search_result(result: dict[str, Any], search_terms: set[str]) -> int:
     title = str(result.get("title") or "").lower()
     domain = str(result.get("domain") or "").lower()
     haystack = _result_haystack(result)
+
+    if _is_blocked_search_result(result):
+        return -100
 
     score = 0
     for term in search_terms:
@@ -261,6 +331,16 @@ def _build_search_query(*terms: str) -> str:
         parts.append(value)
 
     return " ".join(parts)
+
+
+def _build_investor_queries(sector: str, activity: str) -> list[str]:
+    sector_term = sector or activity or "startup"
+    return [
+        _build_search_query("Tunisia startup investors", sector_term, "funding accelerator"),
+        _build_search_query("Tunisia venture capital", sector_term, "startup"),
+        _build_search_query("startup accelerator Tunisia", sector_term, "investors"),
+        _build_search_query("Startup Tunisia investors incubator accelerator"),
+    ]
 
 
 def _fetch_single_public_search(query: str, limit: int = 3) -> dict[str, Any]:
@@ -604,9 +684,23 @@ def _build_external_research(payload: dict[str, Any], result: dict[str, Any] | N
                 "Mentor, partner, or investor access",
             ],
         },
+        {
+            "platform": "Investors",
+            "purpose": "Relevant Tunisian startup investors, accelerators, incubators and funding programs",
+            "query": _build_investor_queries(sector, activity)[0],
+            "fallback_queries": _build_investor_queries(sector, activity)[1:],
+            "url": None,
+            "strict_identity": False,
+            "signals_to_check": [
+                "Investor, accelerator, incubator, or funding program relevance",
+                "Tunisia or MENA startup funding focus",
+                "Application, contact, portfolio, or investment thesis evidence",
+                "Avoid dictionary, generic meaning, and unrelated informational pages",
+            ],
+        },
     ]
 
-    with ThreadPoolExecutor(max_workers=min(4, len(searches))) as executor:
+    with ThreadPoolExecutor(max_workers=min(5, len(searches))) as executor:
         search_results = list(
             executor.map(
                 lambda item: _fetch_public_search_results(
@@ -736,6 +830,75 @@ def run_track_b(payload: dict[str, Any]) -> JSONResponse:
     external_research = _build_external_research(normalized_payload, result)
     result["external_research"] = external_research
     return JSONResponse(content=_json_safe(result))
+
+
+@app.get("/track2/llm/health")
+def llm_health() -> JSONResponse:
+    llm = get_local_llm_client()
+    payload = {
+        "base_url": llm.base_url,
+        "model": llm.model,
+        "api_key_set": bool(os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY")),
+        "provider_mode": "openai-compatible" if os.getenv("LLM_API_KEY") or "tokenfactory" in llm.base_url else "ollama",
+    }
+    try:
+        text = llm.complete(
+            prompt='Return exactly this JSON: {"ok": true, "source": "llm"}',
+            system="Return strict JSON only.",
+        )
+        payload["ok"] = True
+        payload["sample"] = text[:300]
+    except Exception as exc:
+        payload["ok"] = False
+        payload["error"] = f"{type(exc).__name__}: {exc}"
+    return JSONResponse(content=_json_safe(payload))
+
+
+@app.get("/track2/report")
+def track2_report() -> JSONResponse:
+    if latest_result is None:
+        return JSONResponse(content={"error": "No Track B result has been generated yet."}, status_code=404)
+    return JSONResponse(content=_json_safe(latest_result.model_dump()))
+
+
+@app.get("/track2/report/markdown")
+def track2_report_markdown() -> PlainTextResponse:
+    if latest_result is None:
+        return PlainTextResponse("No Track B result has been generated yet.", status_code=404)
+
+    result = latest_result.model_dump()
+    final = result.get("final_output", {})
+    strategic = result.get("strategic_agent", {})
+    document = result.get("document_agent", {})
+    missing = final.get("missing_documents") or []
+    lines = [
+        "# Track B Full Legal Report",
+        "",
+        "## Executive Decision",
+        f"- Decision: {final.get('go_no_go') or final.get('final_decision') or 'N/A'}",
+        f"- Legal structure: {final.get('legal_structure_recommendation', 'N/A')}",
+        f"- Risk level: {final.get('risk_level', 'N/A')}",
+        f"- Startup Act probability: {final.get('startup_label_probability', 'N/A')}",
+        f"- LLM model: {final.get('llm_model', 'N/A')}",
+        "",
+        "## Missing Documents",
+        *(f"- {item}" for item in missing),
+        "",
+        "## Strategic Agent",
+        f"- Sector: {strategic.get('sector_classification', 'N/A')}",
+        f"- Founders: {strategic.get('founders_structure', 'N/A')}",
+        f"- Funding: {strategic.get('funding_analysis', 'N/A')}",
+        "",
+        "## Document Agent",
+        f"- Completeness: {document.get('completeness_score', 'N/A')}",
+        f"- Global risk score: {document.get('global_risk_score', 'N/A')}",
+        "",
+        "## Final Output JSON",
+        "```json",
+        json.dumps(final, ensure_ascii=False, indent=2),
+        "```",
+    ]
+    return PlainTextResponse("\n".join(lines), media_type="text/markdown; charset=utf-8")
 
 
 @app.post("/track2/chat")
