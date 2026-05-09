@@ -864,8 +864,8 @@ def llm_health() -> JSONResponse:
     return JSONResponse(content=_json_safe(payload))
 
 
-@app.get("/track2/report/pdf")
-def track2_report_pdf() -> FileResponse | JSONResponse:
+@app.get("/track2/report/pdf", response_model=None)
+def track2_report_pdf():
     global latest_pdf_report
     if latest_result is None:
         return JSONResponse(content={"error": "Run Track B before opening the PDF report."}, status_code=404)
