@@ -15,3 +15,29 @@ services:
         sync: false
       - key: OPENAI_MODEL
         sync: false
+      - key: MODEL_MODE
+        value: hybrid
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_PLANNER_MODEL
+        sync: false
+      - key: LLM_CRITIC_MODEL
+        sync: false
+      - key: LLM_VERIFY_SSL
+        value: "false"
+      - key: JIRA_SYNC_ENABLED
+        value: "true"
+      - key: JIRA_BASE_URL
+        sync: false
+      - key: JIRA_USER_EMAIL
+        sync: false
+      - key: JIRA_API_TOKEN
+        sync: false
+      - key: JIRA_PROJECT_KEY
+        sync: false
+      - key: JIRA_ISSUE_TYPE
+        value: Task
+      - key: JIRA_VERIFY_SSL
+        value: "true"
