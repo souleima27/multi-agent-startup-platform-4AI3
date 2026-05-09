@@ -16,7 +16,7 @@ from urllib.parse import quote_plus, unquote, urlparse, parse_qs
 import requests
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +75,6 @@ from app.services.chatbot import TrackBChatbot  # noqa: E402
 from app.services.knowledge_base import load_knowledge_base  # noqa: E402
 from app.services.local_llm import get_local_llm_client  # noqa: E402
 from app.services.orchestrator import TrackBOrchestrator  # noqa: E402
-from app.services.reporting import write_pdf_report  # noqa: E402
 
 app = FastAPI(title="Track B Legal Bridge")
 
@@ -122,7 +121,6 @@ app.add_middleware(
 orchestrator = TrackBOrchestrator()
 chatbot = TrackBChatbot(llm=get_local_llm_client(), kb=load_knowledge_base())
 latest_result = None
-latest_pdf_report: Path | None = None
 UPLOADS_DIR = Path(__file__).resolve().parent / "track2_uploads"
 
 SAMPLE_REQUEST: dict[str, Any] = {
@@ -823,22 +821,13 @@ async def upload_documents(files: list[UploadFile] = File(...)) -> dict[str, Any
 
 @app.post("/track2/run")
 def run_track_b(payload: dict[str, Any]) -> JSONResponse:
-    global latest_result, latest_pdf_report
+    global latest_result
     normalized_payload = _resolve_document_paths(payload)
-    normalized_payload.setdefault("options", {})
-    normalized_payload["options"]["generate_json_report"] = False
-    normalized_payload["options"]["generate_pdf_report"] = True
     request = TrackBRequest.model_validate(normalized_payload)
     latest_result = orchestrator.run(request)
-    latest_pdf_report = write_pdf_report(
-        latest_result,
-        Path(os.environ.get("REPORTS_DIR", str(Path(__file__).resolve().parent / "track2_reports"))),
-        normalized_payload["options"].get("report_prefix") or "track_b_report",
-    )
     result = latest_result.model_dump()
     external_research = _build_external_research(normalized_payload, result)
     result["external_research"] = external_research
-    result.setdefault("final_output", {})["pdf_report_url"] = "/track2/report/pdf"
     return JSONResponse(content=_json_safe(result))
 
 
@@ -862,29 +851,6 @@ def llm_health() -> JSONResponse:
         payload["ok"] = False
         payload["error"] = f"{type(exc).__name__}: {exc}"
     return JSONResponse(content=_json_safe(payload))
-
-
-@app.get("/track2/report/pdf", response_model=None)
-def track2_report_pdf():
-    global latest_pdf_report
-    if latest_result is None:
-        return JSONResponse(content={"error": "Run Track B before opening the PDF report."}, status_code=404)
-
-    if latest_pdf_report is None or not latest_pdf_report.exists():
-        latest_pdf_report = write_pdf_report(
-            latest_result,
-            Path(os.environ.get("REPORTS_DIR", str(Path(__file__).resolve().parent / "track2_reports"))),
-            "track_b_report",
-        )
-
-    if latest_pdf_report is None or not latest_pdf_report.exists():
-        return JSONResponse(content={"error": "PDF report could not be generated."}, status_code=500)
-
-    return FileResponse(
-        latest_pdf_report,
-        media_type="application/pdf",
-        filename=latest_pdf_report.name,
-    )
 
 
 @app.post("/track2/chat")
