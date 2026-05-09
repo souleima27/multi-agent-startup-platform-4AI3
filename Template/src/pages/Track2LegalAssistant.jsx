@@ -1680,6 +1680,12 @@ export function Track2LegalAssistant({ track }) {
                 <button className="primary-btn" type="button" onClick={runTrackB} disabled={loading}>
                   {loading ? "Refreshing..." : "Run again"}
                 </button>
+                <a className="secondary-btn" href="/track2/report/markdown" target="_blank" rel="noreferrer">
+                  Full report
+                </a>
+                <a className="secondary-btn" href="/track2/report" target="_blank" rel="noreferrer">
+                  JSON report
+                </a>
               </div>
               {error ? <div className="track2-message">{error}</div> : null}
             </div>
