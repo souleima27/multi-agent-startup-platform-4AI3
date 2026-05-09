@@ -160,9 +160,8 @@ SAMPLE_REQUEST: dict[str, Any] = {
     },
     "options": {
         "strict_mode": True,
-        "generate_json_report": True,
+        "generate_json_report": False,
         "generate_pdf_report": False,
-        "report_prefix": "track_b_template_run",
     },
 }
 
@@ -823,6 +822,10 @@ async def upload_documents(files: list[UploadFile] = File(...)) -> dict[str, Any
 def run_track_b(payload: dict[str, Any]) -> JSONResponse:
     global latest_result
     normalized_payload = _resolve_document_paths(payload)
+    normalized_payload.setdefault("options", {})
+    normalized_payload["options"]["generate_json_report"] = False
+    normalized_payload["options"]["generate_pdf_report"] = False
+    normalized_payload["options"].pop("report_prefix", None)
     request = TrackBRequest.model_validate(normalized_payload)
     latest_result = orchestrator.run(request)
     result = latest_result.model_dump()

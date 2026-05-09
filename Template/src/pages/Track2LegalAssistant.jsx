@@ -48,9 +48,8 @@ const INITIAL_FORM = {
   },
   options: {
     strict_mode: true,
-    generate_json_report: true,
+    generate_json_report: false,
     generate_pdf_report: false,
-    report_prefix: "track_b_template_run",
   },
 };
 
@@ -335,7 +334,12 @@ export function Track2LegalAssistant({ track }) {
   const documentAgent = report?.document_agent || {};
   const decisionTone = toneForDecision(finalOutput.final_decision || finalOutput.go_no_go);
   const missingDocuments = documentAgent.missing_documents || [];
-  const documentScore = Number(documentAgent.overall_completeness_score ?? 0);
+  const uploadedCount = uploadedDocuments.length;
+  const expectedDocumentCount = uploadedCount + missingDocuments.length;
+  const strictDocumentScore = expectedDocumentCount
+    ? Math.round((uploadedCount / expectedDocumentCount) * 100)
+    : Number(documentAgent.overall_completeness_score ?? 0);
+  const documentScore = missingDocuments.length ? strictDocumentScore : Number(documentAgent.overall_completeness_score ?? strictDocumentScore);
   const riskScore = Number(documentAgent.global_risk_score ?? 0);
   const startupActScore = Number(strategic.startup_act_eligibility_score ?? 0);
   const labelScore = Number(report?.label_agent?.overall_score ?? finalOutput.label_score ?? 0);
@@ -349,7 +353,7 @@ export function Track2LegalAssistant({ track }) {
         : finalOutput.final_decision === "WARNING"
           ? "Needs review"
           : "Blocked";
-  const documentStatus = documentScore >= 80 ? "Complete" : documentScore > 0 ? "Incomplete" : "Not reviewed";
+  const documentStatus = missingDocuments.length ? "Incomplete" : documentScore >= 80 ? "Complete" : documentScore > 0 ? "Incomplete" : "Not reviewed";
   const riskLabel = riskScore >= 60 ? "High" : riskScore >= 35 ? "Medium" : "Low";
   const primaryBlocker = missingDocuments.length
     ? `${missingDocuments.length} required document${missingDocuments.length > 1 ? "s" : ""} missing`
