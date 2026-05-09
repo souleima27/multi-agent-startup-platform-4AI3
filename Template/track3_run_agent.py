@@ -60,9 +60,13 @@ def build_fallback_result(payload: dict, reason: str) -> dict:
             "id": f"T{i + 1:02d}",
             "title": task["name"],
             "priority": task.get("priority", "medium"),
+            "assigned_to": owner_names[i % len(owner_names)],
             "owner": owner_names[i % len(owner_names)],
             "status": "ready",
+            "estimated_days": 2 if task.get("priority") == "high" else 3,
             "estimate_days": 2 if task.get("priority") == "high" else 3,
+            "milestone_title": "MVP execution",
+            "agent_action": "plan",
         }
         for i, task in enumerate(tasks)
     ]
@@ -70,10 +74,18 @@ def build_fallback_result(payload: dict, reason: str) -> dict:
     return {
         "startup_name": startup_name,
         "models": {"mode": "fallback", "planner": "local", "critic": "local"},
-        "executive_summary": (
-            f"{startup_name} has a workable execution path, but the deployed Track3 agent "
-            "could not load its full ExecutionAgent package. This response is a structured fallback."
-        ),
+        "executive_summary": {
+            "startup_name": startup_name,
+            "model_mode": os.getenv("MODEL_MODE", "hybrid"),
+            "planner_model": os.getenv("LLM_PLANNER_MODEL", "not configured"),
+            "critic_model": os.getenv("LLM_CRITIC_MODEL", "not configured"),
+            "feasibility": "partial",
+            "main_risk": "Full ExecutionAgent package is not available on the deployed service.",
+            "summary": (
+                f"{startup_name} has a workable execution path, but the deployed Track3 agent "
+                "could not load its full ExecutionAgent package. This response is a structured fallback."
+            ),
+        },
         "founder_decisions": [
             "Confirm the MVP scope before adding integrations.",
             "Assign one owner for each high-priority task.",
@@ -90,12 +102,18 @@ def build_fallback_result(payload: dict, reason: str) -> dict:
         },
         "monitoring": {
             "cadence": "Daily execution check",
+            "task_count": len(task_list),
+            "ready_count": len(task_list[:5]),
             "signals": ["completed_tasks", "blocked_tasks", "owner_capacity"],
         },
         "next_actions": [task["title"] for task in task_list[:5]],
         "anomalies": [reason],
         "critic_report": {
             "status": "needs_full_agent",
+            "recommendations": [
+                "Confirm the ExecutionAgent source files are pushed with the repo.",
+                "Check /track3/health to confirm LLM and Jira environment variables are loaded.",
+            ],
             "notes": [
                 "The online service is reachable.",
                 "The complete ExecutionAgent dependency must be available for full AI planning.",
