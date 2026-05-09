@@ -3,7 +3,6 @@ from __future__ import annotations
 import sys
 import os
 import html
-import json
 import re
 import urllib.error
 import urllib.request
@@ -17,7 +16,7 @@ from urllib.parse import quote_plus, unquote, urlparse, parse_qs
 import requests
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -76,6 +75,7 @@ from app.services.chatbot import TrackBChatbot  # noqa: E402
 from app.services.knowledge_base import load_knowledge_base  # noqa: E402
 from app.services.local_llm import get_local_llm_client  # noqa: E402
 from app.services.orchestrator import TrackBOrchestrator  # noqa: E402
+from app.services.reporting import write_pdf_report  # noqa: E402
 
 app = FastAPI(title="Track B Legal Bridge")
 
@@ -122,6 +122,7 @@ app.add_middleware(
 orchestrator = TrackBOrchestrator()
 chatbot = TrackBChatbot(llm=get_local_llm_client(), kb=load_knowledge_base())
 latest_result = None
+latest_pdf_report: Path | None = None
 UPLOADS_DIR = Path(__file__).resolve().parent / "track2_uploads"
 
 SAMPLE_REQUEST: dict[str, Any] = {
@@ -822,13 +823,22 @@ async def upload_documents(files: list[UploadFile] = File(...)) -> dict[str, Any
 
 @app.post("/track2/run")
 def run_track_b(payload: dict[str, Any]) -> JSONResponse:
-    global latest_result
+    global latest_result, latest_pdf_report
     normalized_payload = _resolve_document_paths(payload)
+    normalized_payload.setdefault("options", {})
+    normalized_payload["options"]["generate_json_report"] = False
+    normalized_payload["options"]["generate_pdf_report"] = True
     request = TrackBRequest.model_validate(normalized_payload)
     latest_result = orchestrator.run(request)
+    latest_pdf_report = write_pdf_report(
+        latest_result,
+        Path(os.environ.get("REPORTS_DIR", str(Path(__file__).resolve().parent / "track2_reports"))),
+        normalized_payload["options"].get("report_prefix") or "track_b_report",
+    )
     result = latest_result.model_dump()
     external_research = _build_external_research(normalized_payload, result)
     result["external_research"] = external_research
+    result.setdefault("final_output", {})["pdf_report_url"] = "/track2/report/pdf"
     return JSONResponse(content=_json_safe(result))
 
 
@@ -854,51 +864,27 @@ def llm_health() -> JSONResponse:
     return JSONResponse(content=_json_safe(payload))
 
 
-@app.get("/track2/report")
-def track2_report() -> JSONResponse:
+@app.get("/track2/report/pdf")
+def track2_report_pdf() -> FileResponse | JSONResponse:
+    global latest_pdf_report
     if latest_result is None:
-        return JSONResponse(content={"error": "No Track B result has been generated yet."}, status_code=404)
-    return JSONResponse(content=_json_safe(latest_result.model_dump()))
+        return JSONResponse(content={"error": "Run Track B before opening the PDF report."}, status_code=404)
 
+    if latest_pdf_report is None or not latest_pdf_report.exists():
+        latest_pdf_report = write_pdf_report(
+            latest_result,
+            Path(os.environ.get("REPORTS_DIR", str(Path(__file__).resolve().parent / "track2_reports"))),
+            "track_b_report",
+        )
 
-@app.get("/track2/report/markdown")
-def track2_report_markdown() -> PlainTextResponse:
-    if latest_result is None:
-        return PlainTextResponse("No Track B result has been generated yet.", status_code=404)
+    if latest_pdf_report is None or not latest_pdf_report.exists():
+        return JSONResponse(content={"error": "PDF report could not be generated."}, status_code=500)
 
-    result = latest_result.model_dump()
-    final = result.get("final_output", {})
-    strategic = result.get("strategic_agent", {})
-    document = result.get("document_agent", {})
-    missing = final.get("missing_documents") or []
-    lines = [
-        "# Track B Full Legal Report",
-        "",
-        "## Executive Decision",
-        f"- Decision: {final.get('go_no_go') or final.get('final_decision') or 'N/A'}",
-        f"- Legal structure: {final.get('legal_structure_recommendation', 'N/A')}",
-        f"- Risk level: {final.get('risk_level', 'N/A')}",
-        f"- Startup Act probability: {final.get('startup_label_probability', 'N/A')}",
-        f"- LLM model: {final.get('llm_model', 'N/A')}",
-        "",
-        "## Missing Documents",
-        *(f"- {item}" for item in missing),
-        "",
-        "## Strategic Agent",
-        f"- Sector: {strategic.get('sector_classification', 'N/A')}",
-        f"- Founders: {strategic.get('founders_structure', 'N/A')}",
-        f"- Funding: {strategic.get('funding_analysis', 'N/A')}",
-        "",
-        "## Document Agent",
-        f"- Completeness: {document.get('completeness_score', 'N/A')}",
-        f"- Global risk score: {document.get('global_risk_score', 'N/A')}",
-        "",
-        "## Final Output JSON",
-        "```json",
-        json.dumps(final, ensure_ascii=False, indent=2),
-        "```",
-    ]
-    return PlainTextResponse("\n".join(lines), media_type="text/markdown; charset=utf-8")
+    return FileResponse(
+        latest_pdf_report,
+        media_type="application/pdf",
+        filename=latest_pdf_report.name,
+    )
 
 
 @app.post("/track2/chat")
