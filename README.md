@@ -363,7 +363,7 @@ Exposed MCP tools: `pitch_coach_defaults`, `analyze_pitch_video`
 ## Frontend — STARTI
 
 **Directory:** `Template/`
-**Stack:** React + Vite + Supabase
+**Stack:** React + Vite 
 
 Modern landing page for the platform with user and data management.
 
@@ -382,19 +382,10 @@ Modern landing page for the platform with user and data management.
 ```bash
 cd Template
 cp .env.example .env
-# Add Supabase keys to .env
 npm install
 npm run dev
 ```
 
-### Supabase Configuration
-
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
----
 
 ## Multimodal Processing
 
