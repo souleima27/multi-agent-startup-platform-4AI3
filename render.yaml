@@ -38,6 +38,8 @@ services:
         value: true
       - key: CORS_ALLOW_ORIGINS
         value: https://startup-platform-frontend.onrender.com
+      - key: CORS_ALLOW_ORIGIN_REGEX
+        value: https://.*\.onrender\.com
 
   - type: web
     name: startup-platform-frontend
