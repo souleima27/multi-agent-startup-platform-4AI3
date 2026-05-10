@@ -38,7 +38,10 @@ except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
 
 try:
     sys.path.insert(0, str(TRACK1_DIR))
-    from api import analyze_startup, get_saved_report, health as track1_health  # noqa: E402
+    from api import analyze_startup, get_saved_report  # noqa: E402
+
+    def track1_health() -> dict[str, str]:
+        return {"status": "ok", "app": "track1"}
 except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
     analyze_startup = _unavailable("track1")
     get_saved_report = _unavailable("track1")
@@ -76,7 +79,7 @@ app.add_middleware(
 
 
 @app.get("/health")
-def health() -> dict[str, str]:
+def health() -> dict[str, Any]:
     return {
         "status": "ok" if not startup_errors else "degraded",
         "service": "startup-platform-api",
