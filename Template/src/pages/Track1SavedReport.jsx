@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getApiBase } from "../lib/apiBase";
 
-const TRACK1_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK1_API_URL);
+const TRACK1_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK1_API_URL || import.meta.env.VITE_API_BASE_URL);
 const REPORT_URL = `${TRACK1_API_BASE_URL}/track1/report`;
 
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];

@@ -67,7 +67,7 @@ const TARGET_CUSTOMER_TYPES = [
   "Mixed / other",
 ];
 
-const TRACK1_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK1_API_URL);
+const TRACK1_API_BASE_URL = getApiBase(import.meta.env.VITE_TRACK1_API_URL || import.meta.env.VITE_API_BASE_URL);
 const API_URL = `${TRACK1_API_BASE_URL}/track1/analyze`;
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];
 

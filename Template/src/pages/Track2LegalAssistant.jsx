@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { getApiBase } from "../lib/apiBase";
 
-const API_URL = getApiBase(import.meta.env.VITE_TRACK2_API_URL);
+const API_URL = getApiBase(import.meta.env.VITE_TRACK2_API_URL || import.meta.env.VITE_API_BASE_URL);
 let _detectedApi = null;
 async function detectApi() {
   if (_detectedApi) return _detectedApi;
