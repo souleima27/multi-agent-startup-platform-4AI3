@@ -1,5 +1,6 @@
 import ast
 import json
+import os
 import re
 from pathlib import Path
 
@@ -329,11 +330,12 @@ def main() -> None:
     ops_output = read_json(OPS_PATH)
     legal_output = read_json(LEGAL_PATH)
 
-    http_client = httpx.Client(verify=False)
+    verify_ssl = os.getenv("LLM_VERIFY_SSL", "true").lower() in {"true", "1", "yes"}
+    http_client = httpx.Client(verify=verify_ssl)
 
     client = OpenAI(
-        api_key="not_so_fast",
-        base_url="https://tokenfactory.esprit.tn/api",
+        api_key=os.getenv("LLM_API_KEY", "not_so_fast"),
+        base_url=os.getenv("LLM_BASE_URL", "https://tokenfactory.esprit.tn/api"),
         http_client=http_client,
     )
 
@@ -376,7 +378,7 @@ FINANCE OUTPUT:
             ]
 
         response = client.chat.completions.create(
-            model="hosted_vllm/Llama-3.1-70B-Instruct",
+            model=os.getenv("LLM_REPORT_MODEL", os.getenv("LLM_PLANNER_MODEL", "hosted_vllm/Llama-3.1-70B-Instruct")),
             messages=messages,
             temperature=0.2,
             max_tokens=4000,

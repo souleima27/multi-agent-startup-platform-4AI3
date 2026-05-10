@@ -2,17 +2,12 @@ import json
 import uuid
 
 from langchain.agents import create_agent
-from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 
 from tools1 import search_web, get_company_description_from_url
-from shared.config import MODEL_NAME, OLLAMA_API_BASE
+from shared.llm import get_chat_model
 
-llm = ChatOllama(
-    model=MODEL_NAME,
-    base_url=OLLAMA_API_BASE,
-    temperature=0.2,
-)
+llm = get_chat_model(temperature=0.2)
 
 company_lookup_prompt = """
 You are a company researcher.

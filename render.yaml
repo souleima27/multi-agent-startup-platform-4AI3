@@ -1,0 +1,65 @@
+services:
+  - type: web
+    name: startup-track1-api
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: Track1
+    buildCommand: pip install -r requirements-render.txt
+    startCommand: python start_render.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DATABASE_URL
+        fromDatabase:
+          name: startup-companies
+          property: connectionString
+      - key: DB_SSLMODE
+        value: require
+      - key: MODEL_MODE
+        value: hybrid
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      - key: LLM_PLANNER_MODEL
+        sync: false
+      - key: LLM_REPORT_MODEL
+        sync: false
+      - key: LLM_VERIFY_SSL
+        value: "false"
+      - key: EMBED_BASE_URL
+        sync: false
+      - key: EMBED_API_KEY
+        sync: false
+      - key: EMBED_MODEL
+        sync: false
+      - key: EMBED_VERIFY_SSL
+        value: "false"
+      - key: CORS_ORIGIN_REGEX
+        value: https://.*\.onrender\.com
+
+  - type: web
+    name: startup-frontend
+    runtime: static
+    plan: free
+    rootDir: Template
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_TRACK1_API_URL
+        value: https://startup-track1-api.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  - name: startup-companies
+    plan: free
+    region: frankfurt
+    databaseName: startup_companies
+    user: startup_companies_user

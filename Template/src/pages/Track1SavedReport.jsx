@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { track1ApiBaseUrl } from "../lib/apiConfig";
 
-const REPORT_URL = "http://127.0.0.1:5055/track1/report";
+const REPORT_URL = `${track1ApiBaseUrl}/track1/report`;
 
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { track1ApiBaseUrl } from "../lib/apiConfig";
 
 const INDUSTRY_OPTIONS = [
   "technology",
@@ -66,7 +67,7 @@ const TARGET_CUSTOMER_TYPES = [
   "Mixed / other",
 ];
 
-const API_URL = "http://127.0.0.1:5055/track1/analyze";
+const API_URL = `${track1ApiBaseUrl}/track1/analyze`;
 const TABS = ["Overview", "Market", "MVP", "Operations", "Finance", "Legal"];
 
 function Field({ label, children }) {

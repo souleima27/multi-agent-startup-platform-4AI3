@@ -3,11 +3,13 @@ from pathlib import Path
 
 import psycopg2
 import requests
+import httpx
 from bs4 import BeautifulSoup
 from ddgs import DDGS
 from mcp.server.fastmcp import FastMCP
+from openai import OpenAI
 
-from shared.config import DB_CONFIG, EMBED_MODEL, OLLAMA_EMBED_URL, KB_PATH
+from shared.config import DB_CONFIG, EMBED_API_KEY, EMBED_BASE_URL, EMBED_MODEL, EMBED_VERIFY_SSL, OLLAMA_EMBED_URL, KB_PATH
 
 
 mcp = FastMCP("merged-tools-server")
@@ -21,6 +23,15 @@ ALLOWED_KB_SECTIONS = {
 
 
 def embed_text(text: str) -> list[float]:
+    if EMBED_API_KEY and EMBED_BASE_URL:
+        client = OpenAI(
+            api_key=EMBED_API_KEY,
+            base_url=EMBED_BASE_URL,
+            http_client=httpx.Client(verify=EMBED_VERIFY_SSL, timeout=120.0),
+        )
+        response = client.embeddings.create(model=EMBED_MODEL, input=text)
+        return response.data[0].embedding
+
     response = requests.post(
         OLLAMA_EMBED_URL,
         json={

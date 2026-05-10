@@ -1,18 +1,13 @@
-from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 from tools import search_similar_companies, search_web_results
 from tools1 import search_company
 
-from shared.config import MODEL_NAME, OLLAMA_API_BASE
+from shared.llm import get_chat_model
 import json
 from pathlib import Path
 
-llm = ChatOllama(
-    model=MODEL_NAME,
-    base_url=OLLAMA_API_BASE,
-    temperature=0.2,
-)
+llm = get_chat_model(temperature=0.2)
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "outputs"
 OUTPUT_DIR.mkdir(exist_ok=True)

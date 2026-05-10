@@ -3,9 +3,9 @@ import re
 from pathlib import Path
 from typing import Any, Dict
 
-from langchain_ollama import ChatOllama
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
+from shared.llm import get_chat_model
 
 
 BASE_DIR = Path(__file__).parent
@@ -18,10 +18,7 @@ OPS_NEEDS_PATH = KNOWLEDGE_DIR / "ops_needs.json"
 LEGAL_SIGNALS_PATH = KNOWLEDGE_DIR / "legal_signals.json"
 
 
-llm = ChatOllama(
-    model="qwen3:8b",
-    temperature=0.2,
-)
+llm = get_chat_model(temperature=0.2)
 USER_INPUT_PATH = BASE_DIR / "user_input.json"
 
 

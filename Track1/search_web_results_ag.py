@@ -1,17 +1,12 @@
 import uuid
 
 from langchain.agents import create_agent
-from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 
 from tools import search_web, extract_company_names_from_url, describe_company_from_url
-from shared.config import MODEL_NAME, OLLAMA_API_BASE
+from shared.llm import get_chat_model
 
-llm = ChatOllama(
-    model=MODEL_NAME,
-    base_url=OLLAMA_API_BASE,
-    temperature=0.2,
-)
+llm = get_chat_model(temperature=0.2)
 
 system_prompt = """
 You are a companies finder.
