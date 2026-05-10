@@ -77,6 +77,21 @@ services:
       - key: CORS_ORIGIN_REGEX
         value: https://.*\.onrender\.com
 
+  - type: web
+    name: startup-track3-api
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: Track3/ExecutionAgent
+    buildCommand: pip install -r requirements-render.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: CORS_ORIGIN_REGEX
+        value: https://.*\.onrender\.com
+
 databases:
   - name: startup-companies
     plan: free
