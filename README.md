@@ -39,7 +39,7 @@ This project implements a **modular AI architecture where specialized agents col
   - [Track A — Idea & Feasibility](#track-a--idea--feasibility)
   - [Track B — Legal & Administrative](#track-b--legal--administrative)
   - [Track C — Execution & Automation](#track-c--execution--automation)
-- [Frontend — Venture Path](#frontend--venture-path)
+- [Frontend ](#frontend)
 - [Multimodal Processing](#multimodal-processing)
 - [Startup_State Memory System](#startup_state-memory-system)
 - [Repository Structure](#repository-structure)
@@ -667,7 +667,8 @@ pip install -r requirements_pitch_coach.txt
 python agentic_pitch_coach.py --video ./my_pitch.mp4
 ```
 
-### Frontend — Venture Path
+### Frontend — STARTI
+
 
 ```bash
 cd Template
