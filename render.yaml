@@ -56,6 +56,27 @@ services:
         source: /*
         destination: /index.html
 
+  - type: web
+    name: startup-track2-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: Track2
+    healthCheckPath: /health
+    envVars:
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      - key: LLM_VERIFY_SSL
+        value: "false"
+      - key: LLM_TIMEOUT_SECONDS
+        value: "120"
+      - key: CORS_ORIGIN_REGEX
+        value: https://.*\.onrender\.com
+
 databases:
   - name: startup-companies
     plan: free

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.agents.intelligent_document_agent import IntelligentDocumentAgent
 from app.agents.strategic_legal_agent import StrategicLegalAgent
 from app.core.config import get_settings
@@ -24,6 +26,22 @@ from app.services.orchestrator import TrackBOrchestrator
 
 settings = get_settings()
 app = FastAPI(title=settings.app_name)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        origin.strip()
+        for origin in os.getenv(
+            "CORS_ORIGINS",
+            "http://localhost:3000,http://127.0.0.1:3000",
+        ).split(",")
+        if origin.strip()
+    ],
+    allow_origin_regex=os.getenv("CORS_ORIGIN_REGEX"),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 orchestrator = TrackBOrchestrator()
 llm = get_local_llm_client()

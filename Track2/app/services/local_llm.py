@@ -2,21 +2,45 @@ from __future__ import annotations
 
 from functools import lru_cache
 import json
+import os
 import re
 from typing import Any
 
+from openai import OpenAI
 import requests
 
 from app.core.config import get_settings
 
 
 class LocalLLMClient:
-    def __init__(self, base_url: str, model: str, timeout_seconds: int = 60) -> None:
+    def __init__(
+        self,
+        base_url: str,
+        model: str,
+        timeout_seconds: int = 60,
+        api_key: str = "",
+        verify_ssl: bool = True,
+    ) -> None:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.timeout_seconds = timeout_seconds
+        self.api_key = api_key
+        self.verify_ssl = verify_ssl
 
     def complete(self, prompt: str, system: str = "") -> str:
+        if self.api_key:
+            client = OpenAI(api_key=self.api_key, base_url=self.base_url)
+            response = client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.2,
+                timeout=self.timeout_seconds,
+            )
+            return str(response.choices[0].message.content or "").strip()
+
         payload = {
             "model": self.model,
             "prompt": prompt,
@@ -60,4 +84,6 @@ def get_local_llm_client() -> LocalLLMClient:
         base_url=settings.llm_base_url,
         model=settings.llm_model,
         timeout_seconds=settings.llm_timeout_seconds,
+        api_key=os.getenv("LLM_API_KEY", ""),
+        verify_ssl=os.getenv("LLM_VERIFY_SSL", "true").lower() in {"true", "1", "yes"},
     )
