@@ -277,16 +277,19 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             "minimum_roles_responsibilities": [
                 {
                     "role": "Product owner",
+                    "responsibility_or_description": "Owns the MVP scope, user interviews, backlog priorities, and launch decisions.",
                     "responsibilities": ["Define MVP scope", "Run interviews", "Prioritize backlog"],
                     "necessity_level": "critical",
                 },
                 {
                     "role": "Full-stack developer",
+                    "responsibility_or_description": "Builds the core product workflow, backend API, deployment, monitoring, and pilot fixes.",
                     "responsibilities": ["Build core workflow", "Deploy and monitor app", "Fix pilot issues"],
                     "necessity_level": "critical",
                 },
                 {
                     "role": "Domain advisor",
+                    "responsibility_or_description": "Validates legal, market, and operational assumptions before public launch.",
                     "responsibilities": ["Validate legal/business assumptions", "Review risks"],
                     "necessity_level": "important",
                 },
@@ -314,9 +317,27 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             "payback_months": {"value": "4-8"},
             "suggested_price": {"range_tnd": "49-149 TND/month"},
             "employees_and_wages": [
-                {"role": "Product owner", "necessity_level": "critical", "monthly_wage_range_tnd": "1200-2500"},
-                {"role": "Full-stack developer", "necessity_level": "critical", "monthly_wage_range_tnd": "1800-3500"},
-                {"role": "Domain advisor", "necessity_level": "important", "monthly_wage_range_tnd": "500-1500"},
+                {
+                    "role": "Product owner",
+                    "necessity_level": "critical",
+                    "why_needed": "Keeps the MVP focused on validated customer pain and prevents scope creep.",
+                    "salary_or_range": "1200-2500 TND/month",
+                    "monthly_wage_range_tnd": "1200-2500",
+                },
+                {
+                    "role": "Full-stack developer",
+                    "necessity_level": "critical",
+                    "why_needed": "Builds and maintains the usable product needed for pilot validation.",
+                    "salary_or_range": "1800-3500 TND/month",
+                    "monthly_wage_range_tnd": "1800-3500",
+                },
+                {
+                    "role": "Domain advisor",
+                    "necessity_level": "important",
+                    "why_needed": "Reduces legal and business mistakes before launch.",
+                    "salary_or_range": "500-1500 TND/month",
+                    "monthly_wage_range_tnd": "500-1500",
+                },
             ],
             "tools_materials_ops_costs": {"hosting": "80-250 TND/month", "domain": "40-100 TND/year", "LLM API": "usage-based"},
             "monthly_costs": {"lean": "1000-2500 TND", "growth": "3000-6000 TND"},
@@ -646,13 +667,19 @@ Return JSON with:
   "markdown_report": "A useful markdown report with next best action and recommendations"
 }}
 """
-    try:
-        scorecard = _call_pitch_llm(prompt)
-    except Exception:
+    if os.getenv("PITCH_RENDER_FREE_MODE", "true").lower() in {"1", "true", "yes"}:
         scorecard = _fallback_pitch_report(filename, coaching_mode, file_size_kb)
+    else:
+        try:
+            scorecard = _call_pitch_llm(prompt)
+        except Exception:
+            scorecard = _fallback_pitch_report(filename, coaching_mode, file_size_kb)
 
-    scorecard.setdefault("criteria", _fallback_pitch_report(filename, coaching_mode, file_size_kb)["criteria"])
-    scorecard.setdefault("markdown_report", _fallback_pitch_report(filename, coaching_mode, file_size_kb)["markdown_report"])
+    try:
+        scorecard.setdefault("criteria", _fallback_pitch_report(filename, coaching_mode, file_size_kb)["criteria"])
+        scorecard.setdefault("markdown_report", _fallback_pitch_report(filename, coaching_mode, file_size_kb)["markdown_report"])
+    except AttributeError:
+        scorecard = _fallback_pitch_report(filename, coaching_mode, file_size_kb)
 
     return {
         "ok": True,
@@ -666,7 +693,7 @@ Return JSON with:
             "skip_visual": skip_visual == "true",
             "skip_voice_emotion": skip_voice_emotion == "true",
             "whisper_size": whisper_size,
-            "mode": "api",
+            "mode": "render_free" if os.getenv("PITCH_RENDER_FREE_MODE", "true").lower() in {"1", "true", "yes"} else "api",
         },
         "reports": {
             "scorecard": scorecard,
@@ -675,13 +702,12 @@ Return JSON with:
                     "title": "Pitch Coach Report",
                     "markdown_report": scorecard.get("markdown_report", ""),
                     "next_best_action": "Clarify the opening problem statement and close with a concrete ask.",
-                    "limitations": ["Render API mode analyzes metadata and pitch structure guidance, not full video transcription."],
+                    "limitations": ["Render Free mode analyzes metadata and pitch structure guidance, not full video transcription."],
                 }
             },
             "markdown": scorecard.get("markdown_report", ""),
         },
     }
-
 
 @app.options("/track3/execution/run")
 def track3_execution_options() -> dict[str, str]:

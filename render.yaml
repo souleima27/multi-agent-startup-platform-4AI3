@@ -36,6 +36,8 @@ services:
         value: true
       - key: TRACK3_API_TIMEOUT_SECONDS
         value: 120
+      - key: PITCH_RENDER_FREE_MODE
+        value: true
       - key: JIRA_BASE_URL
         value: https://esprit-team-r6neq63b.atlassian.net
       - key: JIRA_USER_EMAIL
