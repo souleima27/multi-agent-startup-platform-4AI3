@@ -3,7 +3,7 @@ services:
     name: startup-platform-api
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: standard
+    plan: free
     healthCheckPath: /health
     envVars:
       - key: APP_ENV
