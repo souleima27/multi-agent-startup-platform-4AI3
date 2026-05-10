@@ -54,8 +54,9 @@ except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
 
 try:
     sys.path.insert(0, str(TEMPLATE_DIR))
-    from track3_run_agent import build_fallback_result, build_response, merge_state, run_agent  # noqa: E402
+    from track3_run_agent import build_api_result, build_fallback_result, build_response, merge_state, run_agent  # noqa: E402
 except Exception as exc:  # pragma: no cover - startup guard for hosted deploys
+    build_api_result = None
     build_fallback_result = None
     build_response = None
     merge_state = None
@@ -100,6 +101,7 @@ def track3_health() -> dict[str, Any]:
         "model_mode": os.getenv("MODEL_MODE", ""),
         "llm_base_url_set": bool(os.getenv("LLM_BASE_URL")),
         "jira_sync_enabled": os.getenv("JIRA_SYNC_ENABLED", "false"),
+        "track3_render_free_mode": os.getenv("TRACK3_RENDER_FREE_MODE", "true"),
     }
 
 
@@ -137,12 +139,15 @@ async def _run_track3_job(job_id: str, payload: dict[str, Any]) -> None:
         return
 
     if os.getenv("TRACK3_RENDER_FREE_MODE", "true").lower() in {"1", "true", "yes"}:
-        result = build_fallback_result(payload, "Render free mode is enabled; full Track3 agent is skipped.")
+        result = await asyncio.to_thread(build_api_result, payload) if build_api_result else build_fallback_result(
+            payload,
+            "Render free mode is enabled; full Track3 agent is skipped.",
+        )
         track3_jobs[job_id].update(
             {
                 "status": "completed",
                 "result": build_response(result),
-                "warning": "Render free mode is enabled; full Track3 agent is skipped.",
+                "warning": "Render free API mode is enabled; local Track3 models are skipped.",
                 "finished_at": datetime.now(timezone.utc).isoformat(),
             }
         )

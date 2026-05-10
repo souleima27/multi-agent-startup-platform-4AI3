@@ -3,6 +3,7 @@ import importlib
 import json
 import os
 import sys
+import requests
 from contextlib import contextmanager
 from copy import deepcopy
 from pathlib import Path
@@ -245,6 +246,157 @@ def build_response(result: dict) -> dict:
         "task_list": result.get("task_list"),
         "jira": result.get("jira"),
     }
+
+
+def extract_json_object(text: str) -> dict:
+    if not text:
+        raise ValueError("Empty model response")
+
+    try:
+        parsed = json.loads(text)
+        if isinstance(parsed, dict):
+            return parsed
+    except Exception:
+        pass
+
+    start = text.find("{")
+    end = text.rfind("}")
+    if start == -1 or end == -1 or end <= start:
+        raise ValueError("No JSON object found in model response")
+    parsed = json.loads(text[start : end + 1])
+    if not isinstance(parsed, dict):
+        raise ValueError("Model response JSON is not an object")
+    return parsed
+
+
+def call_openai_compatible_json(prompt: str, system: str) -> dict:
+    api_key = os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY") or ""
+    base_url = (os.getenv("LLM_BASE_URL") or os.getenv("OPENAI_BASE_URL") or "").rstrip("/")
+    model = os.getenv("LLM_PLANNER_MODEL") or os.getenv("LLM_MODEL") or os.getenv("OPENAI_MODEL") or ""
+
+    if not base_url or not model:
+        raise RuntimeError("LLM_BASE_URL and LLM_PLANNER_MODEL are required for Track3 API mode.")
+
+    headers = {"Content-Type": "application/json"}
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.25,
+        "max_tokens": int(os.getenv("PLANNER_MAX_TOKENS", "1600")),
+    }
+    response = requests.post(
+        f"{base_url}/chat/completions",
+        headers=headers,
+        json=payload,
+        timeout=int(os.getenv("TRACK3_API_TIMEOUT_SECONDS", "120")),
+    )
+    response.raise_for_status()
+    body = response.json()
+    choices = body.get("choices") or []
+    if not choices:
+        raise RuntimeError("LLM API returned no choices.")
+    content = (choices[0].get("message") or {}).get("content", "")
+    return extract_json_object(str(content))
+
+
+def build_api_result(payload: dict) -> dict:
+    startup_profile = payload.get("startup_profile", {})
+    mvp_plan = payload.get("mvp_plan", {})
+    team = payload.get("team", [])
+    startup_name = startup_profile.get("name") or startup_profile.get("startup_name") or "Startup"
+
+    fallback = build_fallback_result(payload, "Track3 API mode fallback was used.")
+    system = (
+        "You are Track C Execution Agent for a startup platform. "
+        "Return only valid JSON. Generate practical execution tasks, owner assignments, feasibility, "
+        "risks, next actions, founder decisions, and monitoring metrics. Do not include markdown."
+    )
+    prompt = f"""
+Build an execution plan for this startup.
+
+Startup profile:
+{json.dumps(startup_profile, ensure_ascii=False, indent=2)}
+
+MVP plan:
+{json.dumps(mvp_plan, ensure_ascii=False, indent=2)}
+
+Team:
+{json.dumps(team, ensure_ascii=False, indent=2)}
+
+Return JSON with this shape:
+{{
+  "executive_summary": {{
+    "startup_name": "{startup_name}",
+    "model_mode": "api",
+    "feasibility": "good|partial|high_risk",
+    "main_risk": "short risk",
+    "summary": "short summary"
+  }},
+  "founder_decisions": ["decision"],
+  "owner_action_plan": [{{"owner": "name", "next_action": "action"}}],
+  "feasibility": {{"status": "good|partial|high_risk", "risk_level": "low|medium|high", "reason": "reason"}},
+  "monitoring": {{"cadence": "cadence", "task_count": 0, "ready_count": 0, "signals": ["signal"]}},
+  "next_actions": ["action"],
+  "anomalies": ["risk"],
+  "critic_report": {{"status": "ok", "recommendations": ["recommendation"], "notes": ["note"]}},
+  "task_list": [
+    {{
+      "id": "T01",
+      "title": "task",
+      "description": "short description",
+      "priority": "high|medium|low",
+      "assigned_to": "owner",
+      "owner": "owner",
+      "status": "ready",
+      "estimated_days": 2,
+      "estimate_days": 2,
+      "milestone_title": "milestone",
+      "agent_action": "plan"
+    }}
+  ]
+}}
+"""
+
+    try:
+        generated = call_openai_compatible_json(prompt=prompt, system=system)
+    except Exception as exc:
+        return build_fallback_result(payload, f"Track3 API mode failed: {type(exc).__name__}: {exc}")
+
+    tasks = generated.get("task_list") or fallback["task_list"]
+    generated["startup_name"] = startup_name
+    generated["models"] = {
+        "mode": "api",
+        "planner": os.getenv("LLM_PLANNER_MODEL") or os.getenv("LLM_MODEL") or "api",
+        "critic": os.getenv("LLM_CRITIC_MODEL") or os.getenv("LLM_MODEL") or "api",
+    }
+    generated["executive_summary"] = {
+        **fallback["executive_summary"],
+        **(generated.get("executive_summary") or {}),
+        "model_mode": "api",
+    }
+    generated["founder_decisions"] = generated.get("founder_decisions") or fallback["founder_decisions"]
+    generated["owner_action_plan"] = generated.get("owner_action_plan") or fallback["owner_action_plan"]
+    generated["feasibility"] = generated.get("feasibility") or fallback["feasibility"]
+    generated["monitoring"] = {
+        **fallback["monitoring"],
+        **(generated.get("monitoring") or {}),
+        "task_count": len(tasks),
+        "ready_count": len([task for task in tasks if str(task.get("status", "")).lower() in {"ready", "todo"}]),
+    }
+    generated["next_actions"] = generated.get("next_actions") or [task.get("title", "") for task in tasks[:5]]
+    generated["anomalies"] = generated.get("anomalies") or []
+    generated["critic_report"] = generated.get("critic_report") or fallback["critic_report"]
+    generated["priority_queue"] = generated.get("priority_queue") or tasks
+    generated["ready_queue"] = generated.get("ready_queue") or tasks[:5]
+    generated["task_list"] = tasks
+    generated["jira"] = {"sync_enabled": False, "status": "skipped_in_api_mode"}
+    return generated
 
 
 async def run_agent(state: dict) -> dict:
