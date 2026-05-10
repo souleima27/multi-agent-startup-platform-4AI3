@@ -115,6 +115,11 @@ def track3_execution_ping(payload: dict[str, Any] | None = None) -> dict[str, An
     }
 
 
+@app.get("/track3/execution/ping")
+def track3_execution_ping_get() -> dict[str, Any]:
+    return track3_execution_ping()
+
+
 @app.post("/track3/execution/run")
 async def track3_execution_run(payload: dict[str, Any]) -> dict[str, Any]:
     if not all([build_fallback_result, build_response, merge_state, run_agent]):
