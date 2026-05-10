@@ -360,7 +360,7 @@ Exposed MCP tools: `pitch_coach_defaults`, `analyze_pitch_video`
 
 ---
 
-## Frontend — Venture Path
+## Frontend — STARTI
 
 **Directory:** `Template/`
 **Stack:** React + Vite + Supabase
@@ -571,15 +571,6 @@ dep/
 | NetworkX | Dependency graph |
 | ReportLab | PDF generation |
 
-### Infrastructure
-
-| Technology | Usage |
-|---|---|
-| Docker | Service containerization |
-| Kubernetes | Orchestration |
-| CI/CD pipelines | Continuous integration |
-
----
 
 ## Installation
 
