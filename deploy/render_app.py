@@ -3,6 +3,8 @@ from __future__ import annotations
 import os
 import sys
 import asyncio
+import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -18,6 +20,7 @@ TEMPLATE_DIR = ROOT_DIR / "Template"
 FRONTEND_DIST = ROOT_DIR / "Template" / "dist"
 
 startup_errors: dict[str, str] = {}
+track3_jobs: dict[str, dict[str, Any]] = {}
 
 
 def _unavailable(track: str):
@@ -118,6 +121,75 @@ def track3_execution_ping(payload: dict[str, Any] | None = None) -> dict[str, An
 @app.get("/track3/execution/ping")
 def track3_execution_ping_get() -> dict[str, Any]:
     return track3_execution_ping()
+
+
+async def _run_track3_job(job_id: str, payload: dict[str, Any]) -> None:
+    track3_jobs[job_id].update({"status": "running", "started_at": datetime.now(timezone.utc).isoformat()})
+
+    if not all([build_fallback_result, build_response, merge_state, run_agent]):
+        track3_jobs[job_id].update(
+            {
+                "status": "failed",
+                "error": f"track3 is unavailable: {startup_errors.get('track3', 'unknown startup error')}",
+                "finished_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+        return
+
+    try:
+        state = merge_state(payload)
+        timeout_seconds = float(os.getenv("TRACK3_JOB_TIMEOUT_SECONDS", "180"))
+        result = await asyncio.wait_for(
+            asyncio.to_thread(lambda: asyncio.run(run_agent(state))),
+            timeout=timeout_seconds,
+        )
+        track3_jobs[job_id].update(
+            {
+                "status": "completed",
+                "result": build_response(result),
+                "finished_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+    except asyncio.TimeoutError:
+        result = build_fallback_result(payload, "Track3 async execution timed out on Render.")
+        track3_jobs[job_id].update(
+            {
+                "status": "completed",
+                "result": build_response(result),
+                "warning": "Track3 async execution timed out on Render.",
+                "finished_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+    except Exception as exc:
+        result = build_fallback_result(payload, f"{type(exc).__name__}: {exc}")
+        track3_jobs[job_id].update(
+            {
+                "status": "completed",
+                "result": build_response(result),
+                "warning": f"{type(exc).__name__}: {exc}",
+                "finished_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+
+
+@app.post("/track3/execution/start")
+async def track3_execution_start(payload: dict[str, Any]) -> dict[str, Any]:
+    job_id = uuid.uuid4().hex
+    track3_jobs[job_id] = {
+        "job_id": job_id,
+        "status": "queued",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    asyncio.create_task(_run_track3_job(job_id, payload))
+    return {"ok": True, "job_id": job_id, "status": "queued"}
+
+
+@app.get("/track3/execution/status/{job_id}")
+def track3_execution_status(job_id: str) -> dict[str, Any]:
+    job = track3_jobs.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Track3 job not found")
+    return job
 
 
 @app.post("/track3/execution/run")

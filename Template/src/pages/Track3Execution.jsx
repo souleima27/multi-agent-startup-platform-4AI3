@@ -5,6 +5,8 @@ const TRACK3_EXECUTION_API_BASE_URL = getApiBase(
   import.meta.env.VITE_TRACK3_EXECUTION_API_URL || import.meta.env.VITE_API_BASE_URL
 );
 const API_URL = `${TRACK3_EXECUTION_API_BASE_URL}/track3/execution/run`;
+const START_URL = `${TRACK3_EXECUTION_API_BASE_URL}/track3/execution/start`;
+const statusUrl = (jobId) => `${TRACK3_EXECUTION_API_BASE_URL}/track3/execution/status/${jobId}`;
 
 const INITIAL_STATE = {
   startup_profile: {
@@ -116,6 +118,45 @@ function hashObject(obj) {
     hash = hash & hash;
   }
   return Math.abs(hash).toString(16).slice(0, 8);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function readJsonResponse(response) {
+  const text = await response.text();
+  if (!text) return {};
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { error: text };
+  }
+}
+
+async function waitForTrack3Job(jobId) {
+  const maxAttempts = 75;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    await sleep(attempt < 2 ? 1000 : 3000);
+
+    const response = await fetch(statusUrl(jobId));
+    const data = await readJsonResponse(response);
+
+    if (!response.ok) {
+      throw new Error(data.detail || data.error || "Track C job status failed.");
+    }
+
+    if (data.status === "completed") {
+      return data.result;
+    }
+
+    if (data.status === "failed") {
+      throw new Error(data.error || "Track C job failed.");
+    }
+  }
+
+  throw new Error("Track C job is still running. Try again in a moment.");
 }
 
 export function Track3Execution({ track }) {
@@ -247,22 +288,25 @@ export function Track3Execution({ track }) {
     setInputHash(currentInputHash);
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(START_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
 
-      const data = await response.json();
+      const startData = await readJsonResponse(response);
 
-      if (!response.ok || data.error) {
-        throw new Error(data.error || "Track C execution failed.");
+      if (!response.ok || startData.error) {
+        throw new Error(startData.detail || startData.error || "Track C execution failed.");
       }
+
+      const data = startData.job_id ? await waitForTrack3Job(startData.job_id) : startData;
 
       const enrichedReport = {
         ...data,
         _execution_meta: {
           execution_id: currentExecutionId,
+          job_id: startData.job_id,
           timestamp: executionTimestamp,
           input_hash: currentInputHash,
           startup_name: formState.startup_profile.name,
@@ -284,7 +328,7 @@ export function Track3Execution({ track }) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (runError) {
       setReport(null);
-      setError(`${runError.message || "Track C execution failed."} API: ${API_URL}`);
+      setError(`${runError.message || "Track C execution failed."} API: ${START_URL}`);
     } finally {
       setLoading(false);
     }
