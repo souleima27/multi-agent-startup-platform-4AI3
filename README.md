@@ -87,7 +87,7 @@ Tracks financial, operational, and strategic risk signals.
 The platform follows a **layered architecture designed for scalable AI agent systems**.
 
 ```
-User Interface (Venture Path — React + Vite)
+User Interface (STARTI — React + Vite)
         ↓
 Backend API Layer (FastAPI / Streamlit)
         ↓
