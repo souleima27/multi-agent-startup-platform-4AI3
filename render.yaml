@@ -23,7 +23,7 @@ services:
       - key: JIRA_SYNC_ENABLED
         value: false
       - key: TRACK3_RUN_TIMEOUT_SECONDS
-        value: 75
+        value: 25
       - key: JIRA_BASE_URL
         value: https://esprit-team-r6neq63b.atlassian.net
       - key: JIRA_USER_EMAIL

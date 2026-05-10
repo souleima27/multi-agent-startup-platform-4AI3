@@ -130,8 +130,11 @@ async def track3_execution_run(payload: dict[str, Any]) -> dict[str, Any]:
 
     try:
         state = merge_state(payload)
-        timeout_seconds = float(os.getenv("TRACK3_RUN_TIMEOUT_SECONDS", "75"))
-        result = await asyncio.wait_for(run_agent(state), timeout=timeout_seconds)
+        timeout_seconds = float(os.getenv("TRACK3_RUN_TIMEOUT_SECONDS", "25"))
+        result = await asyncio.wait_for(
+            asyncio.to_thread(lambda: asyncio.run(run_agent(state))),
+            timeout=timeout_seconds,
+        )
     except asyncio.TimeoutError:
         result = build_fallback_result(payload, "Track3 execution timed out before Render request limit.")
     except Exception as exc:
