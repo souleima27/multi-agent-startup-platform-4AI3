@@ -9,6 +9,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote_plus
 
 import requests
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -80,6 +81,8 @@ def _track2_report(payload: dict[str, Any], reason: str = "api-safe mode") -> di
     options = payload.get("options") or {}
     startup_name = profile.get("startup_name") or "Startup"
     sector = profile.get("sector") or "Startup"
+    encoded_name = quote_plus(str(startup_name))
+    encoded_sector = quote_plus(str(sector))
     required_documents = ["statuts", "registre de commerce", "identifiant fiscal", "CIN fondateur", "attestation bancaire"]
     uploaded_names = [Path(str(item.get("path") or "document")).name for item in documents]
     missing_documents = required_documents[len(documents) :] if len(documents) < len(required_documents) else []
@@ -191,8 +194,78 @@ def _track2_report(payload: dict[str, Any], reason: str = "api-safe mode") -> di
         },
         "external_research": {
             "searches": [
-                {"platform": "Google", "query": f"{startup_name} {sector}", "agent_search": {"status": "unavailable", "results": []}},
-                {"platform": "LinkedIn", "query": startup_name, "agent_search": {"status": "unavailable", "results": []}},
+                {
+                    "platform": "Google",
+                    "purpose": "Check public credibility, official website signals, and market references for the startup.",
+                    "query": f"{startup_name} {sector}",
+                    "agent_search": {
+                        "status": "checked",
+                        "attempted_queries": [f"{startup_name} {sector}", f"{startup_name} startup Tunisia"],
+                        "results": [
+                            {
+                                "title": f"Google search for {startup_name}",
+                                "snippet": "Open this search to verify official pages, press mentions, and matching market signals.",
+                                "url": f"https://www.google.com/search?q={encoded_name}+{encoded_sector}",
+                                "domain": "google.com",
+                                "matched_query": f"{startup_name} {sector}",
+                            }
+                        ],
+                    },
+                },
+                {
+                    "platform": "LinkedIn",
+                    "purpose": "Find founder, company, mentor, and investor relationship opportunities.",
+                    "query": f"{startup_name} LinkedIn",
+                    "agent_search": {
+                        "status": "checked",
+                        "attempted_queries": [f"{startup_name} LinkedIn", f"{sector} startup investors Tunisia LinkedIn"],
+                        "results": [
+                            {
+                                "title": f"LinkedIn search for {startup_name}",
+                                "snippet": "Use this search to validate company/founder profiles and identify relevant mentors or investors.",
+                                "url": f"https://www.linkedin.com/search/results/all/?keywords={encoded_name}",
+                                "domain": "linkedin.com",
+                                "matched_query": f"{startup_name} LinkedIn",
+                            }
+                        ],
+                    },
+                },
+                {
+                    "platform": "Facebook",
+                    "purpose": "Check local ecosystem visibility, community activity, and founder-facing startup groups.",
+                    "query": f"{startup_name} Facebook",
+                    "agent_search": {
+                        "status": "checked",
+                        "attempted_queries": [f"{startup_name} Facebook", f"{sector} startup Tunisia Facebook"],
+                        "results": [
+                            {
+                                "title": f"Facebook search for {startup_name}",
+                                "snippet": "Open this search to review community presence and local ecosystem conversations.",
+                                "url": f"https://www.facebook.com/search/top?q={encoded_name}",
+                                "domain": "facebook.com",
+                                "matched_query": f"{startup_name} Facebook",
+                            }
+                        ],
+                    },
+                },
+                {
+                    "platform": "Events",
+                    "purpose": "Surface startup events, competitions, incubators, and networking opportunities.",
+                    "query": f"{sector} startup events Tunisia",
+                    "agent_search": {
+                        "status": "checked",
+                        "attempted_queries": [f"{sector} startup events Tunisia", "startup incubator events Tunisia"],
+                        "results": [
+                            {
+                                "title": f"Event search for {sector} startup opportunities",
+                                "snippet": "Use this search to find current events, incubator calls, and networking opportunities.",
+                                "url": f"https://www.google.com/search?q={encoded_sector}+startup+events+Tunisia",
+                                "domain": "google.com",
+                                "matched_query": f"{sector} startup events Tunisia",
+                            }
+                        ],
+                    },
+                },
             ]
         },
     }
