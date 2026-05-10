@@ -219,18 +219,52 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
         },
         "market_existence": {
             "status": "Partially exists",
+            "existence_risk_score": 62,
+            "innovation_score": 74,
+            "confidence": "Medium",
+            "summary": "The idea addresses a real market need, but comparable alternatives likely exist. The opportunity depends on a focused niche, fast validation, and clear differentiation.",
             "evidence": [
                 "Comparable solutions usually exist in the market, so differentiation matters.",
                 "The project needs direct customer validation before scaling.",
             ],
             "market_gap": "A focused product for the chosen niche can still be valuable if execution is strong.",
-            "similar_solutions": [
-                {"name": "Existing service providers", "similarity_to_startup": "Medium", "notes": "Manual or consulting-based alternatives."}
+            "relevant_existing_solutions": [
+                {
+                    "name": "Manual consultants and agencies",
+                    "category": "Service alternative",
+                    "relevance_confidence": "Medium",
+                    "similarity_to_startup": "Medium",
+                    "notes": "Customers can already solve part of the problem manually, but automation can improve speed and consistency.",
+                },
+                {
+                    "name": "Generic SaaS tools",
+                    "category": "Software alternative",
+                    "relevance_confidence": "Medium",
+                    "similarity_to_startup": "Low to Medium",
+                    "notes": "General tools may cover workflows but usually lack the startup-specific focus.",
+                },
+            ],
+            "uncertainty_notes": [
+                "Run direct customer interviews to confirm urgency.",
+                "Validate willingness to pay before building advanced features.",
             ],
         },
         "mvp": {
+            "mvp_summary": "Launch a narrow MVP that proves the core workflow with a small group of target users before adding automations and integrations.",
             "recommended_scope": mvp_payload.get("core_features") or ["Landing page", "User onboarding", "Core workflow", "Admin dashboard"],
-            "must_have_features": mvp_payload.get("core_features") or ["Core workflow", "Basic reporting"],
+            "must_haves": mvp_payload.get("core_features") or ["Core workflow", "Basic reporting", "User onboarding"],
+            "acceptance_criteria": [
+                "A target user can complete the core workflow without assistance.",
+                "The founder can review activity and collect feedback.",
+                "At least 5 pilot users complete a test scenario.",
+            ],
+            "user_journey": [
+                {"step": "Discover", "description": "User understands the value proposition from a simple landing page."},
+                {"step": "Onboard", "description": "User creates a profile and enters the minimum required data."},
+                {"step": "Use core workflow", "description": "User completes the main task and receives a useful output."},
+                {"step": "Feedback", "description": "Founder collects objections, missing features, and willingness to pay."},
+            ],
+            "out_of_scope": ["Advanced analytics", "Complex integrations", "Multi-country compliance"],
             "nice_to_have_features": ["Automation", "Advanced analytics", "Integrations"],
             "launch_timeline": mvp_payload.get("launch_timeline") or "6-8 weeks",
             "validation_plan": [
@@ -240,6 +274,23 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             ],
         },
         "operations": {
+            "minimum_roles_responsibilities": [
+                {
+                    "role": "Product owner",
+                    "responsibilities": ["Define MVP scope", "Run interviews", "Prioritize backlog"],
+                    "necessity_level": "critical",
+                },
+                {
+                    "role": "Full-stack developer",
+                    "responsibilities": ["Build core workflow", "Deploy and monitor app", "Fix pilot issues"],
+                    "necessity_level": "critical",
+                },
+                {
+                    "role": "Domain advisor",
+                    "responsibilities": ["Validate legal/business assumptions", "Review risks"],
+                    "necessity_level": "important",
+                },
+            ],
             "team_needs": [
                 "Product owner",
                 "Full-stack developer",
@@ -250,8 +301,27 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             else "Pilot customers and expert advisors",
             "main_costs": ["Hosting", "Development", "Customer acquisition", "Legal setup"],
             "operational_risks": ["Slow user validation", "Unclear pricing", "Limited founder bandwidth"],
+            "materials_equipment": ["Laptop", "Cloud hosting", "Domain name", "Analytics account"],
+            "tools_stack": ["React frontend", "FastAPI backend", "Render hosting", "External LLM API"],
+            "important_operational_notes": [
+                "Keep the first pilot small and measurable.",
+                "Document user objections after every test.",
+                "Avoid adding integrations before validating the core workflow.",
+            ],
         },
         "finance": {
+            "expected_monthly_revenue": {"value": "1,500-4,000 TND"},
+            "payback_months": {"value": "4-8"},
+            "suggested_price": {"range_tnd": "49-149 TND/month"},
+            "employees_and_wages": [
+                {"role": "Product owner", "necessity_level": "critical", "monthly_wage_range_tnd": "1200-2500"},
+                {"role": "Full-stack developer", "necessity_level": "critical", "monthly_wage_range_tnd": "1800-3500"},
+                {"role": "Domain advisor", "necessity_level": "important", "monthly_wage_range_tnd": "500-1500"},
+            ],
+            "tools_materials_ops_costs": {"hosting": "80-250 TND/month", "domain": "40-100 TND/year", "LLM API": "usage-based"},
+            "monthly_costs": {"lean": "1000-2500 TND", "growth": "3000-6000 TND"},
+            "one_time_costs": {"prototype": "3000-8000 TND", "legal setup": "500-1500 TND"},
+            "price_realism": {"status": "Medium", "note": "Pricing must be tested with real pilot users."},
             "startup_cost_estimate": payload.get("finance", {}).get("startup_costs", "Low to medium")
             if isinstance(payload.get("finance"), dict)
             else "Low to medium",
@@ -262,12 +332,17 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             if isinstance(payload.get("finance"), dict)
             else "Validate before fundraising",
             "revenue_notes": "Start with one clear paid offer and validate willingness to pay.",
+            "missing_or_uncertain_parts": ["Customer acquisition cost", "Conversion rate", "Exact willingness to pay"],
         },
         "legal_and_compliance": {
             "country": legal_payload.get("country", "Tunisia") if isinstance(legal_payload, dict) else "Tunisia",
             "risk_level": "Medium",
             "legal_needs": ["Company registration", "Terms and privacy policy", "Data handling review"],
             "compliance_notes": "Confirm sector-specific obligations with a local advisor before launch.",
+            "legal_compliance_checklist": ["Choose legal form", "Prepare terms and privacy notice", "Review data handling", "Register company when pilot is validated"],
+            "trust_requirements": ["Transparent pricing", "Clear data use policy", "Human support channel"],
+            "special_operational_constraints": ["Avoid regulated claims until reviewed", "Store customer data carefully"],
+            "filtered_summary": ["Medium legal risk", "Needs advisor review before public launch"],
         },
         "final_verdict": {
             "is_startup_promising": "Yes",
@@ -283,12 +358,17 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
                 "Needs clearer pricing validation",
                 "Legal and operational details should be confirmed",
             ],
-            "next_steps": [
+            "recommended_next_steps": [
                 "Run customer interviews this week",
                 "Define the smallest paid MVP",
                 "Prepare legal checklist and launch metrics",
             ],
         },
+        "uncertainty_flags": [
+            "Market demand is not proven yet.",
+            "Pricing assumptions need validation.",
+            "Legal obligations should be reviewed by a qualified advisor.",
+        ],
         "metadata": {
             "mode": "render_api_safe",
             "generated_at": datetime.now(timezone.utc).isoformat(),
