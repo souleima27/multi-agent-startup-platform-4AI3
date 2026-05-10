@@ -198,6 +198,104 @@ def _track2_report(payload: dict[str, Any], reason: str = "api-safe mode") -> di
     }
 
 
+def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
+    idea = str(payload.get("startup_idea") or payload.get("idea_description") or "Startup idea").strip()
+    description = str(payload.get("idea_description") or idea).strip()
+    problem = str(payload.get("problem") or "The target users have an unresolved operational pain.").strip()
+    target = payload.get("target_customer") or {}
+    business = payload.get("business_model") or {}
+    mvp_payload = payload.get("mvp") or {}
+    legal_payload = payload.get("legal") or {}
+    industry = str(payload.get("industry") or payload.get("sector") or "technology")
+    target_text = ", ".join(str(value) for value in target.values() if value) or "Early adopters"
+
+    return {
+        "startup_summary": {
+            "idea": idea,
+            "problem": problem,
+            "how_it_works": payload.get("how_it_works_one_sentence") or description,
+            "target_customer": target_text,
+            "business_model": ", ".join(str(value) for value in business.values() if value) or "Subscription or service revenue",
+        },
+        "market_existence": {
+            "status": "Partially exists",
+            "evidence": [
+                "Comparable solutions usually exist in the market, so differentiation matters.",
+                "The project needs direct customer validation before scaling.",
+            ],
+            "market_gap": "A focused product for the chosen niche can still be valuable if execution is strong.",
+            "similar_solutions": [
+                {"name": "Existing service providers", "similarity_to_startup": "Medium", "notes": "Manual or consulting-based alternatives."}
+            ],
+        },
+        "mvp": {
+            "recommended_scope": mvp_payload.get("core_features") or ["Landing page", "User onboarding", "Core workflow", "Admin dashboard"],
+            "must_have_features": mvp_payload.get("core_features") or ["Core workflow", "Basic reporting"],
+            "nice_to_have_features": ["Automation", "Advanced analytics", "Integrations"],
+            "launch_timeline": mvp_payload.get("launch_timeline") or "6-8 weeks",
+            "validation_plan": [
+                "Interview 10 target users",
+                "Launch a simple pilot",
+                "Measure conversion, retention, and willingness to pay",
+            ],
+        },
+        "operations": {
+            "team_needs": [
+                "Product owner",
+                "Full-stack developer",
+                "Domain advisor",
+            ],
+            "key_partners": payload.get("operations", {}).get("key_partners", "Pilot customers and expert advisors")
+            if isinstance(payload.get("operations"), dict)
+            else "Pilot customers and expert advisors",
+            "main_costs": ["Hosting", "Development", "Customer acquisition", "Legal setup"],
+            "operational_risks": ["Slow user validation", "Unclear pricing", "Limited founder bandwidth"],
+        },
+        "finance": {
+            "startup_cost_estimate": payload.get("finance", {}).get("startup_costs", "Low to medium")
+            if isinstance(payload.get("finance"), dict)
+            else "Low to medium",
+            "monthly_cost_estimate": payload.get("finance", {}).get("monthly_costs", "Depends on hosting and acquisition")
+            if isinstance(payload.get("finance"), dict)
+            else "Depends on hosting and acquisition",
+            "funding_needed": payload.get("finance", {}).get("funding_needed", "Validate before fundraising")
+            if isinstance(payload.get("finance"), dict)
+            else "Validate before fundraising",
+            "revenue_notes": "Start with one clear paid offer and validate willingness to pay.",
+        },
+        "legal_and_compliance": {
+            "country": legal_payload.get("country", "Tunisia") if isinstance(legal_payload, dict) else "Tunisia",
+            "risk_level": "Medium",
+            "legal_needs": ["Company registration", "Terms and privacy policy", "Data handling review"],
+            "compliance_notes": "Confirm sector-specific obligations with a local advisor before launch.",
+        },
+        "final_verdict": {
+            "is_startup_promising": "Yes",
+            "is_feasible": "Yes",
+            "overall_score": 74,
+            "main_strengths": [
+                f"Clear problem area in {industry}",
+                "Can be tested with a focused MVP",
+                "Has room for differentiation through execution",
+            ],
+            "main_weaknesses": [
+                "Needs stronger market proof",
+                "Needs clearer pricing validation",
+                "Legal and operational details should be confirmed",
+            ],
+            "next_steps": [
+                "Run customer interviews this week",
+                "Define the smallest paid MVP",
+                "Prepare legal checklist and launch metrics",
+            ],
+        },
+        "metadata": {
+            "mode": "render_api_safe",
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+        },
+    }
+
+
 try:
     sys.path.insert(0, str(TRACK2_DIR))
     from app.api.main import app as track2_app  # noqa: E402
@@ -283,6 +381,16 @@ async def render_track2_upload(files: list[UploadFile] = File(...)) -> dict[str,
 @app.post("/track2/run")
 def render_track2_run(payload: dict[str, Any]) -> dict[str, Any]:
     return _track2_report(payload)
+
+
+@app.post("/track1/analyze")
+def render_track1_analyze(payload: dict[str, Any]) -> dict[str, Any]:
+    return _track1_report(payload)
+
+
+@app.get("/track1/report")
+def render_track1_report() -> dict[str, Any]:
+    return _track1_report({"startup_idea": "Sample startup", "idea_description": "Sample Track A report"})
 
 
 @app.get("/track3/health")
