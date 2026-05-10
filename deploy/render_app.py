@@ -36,6 +36,168 @@ def _unavailable(track: str):
     return endpoint
 
 
+def _track2_sample_payload() -> dict[str, Any]:
+    return {
+        "startup_profile": {
+            "startup_name": "Neuronix Legal AI",
+            "sector": "AI SaaS",
+            "activity_description": "AI platform for startup legal guidance and compliance automation.",
+            "founders_count": 3,
+            "funding_need_tnd": 250000,
+            "wants_investors": True,
+            "needs_limited_liability": True,
+            "has_foreign_investors": False,
+            "innovative": True,
+            "scalable": True,
+            "uses_technology": True,
+            "associates": [{"name": "Founder", "role": "CEO", "equity_pct": 100, "active": True}],
+        },
+        "documents": [
+            {"path": "sample_statuts.pdf", "declared_type": "statuts"},
+            {"path": "sample_rc.pdf", "declared_type": "rc"},
+            {"path": "sample_if.pdf", "declared_type": "if"},
+        ],
+        "label_input": {
+            "startup_name": "Neuronix Legal AI",
+            "transcript": "Neuronix Legal AI helps founders automate legal readiness and investor documentation.",
+            "slide_text": "AI legal compliance platform for startups.",
+            "sector": "AI SaaS",
+            "traction_signals": ["prototype ready", "advisor interviews"],
+            "team_signals": ["technical founder", "legal mentor"],
+            "pitch_notes": ["clear compliance use case"],
+        },
+        "options": {
+            "strict_mode": True,
+            "generate_json_report": False,
+            "generate_pdf_report": False,
+        },
+    }
+
+
+def _track2_report(payload: dict[str, Any], reason: str = "api-safe mode") -> dict[str, Any]:
+    profile = payload.get("startup_profile") or {}
+    documents = payload.get("documents") or []
+    options = payload.get("options") or {}
+    startup_name = profile.get("startup_name") or "Startup"
+    sector = profile.get("sector") or "Startup"
+    required_documents = ["statuts", "registre de commerce", "identifiant fiscal", "CIN fondateur", "attestation bancaire"]
+    uploaded_names = [Path(str(item.get("path") or "document")).name for item in documents]
+    missing_documents = required_documents[len(documents) :] if len(documents) < len(required_documents) else []
+    completeness = min(100, round((len(documents) / len(required_documents)) * 100))
+    startup_act_score = 82 if profile.get("innovative") and profile.get("scalable") and profile.get("uses_technology") else 58
+    risk_score = 25 if completeness >= 80 else 55
+    strict_mode = bool(options.get("strict_mode", True))
+    strict_fail = bool(missing_documents and strict_mode)
+    final_decision = "PASS" if not strict_fail and startup_act_score >= 70 else "WARNING"
+
+    return {
+        "strategic_agent": {
+            "recommended_legal_form": "SARL" if profile.get("wants_investors") else "SUARL",
+            "startup_act_eligibility_score": startup_act_score,
+            "startup_label_probability": startup_act_score,
+            "startup_label_multimodal": {
+                "innovation_score": 82 if profile.get("innovative") else 55,
+                "scalability_score": 80 if profile.get("scalable") else 50,
+                "tech_intensity_score": 84 if profile.get("uses_technology") else 45,
+                "storytelling_score": 70,
+                "approval_probability": startup_act_score,
+                "strengths": ["Clear sector positioning", "Technology-enabled activity"],
+                "weaknesses": ["Document evidence needs completion"],
+                "recommendations": ["Attach all legal evidence before final submission"],
+            },
+            "sector_classification": sector,
+            "founders_structure": f"{profile.get('founders_count') or 1} founder(s)",
+            "funding_analysis": f"Funding need: {profile.get('funding_need_tnd') or 0} TND",
+            "regulatory_compatibility": "compatible",
+            "required_documents": required_documents,
+            "pitch_score": 70,
+            "pitch_summary": "Pitch context is sufficient for a first legal readiness review.",
+            "pitch_strengths": ["Problem and sector are identifiable"],
+            "pitch_weaknesses": ["Add traction and ask details"],
+            "pitch_recommendations": ["Clarify investor ask and pilot milestones"],
+            "associate_structure_summary": "Founder structure should be confirmed in statuts.",
+            "associate_roles": [item.get("role", "Founder") for item in profile.get("associates", [])],
+            "associate_recommendations": ["Confirm equity split and active founder responsibilities"],
+            "institutions": ["RNE", "Recette des finances", "Banque", "Startup Act portal"],
+            "checklist": [
+                {
+                    "step_no": 1,
+                    "title": "Complete legal document pack",
+                    "institution": "Founder",
+                    "estimated_delay_days": 2,
+                    "depends_on": [],
+                    "deliverables": missing_documents or ["Validated legal file"],
+                },
+                {
+                    "step_no": 2,
+                    "title": "Validate legal form and registration path",
+                    "institution": "RNE",
+                    "estimated_delay_days": 4,
+                    "depends_on": [1],
+                    "deliverables": ["Legal form decision", "Registration checklist"],
+                },
+            ],
+            "rationale": [
+                f"{startup_name} is classified in {sector}.",
+                f"Track B generated an API-safe report: {reason}.",
+                "The recommendation prioritizes limited liability and investor readiness.",
+            ],
+            "reasoning_trace": ["render_api_safe_track2"],
+            "actions": [{"action": "Review uploaded documents", "status": "suggested", "details": "Complete missing evidence before filing."}],
+        },
+        "document_agent": {
+            "documents": [
+                {
+                    "file_name": name,
+                    "document_type": (documents[index].get("declared_type") if isinstance(documents[index], dict) else None) or "unknown",
+                    "source_format": "other",
+                    "signature_present": None,
+                    "stamp_present": None,
+                    "quality": "n_a",
+                    "completeness_score": 75,
+                    "issues": [],
+                    "extracted_text_preview": "",
+                    "suggested_fix": "",
+                    "corrected_declared_type": documents[index].get("declared_type") if isinstance(documents[index], dict) else None,
+                    "auto_correction_applied": False,
+                    "diagnostic": None,
+                }
+                for index, name in enumerate(uploaded_names)
+            ],
+            "overall_completeness_score": completeness,
+            "missing_documents": missing_documents,
+            "cross_document_issues": [],
+            "cross_document_validations": [],
+            "categorized_documents": {"uploaded": uploaded_names},
+            "version_tracking": {name: "v1" for name in uploaded_names},
+            "suggested_folders": ["legal", "tax", "identity"],
+            "reasoning_trace": ["render_api_safe_document_review"],
+            "actions": [{"action": "Collect missing documents", "status": "suggested", "details": ", ".join(missing_documents) or "No missing documents."}],
+            "document_actions": [],
+            "question_answers": [],
+            "global_risk_score": risk_score,
+            "global_priority_action": "Complete missing legal evidence" if missing_documents else "Prepare submission package",
+            "strict_fail": strict_fail,
+            "strict_violations": missing_documents,
+        },
+        "final_output": {
+            "final_decision": final_decision,
+            "go_no_go": "NO_GO" if strict_fail else "GO",
+            "strict_mode": strict_mode,
+            "strict_fail": strict_fail,
+            "label_score": startup_act_score,
+            "user_message": "Track B generated a legal readiness report.",
+            "recommendations": ["Complete evidence pack", "Validate legal form with advisor", "Prepare Startup Act submission"],
+        },
+        "external_research": {
+            "searches": [
+                {"platform": "Google", "query": f"{startup_name} {sector}", "agent_search": {"status": "unavailable", "results": []}},
+                {"platform": "LinkedIn", "query": startup_name, "agent_search": {"status": "unavailable", "results": []}},
+            ]
+        },
+    }
+
+
 try:
     sys.path.insert(0, str(TRACK2_DIR))
     from app.api.main import app as track2_app  # noqa: E402
@@ -94,6 +256,33 @@ def health() -> dict[str, Any]:
         "service": "startup-platform-api",
         "startup_errors": startup_errors,
     }
+
+
+@app.get("/track2/sample")
+def render_track2_sample() -> dict[str, Any]:
+    return _track2_sample_payload()
+
+
+@app.post("/track2/upload")
+async def render_track2_upload(files: list[UploadFile] = File(...)) -> dict[str, Any]:
+    documents = []
+    for file in files:
+        content = await file.read()
+        safe_name = Path(file.filename or "document").name
+        documents.append(
+            {
+                "file_name": safe_name,
+                "path": f"uploaded/{uuid.uuid4().hex}_{safe_name}",
+                "declared_type": None,
+                "size_kb": round(len(content) / 1024),
+            }
+        )
+    return {"documents": documents}
+
+
+@app.post("/track2/run")
+def render_track2_run(payload: dict[str, Any]) -> dict[str, Any]:
+    return _track2_report(payload)
 
 
 @app.get("/track3/health")
