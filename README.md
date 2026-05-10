@@ -2,6 +2,8 @@
 
 ### Multi-Agent AI Platform for Startup Creation, Validation, and Growth
 
+> **This project, Startup AI Operating System, was developed as part of the coursework for the Software Engineering program at [Esprit School of Engineering](https://esprit.tn).** It was built to explore the intersection of multi-agent AI systems, startup ecosystems, and intelligent automation for entrepreneurship.
+
 An **intelligent multi-agent platform** that helps founders transform startup ideas into viable businesses by combining **multimodal AI, structured reasoning agents, and ecosystem intelligence**.
 
 The system evaluates startup feasibility, guides legal setup, generates execution plans, optimizes pitches, and connects founders with investors and mentors.
@@ -10,9 +12,27 @@ This project implements a **modular AI architecture where specialized agents col
 
 ---
 
+## Topics
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Artificial Intelligence](https://img.shields.io/badge/artificial--intelligence-%23FF6F00?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/machine--learning-%2300C853?style=for-the-badge)
+![Multi-Agent Systems](https://img.shields.io/badge/multi--agent--systems-%23673AB7?style=for-the-badge)
+![Web Development](https://img.shields.io/badge/web--development-%23E44D26?style=for-the-badge)
+![Data Analysis](https://img.shields.io/badge/data--analysis-%230288D1?style=for-the-badge)
+![Deep Learning](https://img.shields.io/badge/deep--learning-%23FF5722?style=for-the-badge)
+![NLP](https://img.shields.io/badge/nlp-%234CAF50?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+**GitHub Topics:** `python` · `artificial-intelligence` · `machine-learning` · `multi-agent-systems` · `deep-learning` · `nlp` · `web-development` · `data-analysis` · `fastapi` · `react` · `startup` · `llm` · `automation` · `esprit-school-of-engineering`
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)
+- [Academic Context](#academic-context)
 - [Key Features](#key-features)
 - [System Architecture](#system-architecture)
 - [AI Tracks](#ai-tracks)
@@ -26,8 +46,10 @@ This project implements a **modular AI architecture where specialized agents col
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
 - [Running the System](#running-the-system)
+- [Hosting & Deployment](#hosting--deployment)
 - [Development Workflow](#development-workflow)
 - [Example Workflow](#example-workflow)
+- [Acknowledgments](#acknowledgments)
 - [License](#license)
 
 ---
@@ -36,21 +58,37 @@ This project implements a **modular AI architecture where specialized agents col
 
 Building a startup requires navigating multiple complex dimensions simultaneously:
 
-- Idea validation
-- Market analysis
-- Financial planning
-- Legal setup
-- Product execution
-- Investor networking
+- Idea validation and market analysis
+- Financial planning and revenue projections
+- Legal setup and regulatory compliance
+- Product execution and task automation
+- Investor networking and pitch optimization
 
-This platform acts as a **Startup Operating System**, coordinating multiple AI agents to support founders throughout the entire lifecycle of their startup.
+This platform acts as a **Startup Operating System**, coordinating multiple AI agents to support founders throughout the entire lifecycle of their startup — from idea to execution.
 
 The system integrates:
 
 - **Multimodal data ingestion** (text, PDF, images, audio, slides)
-- **Knowledge graph-based memory**
+- **Knowledge graph-based memory** for ecosystem reasoning
 - **Agent orchestration via A2A and MCP protocols**
-- **Automated reasoning workflows**
+- **Automated reasoning workflows** powered by LLMs (Large Language Models)
+- **Real-time Jira synchronization** for agile project management
+- **Natural Language Processing (NLP)** for pitch analysis and document understanding
+
+---
+
+## Academic Context
+
+This project was developed as part of the **Software Engineering** program at **Esprit School of Engineering**, Tunisia.
+
+It was designed to demonstrate the practical application of:
+- **Artificial Intelligence** and **machine learning** in entrepreneurship support tools
+- **Multi-agent system design** using A2A (Agent-to-Agent) and MCP (Model Context Protocol) architectures
+- **Full-stack web development** with React, Vite, FastAPI, and Streamlit
+- **Data analysis** and **data visualization** for startup metrics and feasibility scoring
+- **Deep learning** models for audio transcription, vocal analysis, and document OCR
+
+> **Esprit School of Engineering** — Building tomorrow's engineers through innovation and practical excellence.
 
 ---
 
@@ -58,57 +96,57 @@ The system integrates:
 
 ### AI Feasibility Analysis
 
-Evaluates startup ideas through market, financial, and strategic analysis. Produces a feasibility score, market opportunity analysis, MVP roadmap, and a GO / ITERATE / NO-GO decision.
+Evaluates startup ideas through **market analysis**, financial modeling, and strategic reasoning. Produces a feasibility score, market opportunity analysis, MVP roadmap, and a GO / ITERATE / NO-GO decision. Leverages **machine learning** and **data analysis** to benchmark against existing solutions.
 
 ### Legal Navigation
 
-Guides founders through the startup legal structure and Tunisian regulatory requirements, including eligibility for the **Startup Act** and the probability of obtaining the **Startup Label**.
+Guides founders through the startup legal structure and Tunisian regulatory requirements, including eligibility for the **Startup Act** and the probability of obtaining the **Startup Label**. Uses intelligent document analysis with **OCR** and **NLP**.
 
 ### Automated Execution Planning
 
-Generates MVP plans, sprints, and operational workflows, assigns tasks to team members, and synchronizes with **Jira** via MCP.
+Generates MVP plans, sprints, and operational workflows using **AI-driven task automation**. Assigns tasks to team members based on skills and availability, and synchronizes with **Jira** via MCP for agile project management.
 
 ### Pitch Optimization
 
-Analyzes pitch videos, audio, and slides to improve investor communication. Generates detailed coaching reports in JSON, Markdown, and PDF.
+Analyzes pitch videos, audio, and slides to improve investor communication. Leverages **deep learning** (Whisper, MediaPipe) and **NLP** to generate detailed coaching reports in JSON, Markdown, and PDF formats.
 
 ### Investor & Mentor Matching
 
-Identifies relevant investors, mentors, and networking opportunities.
+Identifies relevant investors, mentors, and networking opportunities using **AI-based recommendation** and ecosystem intelligence.
 
 ### Continuous Risk Monitoring
 
-Tracks financial, operational, and strategic risk signals.
+Tracks financial, operational, and strategic risk signals using **data analysis** and scoring algorithms.
 
 ---
 
 ## System Architecture
 
-The platform follows a **layered architecture designed for scalable AI agent systems**.
+The platform follows a **layered architecture designed for scalable AI agent systems** and **cloud-native deployment**.
 
 ```
 User Interface (STARTI — React + Vite)
         ↓
 Backend API Layer (FastAPI / Streamlit)
         ↓
-Multimodal Processing Layer
+Multimodal Processing Layer (NLP, OCR, Audio, Vision)
         ↓
-Startup_State Memory System
+Startup_State Memory System (Graph + Vector + JSON)
         ↓
 Agent Orchestration Layer (A2A + MCP)
         ↓
-Track-Based Agent Execution
+Track-Based Agent Execution (Python AI Agents)
         ↓
 Decision & Monitoring Layer
 ```
 
-Each layer plays a specialized role in transforming founder inputs into actionable startup insights.
+Each layer plays a specialized role in transforming founder inputs into actionable startup insights using **artificial intelligence** and **automation**.
 
 ---
 
 ## AI Tracks
 
-The system organizes AI capabilities into **three specialized tracks**.
+The system organizes AI capabilities into **three specialized tracks**, each powered by dedicated **Python** AI agents and **machine learning** pipelines.
 
 ---
 
@@ -118,7 +156,7 @@ The system organizes AI capabilities into **three specialized tracks**.
 **Interface:** Streamlit application (`app.py`)
 **Pipeline:** `final_startup_report_pipeline.py` → `final_reporter.py`
 
-Evaluates the startup concept and determines business viability.
+Evaluates the startup concept and determines business viability using **market analysis**, **data analysis**, and **AI-driven feasibility scoring**.
 
 #### Included Agents
 
@@ -163,7 +201,7 @@ streamlit run app.py
 **API:** FastAPI (`app/api/main.py`)
 **CLI Runner:** `app/run/run_agent2.py`
 
-Guides founders through startup creation and Tunisian regulatory processes.
+Guides founders through startup creation and Tunisian regulatory processes using **intelligent document analysis**, **NLP**, and **OCR** technology.
 
 #### Included Agents
 
@@ -234,7 +272,7 @@ LLM_TIMEOUT_SECONDS=120
 
 **Directory:** `Track3/`
 
-This track is composed of **two sub-systems**:
+This track is composed of **two sub-systems** for full startup execution support and **pitch analysis**.
 
 ---
 
@@ -243,7 +281,7 @@ This track is composed of **two sub-systems**:
 **Directory:** `Track3/ExecutionAgent/`
 **Entry point:** `execution_agent_with_mcp.py`
 
-An AI project management agent that transforms a startup MVP plan into a structured, trackable execution workflow.
+An **AI project management agent** that transforms a startup MVP plan into a structured, trackable execution workflow. Combines **multi-agent systems**, **automation**, and **Jira integration** for real-time task management.
 
 ##### Local A2A Agents
 
@@ -268,13 +306,13 @@ fetch_jira_updates   — fetch Jira updates
 
 ##### Features
 
-- Automatic milestone and task generation
-- Duration estimation and priority scoring
-- Dependency graph construction (NetworkX)
+- Automatic milestone and task generation using **AI planning**
+- Duration estimation and priority scoring via **machine learning**
+- Dependency graph construction (NetworkX) — **data visualization**
 - Task assignment based on skills and availability
 - Anomaly detection (blocked tasks, overloaded members)
-- Jira synchronization via MCP
-- Pattern retrieval from a local knowledge base (Sentence Transformers + Cross Encoder)
+- Jira synchronization via MCP for **agile automation**
+- Pattern retrieval from a local knowledge base (Sentence Transformers + Cross Encoder) — **deep learning**
 - PDF report generation (ReportLab)
 
 ##### Launch
@@ -319,17 +357,17 @@ JIRA_PROJECT_KEY=KAN
 **Directory:** `Track3/pitch/`
 **Entry point:** `agentic_pitch_coach.py`
 
-A local Python tool that analyzes a pitch video and produces detailed coaching based on the transcript, delivery signals, visual cues, and vocal assurance.
+A local **Python** tool that analyzes a pitch video and produces detailed coaching based on the transcript, delivery signals, visual cues, and vocal assurance. Powered by **deep learning**, **NLP**, and **multimodal AI processing**.
 
 ##### Analysis Pipeline
 
 1. Audio extraction from the local video
-2. Transcription with `faster-whisper`
-3. Delivery scoring (pace, filler words, energy, sentence length)
-4. Content and narrative analysis via OpenAI-compatible LLM
-5. *(Optional)* Video frame analysis with OpenCV and MediaPipe
-6. *(Optional)* Vocal assurance timeline with a Hugging Face model
-7. JSON, Markdown, and PDF report generation
+2. Transcription with `faster-whisper` — **speech recognition / deep learning**
+3. Delivery scoring (pace, filler words, energy, sentence length) — **NLP / data analysis**
+4. Content and narrative analysis via OpenAI-compatible LLM — **artificial intelligence**
+5. *(Optional)* Video frame analysis with OpenCV and MediaPipe — **computer vision**
+6. *(Optional)* Vocal assurance timeline with a Hugging Face model — **machine learning**
+7. JSON, Markdown, and PDF report generation — **data visualization**
 
 ##### Available Coaching Modes
 
@@ -363,9 +401,9 @@ Exposed MCP tools: `pitch_coach_defaults`, `analyze_pitch_video`
 ## Frontend — STARTI
 
 **Directory:** `Template/`
-**Stack:** React + Vite 
+**Stack:** React + Vite
 
-Modern landing page for the platform with user and data management.
+Modern landing page for the platform with user and data management. Implements **responsive web development** best practices with dark mode and micro-interactions.
 
 ### Features
 
@@ -389,7 +427,7 @@ npm run dev
 
 ## Multimodal Processing
 
-The system accepts multiple input types.
+The system accepts multiple input types, enabling **multimodal AI** analysis across text, audio, visual, and document data.
 
 ### Supported Inputs
 
@@ -402,28 +440,28 @@ The system accepts multiple input types.
 
 ### Processing Pipelines
 
-**Audio**
+**Audio — Speech Recognition & Deep Learning**
 - Speech-to-text transcription (`faster-whisper`)
-- Sentiment analysis
-- Vocal confidence detection
+- Sentiment analysis via **NLP**
+- Vocal confidence detection with **machine learning**
 
-**Documents**
-- OCR extraction (`pytesseract`)
+**Documents — OCR & NLP**
+- OCR extraction (`pytesseract`) — **data extraction / automation**
 - Layout parsing
 - Financial data extraction (PDF, DOCX, PPTX)
 
-**Slides & Images**
+**Slides & Images — Computer Vision**
 - Visual structure detection
-- Chart analysis
-- Image-text embeddings
+- Chart analysis — **data visualization**
+- Image-text embeddings via **deep learning**
 
-All extracted information is converted into structured semantic blocks used by the agent system.
+All extracted information is converted into structured semantic blocks used by the **multi-agent** system.
 
 ---
 
 ## Startup_State Memory System
 
-The platform maintains a **context-augmented memory system** combining three storage layers.
+The platform maintains a **context-augmented memory system** combining three storage layers for intelligent **data analysis** and retrieval.
 
 ### Graph Memory
 
@@ -434,7 +472,7 @@ Stores relationships between entities:
 - competitors
 - investors
 
-Used for ecosystem reasoning.
+Used for ecosystem reasoning and **knowledge graph** traversal.
 
 ### Vector Memory
 
@@ -444,7 +482,7 @@ Stores semantic embeddings for:
 - legal statements
 - investor interactions
 
-Used for contextual retrieval.
+Used for contextual retrieval via **semantic search** and **NLP**.
 
 ### Structured State (startup_state.json)
 
@@ -455,7 +493,7 @@ Stores system metrics:
 - milestone progress
 - risk flags
 
-Each memory update includes timestamps and confidence scores to maintain consistency.
+Each memory update includes timestamps and confidence scores to maintain consistency and enable **data analysis** over time.
 
 ---
 
@@ -530,37 +568,37 @@ multi-agent-startup-platform-4AI3/
 
 ## Technology Stack
 
-### Frontend
+### Frontend — Web Development
 
 | Technology | Usage |
 |---|---|
-| React + Vite | Venture Path user interface |
+| React + Vite | Venture Path user interface — **web development** |
 | Supabase | Auth, database, storage |
 | CSS (vanilla) | Styles, dark mode, animations |
 
-### Backend & Agents
+### Backend & Agents — Python & AI
 
 | Technology | Usage |
 |---|---|
-| Python | AI agents, pipelines, API |
-| FastAPI | Track B REST API |
-| Streamlit | Track A interface |
-| A2A Protocol | Inter-agent communication bus |
+| Python | AI agents, pipelines, API — **core language** |
+| FastAPI | Track B REST API — **web development / automation** |
+| Streamlit | Track A interface — **data visualization** |
+| A2A Protocol | Inter-agent communication bus — **multi-agent systems** |
 | MCP (Model Context Protocol) | Bridge between agents and external tools |
-| Jira REST API | Task synchronization |
+| Jira REST API | Task synchronization — **automation** |
 
-### AI & Data
+### AI & Data — Machine Learning & Deep Learning
 
 | Technology | Usage |
 |---|---|
-| OpenAI-compatible LLM | Reasoning and generation (Ollama, vLLM) |
-| faster-whisper | Audio transcription |
-| Sentence Transformers | Semantic embeddings |
-| Cross Encoder | Retrieval reranking |
-| MediaPipe + OpenCV | Pitch visual analysis |
-| pytesseract | Document OCR |
-| NetworkX | Dependency graph |
-| ReportLab | PDF generation |
+| OpenAI-compatible LLM | Reasoning and generation — **artificial intelligence** (Ollama, vLLM) |
+| faster-whisper | Audio transcription — **deep learning / speech recognition** |
+| Sentence Transformers | Semantic embeddings — **NLP / machine learning** |
+| Cross Encoder | Retrieval reranking — **deep learning** |
+| MediaPipe + OpenCV | Pitch visual analysis — **computer vision** |
+| pytesseract | Document OCR — **data extraction** |
+| NetworkX | Dependency graph — **data analysis / data visualization** |
+| ReportLab | PDF generation — **automation** |
 
 
 ## Installation
@@ -639,6 +677,41 @@ npm run dev
 
 ---
 
+## Hosting & Deployment
+
+This project is hosted as a **public GitHub repository** and leverages the **GitHub Education for Students** program for cloud deployment benefits.
+
+### GitHub Education — Student Benefits
+
+As a student at **Esprit School of Engineering**, this project takes advantage of the [GitHub Education Student Developer Pack](https://education.github.com/pack), which provides access to industry-leading hosting and infrastructure platforms:
+
+| Platform | Benefit | Usage in this Project |
+|---|---|---|
+| **Heroku** | Free Dyno credits | Backend API deployment (FastAPI, Streamlit) |
+| **DigitalOcean** | $200 free credit | VPS hosting for AI workloads and GPU instances |
+| **Namecheap** | Free domain registration | Custom domain for the STARTI frontend |
+| **GitHub Actions** | Free CI/CD minutes | Automated testing and deployment pipelines |
+
+### Recommended Deployment Architecture
+
+- **Frontend (STARTI):** Deploy via Vercel or Namecheap hosting (React + Vite static build)
+- **Track A (Streamlit):** Deploy on Heroku or DigitalOcean Droplet
+- **Track B (FastAPI):** Containerize with Docker, deploy on DigitalOcean App Platform
+- **Track C (AI Agents):** GPU-enabled DigitalOcean Droplet for Whisper, Sentence Transformers
+- **Database / Auth:** Supabase (managed cloud)
+
+### Containerization
+
+```bash
+# Build and run with Docker
+docker build -t startup-ai-os .
+docker run -p 8000:8000 startup-ai-os
+```
+
+> ⚠️ **Security**: Never commit `.env` files, Jira tokens, LLM API keys, or runtime files containing sensitive data to a public repository.
+
+---
+
 ## Development Workflow
 
 The project follows a structured Git workflow.
@@ -666,28 +739,25 @@ All new features should be merged through **Pull Requests**.
 ## Example Workflow
 
 1. Founder uploads their startup idea and pitch via Venture Path.
-2. The multimodal pipeline extracts structured knowledge.
-3. Track A agents evaluate business viability.
-4. Track B agents generate the regulatory roadmap.
-5. The Execution Agent (Track C) creates the operational plan and syncs with Jira.
-6. The Pitch Coach (Track C) analyzes the presentation and generates detailed coaching.
-7. The system generates comprehensive startup insights.
+2. The **multimodal AI** pipeline extracts structured knowledge from text, audio, and documents.
+3. Track A agents evaluate business viability using **machine learning** and **data analysis**.
+4. Track B agents generate the regulatory roadmap with **NLP** and **OCR**.
+5. The Execution Agent (Track C) creates the operational plan and syncs with Jira via **automation**.
+6. The Pitch Coach (Track C) analyzes the presentation using **deep learning** and generates detailed coaching.
+7. The system generates comprehensive startup insights with **data visualization** and PDF reports.
 
 ---
 
-## Deployment
+## Acknowledgments
 
-The platform is designed for **cloud deployment using containerized services**.
+This project was developed as part of the **Software Engineering** curriculum at **Esprit School of Engineering**, Tunisia.
 
-Recommended deployment architecture:
+> **Esprit School of Engineering** — École Supérieure Privée d'Ingénierie et de Technologies  
+> 🌐 [https://esprit.tn](https://esprit.tn)
 
-- Docker containers per service
-- Kubernetes orchestration
-- GPU instances for AI workloads (Whisper, Sentence Transformers)
-- Autoscaling backend services
-- Separate environment variables per environment (dev / staging / prod)
+Special thanks to the teaching staff and academic supervisors at **Esprit School of Engineering** for their guidance throughout the development of this **multi-agent AI platform**.
 
-> ⚠️ **Security**: Never commit `.env` files, Jira tokens, LLM API keys, or runtime files containing sensitive data to a public repository.
+This project was made possible in part through resources provided by the **GitHub Education for Students** program.
 
 ---
 
