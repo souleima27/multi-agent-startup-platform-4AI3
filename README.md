@@ -1,154 +1,153 @@
 # Startup AI Operating System
 
-### Plateforme Multi-Agents IA pour la Création, Validation et Croissance de Startups
+### Multi-Agent AI Platform for Startup Creation, Validation, and Growth
 
-Une **plateforme multi-agents intelligente** qui aide les fondateurs à transformer leurs idées en entreprises viables en combinant **IA multimodale, agents de raisonnement structurés et intelligence d'écosystème**.
+An **intelligent multi-agent platform** that helps founders transform startup ideas into viable businesses by combining **multimodal AI, structured reasoning agents, and ecosystem intelligence**.
 
-Le système évalue la faisabilité d'une startup, guide la création juridique, génère des plans d'exécution, optimise les pitchs et connecte les fondateurs aux investisseurs et mentors.
+The system evaluates startup feasibility, guides legal setup, generates execution plans, optimizes pitches, and connects founders with investors and mentors.
 
-Ce projet implémente une **architecture IA modulaire où des agents spécialisés collaborent via des workflows d'orchestration et une mémoire partagée.**
+This project implements a **modular AI architecture where specialized agents collaborate through orchestration workflows and shared memory.**
 
 ---
 
-## Table des Matières
+## Table of Contents
 
-- [Vue d'ensemble](#vue-densemble)
-- [Fonctionnalités Clés](#fonctionnalités-clés)
-- [Architecture du Système](#architecture-du-système)
-- [Tracks IA](#tracks-ia)
-  - [Track A — Idée & Faisabilité](#track-a--idée--faisabilité)
-  - [Track B — Juridique & Administratif](#track-b--juridique--administratif)
-  - [Track C — Exécution & Automatisation](#track-c--exécution--automatisation)
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [AI Tracks](#ai-tracks)
+  - [Track A — Idea & Feasibility](#track-a--idea--feasibility)
+  - [Track B — Legal & Administrative](#track-b--legal--administrative)
+  - [Track C — Execution & Automation](#track-c--execution--automation)
 - [Frontend — Venture Path](#frontend--venture-path)
-- [Traitement Multimodal](#traitement-multimodal)
-- [Système Mémoire Startup_State](#système-mémoire-startup_state)
-- [Structure du Dépôt](#structure-du-dépôt)
-- [Stack Technologique](#stack-technologique)
+- [Multimodal Processing](#multimodal-processing)
+- [Startup_State Memory System](#startup_state-memory-system)
+- [Repository Structure](#repository-structure)
+- [Technology Stack](#technology-stack)
 - [Installation](#installation)
-- [Lancement du Système](#lancement-du-système)
-- [Workflow de Développement](#workflow-de-développement)
-- [Workflow Exemple](#workflow-exemple)
-- [Déploiement](#déploiement)
-- [Licence](#licence)
+- [Running the System](#running-the-system)
+- [Development Workflow](#development-workflow)
+- [Example Workflow](#example-workflow)
+- [License](#license)
 
 ---
 
-## Vue d'ensemble
+## Overview
 
-Construire une startup nécessite de naviguer simultanément sur plusieurs dimensions complexes :
+Building a startup requires navigating multiple complex dimensions simultaneously:
 
-- Validation d'idée
-- Analyse de marché
-- Planification financière
-- Création juridique
-- Exécution produit
-- Réseau investisseurs
+- Idea validation
+- Market analysis
+- Financial planning
+- Legal setup
+- Product execution
+- Investor networking
 
-Cette plateforme agit comme un **Startup Operating System**, coordonnant plusieurs agents IA pour accompagner les fondateurs tout au long du cycle de vie complet de leur startup.
+This platform acts as a **Startup Operating System**, coordinating multiple AI agents to support founders throughout the entire lifecycle of their startup.
 
-Le système intègre :
+The system integrates:
 
-- **Ingestion de données multimodales** (texte, PDF, images, audio, slides)
-- **Mémoire à base de graphes de connaissance**
-- **Orchestration d'agents via protocoles A2A et MCP**
-- **Workflows de raisonnement automatisés**
-
----
-
-## Fonctionnalités Clés
-
-### Analyse de Faisabilité IA
-
-Évalue les idées de startup via une analyse de marché, financière et stratégique. Produit un score de faisabilité, une analyse d'opportunité marché, un roadmap MVP et une décision GO / ITERATE / NO-GO.
-
-### Navigation Juridique
-
-Guide les fondateurs à travers la structure juridique de la startup et les exigences réglementaires tunisiennes, incluant l'éligibilité au **Startup Act** et la probabilité d'obtention du **Startup Label**.
-
-### Planification d'Exécution Automatisée
-
-Génère des plans MVP, des sprints, des workflows opérationnels, assigne des tâches aux membres de l'équipe et synchronise avec **Jira** via MCP.
-
-### Optimisation de Pitch
-
-Analyse les pitchs vidéo, l'audio et les slides pour améliorer la communication investisseur. Génère des rapports de coaching détaillés en JSON, Markdown et PDF.
-
-### Matching Investisseurs & Mentors
-
-Identifie les investisseurs, mentors et opportunités de networking pertinents.
-
-### Surveillance Continue des Risques
-
-Suit les signaux de risques financiers, opérationnels et stratégiques.
+- **Multimodal data ingestion** (text, PDF, images, audio, slides)
+- **Knowledge graph-based memory**
+- **Agent orchestration via A2A and MCP protocols**
+- **Automated reasoning workflows**
 
 ---
 
-## Architecture du Système
+## Key Features
 
-La plateforme suit une **architecture en couches conçue pour les systèmes d'agents IA scalables**.
+### AI Feasibility Analysis
+
+Evaluates startup ideas through market, financial, and strategic analysis. Produces a feasibility score, market opportunity analysis, MVP roadmap, and a GO / ITERATE / NO-GO decision.
+
+### Legal Navigation
+
+Guides founders through the startup legal structure and Tunisian regulatory requirements, including eligibility for the **Startup Act** and the probability of obtaining the **Startup Label**.
+
+### Automated Execution Planning
+
+Generates MVP plans, sprints, and operational workflows, assigns tasks to team members, and synchronizes with **Jira** via MCP.
+
+### Pitch Optimization
+
+Analyzes pitch videos, audio, and slides to improve investor communication. Generates detailed coaching reports in JSON, Markdown, and PDF.
+
+### Investor & Mentor Matching
+
+Identifies relevant investors, mentors, and networking opportunities.
+
+### Continuous Risk Monitoring
+
+Tracks financial, operational, and strategic risk signals.
+
+---
+
+## System Architecture
+
+The platform follows a **layered architecture designed for scalable AI agent systems**.
 
 ```
-Interface Utilisateur (Venture Path — React + Vite)
+User Interface (Venture Path — React + Vite)
         ↓
-Couche API Backend (FastAPI / Streamlit)
+Backend API Layer (FastAPI / Streamlit)
         ↓
-Couche de Traitement Multimodal
+Multimodal Processing Layer
         ↓
-Système Mémoire Startup_State
+Startup_State Memory System
         ↓
-Couche d'Orchestration des Agents (A2A + MCP)
+Agent Orchestration Layer (A2A + MCP)
         ↓
-Exécution des Agents par Track
+Track-Based Agent Execution
         ↓
-Couche Décision & Monitoring
+Decision & Monitoring Layer
 ```
 
-Chaque couche joue un rôle spécialisé dans la transformation des entrées du fondateur en insights startup actionnables.
+Each layer plays a specialized role in transforming founder inputs into actionable startup insights.
 
 ---
 
-## Tracks IA
+## AI Tracks
 
-Le système organise les capacités IA en **quatre tracks spécialisées**.
+The system organizes AI capabilities into **three specialized tracks**.
 
 ---
 
-### Track A — Idée & Faisabilité
+### Track A — Idea & Feasibility
 
-**Répertoire :** `Track1/`
-**Interface :** Application Streamlit (`app.py`)
-**Pipeline :** `final_startup_report_pipeline.py` → `final_reporter.py`
+**Directory:** `Track1/`
+**Interface:** Streamlit application (`app.py`)
+**Pipeline:** `final_startup_report_pipeline.py` → `final_reporter.py`
 
-Évalue le concept startup et détermine la viabilité business.
+Evaluates the startup concept and determines business viability.
 
-#### Agents inclus
+#### Included Agents
 
-| Agent | Fichier | Rôle |
+| Agent | File | Role |
 |---|---|---|
-| Research Agent | `research_ag.py` | Analyse marché et recherche web |
-| Search Web Results | `search_web_results_ag.py` | Récupération de données web |
-| Exist. Solutions Agent | `exist_sol_ag.py` | Détection des solutions existantes |
-| Company Description | `company_description_clear_ag.py` | Rédaction descriptions |
-| Company Name Extractor | `company_name_extractor_ag.py` | Extraction d'informations clés |
-| Revenue Agent | `revenue_ag.py` | Projections de revenus |
-| Cost Agent | `cost_ag.py` | Analyse des coûts |
-| Manager Agent | `manager_ag.py` | Orchestration du pipeline |
-| Final Reporter | `final_reporter.py` | Rapport de faisabilité final |
+| Research Agent | `research_ag.py` | Market analysis and web research |
+| Search Web Results | `search_web_results_ag.py` | Web data retrieval |
+| Exist. Solutions Agent | `exist_sol_ag.py` | Detection of existing solutions |
+| Company Description | `company_description_clear_ag.py` | Description writing |
+| Company Name Extractor | `company_name_extractor_ag.py` | Key information extraction |
+| Revenue Agent | `revenue_ag.py` | Revenue projections |
+| Cost Agent | `cost_ag.py` | Cost analysis |
+| Manager Agent | `manager_ag.py` | Pipeline orchestration |
+| Final Reporter | `final_reporter.py` | Final feasibility report |
 
-#### Protocoles
+#### Protocols
 
-- **A2A** : bus de communication inter-agents (`a2a_server.py`, `a2a_tool_wrappers.py`)
-- **MCP** : outils de recherche et de données (`mcp_server.py`, `mcp_tool_wrappers.py`)
+- **A2A**: inter-agent communication bus (`a2a_server.py`, `a2a_tool_wrappers.py`)
+- **MCP**: search and data tools (`mcp_server.py`, `mcp_tool_wrappers.py`)
 
-#### Sorties
+#### Outputs
 
-- Score de faisabilité
-- Analyse d'opportunité de marché
-- Roadmap MVP
-- Projections financières
-- Décision : **GO / ITERATE / NO-GO**
+- Feasibility score
+- Market opportunity analysis
+- MVP roadmap
+- Financial projections
+- Decision: **GO / ITERATE / NO-GO**
 
-#### Lancement
+#### Launch
 
 ```bash
 cd Track1
@@ -158,53 +157,53 @@ streamlit run app.py
 
 ---
 
-### Track B — Juridique & Administratif
+### Track B — Legal & Administrative
 
-**Répertoire :** `Track2/`
-**API :** FastAPI (`app/api/main.py`)
-**Runner CLI :** `app/run/run_agent2.py`
+**Directory:** `Track2/`
+**API:** FastAPI (`app/api/main.py`)
+**CLI Runner:** `app/run/run_agent2.py`
 
-Guide les fondateurs à travers la création de startup et les processus réglementaires tunisiens.
+Guides founders through startup creation and Tunisian regulatory processes.
 
-#### Agents inclus
+#### Included Agents
 
-| Agent | Fichier | Rôle |
+| Agent | File | Role |
 |---|---|---|
-| Strategic Legal Agent | `app/agents/strategic_legal_agent.py` | Recommandation forme juridique, score Startup Act |
-| Intelligent Document Agent | `app/agents/intelligent_document_agent.py` | Analyse documentaire multi-format |
-| Legal Classification | `app/agents/legal_classification.py` | Classification juridique |
-| Document Verification | `app/agents/document_verification.py` | Vérification de documents |
-| Administrative Workflow | `app/agents/administrative_workflow.py` | Workflow administratif |
-| Startup Label Simulation | `app/agents/startup_label_simulation.py` | Simulation du Startup Label |
-| Document Management | `app/agents/document_management.py` | Gestion documentaire |
+| Strategic Legal Agent | `app/agents/strategic_legal_agent.py` | Legal form recommendation, Startup Act score |
+| Intelligent Document Agent | `app/agents/intelligent_document_agent.py` | Multi-format document analysis |
+| Legal Classification | `app/agents/legal_classification.py` | Legal classification |
+| Document Verification | `app/agents/document_verification.py` | Document verification |
+| Administrative Workflow | `app/agents/administrative_workflow.py` | Administrative workflow |
+| Startup Label Simulation | `app/agents/startup_label_simulation.py` | Startup Label simulation |
+| Document Management | `app/agents/document_management.py` | Document management |
 
-#### Formats supportés
+#### Supported Formats
 
-- Images : `.png`, `.jpg`, `.jpeg`, `.bmp`, `.tif`, `.tiff`, `.webp`
-- PDF : `.pdf`
-- Word : `.docx`
-- PowerPoint : `.pptx`
+- Images: `.png`, `.jpg`, `.jpeg`, `.bmp`, `.tif`, `.tiff`, `.webp`
+- PDF: `.pdf`
+- Word: `.docx`
+- PowerPoint: `.pptx`
 
-#### Sorties
+#### Outputs
 
-- Recommandation de forme juridique
-- Score Startup Act
-- Probabilité d'obtention du Startup Label
-- Checklist de conformité
-- Score de complétude documentaire
-- Décision : **GO / NO_GO / PASS / WARNING / FAIL**
-- Rapport JSON et rapport PDF
+- Legal form recommendation
+- Startup Act score
+- Startup Label probability
+- Compliance checklist
+- Document completeness score
+- Decision: **GO / NO_GO / PASS / WARNING / FAIL**
+- JSON report and PDF report
 
-#### Endpoints API
+#### API Endpoints
 
-| Méthode | Endpoint | Description |
+| Method | Endpoint | Description |
 |---|---|---|
-| GET | `/health` | Statut du service |
-| POST | `/track-b/run` | Pipeline complet |
-| POST | `/agents/a1/strategic-assessment` | Agent juridique stratégique |
-| POST | `/agents/a2/document-intelligence` | Agent documentaire |
+| GET | `/health` | Service status |
+| POST | `/track-b/run` | Full pipeline |
+| POST | `/agents/a1/strategic-assessment` | Strategic legal agent |
+| POST | `/agents/a2/document-intelligence` | Document agent |
 
-#### Lancement
+#### Launch
 
 ```bash
 cd Track2
@@ -212,73 +211,73 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 
-# Lancer l'API
+# Start the API
 uvicorn app.api.main:app --reload
 
-# Ou via le runner CLI
+# Or via the CLI runner
 python -m app.run.run_agent2 request_strict.json
 ```
 
 #### Configuration
 
-Variables d'environnement (`.env`) :
+Environment variables (`.env`):
 
 ```env
-LLM_BASE_URL=http://localhost:11434  # URL serveur Ollama compatible
+LLM_BASE_URL=http://localhost:11434  # Ollama-compatible server URL
 LLM_MODEL=deepseek-r1:7b
 LLM_TIMEOUT_SECONDS=120
 ```
 
 ---
 
-### Track C — Exécution & Automatisation
+### Track C — Execution & Automation
 
-**Répertoire :** `Track3/`
+**Directory:** `Track3/`
 
-Ce track est composé de **deux sous-systèmes** :
+This track is composed of **two sub-systems**:
 
 ---
 
 #### Track C.1 — Execution Agent
 
-**Répertoire :** `Track3/ExecutionAgent/`
-**Point d'entrée :** `execution_agent_with_mcp.py`
+**Directory:** `Track3/ExecutionAgent/`
+**Entry point:** `execution_agent_with_mcp.py`
 
-Agent IA de gestion de projet qui transforme un plan MVP startup en workflow d'exécution structuré et traçable.
+An AI project management agent that transforms a startup MVP plan into a structured, trackable execution workflow.
 
-##### Agents A2A locaux
+##### Local A2A Agents
 
-| Agent | Rôle |
+| Agent | Role |
 |---|---|
-| Planner Agent | Génère ou améliore le plan d'exécution |
-| Critic Agent | Revoit le plan et détecte les faiblesses |
-| Action Agent | Décide l'action à appliquer à chaque tâche |
-| Report Agent | Construit les résumés exécutifs et listes de décisions |
+| Planner Agent | Generates or improves the execution plan |
+| Critic Agent | Reviews the plan and detects weaknesses |
+| Action Agent | Decides the action to apply to each task |
+| Report Agent | Builds executive summaries and decision lists |
 
-##### Outils MCP exposés
+##### Exposed MCP Tools
 
 ```text
-list_tasks           — lister les tâches runtime
-upsert_tasks         — créer ou mettre à jour les tâches
-update_task_status   — mettre à jour le statut d'une tâche
-get_team_capacity    — récupérer la capacité de l'équipe
-clear_runtime_tasks  — vider le runtime
-sync_tasks_to_jira   — synchroniser vers Jira
-fetch_jira_updates   — récupérer les mises à jour Jira
+list_tasks           — list runtime tasks
+upsert_tasks         — create or update tasks
+update_task_status   — update a task status
+get_team_capacity    — retrieve team capacity
+clear_runtime_tasks  — clear the runtime
+sync_tasks_to_jira   — synchronize to Jira
+fetch_jira_updates   — fetch Jira updates
 ```
 
-##### Fonctionnalités
+##### Features
 
-- Génération automatique de milestones et tâches
-- Estimation de durée et scoring de priorité
-- Construction du graphe de dépendances (NetworkX)
-- Assignation des tâches selon les compétences et la disponibilité
-- Détection d'anomalies (tâches bloquées, membres surchargés)
-- Synchronisation Jira via MCP
-- Récupération de patterns depuis une base de connaissances locale (Sentence Transformers + Cross Encoder)
-- Génération de rapport PDF (ReportLab)
+- Automatic milestone and task generation
+- Duration estimation and priority scoring
+- Dependency graph construction (NetworkX)
+- Task assignment based on skills and availability
+- Anomaly detection (blocked tasks, overloaded members)
+- Jira synchronization via MCP
+- Pattern retrieval from a local knowledge base (Sentence Transformers + Cross Encoder)
+- PDF report generation (ReportLab)
 
-##### Lancement
+##### Launch
 
 ```bash
 cd Track3/ExecutionAgent
@@ -286,17 +285,17 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install pandas networkx httpx openai sentence-transformers reportlab mcp python-dotenv
 
-# Configurer l'environnement
+# Configure the environment
 copy .env.example .env
 
-# Lancer l'agent
+# Run the agent
 python execution_agent_with_mcp.py
 
-# Générer le rapport PDF
+# Generate the PDF report
 python pdf_report_generator.py
 ```
 
-##### Variables d'environnement
+##### Environment Variables
 
 ```env
 MODEL_MODE=hybride
@@ -305,7 +304,7 @@ LLM_BASE_URL=https://your-llm-provider-url/api
 LLM_PLANNER_MODEL=your_planner_model
 LLM_CRITIC_MODEL=your_critic_model
 
-# Jira (optionnel)
+# Jira (optional)
 JIRA_SYNC_ENABLED=false
 JIRA_BASE_URL=https://your-domain.atlassian.net
 JIRA_USER_EMAIL=your-email@example.com
@@ -317,26 +316,26 @@ JIRA_PROJECT_KEY=KAN
 
 #### Track C.2 — Agentic Pitch Coach
 
-**Répertoire :** `Track3/pitch/`
-**Point d'entrée :** `agentic_pitch_coach.py`
+**Directory:** `Track3/pitch/`
+**Entry point:** `agentic_pitch_coach.py`
 
-Outil Python local qui analyse une vidéo de pitch et produit un coaching détaillé basé sur la transcription, les signaux de delivery, les indices visuels et vocaux.
+A local Python tool that analyzes a pitch video and produces detailed coaching based on the transcript, delivery signals, visual cues, and vocal assurance.
 
-##### Pipeline d'analyse
+##### Analysis Pipeline
 
-1. Extraction audio depuis la vidéo locale
-2. Transcription avec `faster-whisper`
-3. Scoring de delivery (rythme, mots de remplissage, énergie, longueur de phrases)
-4. Analyse du contenu et de la narration via LLM compatible OpenAI
-5. *(Optionnel)* Analyse des frames vidéo avec OpenCV et MediaPipe
-6. *(Optionnel)* Timeline d'assurance vocale avec un modèle Hugging Face
-7. Génération de rapports JSON, Markdown et PDF
+1. Audio extraction from the local video
+2. Transcription with `faster-whisper`
+3. Delivery scoring (pace, filler words, energy, sentence length)
+4. Content and narrative analysis via OpenAI-compatible LLM
+5. *(Optional)* Video frame analysis with OpenCV and MediaPipe
+6. *(Optional)* Vocal assurance timeline with a Hugging Face model
+7. JSON, Markdown, and PDF report generation
 
-##### Modes de coaching disponibles
+##### Available Coaching Modes
 
 `investor` · `sales` · `demo_day` · `class_presentation` · `founder_story`
 
-##### Lancement
+##### Launch
 
 ```bash
 cd Track3/pitch
@@ -344,51 +343,51 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements_pitch_coach.txt
 
-# Analyse complète
+# Full analysis
 python agentic_pitch_coach.py --video ./my_pitch.mp4 --output ./output
 
-# Run léger (sans modèles lourds)
+# Lightweight run (without heavy models)
 python agentic_pitch_coach.py --video ./my_pitch.mp4 --whisper-size tiny --skip-visual --skip-voice-emotion
 ```
 
-##### Serveur MCP
+##### MCP Server
 
 ```bash
 python mcp_pitch_coach_server.py
 ```
 
-Outils MCP exposés : `pitch_coach_defaults`, `analyze_pitch_video`
+Exposed MCP tools: `pitch_coach_defaults`, `analyze_pitch_video`
 
 ---
 
 ## Frontend — Venture Path
 
-**Répertoire :** `Template/`
-**Stack :** React + Vite + Supabase
+**Directory:** `Template/`
+**Stack:** React + Vite + Supabase
 
-Landing page moderne pour la plateforme avec gestion des utilisateurs et des données.
+Modern landing page for the platform with user and data management.
 
-### Fonctionnalités
+### Features
 
-- Page d'accueil SaaS responsive avec dark mode et micro-interactions
-- Authentification Signup / Login via Supabase Auth
-- Formulaire de contact et newsletter (stockage Supabase)
-- Capture de sélection de plan tarifaire
-- Témoignages avec soumission et modération
-- Compteurs animés, accordéon FAQ, animations fluides
-- Fallback local sécurisé si les clés Supabase ne sont pas configurées
+- Responsive SaaS-style landing page with dark mode and micro-interactions
+- Signup / Login authentication via Supabase Auth
+- Contact form and newsletter storage (Supabase)
+- Pricing plan selection capture
+- Testimonials with submission and moderation
+- Animated counters, FAQ accordion, smooth animations
+- Safe local fallback when Supabase keys are not configured
 
-### Lancement
+### Launch
 
 ```bash
 cd Template
 cp .env.example .env
-# Ajouter les clés Supabase dans .env
+# Add Supabase keys to .env
 npm install
 npm run dev
 ```
 
-### Configuration Supabase
+### Supabase Configuration
 
 ```env
 VITE_SUPABASE_URL=your_supabase_project_url
@@ -397,85 +396,85 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ---
 
-## Traitement Multimodal
+## Multimodal Processing
 
-Le système accepte plusieurs types d'entrées.
+The system accepts multiple input types.
 
-### Entrées Supportées
+### Supported Inputs
 
-- Descriptions textuelles
-- Documents PDF
+- Text descriptions
+- PDF documents
 - Slides (PPTX)
-- Tableurs financiers
-- Enregistrements audio de pitch
-- Images et captures d'écran
+- Financial spreadsheets
+- Audio pitch recordings
+- Images and screenshots
 
-### Pipelines de Traitement
+### Processing Pipelines
 
 **Audio**
-- Transcription speech-to-text (`faster-whisper`)
-- Analyse de sentiment
-- Détection de confiance vocale
+- Speech-to-text transcription (`faster-whisper`)
+- Sentiment analysis
+- Vocal confidence detection
 
 **Documents**
-- Extraction OCR (`pytesseract`)
-- Parsing de mise en page
-- Extraction de données financières (PDF, DOCX, PPTX)
+- OCR extraction (`pytesseract`)
+- Layout parsing
+- Financial data extraction (PDF, DOCX, PPTX)
 
 **Slides & Images**
-- Détection de structure visuelle
-- Analyse de graphiques
-- Embeddings image-texte
+- Visual structure detection
+- Chart analysis
+- Image-text embeddings
 
-Toutes les informations extraites sont converties en blocs sémantiques structurés utilisés par le système d'agents.
+All extracted information is converted into structured semantic blocks used by the agent system.
 
 ---
 
-## Système Mémoire Startup_State
+## Startup_State Memory System
 
-La plateforme maintient un **système de mémoire augmenté par le contexte** combinant trois couches de stockage.
+The platform maintains a **context-augmented memory system** combining three storage layers.
 
-### Mémoire Graphe
+### Graph Memory
 
-Stocke les relations entre entités :
-- fondateurs
+Stores relationships between entities:
+- founders
 - startups
-- marchés
-- concurrents
-- investisseurs
+- markets
+- competitors
+- investors
 
-Utilisée pour le raisonnement sur l'écosystème.
+Used for ecosystem reasoning.
 
-### Mémoire Vectorielle
+### Vector Memory
 
-Stocke les embeddings sémantiques de :
-- affirmations de marché
-- hypothèses financières
-- déclarations juridiques
-- interactions investisseurs
+Stores semantic embeddings for:
+- market claims
+- financial assumptions
+- legal statements
+- investor interactions
 
-Utilisée pour la récupération contextuelle.
+Used for contextual retrieval.
 
-### État Structuré (startup_state.json)
+### Structured State (startup_state.json)
 
-Stocke les métriques système :
-- scores de faisabilité
-- probabilité de survie
-- statut juridique
-- avancement des milestones
-- flags de risque
+Stores system metrics:
+- feasibility scores
+- survival probability
+- legal status
+- milestone progress
+- risk flags
 
-Chaque mise à jour de mémoire inclut des timestamps et scores de confiance pour maintenir la cohérence.
+Each memory update includes timestamps and confidence scores to maintain consistency.
 
 ---
 
-## Structure du Dépôt
+## Repository Structure
 
 ```
 dep/
 │
-├── Track1/                          # Track A — Idée & Faisabilité
-│   ├── app.py                       # Interface Streamlit
+├── Track1/                          # Track A — Idea & Feasibility
+│   ├── app.py                       # Streamlit interface
 │   ├── final_startup_report_pipeline.py
 │   ├── final_reporter.py
 │   ├── manager_ag.py
@@ -487,42 +486,41 @@ dep/
 │   ├── requirements.txt
 │   └── outputs/
 │
-├── Track2/                          # Track B — Juridique & Administratif
+├── Track2/                          # Track B — Legal & Administrative
 │   ├── app/
-│   │   ├── agents/                  # Agents IA
+│   │   ├── agents/                  # AI agents
 │   │   │   ├── strategic_legal_agent.py
 │   │   │   ├── intelligent_document_agent.py
 │   │   │   └── ...
 │   │   ├── api/                     # FastAPI endpoints
-│   │   ├── core/                    # Config et paramètres
-│   │   ├── mcp/                     # Serveur MCP local
-│   │   ├── models/                  # Modèles de données
-│   │   ├── run/                     # Runners CLI
-│   │   ├── services/                # Orchestrateur, OCR, LLM client
+│   │   ├── core/                    # Config and settings
+│   │   ├── mcp/                     # Local MCP server
+│   │   ├── models/                  # Data models
+│   │   ├── run/                     # CLI runners
+│   │   ├── services/                # Orchestrator, OCR, LLM client
 │   │   └── utils/
-│   ├── data/                        # Base de connaissances (kb_master.json)
+│   ├── data/                        # Knowledge base (kb_master.json)
 │   ├── sample_data/
 │   ├── requirements.txt
 │   └── request_strict.json
 │
-├── Track3/                          # Track C — Exécution & Automatisation
+├── Track3/                          # Track C — Execution & Automation
 │   ├── ExecutionAgent/
-│   │   ├── execution_agent_with_mcp.py   # Agent principal
-│   │   ├── mcp_startup_server.py         # Serveur MCP + Jira
+│   │   ├── execution_agent_with_mcp.py   # Main orchestrator
+│   │   ├── mcp_startup_server.py         # MCP server + Jira
 │   │   ├── mcp_client_adapter.py
-│   │   ├── a2a_protocol.py               # Bus A2A local
+│   │   ├── a2a_protocol.py               # Local A2A bus
 │   │   ├── a2a_agents.py                 # Planner, Critic, Action, Report
 │   │   ├── pdf_report_generator.py
 │   │   ├── startup_state.json
-│   │   ├── structured_kb_sections/       # Base de connaissances locale
+│   │   ├── structured_kb_sections/       # Local knowledge base
 │   │   └── execution_agent_outputs/
 │   │
 │   └── pitch/
-│       ├── agentic_pitch_coach.py        # Coach pitch principal
-│       ├── mcp_pitch_coach_server.py     # Serveur MCP pitch
+│       ├── agentic_pitch_coach.py        # Main pitch coach
+│       ├── mcp_pitch_coach_server.py     # Pitch MCP server
 │       ├── requirements_pitch_coach.txt
 │       └── output/
-│
 │
 ├── Template/                        # Frontend — Venture Path (React + Vite)
 │   ├── src/
@@ -534,64 +532,64 @@ dep/
 │   ├── index.html
 │   └── package.json
 │
-└── StorageSystem/                   # Système de stockage partagé (WIP)
+└── StorageSystem/                   # Shared storage system (WIP)
 ```
 
 ---
 
-## Stack Technologique
+## Technology Stack
 
 ### Frontend
 
-| Technologie | Usage |
+| Technology | Usage |
 |---|---|
-| React + Vite | Interface utilisateur Venture Path |
-| Supabase | Auth, base de données, storage |
+| React + Vite | Venture Path user interface |
+| Supabase | Auth, database, storage |
 | CSS (vanilla) | Styles, dark mode, animations |
 
 ### Backend & Agents
 
-| Technologie | Usage |
+| Technology | Usage |
 |---|---|
-| Python | Agents IA, pipelines, API |
-| FastAPI | API REST Track B |
-| Streamlit | Interface Track A |
-| A2A Protocol | Bus de communication inter-agents |
-| MCP (Model Context Protocol) | Pont agents ↔ outils externes |
-| Jira REST API | Synchronisation de tâches |
+| Python | AI agents, pipelines, API |
+| FastAPI | Track B REST API |
+| Streamlit | Track A interface |
+| A2A Protocol | Inter-agent communication bus |
+| MCP (Model Context Protocol) | Bridge between agents and external tools |
+| Jira REST API | Task synchronization |
 
-### IA & Data
+### AI & Data
 
-| Technologie | Usage |
+| Technology | Usage |
 |---|---|
-| OpenAI-compatible LLM | Raisonnement et génération (Ollama, vLLM) |
-| faster-whisper | Transcription audio |
-| Sentence Transformers | Embeddings sémantiques |
-| Cross Encoder | Reranking de récupération |
-| MediaPipe + OpenCV | Analyse visuelle de pitch |
-| pytesseract | OCR documents |
-| NetworkX | Graphe de dépendances |
-| ReportLab | Génération PDF |
+| OpenAI-compatible LLM | Reasoning and generation (Ollama, vLLM) |
+| faster-whisper | Audio transcription |
+| Sentence Transformers | Semantic embeddings |
+| Cross Encoder | Retrieval reranking |
+| MediaPipe + OpenCV | Pitch visual analysis |
+| pytesseract | Document OCR |
+| NetworkX | Dependency graph |
+| ReportLab | PDF generation |
 
 ### Infrastructure
 
-| Technologie | Usage |
+| Technology | Usage |
 |---|---|
-| Docker | Containerisation des services |
+| Docker | Service containerization |
 | Kubernetes | Orchestration |
-| CI/CD pipelines | Intégration continue |
+| CI/CD pipelines | Continuous integration |
 
 ---
 
 ## Installation
 
-### Prérequis
+### Prerequisites
 
 - Python 3.10+
 - Node.js 18+
 - Git
 
-### Cloner le dépôt
+### Clone the Repository
 
 ```bash
 git clone https://github.com/your-org/startup-ai-os.git
@@ -600,21 +598,21 @@ cd startup-ai-os
 
 ### OCR (Track B — Windows)
 
-Installer Tesseract OCR binaire, puis vérifier :
+Install the Tesseract OCR binary, then verify:
 
 ```bash
 tesseract --version
 ```
 
-Si Tesseract n'est pas disponible, le système bascule automatiquement sur un fallback léger.
+If Tesseract is not available, the system automatically falls back to a lightweight extraction mode.
 
 ---
 
-## Lancement du Système
+## Running the System
 
-Chaque track est indépendant et peut être lancé séparément.
+Each track is independent and can be launched separately.
 
-### Track A (Faisabilité)
+### Track A (Feasibility)
 
 ```bash
 cd Track1
@@ -622,7 +620,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-### Track B (Juridique)
+### Track B (Legal)
 
 ```bash
 cd Track2
@@ -649,7 +647,7 @@ pip install -r requirements_pitch_coach.txt
 python agentic_pitch_coach.py --video ./my_pitch.mp4
 ```
 
-### Frontend Venture Path
+### Frontend — Venture Path
 
 ```bash
 cd Template
@@ -659,19 +657,19 @@ npm run dev
 
 ---
 
-## Workflow de Développement
+## Development Workflow
 
-Le projet suit un workflow Git structuré.
+The project follows a structured Git workflow.
 
 ### Branches
 
 ```
-main          — branche stable
-dev           — branche de développement
-feature/*     — nouvelles fonctionnalités
+main          — stable branch
+dev           — development branch
+feature/*     — new features
 ```
 
-### Exemples de branches feature
+### Feature Branch Examples
 
 ```
 feature/market-intelligence-agent
@@ -679,38 +677,38 @@ feature/investor-matching
 feature/pitch-analysis
 ```
 
-Toutes les nouvelles fonctionnalités doivent être mergées via **Pull Requests**.
+All new features should be merged through **Pull Requests**.
 
 ---
 
-## Workflow Exemple
+## Example Workflow
 
-1. Le fondateur upload son idée et son pitch via Venture Path.
-2. Le pipeline multimodal extrait la connaissance structurée.
-3. Les agents Track A évaluent la viabilité business.
-4. Les agents Track B génèrent le roadmap réglementaire.
-5. L'Execution Agent (Track C) crée le planning opérationnel et synchronise avec Jira.
-6. Le Pitch Coach (Track C) analyse la présentation et génère un coaching détaillé.
-7. Le système génère des insights startup complets.
-
----
-
-## Déploiement
-
-La plateforme est conçue pour un **déploiement cloud en services containerisés**.
-
-Architecture de déploiement recommandée :
-
-- Conteneurs Docker par service
-- Orchestration Kubernetes
-- Instances GPU pour les workloads IA (Whisper, Sentence Transformers)
-- Autoscaling des services backend
-- Variables d'environnement séparées par environnement (dev / staging / prod)
-
-> ⚠️ **Sécurité** : Ne jamais committer les fichiers `.env`, tokens Jira, clés API LLM ou fichiers de runtime contenant des données sensibles dans un dépôt public.
+1. Founder uploads their startup idea and pitch via Venture Path.
+2. The multimodal pipeline extracts structured knowledge.
+3. Track A agents evaluate business viability.
+4. Track B agents generate the regulatory roadmap.
+5. The Execution Agent (Track C) creates the operational plan and syncs with Jira.
+6. The Pitch Coach (Track C) analyzes the presentation and generates detailed coaching.
+7. The system generates comprehensive startup insights.
 
 ---
 
-## Licence
+## Deployment
 
-Ce projet est distribué sous licence MIT. Voir le fichier [LICENSE](./LICENSE) pour plus de détails.
+The platform is designed for **cloud deployment using containerized services**.
+
+Recommended deployment architecture:
+
+- Docker containers per service
+- Kubernetes orchestration
+- GPU instances for AI workloads (Whisper, Sentence Transformers)
+- Autoscaling backend services
+- Separate environment variables per environment (dev / staging / prod)
+
+> ⚠️ **Security**: Never commit `.env` files, Jira tokens, LLM API keys, or runtime files containing sensitive data to a public repository.
+
+---
+
+## License
+
+This project is distributed under the MIT License. See the [LICENSE](./LICENSE) file for details.
