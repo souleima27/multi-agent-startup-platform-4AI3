@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import shutil
+from uuid import uuid4
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from app.agents.intelligent_document_agent import IntelligentDocumentAgent
 from app.agents.strategic_legal_agent import StrategicLegalAgent
 from app.core.config import get_settings
@@ -113,6 +115,58 @@ def run_track_b(request: TrackBRequest) -> TrackBResponse:
     global latest_track_b_result
     latest_track_b_result = orchestrator.run(request)
     return latest_track_b_result
+
+
+@app.get("/sample", response_model=TrackBRequest)
+def sample_request() -> TrackBRequest:
+    sample_path = settings.project_root / "request.json"
+    if sample_path.exists():
+        return TrackBRequest.model_validate_json(sample_path.read_text(encoding="utf-8"))
+
+    return TrackBRequest(
+        startup_profile={
+            "startup_name": "Neuronix Legal AI",
+            "sector": "AI SaaS",
+            "activity_description": "AI platform for startup legal guidance and compliance automation.",
+            "founders_count": 3,
+            "funding_need_tnd": 250000,
+            "wants_investors": True,
+            "needs_limited_liability": True,
+            "has_foreign_investors": False,
+            "innovative": True,
+            "scalable": True,
+            "uses_technology": True,
+        },
+        documents=[],
+    )
+
+
+@app.post("/upload")
+async def upload_documents(files: list[UploadFile] = File(...)) -> dict:
+    upload_dir = settings.project_root / "uploads"
+    upload_dir.mkdir(parents=True, exist_ok=True)
+
+    documents = []
+    for file in files:
+        safe_name = Path(file.filename or "document").name
+        stored_name = f"{uuid4().hex}_{safe_name}"
+        stored_path = upload_dir / stored_name
+        with stored_path.open("wb") as output:
+            shutil.copyfileobj(file.file, output)
+        documents.append(
+            {
+                "file_name": safe_name,
+                "path": str(stored_path),
+                "declared_type": None,
+            }
+        )
+
+    return {"documents": documents}
+
+
+@app.post("/run", response_model=TrackBResponse)
+def run_track_b_compat(request: TrackBRequest) -> TrackBResponse:
+    return run_track_b(request)
 
 
 @app.post("/run-case", response_model=RunCaseResponse)
