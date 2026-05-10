@@ -136,6 +136,18 @@ async def _run_track3_job(job_id: str, payload: dict[str, Any]) -> None:
         )
         return
 
+    if os.getenv("TRACK3_RENDER_FREE_MODE", "true").lower() in {"1", "true", "yes"}:
+        result = build_fallback_result(payload, "Render free mode is enabled; full Track3 agent is skipped.")
+        track3_jobs[job_id].update(
+            {
+                "status": "completed",
+                "result": build_response(result),
+                "warning": "Render free mode is enabled; full Track3 agent is skipped.",
+                "finished_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+        return
+
     try:
         state = merge_state(payload)
         timeout_seconds = float(os.getenv("TRACK3_JOB_TIMEOUT_SECONDS", "180"))
