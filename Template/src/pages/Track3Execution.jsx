@@ -284,7 +284,7 @@ export function Track3Execution({ track }) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (runError) {
       setReport(null);
-      setError(runError.message || "Track C execution failed.");
+      setError(`${runError.message || "Track C execution failed."} API: ${API_URL}`);
     } finally {
       setLoading(false);
     }
