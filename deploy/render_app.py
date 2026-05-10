@@ -230,16 +230,20 @@ def _track1_report(payload: dict[str, Any]) -> dict[str, Any]:
             "market_gap": "A focused product for the chosen niche can still be valuable if execution is strong.",
             "relevant_existing_solutions": [
                 {
+                    "company_name": "Manual consultants and agencies",
                     "name": "Manual consultants and agencies",
                     "category": "Service alternative",
                     "relevance_confidence": "Medium",
+                    "what_it_does": "Provides human-led consulting, setup help, and manual workflow support for the same customer problem.",
                     "similarity_to_startup": "Medium",
                     "notes": "Customers can already solve part of the problem manually, but automation can improve speed and consistency.",
                 },
                 {
+                    "company_name": "Generic SaaS tools",
                     "name": "Generic SaaS tools",
                     "category": "Software alternative",
                     "relevance_confidence": "Medium",
+                    "what_it_does": "Offers broad workflow management features that can partially replace a niche startup-specific product.",
                     "similarity_to_startup": "Low to Medium",
                     "notes": "General tools may cover workflows but usually lack the startup-specific focus.",
                 },
