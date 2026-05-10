@@ -45,7 +45,6 @@ services:
   - type: web
     name: startup-frontend
     runtime: static
-    plan: free
     rootDir: Template
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
