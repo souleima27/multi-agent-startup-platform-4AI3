@@ -471,7 +471,7 @@ Each memory update includes timestamps and confidence scores to maintain consist
 ## Repository Structure
 
 ```
-dep/
+multi-agent-startup-platform-4AI3/
 │
 ├── Track1/                          # Track A — Idea & Feasibility
 │   ├── app.py                       # Streamlit interface
