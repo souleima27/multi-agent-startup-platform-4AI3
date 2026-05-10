@@ -21,7 +21,9 @@ services:
       - key: LLM_API_KEY
         sync: false
       - key: JIRA_SYNC_ENABLED
-        value: true
+        value: false
+      - key: TRACK3_RUN_TIMEOUT_SECONDS
+        value: 75
       - key: JIRA_BASE_URL
         value: https://esprit-team-r6neq63b.atlassian.net
       - key: JIRA_USER_EMAIL

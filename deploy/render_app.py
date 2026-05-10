@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import sys
+import asyncio
 from pathlib import Path
 from typing import Any
 
@@ -71,9 +72,9 @@ app = FastAPI(title="Startup Multi-Agent Platform")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_parse_cors_origins(),
+    allow_origins=["*"],
     allow_origin_regex=os.getenv("CORS_ALLOW_ORIGIN_REGEX", r"https://.*\.onrender\.com"),
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -99,6 +100,21 @@ def track3_health() -> dict[str, Any]:
     }
 
 
+@app.options("/track3/execution/run")
+def track3_execution_options() -> dict[str, str]:
+    return {"ok": "true"}
+
+
+@app.post("/track3/execution/ping")
+def track3_execution_ping(payload: dict[str, Any] | None = None) -> dict[str, Any]:
+    return {
+        "ok": True,
+        "service": "startup-platform-api",
+        "track": "track3",
+        "received_payload": bool(payload),
+    }
+
+
 @app.post("/track3/execution/run")
 async def track3_execution_run(payload: dict[str, Any]) -> dict[str, Any]:
     if not all([build_fallback_result, build_response, merge_state, run_agent]):
@@ -109,7 +125,10 @@ async def track3_execution_run(payload: dict[str, Any]) -> dict[str, Any]:
 
     try:
         state = merge_state(payload)
-        result = await run_agent(state)
+        timeout_seconds = float(os.getenv("TRACK3_RUN_TIMEOUT_SECONDS", "75"))
+        result = await asyncio.wait_for(run_agent(state), timeout=timeout_seconds)
+    except asyncio.TimeoutError:
+        result = build_fallback_result(payload, "Track3 execution timed out before Render request limit.")
     except Exception as exc:
         result = build_fallback_result(payload, f"{type(exc).__name__}: {exc}")
 
