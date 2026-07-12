@@ -1,0 +1,430 @@
+{
+  "startup_name": "HealthTech",
+  "models": {
+    "planner_requested": "hosted_vllm/Llama-3.1-70B-Instruct",
+    "critic_requested": "hosted_vllm/Llama-3.1-70B-Instruct",
+    "mode": "hybrid",
+    "planner_used": "remote",
+    "critic_used": "remote"
+  },
+  "executive_summary": {
+    "headline": "The project is currently on track.",
+    "feasibility": "good",
+    "task_count": "5",
+    "ready_count": "2",
+    "main_risk": "Incorrect task dependency",
+    "next_step": "Review and update task dependencies."
+  },
+  "founder_decisions": [
+    "Review and update task dependencies.",
+    "Review task dependencies to ensure they are accurate and up-to-date.",
+    "Consider adding more tasks to the priority queue to ensure timely completion of high-priority tasks."
+  ],
+  "owner_action_plan": {
+    "Jordan": [
+      "Finalize Business Registration"
+    ],
+    "Alex": [
+      "Implement Patient Dashboard",
+      "Implement Medical Records Storage",
+      "Implement SMS Notifications"
+    ],
+    "Sarah": [
+      "Obtain Necessary Licenses"
+    ]
+  },
+  "feasibility": {
+    "status": "good",
+    "critical_path_days": 7.59,
+    "deadline_days": 63,
+    "buffer_days": 55.41
+  },
+  "monitoring": {
+    "summary": {
+      "done": 0,
+      "in_progress": 0,
+      "todo": 5,
+      "blocked": 0
+    },
+    "anomaly_count": 0,
+    "critic_issues": 1,
+    "task_count": 5,
+    "ready_count": 2
+  },
+  "next_actions": [
+    "Review and update task dependencies.",
+    "Add high-priority tasks to the priority queue."
+  ],
+  "anomalies": [],
+  "critic_report": {
+    "anomaly_review": [
+      "No anomalies detected in the provided data."
+    ],
+    "critic_review": [
+      "The task dependencies seem to be correctly defined, but the task 'Implement SMS Notifications' has a dependency on a task that does not exist in the provided data ('MS_1_mvp_launch_preparation_T_2_implement_medical_records_storage'). It should be updated to depend on 'Implement Medical Records Storage'."
+    ],
+    "recommendations": [
+      "Review task dependencies to ensure they are accurate and up-to-date.",
+      "Consider adding more tasks to the priority queue to ensure timely completion of high-priority tasks."
+    ],
+    "issues_found": [
+      {
+        "issue": "Incorrect task dependency",
+        "severity": "medium",
+        "suggested_fix": "Update the dependency of 'Implement SMS Notifications' to 'Implement Medical Records Storage'."
+      }
+    ],
+    "updated_next_actions": [
+      "Review and update task dependencies.",
+      "Add high-priority tasks to the priority queue."
+    ]
+  },
+  "priority_queue": [
+    {
+      "id": "MS_1_mvp_launch_preparation_T_1_implement_patient_dashboard",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement Patient Dashboard",
+      "description": "Implement the patient dashboard feature",
+      "priority": "high",
+      "category": "product_execution",
+      "complexity": "medium",
+      "tags": [
+        "patient_dashboard",
+        "mvp"
+      ],
+      "acceptance_criteria": [
+        "Patient dashboard is functional",
+        "Patient dashboard is user-friendly"
+      ],
+      "depends_on_titles": [
+        "Implement User Signup and Authentication"
+      ],
+      "depends_on": [],
+      "unblocks": [
+        "MS_1_mvp_launch_preparation_T_2_implement_medical_records_storage"
+      ],
+      "assigned_to": "Alex",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-06-30",
+      "estimated_days": 2.3,
+      "business_value": 5,
+      "blocking_count": 1,
+      "risk_weight": 1.0,
+      "priority_score": 2.6,
+      "assignment_score": 0.569,
+      "match_confidence": 0.65,
+      "criticality_score": 2.6,
+      "blocked_reason": null,
+      "graph_depth": 0,
+      "continuity_score": 0.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    },
+    {
+      "id": "MS_2_legal_and_administrative_tasks_T_1_finalize_business_registration",
+      "parent_id": "MS_2_legal_and_administrative_tasks",
+      "milestone_title": "Legal and Administrative Tasks",
+      "title": "Finalize Business Registration",
+      "description": "Finalize business registration",
+      "priority": "high",
+      "category": "admin_execution",
+      "complexity": "medium",
+      "tags": [
+        "business_registration",
+        "legal"
+      ],
+      "acceptance_criteria": [
+        "Business registration is complete",
+        "Business registration is approved"
+      ],
+      "depends_on_titles": [
+        "Complete Legal Registration"
+      ],
+      "depends_on": [],
+      "unblocks": [
+        "MS_2_legal_and_administrative_tasks_T_2_obtain_necessary_licenses"
+      ],
+      "assigned_to": "Jordan",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-05-30",
+      "estimated_days": 2.8,
+      "business_value": 5,
+      "blocking_count": 1,
+      "risk_weight": 1.0,
+      "priority_score": 2.6,
+      "assignment_score": 0.464,
+      "match_confidence": 0.35,
+      "criticality_score": 2.6,
+      "blocked_reason": null,
+      "graph_depth": 0,
+      "continuity_score": 0.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    }
+  ],
+  "ready_queue": [
+    "MS_1_mvp_launch_preparation_T_1_implement_patient_dashboard",
+    "MS_2_legal_and_administrative_tasks_T_1_finalize_business_registration"
+  ],
+  "task_list": [
+    {
+      "id": "MS_2_legal_and_administrative_tasks_T_1_finalize_business_registration",
+      "parent_id": "MS_2_legal_and_administrative_tasks",
+      "milestone_title": "Legal and Administrative Tasks",
+      "title": "Finalize Business Registration",
+      "description": "Finalize business registration",
+      "priority": "high",
+      "category": "admin_execution",
+      "complexity": "medium",
+      "tags": [
+        "business_registration",
+        "legal"
+      ],
+      "acceptance_criteria": [
+        "Business registration is complete",
+        "Business registration is approved"
+      ],
+      "depends_on_titles": [
+        "Complete Legal Registration"
+      ],
+      "depends_on": [],
+      "unblocks": [
+        "MS_2_legal_and_administrative_tasks_T_2_obtain_necessary_licenses"
+      ],
+      "assigned_to": "Jordan",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-05-30",
+      "estimated_days": 2.8,
+      "business_value": 5,
+      "blocking_count": 1,
+      "risk_weight": 1.0,
+      "priority_score": 2.6,
+      "assignment_score": 0.464,
+      "match_confidence": 0.35,
+      "criticality_score": 2.6,
+      "blocked_reason": null,
+      "graph_depth": 0,
+      "continuity_score": 0.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    },
+    {
+      "id": "MS_1_mvp_launch_preparation_T_1_implement_patient_dashboard",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement Patient Dashboard",
+      "description": "Implement the patient dashboard feature",
+      "priority": "high",
+      "category": "product_execution",
+      "complexity": "medium",
+      "tags": [
+        "patient_dashboard",
+        "mvp"
+      ],
+      "acceptance_criteria": [
+        "Patient dashboard is functional",
+        "Patient dashboard is user-friendly"
+      ],
+      "depends_on_titles": [
+        "Implement User Signup and Authentication"
+      ],
+      "depends_on": [],
+      "unblocks": [
+        "MS_1_mvp_launch_preparation_T_2_implement_medical_records_storage"
+      ],
+      "assigned_to": "Alex",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-06-30",
+      "estimated_days": 2.3,
+      "business_value": 5,
+      "blocking_count": 1,
+      "risk_weight": 1.0,
+      "priority_score": 2.6,
+      "assignment_score": 0.569,
+      "match_confidence": 0.65,
+      "criticality_score": 2.6,
+      "blocked_reason": null,
+      "graph_depth": 0,
+      "continuity_score": 0.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    },
+    {
+      "id": "MS_1_mvp_launch_preparation_T_2_implement_medical_records_storage",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement Medical Records Storage",
+      "description": "Implement the medical records storage feature",
+      "priority": "medium",
+      "category": "product_execution",
+      "complexity": "high",
+      "tags": [
+        "medical_records_storage",
+        "mvp"
+      ],
+      "acceptance_criteria": [
+        "Medical records storage is functional",
+        "Medical records storage is secure"
+      ],
+      "depends_on_titles": [
+        "Implement Patient Dashboard"
+      ],
+      "depends_on": [
+        "MS_1_mvp_launch_preparation_T_1_implement_patient_dashboard"
+      ],
+      "unblocks": [
+        "MS_1_mvp_launch_preparation_T_3_implement_sms_notifications"
+      ],
+      "assigned_to": "Alex",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-06-30",
+      "estimated_days": 3.45,
+      "business_value": 3,
+      "blocking_count": 1,
+      "risk_weight": 3.0,
+      "priority_score": 2.3,
+      "assignment_score": 0.6095,
+      "match_confidence": 0.65,
+      "criticality_score": 2.525,
+      "blocked_reason": null,
+      "graph_depth": 1,
+      "continuity_score": 1.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    },
+    {
+      "id": "MS_2_legal_and_administrative_tasks_T_2_obtain_necessary_licenses",
+      "parent_id": "MS_2_legal_and_administrative_tasks",
+      "milestone_title": "Legal and Administrative Tasks",
+      "title": "Obtain Necessary Licenses",
+      "description": "Obtain necessary licenses",
+      "priority": "medium",
+      "category": "admin_execution",
+      "complexity": "high",
+      "tags": [
+        "licenses",
+        "legal"
+      ],
+      "acceptance_criteria": [
+        "Necessary licenses are obtained",
+        "Necessary licenses are approved"
+      ],
+      "depends_on_titles": [
+        "Finalize Business Registration"
+      ],
+      "depends_on": [
+        "MS_2_legal_and_administrative_tasks_T_1_finalize_business_registration"
+      ],
+      "unblocks": [],
+      "assigned_to": "Sarah",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0.0,
+      "deadline": "2026-05-30",
+      "estimated_days": 4.2,
+      "business_value": 3,
+      "blocking_count": 0,
+      "risk_weight": 3.0,
+      "priority_score": 1.95,
+      "assignment_score": 0.0,
+      "match_confidence": 0.0,
+      "criticality_score": 1.975,
+      "blocked_reason": null,
+      "graph_depth": 1,
+      "continuity_score": 0.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    },
+    {
+      "id": "MS_1_mvp_launch_preparation_T_3_implement_sms_notifications",
+      "parent_id": "MS_1_mvp_launch_preparation",
+      "milestone_title": "MVP Launch Preparation",
+      "title": "Implement SMS Notifications",
+      "description": "Implement the SMS notifications feature",
+      "priority": "medium",
+      "category": "product_execution",
+      "complexity": "low",
+      "tags": [
+        "sms_notifications",
+        "mvp"
+      ],
+      "acceptance_criteria": [
+        "SMS notifications are functional",
+        "SMS notifications are user-friendly"
+      ],
+      "depends_on_titles": [
+        "Implement Medical Records Storage"
+      ],
+      "depends_on": [
+        "MS_1_mvp_launch_preparation_T_2_implement_medical_records_storage"
+      ],
+      "unblocks": [],
+      "assigned_to": "Alex",
+      "status": "todo",
+      "progress": 0.0,
+      "actual_days": 0,
+      "deadline": "2026-06-30",
+      "estimated_days": 1.84,
+      "business_value": 3,
+      "blocking_count": 0,
+      "risk_weight": 1.0,
+      "priority_score": 1.45,
+      "assignment_score": 0.538,
+      "match_confidence": 0.65,
+      "criticality_score": 1.7,
+      "blocked_reason": null,
+      "graph_depth": 2,
+      "continuity_score": 1.0,
+      "jira_issue_key": null,
+      "jira_issue_id": null,
+      "jira_issue_url": null,
+      "jira_status": null,
+      "agent_action": "create",
+      "agent_action_reason": "Task does not exist in Jira yet."
+    }
+  ],
+  "jira": {
+    "enabled": true,
+    "project_key": "KAN",
+    "issues_synced": 0,
+    "created": 0,
+    "updated": 0,
+    "errors": 5,
+    "last_sync": "2026-07-07T23:58:42.093735Z"
+  }
+}

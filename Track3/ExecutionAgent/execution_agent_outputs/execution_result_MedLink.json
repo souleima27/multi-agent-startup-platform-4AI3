@@ -2418,10 +2418,10 @@
     "MS_8_complete_payment_gateway_setup_T_1_define_requirements_for_payment_gateway_setup"
   ],
   "feasibility": {
-    "status": "good",
+    "status": "high_risk",
     "critical_path_days": 9.45,
-    "deadline_days": 80,
-    "buffer_days": 70.55
+    "deadline_days": 7,
+    "buffer_days": -2.45
   },
   "anomalies": [],
   "critic_report": {
@@ -2429,12 +2429,18 @@
       "No major anomaly is currently detected by the deterministic checks."
     ],
     "critic_review": [
-      "The plan is structurally acceptable based on local checks."
+      "The roadmap is currently high_risk."
     ],
     "recommendations": [
-      "Continue with the highest-priority ready tasks."
+      "Protect the critical path and reduce non-essential work."
     ],
-    "issues_found": [],
+    "issues_found": [
+      {
+        "issue": "Feasibility is high_risk",
+        "severity": "high",
+        "suggested_fix": "Reduce scope, protect critical tasks, and postpone low-priority work."
+      }
+    ],
     "updated_next_actions": [
       "Focus next on: Define scope for User signup and authentication (owner: Sarah)",
       "Focus next on: Define requirements for Legal registration (owner: Sarah)",
@@ -2454,7 +2460,7 @@
       "blocked": 0
     },
     "anomaly_count": 0,
-    "critic_issues": 0,
+    "critic_issues": 1,
     "task_count": 32,
     "ready_count": 8
   },
@@ -2632,7 +2638,7 @@
     "constraints": {
       "max_parallel_tasks_per_member": 2,
       "working_days_per_week": 5,
-      "current_date": "2026-04-26"
+      "current_date": "2026-07-08"
     },
     "execution_state": {
       "draft_plan": {
@@ -4664,10 +4670,10 @@
       ],
       "critical_path_days": 9.45,
       "feasibility": {
-        "status": "good",
+        "status": "high_risk",
         "critical_path_days": 9.45,
-        "deadline_days": 80,
-        "buffer_days": 70.55
+        "deadline_days": 7,
+        "buffer_days": -2.45
       },
       "anomalies": [],
       "critic_report": {
@@ -4675,12 +4681,18 @@
           "No major anomaly is currently detected by the deterministic checks."
         ],
         "critic_review": [
-          "The plan is structurally acceptable based on local checks."
+          "The roadmap is currently high_risk."
         ],
         "recommendations": [
-          "Continue with the highest-priority ready tasks."
+          "Protect the critical path and reduce non-essential work."
         ],
-        "issues_found": [],
+        "issues_found": [
+          {
+            "issue": "Feasibility is high_risk",
+            "severity": "high",
+            "suggested_fix": "Reduce scope, protect critical tasks, and postpone low-priority work."
+          }
+        ],
         "updated_next_actions": [
           "Focus next on: Define scope for User signup and authentication (owner: Sarah)",
           "Focus next on: Define requirements for Legal registration (owner: Sarah)",
@@ -4917,7 +4929,7 @@
           "blocked": 0
         },
         "anomaly_count": 0,
-        "critic_issues": 0,
+        "critic_issues": 1,
         "task_count": 32,
         "ready_count": 8
       }
@@ -6273,11 +6285,11 @@
     }
   },
   "executive_summary": {
-    "headline": "The project is currently on track.",
-    "feasibility": "good",
+    "headline": "The project is at risk and needs corrective action.",
+    "feasibility": "high_risk",
     "task_count": "32",
     "ready_count": "8",
-    "main_risk": "No major risk identified.",
+    "main_risk": "Feasibility is high_risk",
     "next_step": "Focus next on: Define scope for User signup and authentication (owner: Sarah)"
   },
   "owner_action_plan": {
@@ -6313,6 +6325,6 @@
   },
   "founder_decisions": [
     "Focus next on: Define scope for User signup and authentication (owner: Sarah)",
-    "Continue with the highest-priority ready tasks."
+    "Protect the critical path and reduce non-essential work."
   ]
 }
